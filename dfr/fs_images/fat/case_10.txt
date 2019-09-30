@@ -1,0 +1,13 @@
+dd bs=1M if=/dev/zero of=/dev/sda16
+mkfs.fat -n CASE_10 /dev/sda16
+mount /dev/sda16 /mnt
+cp test_files/bb1M /mnt
+cp test_files/dd1M /mnt
+cp test_files/cc1M /mnt
+rm /mnt/dd1M
+sync
+cp test_files/aa1M /mnt
+sync
+rm /mnt/aa1M
+rm /mnt/bb1M
+umount /mnt

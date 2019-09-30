@@ -1,0 +1,4 @@
+For creating test images on Windows:
+https://docs.microsoft.com/en-us/sysinternals/downloads/sync
+
+Extract and copy to C:\Windows\System32

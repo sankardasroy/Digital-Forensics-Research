@@ -1,0 +1,11 @@
+format N: /fs:NTFS /v:CASE_5IV /p:1
+copy test_files\cc1K N:cc1K.txt
+copy test_files\aa1M N:aa1M.txt
+sync N
+del N:aa1M.txt
+sync N
+del N:cc1K.txt
+copy test_files\bb1M N:bb1M.txt
+sync N
+del N:bb1M.txt
+sync N

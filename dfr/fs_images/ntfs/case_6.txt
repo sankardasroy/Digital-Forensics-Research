@@ -1,0 +1,15 @@
+format P: /fs:NTFS /v:CASE_6 /p:1
+copy test_files\dd1K P:
+copy test_files\aa100K P:aa200K
+copy test_files\bb100K P:
+sync P
+del P:dd1K
+sync P
+type test_files\aa100K >> P:aa200K
+sync P
+del P:aa200K
+sync P
+# Disconnect the usb drive
+# Reconnect the usb drive
+copy test_files\cc200K P:
+sync P

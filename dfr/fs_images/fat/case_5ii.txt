@@ -1,0 +1,28 @@
+dd bs=1M if=/dev/zero of=/dev/sda9
+mkfs.fat -n CASE_5II /dev/sda9
+mount /dev/sda9 /mnt
+cp test_files/dd1M /mnt
+cp test_files/cc1M /mnt
+sync
+rm /mnt/dd1M 
+sync
+cp test_files/dd1M /mnt
+rm /mnt/cc1M
+umount /mnt
+mount /dev/sda9 /mnt
+cp test_files/aa1M /mnt/aa3M
+rm /mnt/dd1M
+umount /mnt
+mount /dev/sda9 /mnt
+cat test_files/aa2M >> /mnt/aa3M
+sync
+rm /mnt/aa3M
+umount /mnt
+mount /dev/sda9 /mnt
+cp test_files/cc1M /mnt
+rm /mnt/cc1M
+sync
+cp test_files/bb1M /mnt
+sync
+rm /mnt/bb1M
+umount /mnt 

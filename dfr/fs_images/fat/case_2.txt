@@ -1,0 +1,10 @@
+dd if=/dev/zero of=/dev/sda2 bs=1M
+mkfs.fat -n CASE_2 /dev/sda2
+mount /dev/sda2 /mnt/
+cp test_files/aa1M /mnt/aa2M
+cp test_files/bb1M /mnt/
+sync
+cat test_files/aa1M >> /mnt/aa2M
+sync
+rm /mnt/aa2M
+umount /mnt

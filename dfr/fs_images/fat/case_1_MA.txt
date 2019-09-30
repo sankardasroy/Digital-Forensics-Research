@@ -1,0 +1,7 @@
+dd if=/dev/zero of=/dev/sda1 bs=1M
+mkfs.fat -n CASE_1 /dev/sda1
+mount /dev/sda1 /mnt
+cp test_files/aa1M /mnt/aa1M.txt
+sync
+rm /mnt/aa1M.txt
+umount /mnt 

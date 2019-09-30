@@ -1,0 +1,5 @@
+format E: /fs:NTFS /v:CASE_1 /p:1
+copy test_files\aa1M E:
+sync E
+del E:aa1M
+sync E

@@ -1,0 +1,17 @@
+format Q: /fs:NTFS /v:CASE_7 /p:1
+copy test_files\dd1K Q:dd1K.txt
+copy test_files\aa100K Q:aa200K.txt
+copy test_files\bb100K Q:bb100K.txt
+sync Q
+del Q:dd1K.txt
+sync Q
+type test_files\aa100K >> Q:aa200K.txt
+sync Q
+del Q:aa200K.txt
+sync Q
+# Disconnect the usb drive
+# Reconnect the usb drive
+copy test_files\cc200K Q:cc200K.txt
+sync Q
+del Q:cc200K.txt
+sync Q

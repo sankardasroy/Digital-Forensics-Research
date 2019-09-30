@@ -1,0 +1,8 @@
+format F: /fs:NTFS /v:CASE_2 /p:1
+copy test_files\aa1M F:aa2M
+copy test_files\bb1M F:
+sync F
+type test_files\aa1M >> F:aa2M
+sync F
+del F:aa2M
+sync F

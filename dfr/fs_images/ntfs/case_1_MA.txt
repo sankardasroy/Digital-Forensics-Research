@@ -1,0 +1,5 @@
+format R: /fs:NTFS /v:CASE_1 /p:1
+copy test_files\aa1M R:aa1M.txt
+sync R
+del R:aa1M.txt
+sync R

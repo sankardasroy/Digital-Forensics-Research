@@ -1,0 +1,9 @@
+format J: /fs:NTFS /v:CASE_4III /p:1
+copy test_files\cc1K J:
+copy test_files\aa1M J:
+sync J
+del J:aa1M
+sync J
+del J:cc1K
+copy test_files\bb~1M J:bb-1M
+sync J

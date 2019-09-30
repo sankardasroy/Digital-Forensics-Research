@@ -1,0 +1,5 @@
+Each image has a corresponding text file containing the commands used invoked in its creation.
+
+All images were created on a Windows 10 virtual machine.
+
+The volumes referenced in each file (E:, F:, etc.) are expected to each be a 6 MiB partition.
