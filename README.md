@@ -1,2 +1,2 @@
 # Digital Forensics Research  
-DFR: Analysis of deleted file recovery tools  
+Analysis of deleted file recovery tools  
