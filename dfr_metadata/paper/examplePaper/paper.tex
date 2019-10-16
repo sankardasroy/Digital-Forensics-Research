@@ -1,0 +1,152 @@
+
+\documentclass[runningheads,a4paper]{llncs}
+\pagestyle{plain}
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage{url}
+\urldef{\mailsa}\path|{fwei, yupingli}@mail.usf.edu|
+\urldef{\mailsb}\path|sanroy@bgsu.edu, xou@usf.edu, woodzltc@gmail.com|
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\usepackage{verbatim}
+\usepackage{xspace}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
+\def\UrlBreaks{\do\/\do\_\do-}
+\usepackage{breakurl}
+\usepackage[breaklinks]{hyperref}
+\usepackage{tabu}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{comment}
+\usepackage{subscript}
+\usepackage[version=3]{mhchem}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{rotating}
+\let\labelindent\relax
+\usepackage{enumitem}
+\usepackage{syntax}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage[strings]{underscore}
+\usepackage{array}
+\newcolumntype{?}{!{\vrule width 1pt}}
+\usepackage{makecell}
+%\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\hyphenation{multi-layered}
+\hyphenation{multi-layer}
+
+\newcommand{\etc}{{\it etc}.\xspace}
+\newcommand{\etal}{{\it et al}.}
+\newcommand{\ie}{{\it i.e.},\ }
+\newcommand{\eg}{{\it e.g.},\ }
+\newcommand{\aka}{{\it a.k.a.}\ }
+
+\newcommand{\genome}{{Android Malware Genome}\xspace}
+\newcommand{\amd}{{Android malware website}\xspace}
+\newcommand{\fsize}{{71}\ }
+\newcommand{\versize}{{135}\ }
+\newcommand{\samsize}{{24,650}\ }
+
+\newif\ifsubmit\submitfalse
+
+\ifsubmit
+\newcommand{\xo}[1]{}
+\newcommand{\morecite}{}
+\else
+\newcommand{\xo}[1]{{\color{red}{XO: {#1}}}}
+\newcommand{\morecite}{{\color{red}{[citation]}}}
+\fi
+
+
+% \newcommand{\mycomment}[1]{{(\color{red} \bf** #1 **)}}
+% \newcommand{\morecite}{\textbf{[citation]}}
+\newcommand{\fn}[1]{\textbf{\textit{#1}}}
+\newcommand{\pubsite}{\url{http://amd.arguslab.org/}\xspace}
+\newcommand{\ptitle}[1]{\vspace{0.2cm}\textbf{#1:}\par}
+
+\newenvironment{smallitem}{\setlength{\topsep}{0.0 truein}
+   \begin{itemize}
+   \setlength{\leftmargin}{.1 truein}
+   \setlength{\parsep}{0.0 truein}
+   \setlength{\parskip}{0.0 truein}
+   \setlength{\itemsep}{0.0 truein}}{\end{itemize}}
+
+\newenvironment{smallenum}{\setlength{\topsep}{0.0 truein}
+   \begin{enumerate}
+   \setlength{\leftmargin}{.1 truein}
+   \setlength{\parsep}{0.0 truein}
+   \setlength{\parskip}{0.0 truein}
+   \setlength{\itemsep}{0.0 truein}}{\end{enumerate}}
+
+
+%\newcommand{\Thetitle}{}
+%\newcommand{\Thesubtitle}{[Research Paper]}
+
+\newtheorem{mydef}{Definition}
+
+%\usepackage{etoolbox}
+%\makeatletter
+%\patchcmd{\maketitle}{\@copyrightspace}{}{}{}
+%\makeatother
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+% \title{A Comprehensive Study of the Current Android Malware Landscape}
+\title{Deep Ground Truth Analysis of Current Android Malware}
+\author{Fengguo Wei$^1$\and Yuping Li$^1$\and Sankardas Roy$^2$\and Xinming Ou$^1$\and Wu Zhou$^3$}
+\institute{$^1$University of South Florida,
+$^2$Bowling Green State University,
+$^3$Didi Labs.}
+
+% make the title area
+\maketitle
+
+
+
+\input{abstract-simon}
+\input{introduction}
+\input{method}
+\input{profile}
+\input{evolution}
+%\input{value}
+%\input{discussion}
+\input{related}
+\input{conclusion}
+\input{acknowledgment}
+
+{\scriptsize
+\bibliographystyle{plain}
+\bibliography{android} 
+}
+%\appendix
+
+%\input{appendix}
+
+
+
+% that's all folks
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

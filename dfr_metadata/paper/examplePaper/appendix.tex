@@ -1,0 +1,556 @@
+% \section{Appendix}
+% \label{appendix}
+
+The following tables present the malware families which appeared in the paper;
+for the full table please refer to \amd.
+
+\begin{table*}[!t]
+\centering
+\scriptsize
+\vspace{-0.2in}
+\caption{Malware Behaviors}
+\label{table:behavior}
+\vspace{-0.12in}
+\begin{subtable}{1\textwidth}
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{ %
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+\multicolumn{8}{|c|}{{\bf Legend}} \\
+\hline
+{\bf Installation} & Standalone (ST) & \multicolumn{3}{l|}{Repackaging (RPKG): Isolated (O), Integrated (T)} & Drop (DR) & Drive-by Download (DD) & Library (LIB) \\
+\hline
+{\bf Activation}  & Event (EV) & \multicolumn{2}{l|}{By Host App (BHA)} & Scheduling (SC) & {\bf Info Stealing} & Device Info (DI) & Personal Info (PI) \\
+\hline
+\multirow{2}{*}{\bf Persistence} & \multicolumn{1}{l}{Stealthy (TH):} & \multicolumn{6}{l|}{Block (BL), Clean (CL), Hide Icon (HI), Rootkit (RK)} \\
+\cline{2-8}
+                                                  &  \multicolumn{1}{l}{Prevent destroy (PD):} & \multicolumn{6}{l|}{Hide Admin (HA), Kill AV (KA), Lock Device (LD), Monitor Destroy Action (MDA), Reinstall (RI), System App (SYS)} \\
+\cline{1-8}
+{\bf Privilege} & Request Admin (RA) & \multicolumn{6}{l|}{Root Exploit (RE)} \\
+\hline
+{\bf C\&C} & Internet (IN) & \multicolumn{6}{l|}{Command Encoding (CE): Json (J), Java Script (JS), XML (X), Custom Protocol (P)} \\
+\hline
+\multirow{2}{*}{\bf Anti-analysis}  & Renaming (RN) & String Encryption (SE) & Dynamic Loading (DL) & \multicolumn{4}{l|}{Native Payload (NP)} \\
+\cline{2-8}
+                              & \multicolumn{7}{l|}{Evade Dynamic Analysis (EDA): Device Info (DI), Encrypt Communication (EC), Installed App (IA)} \\
+\hline
+\end{tabular}
+}
+\end{subtable}%
+
+\begin{subtable}{1\textwidth}
+\centering
+\scriptsize
+\resizebox{1\textwidth}{0.21\textheight}{ %
+\begin{tabular}{?p{2.2cm}?c|c|c|c|c?c|c|c?c|c?c|c?c|c?c|c|c?c|c|c|c|c?}
+\Xhline{2\arrayrulewidth}
+\multirow{2}{*}{Malware} & \multicolumn{5}{c?}{Installation} & \multicolumn{3}{c?}{Activation} & \multicolumn{2}{c?}{Info Stealing} & \multicolumn{2}{c?}{Persistence} & \multicolumn{2}{c?}{Privilege} & \multicolumn{3}{c?}{C\&C} & \multicolumn{5}{c?}{Anti-analysis} \\
+\cline{2-23}
+ & ST & RPKG & DR & DD & LIB & EV & BHA & SC & DI & PI & TH & PD & RA & RE & IN & SMS & CE & RN & SE & DL & NP & EDA \\
+\Xhline{2\arrayrulewidth}
+Airpush &  &  &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & \checkmark &  &  &  & & \checkmark &  & J & \checkmark &  &  &  &  \\
+\hline
+AndroRAT & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark &  &  &  & & \checkmark &  & P &  &  &  &  & \\
+\hline
+%Andup &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark &  & \checkmark &  &  &  &  &  \\
+%\hline
+Aples & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  &  & LD & \checkmark & & \checkmark &  & P &  &  &  &  & \\
+\hline
+BankBot & \checkmark &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL\&HI & MDA & \checkmark & & \checkmark & \checkmark & J\&P & \checkmark & \checkmark & \checkmark &  & DI \\
+\hline
+Bankun & \checkmark &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL\&HI &  & \checkmark & & \checkmark &  & J\&X &  &  &  &  & DI \\
+\hline
+%Boqx &  & O & \checkmark &  &  & \checkmark &  &  &  &  &  &  &  &  \\
+%\hline
+Boxer & \checkmark &  &  & \checkmark &  & \checkmark &  &  &  &  &  &  &  & &  &  &  & \checkmark & \checkmark &  &  &  \\
+\hline
+%Cova & \checkmark &  & \checkmark &  &  & \checkmark &  &  & \checkmark & \checkmark & BL &  &  &  \\
+%\hline
+Dowgin &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark &  & \checkmark &  &  &  &  & & \checkmark &  & J & \checkmark & \checkmark & \checkmark &  & EC \\
+\hline
+DroidKungFu & \checkmark & O\&T & \checkmark &  &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  & KA &  & \checkmark & \checkmark &  & J\&P & \checkmark & \checkmark &  & \checkmark & \\
+\hline
+%Erop & \checkmark &  &  &  &  & \checkmark &  &  & \checkmark &  &  &  &  &  \\
+%\hline
+FakeAV & \checkmark &  &  &  &  & \checkmark &  & \checkmark &  &  & BL &  &  & &  &  &  &  &  &  &  &   \\
+\hline
+FakeAngry &  & O & \checkmark &  &  & \checkmark &  &  & \checkmark &  &  &  &  & & \checkmark &  & P & \checkmark & \checkmark &  &  & \\
+\hline
+%FakeDoc & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  & BL &  &  &  \\
+%\hline
+%FakeInst & \checkmark &  & \checkmark &  &  & \checkmark &  &  & \checkmark &  & BL &  &  &  \\
+%\hline
+FakePlayer & \checkmark &  &  &  &  & \checkmark &  &  &  &  & BL &  &  & &  &  &  & \checkmark &  &  &  & \\
+\hline
+FakeTimer & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark &  &  &  & &  &  &  &  &  &  &  & \\
+\hline
+FakeUpdates &  & T & \checkmark &  &  & \checkmark & \checkmark & \checkmark &  &  &  &  &  & & \checkmark &  & X & \checkmark & \checkmark &  &  & \\
+\hline
+%Finspy & \checkmark &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark & HI &  &  &  \\
+%\hline
+%Fjcon &  & O & \checkmark &  &  & \checkmark &  &  & \checkmark &  & BL &  &  &  \\
+%\hline
+Fobus & \checkmark &  & \checkmark &  &  & \checkmark &  &  & \checkmark &  & BL\&HI &  & \checkmark & & \checkmark & \checkmark & X &  & \checkmark & \checkmark &  & EC \\
+\hline
+%Fusob & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark &  &  & LD\&MDA & \checkmark &  \\
+%\hline
+GingerMaster &  & O\&T & \checkmark &  &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  &  &  & \checkmark & \checkmark &  & P & \checkmark & \checkmark &  &  & \\
+\hline
+GoldDream & \checkmark & T & \checkmark &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  &  & & \checkmark &  & P &  &  &  &  & \\
+\hline
+Gorpo &  & O & \checkmark &  &  &  &  &  & \checkmark &  &  &  &  & \checkmark & \checkmark &  & J & \checkmark & \checkmark &  &  & EC \\
+\hline
+%Gumen &  & T &  &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL &  &  &  \\
+%\hline
+Jisut & \checkmark &  &  &  &  & \checkmark &  &  &  &  &  & LD &  & &  &  &  &  &  &  &  &  \\
+\hline
+Kemoge &  & O & \checkmark &  &  & \checkmark &  &  & \checkmark &  &  &  &  & \checkmark & \checkmark &  & P &  &  &  &  & \\
+\hline
+Koler & \checkmark &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  & LD\&MDA & \checkmark & & \checkmark &  & JS\&P & \checkmark &  &  &  & DI \\
+\hline
+Ksapp &  & T & \checkmark &  &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  &  &  & & \checkmark &  & P &  &  &  &  & EC \\
+\hline
+Kuguo &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  & & \checkmark &  & P & \checkmark &  &  &  &  \\
+\hline
+%Kyview &  &  & \checkmark &  & \checkmark &  & \checkmark &  & \checkmark & \checkmark &  &  &  &  \\
+%\hline
+Leech &  & T & \checkmark &  &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & BL & MDA &  & \checkmark & \checkmark &  & J & \checkmark & \checkmark & \checkmark &  & EC \\
+\hline
+%Lnk &  & T &  &  &  &  & \checkmark &  &  &  &  &  &  & \checkmark \\
+%\hline
+Lotoor & \checkmark &  & \checkmark &  &  & \checkmark &  &  &  &  &  &  &  & \checkmark &  &  &  & \checkmark &  & \checkmark & \checkmark & \\
+\hline
+%Mecor & \checkmark &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  &  &  \\
+%\hline
+%Minimob &  &  &  &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  &  &  &  \\
+%\hline
+%Mmarketpay &  & O & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL &  &  &  \\
+%\hline
+%MobileTX & \checkmark &  &  &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  &  &  \\
+%\hline
+%Mseg &  & O &  & \checkmark &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL &  &  &  \\
+%\hline
+%Mtk &  & O\&T & \checkmark &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  &  &  &  &  \\
+%\hline
+%Nandrobox &  & T & \checkmark &  & \checkmark & \checkmark & \checkmark &  & \checkmark &  & BL &  &  &  \\
+%\hline
+Obad & \checkmark &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL\&HI & HA & \checkmark & & \checkmark & \checkmark & J & \checkmark & \checkmark &  &  & DI\&EC \\
+\hline
+%Ogel & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL &  &  &  \\
+%\hline
+Opfake & \checkmark &  &  & \checkmark &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL\&CL\&HI &  &  & & \checkmark &  & P &  & \checkmark &  &  & \\
+\hline
+%Penetho & \checkmark &  &  &  &  & \checkmark &  &  &  &  &  &  &  &  \\
+%\hline
+%Ramnit &  & T &  &  &  &  & \checkmark &  &  &  &  &  &  &  \\
+%\hline
+%Roop & \checkmark &  &  &  &  & \checkmark &  &  & \checkmark &  & HI & LD & \checkmark &  \\
+%\hline
+RuMMS & \checkmark &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL\&HI &  & \checkmark & & \checkmark &  & J & \checkmark & \checkmark & \checkmark &  & \\
+\hline
+SimpleLocker & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark &  & HI & LD & \checkmark & & \checkmark & \checkmark & J\&P & \checkmark &  &  &  & \\
+\hline
+SlemBunk & \checkmark &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL\&HI &  & \checkmark & & \checkmark & \checkmark & J &  & \checkmark & \checkmark & \checkmark & \\
+\hline
+%SmsKey &  & T &  &  &  & \checkmark & \checkmark &  &  &  &  &  &  &  \\
+%\hline
+SmsZombie & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL\&CL &  & \checkmark & &  & \checkmark & X &  &  &  &  & \\
+\hline
+%Spambot & \checkmark &  &  &  &  & \checkmark &  &  &  & \checkmark & BL &  & \checkmark &  \\
+%\hline
+SpyBubble & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL\&CL &  &  & & \checkmark &  & X &  &  &  &  & \\
+\hline
+%Stealer & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL & MDA &  &  \\
+%\hline
+%Steek & \checkmark &  &  &  &  & \checkmark &  &  &  &  &  &  &  &  \\
+%\hline
+Svpeng & \checkmark &  & \checkmark & \checkmark &  & \checkmark &  &  & \checkmark & \checkmark & BL & LD &  & & \checkmark & \checkmark & P &  &  &  &  & DI  \\
+\hline
+%Tesbo &  & O &  &  &  & \checkmark &  &  & \checkmark &  & BL\&CL &  &  &  \\
+%\hline
+Triada & \checkmark &  & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark &  & CL\&RK & SYS &  & & \checkmark &  & P & \checkmark & \checkmark & \checkmark &  & DI\&IA \\
+\hline
+%Univert & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL &  &  &  \\
+%\hline
+UpdtKiller &  & T &  &  &  & \checkmark & \checkmark & \checkmark & \checkmark &  & BL & KA\&MDA & \checkmark & & \checkmark &  & X & \checkmark &  &  & \checkmark & \\
+\hline
+%Utchi &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark &  &  &  &  \\
+%\hline
+%Vidro & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL &  &  &  \\
+%\hline
+VikingHorde &  & T & \checkmark &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark &  & RI & \checkmark & & \checkmark &  & J &  &  &  & \checkmark & \\
+\hline
+Vmvol & \checkmark &  & \checkmark &  &  & \checkmark &  &  & \checkmark & \checkmark & BL\&CL &  &  & & \checkmark &  & J &  &  &  &  & \\
+\hline
+Winge &  & O & \checkmark &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  &  & & \checkmark &  & X & \checkmark &  &  &  & \\
+\hline
+Youmi &  &  & \checkmark &  & \checkmark &  & \checkmark &  & \checkmark & \checkmark &  &  &  & & \checkmark &  & P & \checkmark &  &  &  & \\
+\hline
+Zitmo & \checkmark &  &  &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & BL\&HI &  &  & &  & \checkmark & P & \checkmark &  &  &  & \\
+\hline
+Ztorg &  & T & \checkmark &  &  &  & \checkmark &  & \checkmark &  &  &  &  & \checkmark & \checkmark &  & J & \checkmark & \checkmark & \checkmark &  & EC \\
+\hline
+\multicolumn{23}{?c?}{......} \\
+\hline
+Total families: 71 & 41 & 24 & 40 & 9 & 9 & 64 & 20 & 34 & 58 & 39 & 34 & 15 & 15 & 8 & 50 & 9 & 53 & 39 & 22 & 11 & 8 & 14 \\
+\hline
+Total apps: 24888 & 8805 & 1833 & 9231 & 1218 & 14231 & 15218 & 14687 & 12341 & 21333 & 15035 & 2839 & 3549 & 2823 & 1299 & 22108 & 367 & 22145 & 18381 & 7211 & 5072 & 972 & 4051 \\
+\Xhline{2\arrayrulewidth}
+\multirow{2}{*}{Malware} & ST & RPKG & DR & DD & LIB & EV & BHA & SC & DI & PI & CE & PD & RA & RE & IN & SMS & CE & RN & SE & DL & NP & EDA \\
+ \cline{2-23}
+ & \multicolumn{5}{c?}{Installation} & \multicolumn{3}{c?}{Activation} & \multicolumn{2}{c?}{Stealing} & \multicolumn{2}{c?}{Persistence} & \multicolumn{2}{c?}{Privilege} & \multicolumn{3}{c?}{C\&C} & \multicolumn{5}{c?}{Anti-analysis} \\
+\Xhline{2\arrayrulewidth}
+\end{tabular}
+}
+\end{subtable}
+\end{table*}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\caption{Dataset Overview}
+\label{table:overview}
+\resizebox{0.4\textwidth}{0.2\textheight}{ %
+\begin{tabular}{?p{1.7cm}|l|c|c|c?}
+\Xhline{2\arrayrulewidth}
+Malware & Type & Samples & Variety & Detection \\
+\Xhline{2\arrayrulewidth}
+%Lnk & Trojan & 5 & 1 & 07/2010 \\
+%\hline
+FakePlayer & Trojan-SMS & 21 & 2 & 08/2010 \\
+\hline
+DroidKungFu & Backdoor & 546 & 6 & 05/2011 \\
+\hline
+GoldDream & Backdoor & 53 & 2 & 07/2011 \\
+\hline
+GingerMaster & Backdoor & 128 & 7 & 08/2011 \\
+\hline
+Boxer & Trojan-SMS & 44 & 1 & 09/2011 \\
+\hline
+Zitmo & Trojan-Banker & 24 & 2 & 10/2011 \\
+\hline
+SpyBubble & Trojan-SMS & 10 & 1 & 11/2011 \\
+\hline
+%Fjcon & Backdoor & 16 & 1 & 11/2011 \\
+%\hline
+%Steek & Trojan-Clicker & 12 & 1 & 01/2012 \\
+%\hline
+FakeTimer & Trojan & 12 & 2 & 01/2012 \\
+\hline
+Opfake & Trojan-SMS & 10 & 2 & 01/2012 \\
+\hline
+FakeAngry & Backdoor & 10 & 2 & 02/2012 \\
+\hline
+%FakeInst & Trojan-SMS & 2172 & 5 & 05/2012 \\
+%\hline
+%FakeDoc & Trojan & 21 & 1 & 05/2012 \\
+%\hline
+%MobileTX & Trojan & 17 & 1 & 05/2012 \\
+%\hline
+%Nandrobox & Trojan & 76 & 2 & 07/2012 \\
+%\hline
+%Mmarketpay & Trojan & 14 & 1 & 07/2012 \\
+%\hline
+UpdtKiller & Trojan & 24 & 1 & 07/2012 \\
+\hline
+%Vidro & Trojan-SMS & 23 & 1 & 08/2012 \\
+%\hline
+SmsZombie & Trojan-Spy & 9 & 1 & 08/2012 \\
+\hline
+Lotoor & HackerTool & 571 & 15 & 09/2012 \\
+\hline
+%Penetho & HackerTool & 18 & 1 & 10/2012 \\
+%\hline
+Ksapp & Trojan & 36 & 1 & 01/2013 \\
+\hline
+Winge & Trojan-Clicker & 19 & 1 & 01/2013 \\
+\hline
+%Mtk & Trojan & 67 & 3 & 02/2013 \\
+%\hline
+%Kyview & Adware & 175 & 1 & 04/2013 \\
+%\hline
+%SmsKey & Trojan-SMS & 165 & 2 & 04/2013 \\
+%\hline
+Obad & Backdoor & 9 & 1 & 06/2013 \\
+\hline
+Vmvol & Trojan-Spy & 13 & 1 & 06/2013 \\
+\hline
+AndroRAT & Backdoor & 46 & 1 & 07/2013 \\
+\hline
+%Stealer & Trojan-SMS & 25 & 1 & 07/2013 \\
+%\hline
+%Boqx & Trojan-Dropper & 215 & 2 & 07/2013 \\
+%\hline
+Bankun & Trojan-Banker & 70 & 4 & 07/2013 \\
+\hline
+%Mseg & Trojan & 235 & 1 & 08/2013 \\
+%\hline
+FakeUpdates & Trojan & 5 & 1 & 08/2013 \\
+\hline
+%Minimob & Adware & 203 & 1 & 09/2013 \\
+%\hline
+%Tesbo & Trojan-SMS & 5 & 1 & 09/2013 \\
+%\hline
+%Gumen & Trojan-SMS & 145 & 1 & 10/2013 \\
+%\hline
+Svpeng & Trojan-Banker & 13 & 1 & 11/2013 \\
+\hline
+%Spambot & Backdoor & 15 & 1 & 12/2013 \\
+%\hline
+%Utchi & Adware & 12 & 1 & 02/2014 \\
+%\hline
+Airpush & Adware & 7843 & 1 & 03/2014 \\
+\hline
+FakeAV & Trojan & 5 & 1 & 04/2014 \\
+\hline
+Koler & Ransom & 69 & 2 & 05/2014 \\
+\hline
+SimpleLocker & Ransom & 173 & 4 & 06/2014 \\
+\hline
+%Cova & Trojan-SMS & 17 & 2 & 06/2014 \\
+%\hline
+Jisut & Ransom & 560 & 1 & 06/2014 \\
+\hline
+%Univert & Backdoor & 10 & 1 & 07/2014 \\
+%\hline
+Aples & Ransom & 21 & 1 & 07/2014 \\
+\hline
+%Finspy & Trojan-Spy & 9 & 1 & 08/2014 \\
+%\hline
+%Erop & Trojan-SMS & 46 & 1 & 08/2014 \\
+%\hline
+%Andup & Adware & 45 & 1 & 11/2014 \\
+%\hline
+%Ramnit & Trojan-Dropper & 8 & 1 & 11/2014 \\
+%\hline
+Kuguo & Adware & 1199 & 1 & 02/2015 \\
+\hline
+Youmi & Adware & 1301 & 1 & 02/2015 \\
+\hline
+Dowgin & Adware & 3385 & 1 & 02/2015 \\
+\hline
+Fobus & Backdoor & 4 & 1 & 03/2015 \\
+\hline
+BankBot & Trojan-Banker & 740 & 8 & 03/2015 \\
+\hline
+%Roop & Ransom & 48 & 1 & 05/2015 \\
+%\hline
+%Ogel & Trojan-SMS & 6 & 1 & 06/2015 \\
+%\hline
+%Mecor & Trojan-Spy & 1820 & 1 & 07/2015 \\
+%\hline
+Ztorg & Trojan-Dropper & 20 & 1 & 08/2015 \\
+\hline
+Gorpo & Trojan-Dropper & 37 & 1 & 08/2015 \\
+\hline
+Leech & Trojan-SMS & 128 & 3 & 09/2015 \\
+\hline
+%Fusob & Ransom & 1277 & 2 & 10/2015 \\
+%\hline
+Kemoge & Trojan-Dropper & 15 & 1 & 10/2015 \\
+\hline
+SlemBunk & Trojan-Banker & 174 & 4 & 12/2015 \\
+\hline
+Triada & Backdoor & 210 & 1 & 03/2016 \\
+\hline
+RuMMS & Trojan-SMS & 402 & 4 & 04/2016 \\
+\hline
+VikingHorde & Trojan-Dropper & 7 & 1 & 05/2016 \\
+\hline
+\multicolumn{5}{?c?}{......} \\
+\hline
+Total: 71 & & 24888 & 135 & \\
+\Xhline{2\arrayrulewidth}
+\end{tabular}
+}
+\vspace{-0.2in}
+\end{table}
+
+\begin{table}[!t]
+\centering
+\scriptsize
+\caption{Monetization Techniques}
+\label{table:monetization}
+\vspace{-0.1in}
+\begin{subtable}{0.5\textwidth}
+\centering
+\scriptsize
+\resizebox{0.8\textwidth}{!}{ %
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{{\bf Legend}} \\
+\hline
+{\bf Premium Service Subscription (PSS)} & {\bf Aggressive Advertising (AA)} \\
+\hline
+\end{tabular}
+}
+\end{subtable}%
+
+\begin{subtable}{0.5\textwidth}
+\centering
+\scriptsize
+\resizebox{0.8\textwidth}{0.2\textheight}{ %
+\begin{tabular}{?p{2.2cm}|c|c|c|c?}
+\Xhline{2\arrayrulewidth}
+Malware & PSS & Bank & Ransom & AA \\
+\Xhline{2\arrayrulewidth}
+Airpush & Dynamic &  &  & \checkmark \\
+\hline
+AndroRAT & Dynamic &  &  &  \\
+\hline
+%Andup &  &  &  & \checkmark \\
+%\hline
+Aples &  &  & \checkmark &  \\
+\hline
+BankBot &  & \checkmark &  &  \\
+\hline
+Bankun &  & \checkmark &  &  \\
+\hline
+%Boqx &  &  &  &  \\
+%\hline
+Boxer & Static &  &  &  \\
+\hline
+%Cova & Dynamic\&Static &  &  &  \\
+%\hline
+Dowgin &  &  &  & \checkmark \\
+\hline
+DroidKungFu &  &  &  &  \\
+\hline
+%Erop & Static &  &  &  \\
+%\hline
+FakeAV &  &  & \checkmark &  \\
+\hline
+FakeAngry &  &  &  &  \\
+\hline
+%FakeDoc & Static &  &  &  \\
+%\hline
+%FakeInst & Dynamic\&Static &  &  &  \\
+%\hline
+FakePlayer & Static &  &  &  \\
+\hline
+%FakeTimer &  &  &  &  \\
+%\hline
+FakeUpdates &  &  &  &  \\
+\hline
+%Finspy &  &  &  &  \\
+%\hline
+%Fjcon & Dynamic &  &  &  \\
+%\hline
+Fobus & Dynamic &  &  &  \\
+\hline
+%Fusob &  &  & \checkmark &  \\
+%\hline
+GingerMaster &  &  &  &  \\
+\hline
+GoldDream & Dynamic &  &  &  \\
+\hline
+Gorpo &  &  &  & \checkmark \\
+\hline
+%Gumen & Dynamic &  &  &  \\
+%\hline
+Jisut &  &  & \checkmark &  \\
+\hline
+Kemoge &  &  &  &  \\
+\hline
+Koler &  &  & \checkmark &  \\
+\hline
+Ksapp &  &  &  &  \\
+\hline
+Kuguo &  &  &  & \checkmark \\
+\hline
+%Kyview &  &  &  & \checkmark \\
+%\hline
+Leech &  &  &  & \checkmark \\
+\hline
+%Lnk &  &  &  &  \\
+%\hline
+Lotoor &  &  &  &  \\
+\hline
+%Mecor &  &  &  &  \\
+%\hline
+%Minimob & Dynamic &  &  & \checkmark \\
+%\hline
+%Mmarketpay & Dynamic &  &  &  \\
+%\hline
+%MobileTX & Static &  &  &  \\
+%\hline
+%Mseg & Dynamic &  &  &  \\
+%\hline
+%Mtk &  &  &  &  \\
+%\hline
+%Nandrobox & Static &  &  &  \\
+%\hline
+Obad & Dynamic &  &  &  \\
+\hline
+%Ogel &  &  &  &  \\
+%\hline
+Opfake & Dynamic\&Static & \checkmark &  &  \\
+\hline
+%Penetho &  &  &  &  \\
+%\hline
+%Ramnit &  &  &  &  \\
+%\hline
+%Roop &  &  & \checkmark &  \\
+%\hline
+RuMMS & Dynamic & \checkmark &  &  \\
+\hline
+SimpleLocker &  &  & \checkmark &  \\
+\hline
+SlemBunk &  & \checkmark &  &  \\
+\hline
+%SmsKey & Static &  &  &  \\
+%\hline
+SmsZombie &  & \checkmark &  &  \\
+\hline
+%Spambot & Static &  &  &  \\
+%\hline
+SpyBubble &  &  &  &  \\
+\hline
+%Stealer & Dynamic &  &  &  \\
+%\hline
+%Steek &  &  &  &  \\
+%\hline
+Svpeng & Dynamic & \checkmark & \checkmark &  \\
+\hline
+%Tesbo &  &  &  &  \\
+%\hline
+Triada & Dynamic & \checkmark &  &  \\
+\hline
+%Univert & Dynamic &  &  &  \\
+%\hline
+UpdtKiller & Dynamic &  &  &  \\
+\hline
+%Utchi &  &  &  & \checkmark \\
+%\hline
+%Vidro & Dynamic &  &  &  \\
+%\hline
+VikingHorde &  &  &  & \checkmark \\
+\hline
+Vmvol & Dynamic &  &  &  \\
+\hline
+Winge & Dynamic &  &  &  \\
+\hline
+Youmi &  &  &  & \checkmark \\
+\hline
+Zitmo &  & \checkmark &  &  \\
+\hline
+Ztorg &  &  &  & \checkmark \\
+\hline
+\multicolumn{5}{?c?}{......} \\
+\hline
+Total families: 71 & 30 & 9 & 8 & 12  \\
+\hline
+Total apps: 24650 & 11839 & 1652 & 2166 & 14336  \\
+\Xhline{2\arrayrulewidth}
+Malware & PSS & Bank & Ransom & AA \\
+\Xhline{2\arrayrulewidth}
+\end{tabular}
+}
+\end{subtable}
+\vspace{-0.1in}
+\end{table}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "paper"
+%%% End:

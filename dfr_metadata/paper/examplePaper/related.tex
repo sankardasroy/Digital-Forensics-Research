@@ -1,0 +1,86 @@
+\vspace{-.1in}
+\section{Related Work}
+\label{sec:related}
+\vspace{-.02in}
+
+The \genome~\cite{zhou2012dissecting} %  is the closest related work of the current paper. 
+% This
+was the first research project that has provided the community 
+an Android malware dataset. 
+%In particular, it contains 1260 malware apps categorized in 49 families, which were discovered in 2010 and 2011. 
+This dataset has been the only well-labeled one and has been widely studied 
+and used by the research community.
+Unfortunately, it has not been updated after its creation time around 2011.
+We comparatively studied this dataset with the new malware samples we have, 
+and found that the Genome dataset does not include many of the new threats, 
+which motivated us to carry out this work. Our dataset also provides much more
+detailed information on Android malware behaviors than that in Genome. Moreover,
+we provide detailed documentation of the process used in creating the dataset, 
+including the guidelines for the manual analysis, to help other researchers
+do the same.
+%In short, Genome dataset no longer represents the current Android malware world, which has motivated us to do the current work. 
+
+Recently, the \emph{AndroZoo}~\cite{allix2015androzoo} dataset has been published, 
+which contains more than 3 million Android apps 
+from Google Play, other smaller markets, and app repositories.
+\emph{AndroZoo}'s goal is to create a comprehensive app collection for software 
+engineering studies. Our goal is different and we focus on (only) malware apps 
+to study their security related behaviors. Our dataset provides malware labels
+and detailed behavior information of the malware. 
+% As expected, the majority of the apps in \emph{AndroZoo} are benign apps. 
+% \emph{AndroZoo} did not yet report the behaviors of the malware apps in their dataset. 
+
+There are a few other repositories for Android malware apps 
+which researchers can use, such as \emph{Contagio Minidump}~\cite{minidump} 
+and \emph{VirusShare}~\cite{virusshare}. However, they do not provide 
+a comprehensive malware collection or comprehensive label and behavior information on
+the malware.
+
+The \emph{ANDRUBIS}~\cite{lindorfer2014andrubis} combines static and dynamic analysis
+to automatically extract feature and behaviors from Android apps, and
+studies the changes in the malware threat landscape and trends among ``goodware,'' or
+benign apps, developers.
+However, as many behaviors are either unknown or can evade the automated analysis method,
+this work cannot give a comprehensive understanding of the malware landscape as we 
+produced through the systematic and deep manual analysis.
+
+\emph{AVclass}~\cite{sebastian2016avclass} provides a method to extract malware family name
+by processing the AV labels obtained from VirusTotal. 
+We adopted a similar approach for identifying malware family label.
+Our work is focused on deep manual analysis of malware samples from different malware varieties, 
+and reporting the detailed behavioral profiles for Android malware.
+
+% independently developed without
+% the knowledge of the AVclass work. The difference between own approach is discussed in
+% Section~\ref{sec:data:family}. Furthermore, we provide the variety information for each malware family.
+
+% Few recent works include \emph{Amandroid} \cite{wei2014amandroid}, \emph{DroidSafe} 
+% \cite{gordon2015information}, \emph{FlowDroid} \cite{arzt2014flowdroid}, and \emph{IccTA} \cite{li2015iccta}.
+% Future detection tools can utilize our malware dataset to test and improve the effectiveness. 
+
+There has been quite some work on how to detect malicious apps. 
+The \emph{Drebin}~\cite{arp2014drebin} work applies machine learning (ML) techniques to Android malware
+detection.
+The authors made the set of \emph{feature vectors} used in the ML work available to the community.
+More recently, \emph{MassVet}~\cite{chen2015finding} provides a method
+to detect malware apps by observing the repackaging traits (if any) 
+compared to that of other apps. % However, \emph{MassVet} does not target other types (\ie standalone) 
+% of malware.
+Rastogi, \etal~\cite{rastogi2016these} conducted research on identifying adware tricks and drive-by-download techniques.
+\emph{Harvestor}~\cite{rasthofer2016harvesting} attempts to extract the 
+\emph{run-time} values from obfuscated apps
+to detect malware. Researchers have identified ways in which Android users 
+can be deceived to misidentify a malicious app window as a legitimate app's~\cite{bianchi2015app}.
+Moreover, \emph{CopperDroid}~\cite{tam2015copperdroid} is a dynamic analysis system which attempts 
+to reconstruct the behaviors of Android malware.
+Our work complements these and other Android malware analysis work by providing a comprehensive 
+dataset of Android malware with detailed label and behavior information, which can facilitate 
+future research in this area.
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "paper"
+%%% End: 

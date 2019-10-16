@@ -1,0 +1,208 @@
+\vspace{-.1in}
+\section{Introduction}
+\label{sec:introduction}
+\vspace{-.02in}
+
+The Android platform continues to dominate the smartphone market
+with more than 80\% share according to the study by 
+International Data Corporation~\cite{idc} and Gartner~\cite{gartner}.
+Over the last five years, the Android world has been changing dramatically with
+more features added, and more sensitive operations (\eg banking and wallet) 
+becoming popular on smartphones.
+Along with the Android platform's popularity, the Android malware has been growing as well,
+with more complex logic and anti-analysis techniques. 
+%(such as, dynamic loading\morecite, code obfuscation\morecite).
+
+As expected, research groups across academia and industry put
+enormous effort to design novel methods to detect Android malware. 
+However, the above effort is adversely affected by the lack of clear understanding of 
+the latest Android malware landscape. 
+A reliable ground truth dataset is essential for building effective 
+malware analysis techniques and verifying the validity of new detection methods.
+% In order to design effective detection solutions for new Android malware,
+% it is necessary to obtain key insights by studying the recent malware behaviors. 
+For understanding the nefarious techniques used in the state-of-the-art malware apps, 
+{\bf detailed behavior profiles for each malware variety must be provided
+in such a dataset}.
+While creating such a dataset is a must-do ground work,
+this task is extremely difficult.
+In particular,
+% Unfortunately, such a dataset is extremely difficulty to construct.
+%There are significant challenges in creating a new, more up-to-date dataset for Android malware.
+%in studying the overall landscape of recent Android malware.
+{\bf to provide the rich information for malware behaviors, manual analysis is indispensable.}
+However it is not feasible to manually analyze all Android malware at our hands (we have \samsize
+from various sources). Thus the first step is to categorize the samples into
+semantically equivalent groups; then we only need to study a few samples
+from each group.
+
+
+One can use AV scanning service like
+VirusTotal~\cite{virustotal} to group malware samples into families;
+however, the family labels returned are often
+inconsistent~\cite{hurier2016lack,sebastian2016avclass}.
+% The first challenge is due to scalability issue.
+Moreover, we observe that malware samples within one family
+may actually contain different varieties with different behaviors.
+Thus we cannot simply rely upon the grouping provided by AV products, even after being refined
+by tools like AVclass~\cite{sebastian2016avclass}.
+% It is infeasible to manually study every sample for
+% a large family, \eg when the family size is larger than a few hundred.
+% The second challenge is due to difficulty in automating the Android malware categorization task.
+% We can use clustering to group malware based on their semantic features.
+% Unfortunately, traditional PC malware clustering techniques are not readily
+% applicable to Android apps due to their excessive usage of 
+% shared libraries and the repackaging techniques.
+Even if grouping has been done perfectly, the amount of work of manually analyzing
+representative apps from each malware variety is still daunting.
+Advanced obfuscation methods are
+widely adopted in recent Android malware apps, further complicating the manual
+analysis process.
+
+
+
+%Nevertheless, 
+%the Android research community \morecite is still using the dataset from 
+
+Due to the above reasons, there has not been any effort on creating such a
+rich Android malware dataset, except for the 
+\genome~\cite{zhou2012dissecting} project.
+The \genome dataset is no longer
+available to researchers due to resource limitations.
+ % (which includes analysis of each family)
+ % that the community can use.
+It provided a malware dataset containing
+1260 malware samples categorized in 49 families,
+discovered in 2010 and 2011.
+%We experimented with this dataset and observed that
+We have collected a more recent Android malware dataset from several 
+sources (VirusShare, Google Play and third party security companies).
+% while the majority
+The malware in this collection were discovered between 2010 and 2016. 
+We made comparative study of the Genome dataset with our malware samples of 2011 and later,
+and found that the majority of the threats in those newer samples are not captured by the 
+Genome samples. As a result, we not only need a more up-to-date malware dataset for Android,
+we also need one with much richer semantic information than what the Genome dataset provided.
+
+
+
+%\genome data is too outdated to capture some of the new threats.
+%The \genome  is old, without up-to-date understanding of Android malware,
+%and new data set, practical methods cannot designed to capture the new threats.
+
+%Note that there are significant challenges in studying the overall landscape of recent Android malware and their categorization. 
+%One challenge is due to scalability issue while another challenge stems from the fact that traditional technique to handle 
+%desktop malware does not readily work for the Android domain for the following reasons:
+%In particular, security companies receive hundreds of ``potentially malicious'' Android samples everyday \morecite while 
+%traditional desktop malware triage process such as malware clustering is not directly applicable to Android domain for following reasons:
+%The excessive usage of libraries in the Android world and the repackaging techniques
+%adopted by Android malware authors make clustering process challenging - for instance, two malicious Android app samples sharing 
+%high level of overall similarity does not guarantee that they belong to the same family.
+%And even among the app samples which are labeled with the same family name by anti-virus companies (\eg listed on Virustotal), 
+%there may exist significant varieties (sub-families) of different version of malicious payloads.
+%On one hand, malware samples with new version payload may break existing malware detection technique, so it is necessary to analyze each version of malicious samples individually.
+%On the other hand, it becomes almost infeasible to manually study every sample for a large family; for instance, when a family size is as large as 8000.
+
+
+\vspace{.1in}
+
+%Understanding of the those techniques will help to (why/what/how)
+\noindent {\bf The main contributions of this work are as follows.}
+\begin{enumerate}[label=\textbf{\arabic*}.]
+\vspace{-.1in}
+\item
+We present a systematic method of analyzing large volumes of Android malware samples with high
+%confidence, which helps us to prepare a large ground truth Android malware dataset.
+%This method addressed the scalability challenge by leveraging a two layer grouping technique,
+%(1) Group malware samples with same family name, 
+%(2) Refine each family to semantically different varieties using clustering analysis.
+%We then perform manual analysis on each variety of each family to generate behavior report.
+%The final dataset contains \samsize labeled Android malware samples that are classified in \versize varieties within \fsize families, 
+confidence, which helps us prepare a large ground truth Android malware dataset with rich profile information.
+This method addresses the scalability challenge by leveraging a two-step grouping technique
+followed by a systematic and deep manual analysis.
+\item We present a detailed guideline for performing the manual analysis so other researchers can 
+replicate the process on other Android malware samples in their
+possession.
+Our manual analysis provides profiles for each variety of the Android malware
+regarding their behaviors.
+% , we further conduct 
+% a comprehensive study to profile
+% their behaviors, and monetization methods.
+This provides insights into the landscape of the current Android malware.
+\item We prepare a comprehensive dataset which contains \samsize labeled Android malware samples that are classified in \versize 
+varieties within \fsize families, 
+whose discovery dates range from 2010 to 2016. 
+%We collected the samples from various sources, including VirusShare, Google Play, and third party security companies.
+We publish detailed reports including behavior information for each malware variety at our
+\amd \pubsite.
+We are sharing the whole dataset with the research community.
+%\item We propose a  
+%payload sharing based malware clustering approach to
+%separate malware samples from a particular family to different versions.
+%For each particular version samples, we randomly select xxx samples 
+%to conduct detailed manual analysis and verify the correctness of
+%clustering results. 
+%For each malware family we using cluster analysis to get the different version,
+%and for each version of each malware family we detailed analyze the behavior
+%it has and write down the document.
+% \vspace{-.02in}
+% \item 
+
+
+
+% In our dataset, we find that 
+% (a) since 2012 the percentage of malware varieties that are standalone is increasing and 
+% that of repackaged malware is decreasing.
+% % 63\%/35\%\footnote{\% of varieties/\% of apps} are standalone apps as opposed to 30\%/7\% being repackaged 
+% % apps\footnote{The remaining are cases where an app developer used a malicious library without knowing it.},
+% This indicates that malware writers are recently investing more resource in Android malware development;
+% (b) the percentage of malware varieties that gain root privilege is decreasing;
+% % Only 24\%/5\% malware families attempt to gain root privilege, which shows
+% this indicates that Android OS is becoming harder to exploit;
+% however, the recent rooting malware are becoming more sophisticated, 
+% which can potentially
+% make them as complex as PC malware in the near future;
+% (c) more Android malware % 63\%/79\%
+% apply anti-analysis techniques to evade detection, which
+% indicates the urgent need of advanced de-obfuscation and 
+% dynamic analysis tools;
+% % within one malware family as well as between different malware families.
+% (d) We observe that
+% malware are evolving towards monetization.
+% % 61\%/86\% adopt at least one monetization method;
+% % among them, 52\%/85\% are related to banking, ransom and aggressive advertisement, 
+% 61\% of malware varieties adopt at least one monetization method;
+% among them, 52\% are related to banking, ransom and aggressive advertisement, 
+% which is different from old methods such as subscribing to premium services.
+% %this shows that the current malware apps use a diversity of ways to get more revenue.
+% %Futhermore, other growing techniques support the goal of generating more revenue.
+% %For instance, applying device-admin privilege helps malware gain more control of infected device.
+% %The more efficient persistence techniques keep malware operating longer, and
+% %the extensive use of anti-analysis techniques makes the malware harder to be detected and removed.
+% %(1) Obtaining system-admin privilege has become more popular,
+% %because it can give the malware the power to encrypt the file system,
+% %modify PIN code, wipe user data; and make it difficult to be uninstalled;
+% %(2) Using timer or {\em AlarmManager} to schedule
+% %timing task periodically (\eg collecting victim's data and fetching command from the C\&C
+% %server) has become more dominant in recent malware design;
+% %an extreme use of this is found in recent ransomware apps;
+% %(3) Malware design is moving towards using persistence techniques, \eg 
+% %evidence-cleaning, prevention-from-destruction methods are invented to keep the malware
+% %staying longer on the infected device.
+\end{enumerate} 
+
+
+% \vspace{-.05in}
+The rest of the paper is organized as follows. Section~\ref{sec:data} discusses
+the process of preparing the dataset.
+Section~\ref{sec:profile} discusses in details the behaviors and techniques of malware in our dataset,
+and Section~\ref{sec:evolution} discusses our analysis and observation of the malware evolution trends.
+%We summarize the main findings of our analysis in Section~\ref{sec:value},
+We discuss related research in Section~\ref{sec:related},
+and conclude in Section~\ref{sec:conclusion}.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "paper"
+%%% End: 

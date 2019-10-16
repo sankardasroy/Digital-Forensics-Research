@@ -1,0 +1,87 @@
+\begin{abstract}
+\vspace{.02 in}
+% The Android platform has captured the majority of the smartphone market share. 
+% Unfortunately, 
+%The phenomenal success of the Android platform attracted large amount of malware.
+To build effective malware analysis techniques and to evaluate new detection tools, 
+up-to-date datasets reflecting the current Android malware landscape 
+are essential. For such datasets to be maximally useful,
+they need to contain reliable and complete information on malware's behaviors and
+techniques used in the malicious activities. Such a dataset shall also provide a
+comprehensive coverage of a large number of types of malware. 
+The \genome created circa 2011 has been the only well-labeled and widely studied dataset the
+research community had easy access to\footnote{As of 12/21/2015 the 
+Genome authors have stopped supporting the dataset sharing due to resource limitation.}.
+But not only is it outdated and no longer represents the current Android malware 
+landscape, 
+it also does not provide as detailed information on malware's behaviors 
+as needed for research.
+Thus it is urgent to create a high-quality dataset for Android malware. %  to facilitate
+% research in this important area.
+% The main challenge 
+% is to provide accurate and reliable information for the malware behaviors and
+% to scale the analysis at the same time.
+While existing information sources such as VirusTotal are useful, 
+to obtain the accurate and detailed information 
+for malware behaviors, deep manual analysis is indispensable. 
+In this work we present our approach to preparing a large Android malware dataset
+for the research community. We leverage existing anti-virus scan results
+and automation techniques in categorizing our large dataset (containing \samsize malware app samples) 
+into \versize varieties (based on malware behavioral semantics) which belong to \fsize malware families.
+For each variety, we select three samples as representatives, for a total of 405 malware samples,
+to conduct in-depth manual analysis.
+% leading to the manual analysis of about 400 malware apps that are representatives of the above varieties, and 
+% leverage existing tools to manually analyze 
+% these representative apps.
+Based on the manual analysis result we generate detailed descriptions of each malware variety's behaviors and include them in our dataset. %  using 
+% state-of-the art static analysis tools.
+We also report our observations on the current landscape of Android malware as depicted in the dataset.
+% We produce detailed documentation of both the manual analysis process and
+% the results, and 
+%Not only do we provide the research community with the new up-to-date dataset, 
+Furthermore, we present detailed documentation of the process used in creating the dataset, including
+the guidelines for the manual analysis. 
+% the results, and
+%Our work is the first that presents a systematic process of analyzing 
+%a large number of Android malware samples so that this process can be replicated by other researchers 
+%on other Android malware samples in their possession.
+We make our Android malware dataset available to the research community. 
+%The detailed profile and behavior information about each malware variety can be found at the website \url{http://www.androidmalwaredataset.org/}.
+%The complete dataset will be shared upon request with a research purpose.
+
+% Traditional techniques such as clustering 
+% analysis cannot be directly applied due to the widespread use of shared third-party 
+% libraries and repackaging techniques in the Android malware world. In this work, 
+% we leverage antivirus scanning results from VirusTotal and threat reports
+% from anti-virus community
+% to get family names 
+% for the collected Android malware samples. We then refine the malware families through a 
+% payload-sharing-based clustering analysis augmented with manual verification, 
+% and 
+%We perform a comprehensive study of behaviors, techniques, and trend of Android malwares,
+%and produce a large labeled dataset with \samsize samples of \fsize malware families
+%ranging from 2010 to 2016.
+%We further perform automated clustering analysis 
+%(augmented with occasional manual study) to categorize
+%malware samples in several families while one family may have 30 versions.
+%Through manual study of representative samples from each version of each family, we
+%produce detailed documentation and list our observations to provide research community with a
+%landscape of recent Android malware.
+%For each malware family, we study its
+%(1) versions with timeline
+%and geography;
+%(2) installation \& activation strategies;
+%(3) behaviors \eg privilege escalation, remote control, financial charges,
+%personal information stealing, download \& install application, stealthiness;
+%(4) anti-analysis \& obfuscation techniques.
+% This dataset will help the Android research community to have an up-to-date 
+% understanding of the Android malware landscape and produce better anti-virus 
+% solutions in the future. We also present the key observations we made for the
+% current Android malware landscape.
+\end{abstract}
+\vspace{-.03 in}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "paper"
+%%% End: 

@@ -1,0 +1,59 @@
+\section{Finding Summary}
+\label{sec:value}
+
+We provide the community a well-labeled Android malware dataset
+that includes comprehensive profile information about malware behaviors
+and techniques. The dataset provides an up-to-date picture of
+the current landscape of Android malware. 
+% Our study strongly suggests that \genome dataset is
+% outdated as it does not capture most of the current malware
+% behaviors. Our observations warrant an urgent need for a new dataset to better
+% guide the design of new Android anti-virus solutions.
+Below we highlight the main findings we obtained from analyzing the
+malware samples in our dataset.
+
+\begin{enumerate}[leftmargin=0cm,itemindent=.5cm,labelwidth=\itemindent,labelsep=0cm,align=left]
+
+\item Android malware monetizing techniques are evolving.
+% To better understand the landscape of Android malware,
+We need to understand the way cybercriminals generate revenue
+for more effective malware analysis and prevention.
+% The malware design is dictated by how to steal money 
+% and how to keep the malware alive longer,
+% so if we perform the analysis along this line, we can
+% get more clear picture of the Android malware world.
+
+\item We observe that \emph{standalone} malware apps
+are becoming dominant. This indicates that the Android security community
+did a good job of capturing repackaged malware, but it also
+gives us a message that the war against Android malware has escalated to another stage,
+where cybercriminals are becoming more skilled and putting
+more effort into designing more comprehensive and sophisticated malware.
+% Android ecosystem is growing fast with more and more features being added
+% and more financial related activities becoming available.
+% This means that Android malware will not stop evolving, so
+% anti-virus solutions also have to catchup to guard against the threats.
+
+\item Malware writers are more aggressively using persistence techniques in the malware design.
+% Assuming mobile device users care about the security issues of their device,
+% any suspicious behavior will alarm the users about existence of a malware.
+% So to make the malware stay longer on the infected device, leaving less evidence
+% is the key of success for a malware app.
+
+\item Anti-analysis techniques are being widely used in Android malware these days,
+and the obfuscation techniques make malware analysts job much harder. % The
+% dynamic analysis evading techniques are used to hide the malicious behavior from the
+% dynamic vetting sandbox.
+When the detection of malware
+becomes harder, the malware gets larger time window to exist on the wild harming victims.
+This shows an urgent need of designing effective deobfuscation solutions. The 
+dynamic analysis tools also need to keep up with evading techniques.
+%  obfuscate more its environment to make it more
+% like a normal device.
+
+\end{enumerate}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "paper"
+%%% End: 
