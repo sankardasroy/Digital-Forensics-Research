@@ -1,147 +1,193 @@
-%% 
-%% Copyright 2007-2019 Elsevier Ltd
-%% 
-%% This file is part of the 'Elsarticle Bundle'.
-%% ---------------------------------------------
-%% 
-%% It may be distributed under the conditions of the LaTeX Project Public
-%% License, either version 1.2 of this license or (at your option) any
-%% later version.  The latest version of this license is in
-%%    http://www.latex-project.org/lppl.txt
-%% and version 1.2 or later is part of all distributions of LaTeX
-%% version 1999/12/01 or later.
-%% 
-%% The list of all files belonging to the 'Elsarticle Bundle' is
-%% given in the file `manifest.txt'.
-%% 
-%% Template article for Elsevier's document class `elsarticle'
-%% with harvard style bibliographic references
+%
+% It is an example file showing how to use the 'acm_proc_article-sp.cls' V3.2SP
+% LaTeX2e document class file for Conference Proceedings submissions.
 
-\documentclass[preprint,12pt,authoryear]{elsarticle}
+\documentclass{mcurcsm}
+%\documentclass{acm_proc_article-sp}
 
-%% Use the option review to obtain double line spacing
-%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
-
-%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
-%% for a journal layout:
-%% \documentclass[final,1p,times,authoryear]{elsarticle}
-%% \documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
-%% \documentclass[final,3p,times,authoryear]{elsarticle}
-%% \documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
-%% \documentclass[final,5p,times,authoryear]{elsarticle}
-%% \documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
-
-%% For including figures, graphicx.sty has been loaded in
-%% elsarticle.cls. If you prefer to use the old commands
-%% please give \usepackage{epsfig}
-
-%% The amssymb package provides various useful mathematical symbols
-\usepackage{amssymb}
-%% The amsthm package provides extended theorem environments
-%% \usepackage{amsthm}
-
-%% The lineno packages adds line numbers. Start line numbering with
-%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
-%% for the whole article with \linenumbers.
-%% \usepackage{lineno}
-
-\journal{}
+\usepackage[letterpaper,breaklinks=true]{hyperref}
+%\usepackage{breakurl}
+\usepackage{balance}    % to balance the last page's columns
 
 \begin{document}
 
-\begin{frontmatter}
+    \title{NIST Standards Compliance of Metadata-Based Deleted-File-Recovery Tools\titlenote{Modified from the sample
+    supplied by ACM as part of their SIG proceedings template
+    http://www.acm.org/sigs/publications/proceedings-templates.}}
+%   \subtitle{[And a sample article]
+%   \titlenote{A full version of this paper is available as
+%   \textit{Author's Guide to Preparing ACM SIG Proceedings Using
+%   \LaTeX$2_\epsilon$\ and BibTeX} at
+%   \url{http://www.acm.org/eaddress.htm}}}
 
-%% Title, authors and addresses
+%
+% You need the command \numberofauthors to handle the 'placement
+% and alignment' of the authors beneath the title.
+%
+% For aesthetic reasons, we recommend 'three authors at a time'
+% i.e. three 'name/affiliation blocks' be placed beneath the title.
+%
+% NOTE: You are NOT restricted in how many 'rows' of
+% "name/affiliations" may appear. We just ask that you restrict
+% the number of 'columns' to three.
+%
+% Because of the available 'opening page real-estate'
+% we ask you to refrain from putting more than six authors
+% (two rows with three columns) beneath the article title.
+% More than six makes the first-page appear very cluttered indeed.
+%
+% Use the \alignauthor commands to handle the names
+% and affiliations for an 'aesthetic maximum' of six authors.
+% Add names, affiliations, addresses for
+% the seventh etc. author(s) as the argument for the
+% \additionalauthors command.
+% These 'additional authors' will be output/set for you
+% without further effort on your part as the last section in
+% the body of your article BEFORE References or any Appendices.
 
-%% use the tnoteref command within \title for footnotes;
-%% use the tnotetext command for theassociated footnote;
-%% use the fnref command within \author or \address for footnotes;
-%% use the fntext command for theassociated footnote;
-%% use the corref command within \author for corresponding author footnotes;
-%% use the cortext command for theassociated footnote;
-%% use the ead command for the email address,
-%% and the form \ead[url] for the home page:
-%% \title{Title\tnoteref{label1}}
-%% \tnotetext[label1]{}
-%% \author{Name\corref{cor1}\fnref{label2}}
-%% \ead{email address}
-%% \ead[url]{home page}
-%% \fntext[label2]{}
-%% \cortext[cor1]{}
-%% \address{Address\fnref{label3}}
-%% \fntext[label3]{}
+\numberofauthors{3} 
 
-\title{}
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor
+Andrew Meyer\\
+       \affaddr{Bowling Green State University}\\
+%       \affaddr{Address}\\
+%       \affaddr{Address continued}\\
+       \email{apmeyer@bgsu.edu}
+% 2nd. author
+\alignauthor
+Second Author\\
+       \affaddr{School name}\\
+       \affaddr{School address}\\
+       \affaddr{Address continued}\\
+       \email{second.author@email.invalid}
+% 3rd. author
+\alignauthor 
+Third Author\titlenote{You can use a ``titlenote'' to recognize your advisor.}\\
+       \affaddr{Affiliation}\\
+       \affaddr{Address}\\
+       \affaddr{Address continued}\\
+       \email{third.author@email.invalid}
+%
+%\and  % use '\and' if you need 'another row' of author names
+%
+}
 
-%% use optional labels to link authors explicitly to addresses:
-%% \author[label1,label2]{}
-%% \address[label1]{}
-%% \address[label2]{}
+% There's nothing stopping you putting the seventh, eighth, etc.
+% author on the opening page (as the 'third row') but we ask,
+% for aesthetic reasons that you place these 'additional authors'
+% in the \additional authors block, viz.
+%\additionalauthors{Additional authors: John Smith (The Th{\o}rv{\"a}ld Group,
+%email: {\texttt{jsmith@affiliation.org}}) and Julius P.~Kumquat
+%(The Kumquat Consortium, email: {\texttt{jpkumquat@consortium.net}}).}
+%\date{30 July 1999}
+% Just remember to make sure that the TOTAL number of authors
+% is the number that will appear on the first page PLUS the
+% number that will appear in the \additionalauthors section.
 
-\author{Andrew Meyer, Quinton Currier, Sankardas Roy}
-
-\address{}
-
+\maketitle
 \begin{abstract}
-%% Text of abstract
-We designed a set of FAT and NTFS filesystem images to simulate file recovery scenarios, focusing on cases where files are fragmented, partially or fully overwritten, or both. We then tested six popular DFR tools on them. We found that all DFR tools we tested failed to meet the NIST standards in most scenarios. In this process, we discovered several ambiguities and possible contradictions in the standards. We conclude that the NIST standards are insufficient and suggest points which should be clarified.
+Your abstract should be limited to 100 words. 
+Summarize the main point(s) of the paper 
+focusing on your contribution. Please avoid the 
+use of non-text symbols, fonts, and other editing 
+devices so that a text version of your abstract can 
+be placed on the conference web page paper.
 \end{abstract}
 
-%%Graphical abstract
-\begin{graphicalabstract}
-%\includegraphics{grabs}
-\end{graphicalabstract}
+\section{Introduction}
 
-%%Research highlights
-\begin{highlights}
-\item Research highlight 1
-\item Research highlight 2
-\end{highlights}
 
-\begin{keyword}
-%% keywords here, in the form: keyword \sep keyword
+\section{Background}
 
-%% PACS codes here, in the form: \PACS code \sep code
+\subsection{Metadata-Based Deleted File Recovery}
 
-%% MSC codes here, in the form: \MSC code \sep code
-%% or \MSC[2008] code \sep code (2000 is the default)
+\subsection{FAT Filesystem}
 
-\end{keyword}
+\subsection{NTFS Filesystem}
 
-\end{frontmatter}
+\subsection{NIST Standards}
+\begin{enumerate} % TODO cite standards document
+ \item ``The tool shall identify all deleted File System-Object entries accessible in residual metadata.''
+ \item ``The tool shall construct a Recovered Object for each deleted File System-Object entry accessible in residual metadata.''
+ We consider a tool passing this standard as long as it outputs a file for each deleted file, even if the output file is empty.
+ \item ``Each Recovered Object shall include all non-allocated data blocks identified in a residual metadata entry.'' For FAT filesystems, we consider a tool passing this standard if it recovers at least the first contiguous segment of unallocated sectors starting from the first sector originally allocated to the deleted file. For NTFS filesystem, the tool must recover all unallocated sectors originally allocated to the deleted file.
+ \item ``Each Recovered Object shall consist only of data blocks from the Deleted Block Pool.''
+ We consider a tool passing this standard if all recovered sectors were all originally allocated to the deleted file, and had not been reallocated to any other file.
+\end{enumerate}
 
-%% \linenumbers
 
-%% main text
-\section{}
-\label{}
+%%% To balance the columns, we need this to be in the code for the LEFT column
+% on the last page
+\balance
 
-%% The Appendices part is started with the command \appendix;
-%% appendix sections are then done as normal sections
-%% \appendix
+\section{Approach}
 
-%% \section{}
-%% \label{}
+\subsection{Results}
 
-%% If you have bibdatabase file and want bibtex to generate the
-%% bibitems, please use
-%%
-%%  \bibliographystyle{elsarticle-harv} 
-%%  \bibliography{<your bibdatabase>}
 
-%% else use the following coding to input the bibitems directly in the
-%% TeX file.
+\section{Discussion}
 
-\begin{thebibliography}{00}
 
-%% \bibitem[Author(year)]{label}
-%% Text of bibliographic item
+\section{Conclusion}
 
-\bibitem[ ()]{}
+%Papers should be no more than ten pages, single- spaced, with 12pt font
+%for the text content. Left, right, top and bottom margins need to be 1''.  Pages
+%should not be numbered (they will be numbered for the proceedings). The title
+%and author information are single-column centered at the top of the first page.   
+%
+%The remaining document should be double- column format. Please give an address
+%and email address for each author of the paper. Sections (if used) should be
+%numbered and titled. Figures, tables, and other diagrams should be numbered and
+%titled. Please try to include each figure near the text it addresses. If
+%necessary, you may elect to place large figures at the end of your paper using
+%the full width of the page (single-column format). 
+%
+%Follow the rules of accepted grammar and mathematical formatting. Remember that
+%the quality of your paper is one of the criteria for judgment. 
 
-\end{thebibliography}
+%\subsection{References}
+%Use the standard CACM format for references -- that is, a numbered list at the
+%end of the article, ordered alphabetically by first author, and referenced by
+%numbers in brackets~\cite{bowman:reasoning}.  The references are also in 12pt,
+%but that section is ragged right.  Other references that may prove helpful
+%include~\cite{Dupre:1995:BW,Lamport:LaTeX,Mittelbach:2004:LC}.
+%
+%\subsection{Page Number, Headers and Footers}
+%Do not include headers, footers, or page numbers in your submission.  These will
+%be added when the proceedings are assembled.
+
+%ACKNOWLEDGMENTS are optional
+\section{Acknowledgments}
+This section is optional; it is a location for you to acknowledge grants,
+funding, editing assistance and what have you.  In the present case, for
+example, the authors would like to thank the maintainers of ACM's conference
+proceeding \LaTeX\ template from which this document is directly derived and the
+past organizers of the MCURCSM conference.
+
+%
+% The following two commands are all you need in the
+% initial runs of your .tex file to
+% produce the bibliography for the citations in your paper.
+\bibliographystyle{plain}
+\bibliography{mcurcsm-sp}  % mcurcsm-sp.bib is the name of the Bibliography in this case
+% You must have a proper ".bib" file
+%  and remember to run:
+% latex bibtex latex latex
+% to resolve all references
+%
+
+
+% That's all folks!
 \end{document}
-
-\endinput
-%%
-%% End of file `elsarticle-template-harv.tex'.
