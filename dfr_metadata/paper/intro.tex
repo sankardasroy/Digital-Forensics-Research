@@ -2,28 +2,41 @@
 \section{Introduction}
 
 Both in corporate and government settings, digital forensic (DF) tools are used for post-mortem investigation of cyber-crimes and cyber-attacks. 
-National Institute of Standards and Technology (NIST)'s Computer Forensics Tool Testing Program (CFTT) \cite{cftt:nist} 
-proposed standards for DF tools to help determine their quality and integrity. Maintaining the standards of DF tools 
+Nowadays it is common \cite{df:news} for the police to use DF tools to follow an eletronic trail of evidence to track down the suspect. 
+To maintain the quality and integrity of DF tools, National Institute of Standards and Technology (NIST)'s 
+Computer Forensics Tool Testing Program (CFTT) \cite{cftt:nist} 
+set standards for these tools. Maintaining the standards of DF tools 
 is especially critical for judicial proceedings: Usage of a forensic tool that does not follow the standards may cause evidence to be thrown 
 out in a court case whereas incorrect results from a forensic tool can also lead improper prosecution of an innocent defendant. 
 
-The focus of our proposed work is about standardization of one class of DF 
-tools that are for Deleted File Recovery (DFR) \cite{meta:dfr:standards}. As the name suggests, a DFR tool attempts to retrieve deleted files
-from a file system of a computer. As an example, given a hard disk or USB drive (which could be seized from the suspect or collected from the crime scene) a 
+The focus of this paper is about standardization of one class of DF 
+tools that are for Deleted File Recovery (DFR) \cite{meta:dfr:standards}. 
+As the name suggests, a DFR tool attempts to retrieve deleted files
+from a file system of a computer. As an example, given a hard disk or a USB drive 
+(which could be seized from the suspect computer or collected from the crime scene) a 
 forensics professional can use a DFR tool to investigate about (and potentially retrieve) the deleted files that 
-the bad guy possibly wanted to hide. The success or failure of a DFR tool can decide the outcome of a law suite.  
-XXXXXX also mention FAT NTFS in this context.
+the bad guy would have possibly deleted to hide some important information. 
+The success or failure of a DFR tool can decide the outcome of a law suite.  
 
- 
 Our experiments with a popular DF tool suite (named Autopsy \cite{autopsy}) 
-show that it does not satisfy all standards for DFR. 
+show that it does not satisfy all NIST standards for DFR. 
 Furthermore, we extensively experimented with other frequently used DFR tools. 
 We compare those tools' performance and compile a comparative analysis, which could help the user choose the right DFR tool. 
-Our work also result a few hands-on lab-modules for the future students at BGSU, enriching the new DF specialization program in the CS department.
+
+Evaluating the performance of a DFR tool is complex because many elements of a forensics scenario determine 
+the success or failure of the file recovery process. 
+A few such factors are the type of the file system (FAT, NTFS, etc.), presence of other active/deleted 
+files in the file system, how the target file was deleted, and so on.
+So, comparison of two DFR tools is scientific only if they are compared while keeping these factors same. 
+Via extensive analysis, We design a set of test file system images (for either of FAT or NTFS) which considers each of the above factors independently. 
+We claim that this list of test cases is exhaustive and thus claim that our evaluation gives a complete picture. 
+ 
 
 The main contributions of the paper are listed as follows:
 \begin{itemize}
-\item evaluation of widely used DFR tools (including free tools as well as propritory ones) on FAT and NTFS file systems per NIST standards.
-\item reasoning for tools' success or failure
-\item critique on applicability of NIST standards in practical setting. 
+\item We design and build an exhaustive list of canonical test file system (FAT and NTFS) images to test the DFR tool per NIST standards. 
+\item We perform evaluation of frequently-used DFR tools (including free tools as well as proprietory ones) on the test images.
+\item For the interesting cases of tools' success or failure, we provide logical explanation.
+\item We provide critique on applicability of some of the NIST standards in a practical setting. 
+\item Our work also results in a few hands-on lab-modules for the future students at BGSU, enriching the new DF specialization program in the CS department.
 \end{itemize}
