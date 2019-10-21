@@ -1,13 +1,66 @@
 \section{Approach}
 
+\subsection{Overview}
+
+\comment{still need to add a brief summary here before going into detail in the subsequent sections}
+\ref{fig:overview}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{fig/overview.png}
+    \caption{The DFR tool targets to retrieve deleted files. The recovery accuracy is compared to the NIST CFTT standard.}
+    \label{fig:overview}
+\end{figure}
+
 \subsection{Designing Recovery Scenarios}
 To test the DFR tools' compliance with the standards, we designed a variety of scenarios in which a tool might have to recover a deleted file. We started with the simplest possible case: a filesystem containing just one deleted file. This case is ideal and trivial, but by adding more files, we can create far more complex scenarios.
 
 % Fragmentation and Overwriting are the two things that can complicate file recovery 
-The NIST standards limit the scope of testing to situations in which files were ``created and deleted in a process similar to how an end-user would create and delete files,'' and  exclude ``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted.'' %TODO cite quotes from the standards
+The NIST standards limit the scope of testing to situations in which files were ``created and deleted in a process similar to how an end-user would create and delete files,''\cite{meta:dfr:standards} and  exclude ``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted.''\cite{meta:dfr:standards}
 Within these constraints, there are two factors which can significantly complicate the file recovery process: fragmentation, and overwriting. %TODO make sure these are defined elsewhere, if not, define them here
 % Make different varieties of Fragmentation and overwriting, and combinations
 These factors are thus the focus of our test scenarios, with all cases besides the first involving either fragmented files, overwritten files, or a combination of both.
+
+We designed the following test cases:
+\begin{itemize}
+    \item [1] Single deleted file
+    \item [2] Deleted file fragmented around an active file\ref{fig:case_2}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=\linewidth]{fig/case2.png}
+        \caption{Test Case 2}
+        \label{fig:case_2}
+    \end{figure}
+    \item [3] Deleted file fragmented around a deleted file
+    \item [4i] Beginning of deleted file overwritten by an active file\ref{fig:case_4i}
+    \item [4ii] Middle of deleted file overwritten by an active file
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=\linewidth]{fig/case4ii.png}
+        \caption{Test Case 4ii}
+        \label{fig:case_4ii}
+    \end{figure}
+    \item [4iii] Deleted file partially overwritten by an active file which doesn't end on a sector boundary
+    \item [4iv] Deleted file entirely overwritten by an active file
+    \item [5i] Beginning of deleted file overwritten by a deleted file
+    \item [5ii] Middle of deleted file overwritten by a deleted file
+    \item [5iii] Deleted file partially overwritten by a deleted file which doesn't end on a sector boundary
+    \item [5iv] Deleted file entirely overwritten by a deleted file
+    \item [6] Deleted file fragmented around an active file, with the second fragment overwritten by an active file\ref{fig:case_6}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=\linewidth]{fig/case6.png}
+        \caption{Test Case 6}
+        \label{fig:case_6}
+    \end{figure}
+    \item [7] Deleted file fragmented around an active file, with the second fragment overwritten by a deleted file
+    \item [8] Deleted file fragmented from the end of the filesystem to the beginning
+    \item [9] Deleted file fragmented from the end of the filesystem to after an active file
+    \item [10] Deleted file fragmented from the end of the filesystem to after a deleted file
+\end{itemize}
+
+Because NTFS keeps track of the locations of all parts of a file even after deletion, fragmentation is not particularly interesting. Cases 8, 9, and 10 would be redundant with case 2, so we have excluded them for NTFS. Due to how NTFS allocates space for files, cases 4ii and 5ii cannot occur as a result of normal file operations, so they have also been excluded. No cases are excluded for FAT tests.
+
 
 % Fragmentation is trivial in NTFS so less interesting
 % Explanation of each test case
@@ -29,9 +82,14 @@ Meanwhile, when writing to an NTFS filesystem, Windows 10 appears to use a ``bes
 
 \subsection{Recovering Files}
 
+\comment{probably just a paragraph mentioning the settings we used for each tool}
+
 
 \subsection{Results}
-% Figures with results
+
+\comment{explanation of results figure and some trends in the results}
+\ref{fig:results}
+
 \begin{figure}[h!]
     \centering
 
