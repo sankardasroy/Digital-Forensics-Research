@@ -2,8 +2,7 @@
 
 \subsection{Overview}
 
-\comment{still need to add a brief summary here before going into detail in the subsequent sections}
-\ref{fig:overview}
+To test the DFR tools, we first designed hypothetical test scenarios involving factors which would make recovery difficult. We then created each scenario in real filesystems and saved them as raw images. Using the images as input, we ran each DFR tool and attempted to recover all deleted files. Finally, we compared the recovered files to their original versions in order to judge the tools' compliance with the NIST standards.  \ref{fig:overview}
 
 \begin{figure}[h]
     \centering
@@ -17,7 +16,8 @@ To test the DFR tools' compliance with the standards, we designed a variety of s
 
 % Fragmentation and Overwriting are the two things that can complicate file recovery 
 The NIST standards limit the scope of testing to situations in which files were ``created and deleted in a process similar to how an end-user would create and delete files,''\cite{meta:dfr:standards} and  exclude ``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted.''\cite{meta:dfr:standards}
-Within these constraints, there are two factors which can significantly complicate the file recovery process: fragmentation, and overwriting. %TODO make sure these are defined elsewhere, if not, define them here
+Within these constraints, there are two factors which can significantly complicate the file recovery process: fragmentation, and overwriting. \comment{need to make sure these are defined elsewhere, if not they should be defined here}
+
 % Make different varieties of Fragmentation and overwriting, and combinations
 These factors are thus the focus of our test scenarios, with all cases besides the first involving either fragmented files, overwritten files, or a combination of both.
 
@@ -31,40 +31,50 @@ We designed the following test cases:
         \caption{Test Case 2}
         \label{fig:case_2}
     \end{figure}
-    \item [3] Deleted file fragmented around a deleted file
-    \item [4i] Beginning of deleted file overwritten by an active file\ref{fig:case_4i}
-    \item [4ii] Middle of deleted file overwritten by an active file
+    \item [3]
+ Deleted file fragmented around a deleted file
+    \item [4i]
+ Beginning of deleted file overwritten by an active file\ref{fig:case_4i}
+    \item [4ii]
+ Middle of deleted file overwritten by an active file
         \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case4ii.png}
         \caption{Test Case 4ii}
         \label{fig:case_4ii}
     \end{figure}
-    \item [4iii] Deleted file partially overwritten by an active file which doesn't end on a sector boundary
-    \item [4iv] Deleted file entirely overwritten by an active file
-    \item [5i] Beginning of deleted file overwritten by a deleted file
-    \item [5ii] Middle of deleted file overwritten by a deleted file
-    \item [5iii] Deleted file partially overwritten by a deleted file which doesn't end on a sector boundary
-    \item [5iv] Deleted file entirely overwritten by a deleted file
-    \item [6] Deleted file fragmented around an active file, with the second fragment overwritten by an active file\ref{fig:case_6}
+    \item [4iii]
+ Deleted file partially overwritten by an active file which doesn't end on a sector boundary
+    \item [4iv]
+ Deleted file entirely overwritten by an active file
+    \item [5i]
+ Beginning of deleted file overwritten by a deleted file
+    \item [5ii]
+ Middle of deleted file overwritten by a deleted file
+    \item [5iii]
+
+ Deleted file partially overwritten by a deleted file which doesn't end on a sector boundary
+    \item [5iv]
+ Deleted file entirely overwritten by a deleted file
+    \item [6]
+ Deleted file fragmented around an active file, with the second fragment overwritten by an active file\ref{fig:case_6}
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case6.png}
         \caption{Test Case 6}
         \label{fig:case_6}
     \end{figure}
-    \item [7] Deleted file fragmented around an active file, with the second fragment overwritten by a deleted file
-    \item [8] Deleted file fragmented from the end of the filesystem to the beginning
-    \item [9] Deleted file fragmented from the end of the filesystem to after an active file
-    \item [10] Deleted file fragmented from the end of the filesystem to after a deleted file
+    \item [7]
+ Deleted file fragmented around an active file, with the second fragment overwritten by a deleted file
+    \item [8]
+ Deleted file fragmented from the end of the filesystem to the beginning
+    \item [9]
+ Deleted file fragmented from the end of the filesystem to after an active file
+    \item [10]
+ Deleted file fragmented from the end of the filesystem to after a deleted file
 \end{itemize}
 
 Because NTFS keeps track of the locations of all parts of a file even after deletion, fragmentation is not particularly interesting. Cases 8, 9, and 10 would be redundant with case 2, so we have excluded them for NTFS. Due to how NTFS allocates space for files, cases 4ii and 5ii cannot occur as a result of normal file operations, so they have also been excluded. No cases are excluded for FAT tests.
-
-
-% Fragmentation is trivial in NTFS so less interesting
-% Explanation of each test case
-% Show a few figures for interesting test cases
 
 \subsection{Creating Test Images}
 % Step by step process
@@ -82,13 +92,15 @@ Meanwhile, when writing to an NTFS filesystem, Windows 10 appears to use a ``bes
 
 \subsection{Recovering Files}
 
-\comment{probably just a paragraph mentioning the settings we used for each tool}
-
+When testing Autopsy, we performed a standard recovery with all ingest modules disabled.
+For Recuva we perfomed a standard recovery using the free version with no settings altered.
+\comment{what settings did we use for FTK?}
+For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
+For Magnet Axiom we performed a ``full scan'' using the full version of the software. Magnet Axiom was tested on a separate set of filesystem images; the original images contained text files with no file extension, which Magnet Axiom did not identify. We remade the images, adding the ``.txt'' extension to all files, and tested Magnet Axiom with the new images.
 
 \subsection{Results}
 
-\comment{explanation of results figure and some trends in the results}
-\ref{fig:results}
+After testing each tool, we analyzed the recovered object(s) from each test case. If the recovered file is identical to the original, obviously all standards have been met. However, this only ever occurred for FAT cases 1 and 2, and NTFS cases 1-3. In all other cases, the tool is judged on each core feature individually. These judgements are summarized in the figure.\ref{fig:results}
 
 \begin{figure}[h!]
     \centering
@@ -118,9 +130,18 @@ Meanwhile, when writing to an NTFS filesystem, Windows 10 appears to use a ``bes
         \includegraphics[width=\linewidth]{fig/axiom_results.png}
         \subcaption{Magnet Axiom}
     \end{subfigure}
-    
-    \caption{Test Results}
+        
+    \caption{Test results organized by tool. Rows represent test cases while columns represent NIST core features. Blue is passing, red is failing, grey is not tested.}
     \label{fig:results}
 \end{figure}
+
+For cases in which a tool does not fulfull core feature 1, in other works, it cannot find a deleted file, we make no judgement about the remaining core features. An exception is made for Magnet Axiom, which we found does not identify certain files (text files without an extension), but can in most cases identify them when they are renamed. We consider Magnet Axiom failing to fulfill core feature 1 for all cases, and make our judgements about the other core features based on a separate set of images with renamed files. Results for NTFS cases 4iii, 4iv, 5iii, and 5iv have been excluded due to errors in the alternate test images for those cases.
+
+In cases of fragmentation in FAT filesystems, we found each tool generally approaches recovery in one of two ways. Recuva and Magnet Axiom start from the beginning of the file and recover the full length of the file even if an active file exists in that space. Autopsy, FTK, and TestDisk will start from the beginning of the file and recover the full length, but skip over any active files they encounter. This can be seen in the results\ref{fig:results} for FAT case 2\ref{fig:case_2}. Autopsy, FTK, and TestDisk recover all of file A, while Recuva and Magnet Axiom's recovered images erroneously contain data from file B, causing them to fail core feature 4. When the space in between fragments is unallocated, all tools recover the file as though it was contiguous, pulling some erroneous data and failing core feature 4. When the fragmentation occurs at the end of the filesystem, Recuva, FTK, and TestDisk recover only the first fragment, while Autopsy returns a short file of null data, and Magnet Axiom does not identify a deleted file at all. Cases with fragmentation are trivial for NTFS filesystems as more metadata is available. Unsurprisingly, no tools had problems with fragmentation cases for NTFS.
+
+In cases where a file has been overwritten by an active file, we found most tools recover the deleted file as though it is not overwritten, failing core feature 4. The exceptions are FTK Imager, which recovers the file up to the point where it has been overwritten, and Autopsy, which generally recovers only the first cluster of an overwritten file in FAT, and behaves like the other tools for NTFS. TestDisk also exhibits the same behavior as FTK for FAT case 4ii only. When the overwriting file has also been deleted, all tools recover the first file as though it is not overwritten.
+
+A few results stand out as unusual. For FAT cases 4ii, 6, 8, 9, and 10, Autopsy returns a 1.5 KiB file of null data. 1.5 KiB is equivalent to 3 sectors; a FAT cluster in our cases is equivalent to 4 sectors or 2 KiB.
+TestDisk fails to find a file for NTFS cases 4iii and 4iv only. Besides Magnet Axiom, these are the only test cases in which a tool does not fulfill core feature 1.
 
 % Explain Magnet Axiom filenames issue
