@@ -3,7 +3,7 @@ copy test_files\cc1K J:cc1K.txt
 copy test_files\aa1M J:aa1M.txt
 sync J
 del J:aa1M.txt
-sync J
 del J:cc1K.txt
+sync J
 copy test_files\bb~1M J:bb-1M.txt
 sync J
