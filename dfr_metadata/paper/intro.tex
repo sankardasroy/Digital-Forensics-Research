@@ -28,18 +28,18 @@ the success or failure of the file recovery process.
 A few such factors are the type of the file system (FAT, NTFS, etc.), presence of other active/deleted 
 files in the file system, how the target file was deleted, and so on.
 So, comparison of two DFR tools is scientific only if they are compared while keeping these factors same. 
-Via extensive analysis, We design a set of test file system images (for either of FAT or NTFS) which considers each of the above factors independently. 
+Via extensive analysis, we design a set of test file system images (for either of FAT or NTFS) which considers each of the above factors independently. 
 We claim that this list of test cases is exhaustive and thus claim that our evaluation gives a complete picture. 
  
 
 The main contributions of the paper are listed as follows:
 \begin{itemize}
 \item We design and build an exhaustive list of canonical test file system (FAT and NTFS) images to test the DFR tool per NIST standards. 
-\item We perform evaluation of frequently-used DFR tools (including free tools as well as proprietory ones) on the test images.
+\item We perform evaluation of frequently-used DFR tools (including free tools as well as proprietary ones) on the test images.
 \item For the interesting cases of tools' success or failure, we provide logical explanation.
 \item We provide critique on applicability of some of the NIST standards in a practical setting. 
-\item Our work also results in a few hands-on lab-modules for the future students at BGSU, enriching the new DF specialization program in the CS department.
 \end{itemize}
+
 
 The NIST CFTT portal currently publishes reports of only a subset of DFR tools. 
 However, the scope of tools needs to be expanded as many new tools come to market and become popular.
@@ -47,3 +47,7 @@ Also, existing DFR tools should be retested to ensure their reliability is consi
 as new patches and features come out. 
 Adding new reports to the CFTT website will allow tool developers a 
 chance to continually develop their tool for the better. We will submit our study reports to the CFTT portal.
+
+As a side benefit, our work leads to a few hands-on lab-modules to be used in digital forensics courses 
+at BGSU, enriching the new DF specialization program in the CS department. We will also make these modules
+available for relevant instructors at other universities.

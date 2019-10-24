@@ -102,38 +102,32 @@ For Magnet Axiom we performed a ``full scan'' using the full version of the soft
 
 After testing each tool, we analyzed the recovered object(s) from each test case. If the recovered file is identical to the original, obviously all standards have been met. However, this only ever occurred for FAT cases 1 and 2, and NTFS cases 1-3. In all other cases, the tool is judged on each core feature individually. These judgements are summarized in the figure.\ref{fig:results}
 
-\begin{figure}[h!]
-    \centering
+\begin{figure*}
 
-    \begin{subfigure}{0.3\linewidth}
+    \begin{subfigure}{0.16\linewidth}
         \includegraphics[width=\linewidth]{fig/autopsy_results.png}
         \subcaption{Autopsy}
-    \end{subfigure}
-    ~
-    \begin{subfigure}{0.3\linewidth}
+    \end{subfigure}    
+    \begin{subfigure}{0.16\linewidth}
         \includegraphics[width=\linewidth]{fig/recuva_results.png}
         \subcaption{Recuva}
     \end{subfigure}
-    ~
-    \begin{subfigure}{0.3\linewidth}
+    \begin{subfigure}{0.16\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results.png}
         \subcaption{FTK}
     \end{subfigure}
-    
-    
-    \begin{subfigure}{0.3\linewidth}
+    \begin{subfigure}{0.16\linewidth}
         \includegraphics[width=\linewidth]{fig/testdisk_results.png}
         \subcaption{TestDisk}
     \end{subfigure}
-    ~
-    \begin{subfigure}{0.3\linewidth}
+    \begin{subfigure}{0.16\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results.png}
         \subcaption{Magnet Axiom}
     \end{subfigure}
         
     \caption{Test results organized by tool. Rows represent test cases while columns represent NIST core features. Blue is passing, red is failing, grey is not tested.}
     \label{fig:results}
-\end{figure}
+\end{figure*}
 
 For cases in which a tool does not fulfull core feature 1, in other works, it cannot find a deleted file, we make no judgement about the remaining core features. An exception is made for Magnet Axiom, which we found does not identify certain files (text files without an extension), but can in most cases identify them when they are renamed. We consider Magnet Axiom failing to fulfill core feature 1 for all cases, and make our judgements about the other core features based on a separate set of images with renamed files. Results for NTFS cases 4iii, 4iv, 5iii, and 5iv have been excluded due to errors in the alternate test images for those cases.
 
