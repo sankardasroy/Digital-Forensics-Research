@@ -26,10 +26,10 @@ One such situation is when a deleted file is overwritten, and then the overwriti
 
 Assuming the filesystem is NTFS (to avoid the afforementioned ambiguity with core feature 3 and FAT), the residual metadata entry for File A (in this case its Master File Table entry) should list every sector File A once occupied, and all of those sectors are unallocated. 
 To fulfill core feature 3, the tool must recover all of those sectors. 
-However, some of those sectors have been overwritten by File B. Core feature 4 requires that a tool only recover ``data blocks from the Deleted Block Pool,''\cite{meta:dfr:standards} and limits the definition of Deleted Block Pool to blocks which ``have not been reallocated or reused.``\cite{meta:dfr:standards}
+However, some of those sectors have been overwritten by File B. Core feature 4 requires that a tool only recover ``data blocks from the Deleted Block Pool,''\cite{meta:dfr:standards} and limits the definition of Deleted Block Pool to blocks which ``have not been reallocated or reused.''\cite{meta:dfr:standards}
 Core feature 3 would require tools to recover the sectors reused by File B, while core feature 4 would forbid this. 
 It could be argued that the tool should use File B's metadata to recognize that File B overwrote File A, but this is not always realistic. 
-While the filesystem stores information such as creation and modification times, this is not ''essential metadata,`` meaning it is not involved in the operation of the filesystem, so operating systems may implement it differently, or not at all. % TODO cite Carrier on definition of non-essential metadata
+While the filesystem stores information such as creation and modification times, this is not ``essential metadata,'' meaning it is not involved in the operation of the filesystem, so operating systems may implement it differently, or not at all. % TODO cite Carrier on definition of non-essential metadata
 Since the time information cannot be counted on to be reliable, there is no way to know for sure which file overwrote which. It is also possible for file B's metadata entry to be overwritten at some point before File A's, in which event there is no way for the tool to know File B even existed.
 %TODO wrap this up better, mention standards document's ''recovered object`` definition and how it does acknowledge possible data corruption
 
