@@ -26,9 +26,9 @@ We compare those tools' performance and compile a comparative analysis, which co
 Evaluating the performance of a DFR tool is complex because many elements of a forensics scenario determine 
 the success or failure of the file recovery process. 
 A few such factors are the type of the file system (FAT, NTFS, etc.), presence of other active/deleted 
-files in the file system, how the target file was deleted, and so on.
+files in the file system, fragmentation of a file, a deleted file being overwritten by another file, and so on.
 So, comparison of two DFR tools is scientific only if they are compared while keeping these factors same. 
-Via extensive analysis, we design a set of test file system images (for either of FAT or NTFS) which considers each of the above factors independently. 
+Via extensive analysis, we design a set of test file system images (for either of FAT and NTFS) which considers each of the above factors independently. 
 We claim that this list of test cases is exhaustive and thus claim that our evaluation gives a complete picture. 
  
 
