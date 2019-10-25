@@ -19,7 +19,7 @@ To test the DFR tools' compliance with the standards, we designed a variety of s
 We started with the simplest possible case: a filesystem containing just one deleted file. 
 This case is ideal and trivial, but by adding more files, we can create a greater variety of scenarios.
 
-The NIST standards limit the scope of testing to situations in which files were ``created and deleted in a process similar to how an end-user would create and delete files,''\cite{meta:dfr:standards} and exclude ``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted.''\cite{meta:dfr:standards}
+The NIST standards limit their scope to recovery of files which were ``created and deleted in a process similar to how an end-user would create and delete files,''\cite{meta:dfr:standards} and exclude ``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted.''\cite{meta:dfr:standards}
 Within these constraints, there are two factors which can significantly complicate the file recovery process: fragmentation, and overwriting. \comment{need to make sure these are defined elsewhere, if not they should be defined here}
 
 These factors are thus the foundation of our test scenarios, with all cases besides the first involving either fragmented files, overwritten files, or a combination of both. 
