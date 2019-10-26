@@ -1,6 +1,6 @@
 \section{Discussion}
 
-\subsection{Research Questions}
+\subsection{Answering Research Questions}
 \subsubsection{RQ1}
 Do the popular DFR tools (as available in the market) meet the NIST CFTT standards? 
 If not, which tool meets which part of the standard? 
@@ -24,9 +24,9 @@ It is worth noting that Autopsy does appear to react to overwritten files; for s
 However, since that cluster has been overwritten, Autopsy still fails to fulfill core feature 4 in those cases.
 
 Another factor that causes multiple failures is simulated in FAT cases 8, 9, and 10.
-In FAT, a file can be written starting close to the end of the filesystem, without enough space to fit contiguously.
-In such cases, the file must be fragmented, and since it is already at the end of the filesystem, the second fragment will appear closer to the beginning of the filesystem (this is illustrated in Figure \ref{fig:case_10}).
-This scenario could realistically occcur when the filesystem is almost full.
+In FAT, a file can be written starting close to the end of the file system, without enough space to fit contiguously.
+In such cases, the file must be fragmented, and since it is already at the end of the file system, the second fragment will appear closer to the beginning of the file system (this is illustrated in Figure \ref{fig:case_10}).
+This scenario could realistically occcur when the file system is almost full.
 In these cases, no tool is able to recover the second fragment of the deleted file; however, because FAT fragmentation is unpredictable, we only require them to recover the first fragment.
 Interestingly, Autopsy and Magnet Axiom fail to recover anything at all, with Autopsy returning a short file of null data, and Magnet Axiom returning an empty file after showing an error message.
 
@@ -58,7 +58,7 @@ Given the available data, we cannot reach a definite conclusion for RQ3.
 \subsubsection{Limitations of FAT Metadata}
 While determining how to interpret the NIST standards, we encountered ambiguities in their current wording.
 The first issue concerns core feature 3. 
-Particularly, ``all non-allocated data blocks identified in a residual metadata entry''\cite{meta:dfr:standards} is not well-defined when considering a FAT filesystem. 
+Particularly, ``all non-allocated data blocks identified in a residual metadata entry''\cite{meta:dfr:standards} is not well-defined when considering a FAT file system. 
 In FAT, the only relevant metadata left over after file deletion is the address of the first cluster of file data, and the file's length. 
 If the deleted file is fragmented at any point, no evidence remains in the metadata. 
 Therefore, interpreting the wording very closely, a tool is only required to recover the first cluster of a file's data. 
@@ -81,15 +81,15 @@ One such situation is when a deleted file is overwritten, and then the overwriti
     \label{fig:case_5i}
 \end{figure}
 
-Assuming the filesystem is NTFS (to avoid the afforementioned ambiguity with core feature 3 and FAT), the residual metadata entry for File A (in this case its Master File Table entry) should list every sector File A once occupied, and all of those sectors are unallocated. 
+Assuming the file system is NTFS (to avoid the afforementioned ambiguity with core feature 3 and FAT), the residual metadata entry for File A (in this case its Master File Table entry) should list every sector File A once occupied, and all of those sectors are unallocated. 
 To fulfill core feature 3, the tool must recover all of those sectors. 
 However, some of those sectors have been overwritten by File B. Core feature 4 requires that a tool only recover ``data blocks from the Deleted Block Pool,''\cite{meta:dfr:standards} and limits the definition of Deleted Block Pool to blocks which ``have not been reallocated or reused.''\cite{meta:dfr:standards}
 Core feature 3 would require tools to recover the sectors reused by File B, while core feature 4 would forbid this. 
 It could be argued that the tool should use File B's metadata to recognize that File B overwrote File A, but this is not always realistic. 
-While the filesystem stores information such as creation and modification times, this is not ``essential metadata,'' meaning it is not involved in the operation of the filesystem, so operating systems may implement it differently, or not at all.\cite{carrier:filesystems}
+While the file system stores information such as creation and modification times, this is not ``essential metadata,'' meaning it is not involved in the operation of the file system, so operating systems may implement it differently, or not at all.\cite{carrier:filesystems}
 Since the time information cannot be counted on to be reliable, there is no way to know for sure which file overwrote which. 
 It is also possible for file B's metadata entry to be overwritten at some point before File A's, in which event there is no way for the tool to know File B even existed.
 
 The standards document acknowledges that the ``potential for corruption [is] inherent with data that is no longer maintained by a file system,''\cite{meta:dfr:standards} and that the recovered object ``may not completely match the original FS-Object.''\cite{meta:dfr:standards}
 We propose the standards themselves should be revised to better account for such situations.
-This would most likely mean adding an exception to either the third or fourth core feature, for cases in which dta blocks are overwritten and subsequently deallocated.
+This would most likely mean adding an exception to either the third or fourth core feature, for cases in which data blocks are overwritten and subsequently deallocated.
