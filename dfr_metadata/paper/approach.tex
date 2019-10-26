@@ -6,7 +6,7 @@ To test the DFR tools, we first designed hypothetical test scenarios to simulate
 We then created each scenario in real filesystems and saved them as raw images. 
 Using the images as input, we ran each DFR tool and attempted to recover all deleted files. 
 Finally, we compared the recovered files to their original versions in order to judge the tools' 
-compliance with the NIST standards). A high-lebel view of the methodology is illustrated in Figure \ref{fig:overview}.
+compliance with the NIST standards). A high-level view of the methodology is illustrated in Figure \ref{fig:overview}.
 
 \begin{figure}[h]
     \centering
@@ -31,7 +31,7 @@ We suggest such a canonical list of test cases should be considered representati
 We designed the following test cases:
 \begin{itemize}
     \item [1] Single deleted file
-    \item [2] Deleted file fragmented around an active file\ref{fig:case_2}
+    \item [2] Deleted file fragmented around an active file (Illustrated in Figure \ref{fig:case_2})
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case2.png}
@@ -39,8 +39,8 @@ We designed the following test cases:
         \label{fig:case_2}
     \end{figure}
     \item [3] Deleted file fragmented around a deleted file
-    \item [4i] Beginning of deleted file overwritten by an active file\ref{fig:case_4i}
-    \item [4ii] Middle of deleted file overwritten by an active file
+    \item [4i] Beginning of deleted file overwritten by an active file
+    \item [4ii] Middle of deleted file overwritten by an active file (Illustrated in Figure \ref{fig:case_4ii})
         \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case4ii.png}
@@ -53,7 +53,7 @@ We designed the following test cases:
     \item [5ii] Middle of deleted file overwritten by a deleted file
     \item [5iii] Deleted file partially overwritten by a deleted file which doesn't end on a sector boundary
     \item [5iv] Deleted file entirely overwritten by a deleted file
-    \item [6] Deleted file fragmented around an active file, with the second fragment overwritten by an active file\ref{fig:case_6}
+    \item [6] Deleted file fragmented around an active file, with the second fragment overwritten by an active file (Illustrated in Figure \ref{fig:case_6})
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case6.png}
@@ -69,7 +69,7 @@ We designed the following test cases:
         \caption{Test Case 10}
         \label{fig:case_10}
     \end{figure}
-    \item [10] Deleted file fragmented from the end of the filesystem to after a deleted file\ref{fig:case_10}
+    \item [10] Deleted file fragmented from the end of the filesystem to after a deleted file (Illustrated in Figure \ref{fig:case_10})
 \end{itemize}
 
 Because NTFS keeps track of the locations of all parts of a file even after deletion, fragmentation is not particularly interesting. Cases 8, 9, and 10 would be redundant with case 2, so we have excluded them for NTFS. Due to how NTFS allocates space for files, cases 4ii and 5ii cannot occur as a result of normal file operations, so they have also been excluded. No cases are excluded for FAT tests.
@@ -110,26 +110,26 @@ These judgements are summarized in Figure \ref{fig:results_fat} for FAT test cas
 \begin{figure*}[h!]
     \centering
 
-    \begin{subfigure}{0.16\linewidth}
+    \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/autopsy_results_fat.png}
         \subcaption{Autopsy}
-    \end{subfigure}    
-    \begin{subfigure}{0.16\linewidth}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/recuva_results_fat.png}
         \subcaption{Recuva}
-    \end{subfigure}
-    \begin{subfigure}{0.16\linewidth}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results_fat.png}
         \subcaption{FTK}
-    \end{subfigure}
-    \begin{subfigure}{0.16\linewidth}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/testdisk_results_fat.png}
         \subcaption{TestDisk}
-    \end{subfigure}
-    \begin{subfigure}{0.16\linewidth}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_fat.png}
         \subcaption{Magnet Axiom}
-    \end{subfigure}
+    \end{subfigure}~~
         
     \caption{Test results on FAT test cases each DFR tool. Rows represent test cases while columns represent NIST core features. Blue is passing, red is failing, grey is not tested.}
     \label{fig:results_fat}
@@ -138,26 +138,26 @@ These judgements are summarized in Figure \ref{fig:results_fat} for FAT test cas
 \begin{figure*}[h]
     \centering
 
-    \begin{subfigure}{0.16\linewidth}
+    \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/autopsy_results_ntfs.png}
         \subcaption{Autopsy}
-    \end{subfigure}    
-    \begin{subfigure}{0.16\linewidth}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/recuva_results_ntfs.png}
         \subcaption{Recuva}
-    \end{subfigure}
-    \begin{subfigure}{0.16\linewidth}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results_ntfs.png}
         \subcaption{FTK}
-    \end{subfigure}
-    \begin{subfigure}{0.16\linewidth}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/testdisk_results_ntfs.png}
         \subcaption{TestDisk}
-    \end{subfigure}
-    \begin{subfigure}{0.16\linewidth}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_ntfs.png}
         \subcaption{Magnet Axiom}
-    \end{subfigure}
+    \end{subfigure}~~
         
     \caption{Test results on NTFS test cases for each DFR tool. Rows represent test cases while columns represent NIST core features. Blue is passing, red is failing, grey is not tested.}
     \label{fig:results_ntfs}
@@ -168,8 +168,7 @@ For cases in which a tool does not fulfull core feature 1, in other words, it ca
 \subsubsection{Recovering Fragmented Files}
 In cases of fragmentation in FAT filesystems, we found each tool generally approaches recovery in one of two ways. 
 Recuva and Magnet Axiom start from the beginning of the file and recover the full length of the file even if an active file exists in that space. 
-Autopsy, FTK, and TestDisk will start from the beginning of the file and recover the full length, but skip over any active files they encounter. 
-This can be seen in the results for FAT case 2\ref{fig:case_2}. 
+Autopsy, FTK, and TestDisk will start from the beginning of the file and recover the full length, but skip over any active files they encounter.
 Autopsy, FTK, and TestDisk recover all of file A, while Recuva and Magnet Axiom's recovered images erroneously contain data from file B, causing them to fail core feature 4. 
 When the space in between fragments is unallocated, all tools recover the file as though it was contiguous, pulling some erroneous data and failing core feature 4. 
 When the fragmentation occurs at the end of the filesystem, Recuva, FTK, and TestDisk recover only the first fragment, while Autopsy returns a short file of null data, and Magnet Axiom reports an error and returns an empty file.
