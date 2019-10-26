@@ -78,7 +78,7 @@ The previous discussion indicates that in many cases a deleted file's metadata
 and it is possible to recover the file content using this metadata. 
 This is called metadata-based deleted file recovery.
 
-As an example, in the example of Figure~\ref{fig:fat2}, given the directory entry of foo.txt, 
+For instance, in the example of Figure~\ref{fig:fat2}, given the directory entry of foo.txt, 
 we can figure out that the deleted file content are in cluster 100 to cluster 200, 
 and we can recover the whole file via reading the raw content of these clusters (e.g., by using dd command in Kali linux). 
 
