@@ -1,0 +1,22 @@
+dd if=/dev/zero of=/dev/sdc10
+umount /dev/sdc10
+mkfs.fat -n "CASE_6II" /dev/sdc10
+mount /dev/sdc10 /mnt
+cp test_files/pic5.jpg /mnt
+sync
+cp test_files/pic6.jpg /mnt
+sync
+rm /mnt/pic5.jpg 
+umount /mnt
+mount /dev/sdc10 /mnt
+cp test_files/pic3.jpg /mnt
+sync
+rm /mnt/pic3.jpg
+umount /mnt
+mount /dev/sdc10 /mnt
+cp test_files/pic4.jpg /mnt
+rm /mnt/pic4.jpg
+cp test_files/pic1.jpg /mnt
+rm /mnt/pic1.jpg
+umount /mnt
+mkfs.fat -n "CASE_6II" /dev/sdc10

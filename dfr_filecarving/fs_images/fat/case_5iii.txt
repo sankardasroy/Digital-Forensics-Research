@@ -1,0 +1,14 @@
+dd if=/dev/zero of=/dev/sdc8
+umount /dev/sdc8
+mkfs.fat -n "CASE_5III" /dev/sdc8
+mount /dev/sdc8 /mnt
+cp test_files/aa1M.pdf /mnt
+sync
+rm /mnt/aa1M.pdf 
+umount /mnt
+mount /dev/sdc8 /mnt
+cp test_files/pic3.jpg /mnt
+sync
+rm /mnt/pic3.jpg 
+umount /mnt
+mkfs.fat -n "CASE_5III" /dev/sdc8
