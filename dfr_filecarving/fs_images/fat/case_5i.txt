@@ -1,0 +1,14 @@
+dd if=/dev/zero of=/dev/sdc6
+umount /dev/sdc6
+mkfs.fat -n "CASE_5I" /dev/sdc6
+mount /dev/sdc6 /mnt
+cp test_files/pic5.jpg /mnt
+sync
+rm /mnt/pic5.jpg 
+umount /mnt
+mount /dev/sdc6 /mnt
+cp test_files/pic4.jpg /mnt
+sync
+rm /mnt/pic4.jpg 
+umount /mnt
+mkfs.fat -n "CASE_5I" /dev/sdc6

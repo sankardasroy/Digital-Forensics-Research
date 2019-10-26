@@ -1,0 +1,13 @@
+dd if=/dev/zero of=/dev/sdc5
+umount /dev/sdc5
+mkfs.fat -n "CASE_4II" /dev/sdc5
+mount /dev/sdc5 /mnt
+cp test_files/pic4.jpg /mnt
+sync
+rm /mnt/pic4.jpg 
+umount /mnt
+mount /dev/sdc5 /mnt
+cp test_files/pic5.jpg /mnt
+sync
+umount /mnt
+mkfs.fat -n "CASE_4II" /dev/sdc5

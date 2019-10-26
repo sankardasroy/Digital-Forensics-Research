@@ -1,0 +1,9 @@
+dd if=/dev/zero of=/dev/sdc1
+umount /dev/sdc1
+mkfs.fat -n "CASE_1" /dev/sdc1
+mount /dev/sdc1 /mnt
+cp test_files/pic1.jpg /mnt
+sync
+rm /mnt/pic1.jpg 
+umount /mnt
+mkfs.fat -n "CASE_1" /dev/sdc1
