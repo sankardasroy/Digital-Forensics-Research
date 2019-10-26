@@ -57,13 +57,13 @@ as determined by FAT table.}
     \label{fig:fat3}
 \end{figure}
 \subsection{NTFS Filesystem}
-In NTFS system, a file has an entry in Master File Table (MFT) whereas each entry is of typically 1024 bytes. 
+In NTFS system, a file has an entry in Master File Table (MFT) where each entry is of typically 1024 bytes. 
 If a file is short, then all of its metadata as well as the actual content can sit inside the MFT entry; otherwise, 
 the file content can be non-resident (i.e., not in MFT entry) and located in other clusters.
   
 As an example, the MFT entry of foo.txt and the actual content carrying clusters are illustrated in Figure~\ref{fig:ntfs}.
 The MFT entry indicates that there are two runs of clusters (100-101 and 200-298) which carry the actual file content. 
-So, this example file has two fragments.
+In particular, this example file has two fragments.
 
 \begin{figure}[h]
     \centering
