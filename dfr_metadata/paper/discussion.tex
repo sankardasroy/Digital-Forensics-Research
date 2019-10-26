@@ -54,6 +54,8 @@ Given the available data, we cannot reach a definite conclusion for RQ3.
 \end{figure}
 
 \subsection{Ambiguity in Standards}
+
+\subsubsection{Limitations of FAT Metadata}
 While determining how to interpret the NIST standards, we encountered ambiguities in their current wording.
 The first issue concerns core feature 3. 
 Particularly, ``all non-allocated data blocks identified in a residual metadata entry''\cite{meta:dfr:standards} is not well-defined when considering a FAT filesystem. 
@@ -67,9 +69,10 @@ If a file is partially overwritten, the tool must recover at least the sectors b
 In essense, the tool is only required to recover data for which it doesn't have to guess what file it belongs to.
 However, it should be emphasized this is an assumption and the intent of the standard in this case needs clarification.
 
+\subsubsection{Contradictory Standards}
 Furthermore, there are situations in which core features 3 and 4 are entirely incompatible. 
 Core feature 3 specifies ``all non-allocated data blocks identified in a residual metadata entry,''\cite{meta:dfr:standards} but that can sometimes still include data from other files. 
-One such situation is when a deleted file is overwritten, and then the overwriting file is also deleted, such as in case 5i. ~\ref{fig:case_5i}
+One such situation is when a deleted file is overwritten, and then the overwriting file is also deleted, such as in case 5i (as seen in Figure \ref{fig:case_5i}).
 
 \begin{figure}[h]
     \centering
@@ -86,7 +89,7 @@ It could be argued that the tool should use File B's metadata to recognize that 
 While the filesystem stores information such as creation and modification times, this is not ``essential metadata,'' meaning it is not involved in the operation of the filesystem, so operating systems may implement it differently, or not at all.\cite{carrier:filesystems}
 Since the time information cannot be counted on to be reliable, there is no way to know for sure which file overwrote which. 
 It is also possible for file B's metadata entry to be overwritten at some point before File A's, in which event there is no way for the tool to know File B even existed.
-%TODO wrap this up better, mention standards document's ''recovered object`` definition and how it does acknowledge possible data corruption
 
-The NIST standards should be revised to account for situations where core features are in contradiction.
-\comment{Should we suggest specific revisions?}
+The standards document acknowledges that the ``potential for corruption [is] inherent with data that is no longer maintained by a file system,''\cite{meta:dfr:standards} and that the recovered object ``may not completely match the original FS-Object.''\cite{meta:dfr:standards}
+We propose the standards themselves should be revised to better account for such situations.
+This would most likely mean adding an exception to either the third or fourth core feature, for cases in which dta blocks are overwritten and subsequently deallocated.
