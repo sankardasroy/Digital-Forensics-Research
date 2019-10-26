@@ -14,11 +14,44 @@ All tools failed to fulfill core feature 4 because in many cases they recovered 
 \subsubsection{RQ2}
 What factors make the tools fail or succeed?
 
+The most common factor causing tools to fail is when a deleted file has been overwritten.
+Core feature 4 requires that a tool only recover data which was originally a part of the deleted file.
+A tool's success regarding this feature is thus a measure of its restraint.
+The only tool to consistently fulfill core feature 4 is FTK Imager.
+When it detects that a file has been partially or completely overwritten by another file, it omits the deleted sections (and everything after them in FAT).
+However, in cases when the overwriting file has also been deleted, even FTK fails to fulfill this core feature.
+It is worth noting that Autopsy does appear to react to overwritten files; for some cases of overwriting in FAT, it returns only a single cluster, presumably the starting cluster of the deleted file.
+However, since that cluster has been overwritten, Autopsy still fails to fulfill core feature 4 in those cases.
 
+Another factor that causes multiple failures is simulated in FAT cases 8, 9, and 10.
+In FAT, a file can be written starting close to the end of the filesystem, without enough space to fit contiguously.
+In such cases, the file must be fragmented, and since it is already at the end of the filesystem, the second fragment will appear closer to the beginning of the filesystem (this is illustrated in Figure \ref{fig:case_10}).
+This scenario could realistically occcur when the filesystem is almost full.
+In these cases, no tool is able to recover the second fragment of the deleted file; however, because FAT fragmentation is unpredictable, we only require them to recover the first fragment.
+Interestingly, Autopsy and Magnet Axiom fail to recover anything at all, with Autopsy returning a short file of null data, and Magnet Axiom returning an empty file after showing an error message.
 
 \subsubsection{RQ3}
 Are the free DFR tools more effective compared to the enterprise-level (proprietary) tools?
 
+As can be observed in Figure \ref{fig:results_table}, no type of tool clearly outperformed the others.
+FTK Imager, a proprietary enterprise-level tool, passed the most test cases by a large margin.
+However, the other enterprise-level tool, Magnet Axiom, passed the least test cases.
+Given the available data, we cannot reach a definite conclusion for RQ3.
+
+\begin{figure}[h]
+    \begin{tabular}{| c | c | c |}
+    \hline
+    \textbf{DFR Tool} &  \textbf{Type} &  \textbf{Passes} \\ \hline
+    Autopsy & free open source & 5 \\ \hline
+    TestDisk & free open source & 10 \\ \hline
+    Recuva & proprietary freemium & 7 \\ \hline
+    FTK Imager & proprietary enterprise & 18 \\ \hline
+    Magnet Axiom & proprietary enterprise & 4 \\ \hline
+    \end{tabular}
+    
+    \caption{DFR tools sorted by type. ``Passes'' refers to the number of test cases in which a tool fulfills all 4 core features.}
+    \label{fig:results_table}
+\end{figure}
 
 \subsection{Ambiguity in Standards}
 While determining how to interpret the NIST standards, we encountered ambiguities in their current wording.
@@ -51,7 +84,8 @@ However, some of those sectors have been overwritten by File B. Core feature 4 r
 Core feature 3 would require tools to recover the sectors reused by File B, while core feature 4 would forbid this. 
 It could be argued that the tool should use File B's metadata to recognize that File B overwrote File A, but this is not always realistic. 
 While the filesystem stores information such as creation and modification times, this is not ``essential metadata,'' meaning it is not involved in the operation of the filesystem, so operating systems may implement it differently, or not at all.\cite{carrier:filesystems}
-Since the time information cannot be counted on to be reliable, there is no way to know for sure which file overwrote which. It is also possible for file B's metadata entry to be overwritten at some point before File A's, in which event there is no way for the tool to know File B even existed.
+Since the time information cannot be counted on to be reliable, there is no way to know for sure which file overwrote which. 
+It is also possible for file B's metadata entry to be overwritten at some point before File A's, in which event there is no way for the tool to know File B even existed.
 %TODO wrap this up better, mention standards document's ''recovered object`` definition and how it does acknowledge possible data corruption
 
 The NIST standards should be revised to account for situations where core features are in contradiction.

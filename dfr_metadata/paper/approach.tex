@@ -21,6 +21,7 @@ We started with the simplest possible case: a filesystem containing just one del
 This case is ideal and trivial, but by adding more files, we can create a greater variety of scenarios.
 
 The NIST standards limit their scope to recovery of files which were ``created and deleted in a process similar to how an end-user would create and delete files,''\cite{meta:dfr:standards} and exclude ``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted.''\cite{meta:dfr:standards}
+In other words, these standards address situations in which files were deleted via normal filesystem operations as implemented by a typical operating system, rather than manual tampering with the files and filesystem.
 Within these constraints, there are two factors which can significantly complicate the file recovery process: fragmentation, and overwriting. \comment{need to make sure these are defined elsewhere, if not they should be defined here}
 
 These factors are thus the foundation of our test scenarios, with all cases besides the first involving either fragmented files, overwritten files, or a combination of both. 
@@ -82,7 +83,7 @@ All test filesystems were created in partitions on a 32 GB flash drive. For each
 It is important to consider when creating test images that the low-level behavior of file operations is not always obvious. For example, when writing a file, there is no guarantee the file's data will be immediately written to the disk. The operating system may cache the operation and wait until the optimal time to perform the write, in order to maximize system performance. We observed this early on, as writing a file and subsequently deleting it would always result in the file's metadata being written, but often left no evidence of the file's data having ever existed. This behavior is obviously undesireable because it leaves nothing meaningful to be recovered. We resolved this by calling the ``sync'' system call, which causes any such cached data to be immediately written to the disk, in between file writes and deletions. Unmounting the filesystem has a similar effect.
 
 % Learning and using the allocation algorithms
-Another type of low-level behavior relevant to the image creation process is the allocation algorithm. The operating system must have some kind of algorithm to decide where in the data area new files should be written. Common allocation algorithms include ``first available,'' ``next available,'' and ``best fit.'' %TODO cite
+Another type of low-level behavior relevant to the image creation process is the allocation algorithm. The operating system must have some kind of algorithm to decide where in the data area new files should be written. Common allocation algorithms include ``first available,'' ``next available,'' and ``best fit.''
 Learning and understanding whatever algorithm the OS uses is very helpful for forcing a specific arrangement of files. We observed that when writing to a FAT filesystem, Linux uses a ``next available'' algorithm. After the filesystem is mounted, the first write will start at the first free space in the data area. The next file will be written starting from the first free space after the previous file.
 Meanwhile, when writing to an NTFS filesystem, Windows 10 appears to use a ``best fit'' algorithm. In this case, Windows tries to find the smallest space in which the file can fit without being fragmented, and write it there.
 
@@ -186,9 +187,12 @@ When the overwriting file has also been deleted, all tools recover the first fil
 \subsubsection{Abnormal Results}
 A few results stand out as unusual.
 These are cases for which it is difficult to infer from the recovered object what approach a tool is using.
-For FAT cases 4ii, 6, 8, 9, and 10, Autopsy returns a 1.5 KiB file of null data. 
+
+For FAT cases 4ii, 6, 8, 9, and 10, Autopsy returns a 1.5 KiB file of null data.
 1.5 KiB is equivalent to 3 sectors, while a FAT cluster in our cases is equivalent to 4 sectors or 2 KiB.
+
 TestDisk fails to identify a file for NTFS cases 4iii and 4iv only. 
 These are the only test cases in which a tool does not fulfill core feature 1.
+
 For FAT cases 4i and 4ii, Magnet Axiom does not recover the entire length of the deleted file, but it also does not exclude the overwritten sections. 
 In both cases, it recovers up to the end of the overwritten sections, rather than up to the beginning like FTK does.
