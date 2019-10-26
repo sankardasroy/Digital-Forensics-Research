@@ -17,8 +17,9 @@ If not, which tool meets which part of the standard?
 The identification of errors, such as for not recovering a deleted file or attempting to recover a file that was never there 
 (Type I and Type II errors, respectively), is an important metric for a DFR tool. 
 Type I and Type II errors account for majority of the standard. Many factors impact the performance of a DFR tool, 
-including the condition of the file system (e.g., the file system being almost full or empty) and 
-how the file was deleted (being placed in Recycle bin, permanent deletion, reformat of disk, or so). \comment{method of deletion was never explored}
+including file system type, whether the file content is not located in contiguous clusters, whether 
+some part of the deleted file content is overwritten by another file, and more.
 We consider these variables in the design of experiment when we compare the tools.
-In addition to core features of CFTT standards \cite{cftt:nist}, we also use optional features \cite{cftt:nist} for comparing the DFR tools.
+Note that our current study is limted to exploring the \emph{core features} of NIST standards \cite{cftt:nist}, 
+i.e., we leave the optional features \cite{cftt:nist} of NIST standards for future study.
 
