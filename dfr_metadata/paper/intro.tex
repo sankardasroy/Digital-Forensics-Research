@@ -30,7 +30,12 @@ files in the file system, fragmentation of a file, a deleted file being overwrit
 So, comparison of two DFR tools is scientific only if they are compared while keeping these factors same. 
 Via extensive analysis, we design a set of test file system images (for either of FAT and NTFS) which considers each of the above factors independently. 
 We claim that this list of test cases is exhaustive and thus claim that our evaluation gives a complete picture. 
- 
+
+As there are many file systems (e.g., ext4, HFS, etc.) in addition to FAT and NTFS, one might be interested to know why we chose 
+FAT and NTFS for the current work. The reason is FAT and NTFS are two widely-used file systems and 
+real-life forensics investigation often involves these two file systems. 
+While we leave other file systems for future study, our current methodology could be 
+used on other file systems to make a similar study.
 
 The main contributions of the paper are listed as follows:
 \begin{itemize}
