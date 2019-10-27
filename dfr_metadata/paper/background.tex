@@ -11,10 +11,10 @@ As in many other file systems, a file in FAT system has metadata in addition to 
 The main metadata of a file (say foo.txt) in FAT system is called a \emph{directory entry}, which is of 32 bytes.
 The directory entry of a file (say foo.txt) has three main \emph{essential} elements: (a) file name, (b) file size, and 
 (c) index of the starting cluster (which holds the actual file content). We can figure 
-out the index of other clusters of the file by reading a global table called FAT table. FAT table
-can determine the chain of clusters that hold data of a file. In particular, 
-for each cluster (say x) of the file system, FAT table has an entry, and 
-if FAT(x) is 0, then that means that cluster x is currently unallocated. 
+out the index of other clusters of the file by reading a global table called the FAT table. The FAT table
+can determine the chain of clusters which hold the data of a file. In particular, 
+for each cluster (say x) of the file system, the FAT table has an entry, and 
+if FAT(x) is 0, then that means cluster x is currently unallocated. 
 On the other hand, if FAT(x) is y, then that means cluster y is the next cluster after cluster x (as part of the same file). 
    
 As an example, the directory entry of foo.txt and the clusters (holding the actual content of foo.txt) 
@@ -35,12 +35,12 @@ The first character of the file name (say ``foo.txt") is flagged (``\_oo.txt") t
 but the remaining part of the directory entry can be still available. In the FAT table, the deleted file's corresponding
 entries are \emph{zeroed}, which denotes that those clusters are available to be allocated to a new file (if necessary).
 However, the actual content carrying clusters (say cluster 100 to cluster 200)
-can still be intact unless they get \emph{overwritten} by another file. 
+can still be intact until they are \emph{overwritten} by another file. 
   
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{fig/fat2.pdf}
-    \caption{The metadata and actual content of foo.txt are shown after the file is deleted whereas the corresponding entries (i.e., 100-200) in FAT table are zeroed.}
+    \caption{The metadata and actual content of foo.txt are shown after the file is deleted whereas the corresponding entries (i.e., 100-200) in the FAT table are zeroed.}
     \label{fig:fat2}
 \end{figure}
 
@@ -53,17 +53,17 @@ second fragment is from cluster 200 to cluster 298.
     \centering
     \includegraphics[width=\linewidth]{fig/fat3.pdf}
     \caption{The layout of metadata and actual content of a file foo.txt is shown whereas the file has two fragments (cluster 100-101 and cluster 200-298) 
-as determined by FAT table.}
+as determined by the FAT table.}
     \label{fig:fat3}
 \end{figure}
 \subsection{NTFS Filesystem}
-In NTFS system, a file has an entry in Master File Table (MFT) where each entry is of typically 1024 bytes. 
+In an NTFS system, a file has an entry in the Master File Table (MFT) where each entry is typically 1024 bytes. 
 If a file is short, then all of its metadata as well as the actual content can sit inside the MFT entry; otherwise, 
 the file content can be non-resident (i.e., not in MFT entry) and located in other clusters.
   
 As an example, the MFT entry of foo.txt and the actual content carrying clusters are illustrated in Figure~\ref{fig:ntfs}.
 The MFT entry indicates that there are two runs of clusters (100-101 and 200-298) which carry the actual file content. 
-In particular, this example file has two fragments.
+In this case, the example file has two fragments.
 
 \begin{figure}[h]
     \centering
@@ -78,9 +78,10 @@ The previous discussion indicates that in many cases a deleted file's metadata
 and it is possible to recover the file content using this metadata. 
 This is called metadata-based deleted file recovery.
 
-For instance, in the example of Figure~\ref{fig:fat2}, given the directory entry of foo.txt, 
-we can see that the deleted file starts in cluster 100, and has a size of 100 clusters,
-so we can reason that the deleted file content is in cluster 100 to cluster 200.
+For instance, in the example of Figure~\ref{fig:fat2},
+we can see from the directory entry of foo.txt that 
+the deleted file starts in cluster 100 and has a size of 100 clusters;
+thus, we can reason that the deleted file content is in cluster 100 to cluster 200.
 We can recover the whole file via reading the raw content of these clusters (e.g., by using dd command in Kali Linux). 
 
 Note that in FAT system the \emph{directory entry} of a file only refers to the starting cluster, and it does not carry any information about the file fragments.
@@ -100,7 +101,7 @@ Following is the text of each core feature as well as our interpretation of each
  \item ``The tool shall construct a Recovered Object for each deleted File System-Object entry accessible in residual metadata.''\cite{meta:dfr:standards}
  We consider a tool passing this standard as long as it outputs a file for each deleted file, even if the output file is empty.
  \item ``Each Recovered Object shall include all non-allocated data blocks identified in a residual metadata entry.''\cite{meta:dfr:standards}
- For FAT file systems, we consider a tool passing this standard if it recovers at least the first contiguous segment of unallocated sectors starting from the first sector originally allocated to the deleted file. For NTFS file system, the tool must recover all unallocated sectors originally allocated to the deleted file.
+ For FAT file systems, we consider a tool passing this standard if it recovers at least the first contiguous segment of unallocated sectors starting from the first sector originally allocated to the deleted file. For NTFS file systems, the tool must recover all unallocated sectors originally allocated to the deleted file.
  \item ``Each Recovered Object shall consist only of data blocks from the Deleted Block Pool.''\cite{meta:dfr:standards}
  We consider a tool passing this standard if the recovered file consists only of data from the original deleted file, or null data to represent omitted portions.
 \end{enumerate}
