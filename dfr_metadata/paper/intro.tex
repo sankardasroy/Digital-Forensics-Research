@@ -18,6 +18,10 @@ forensics professional can use a DFR tool to investigate about (and potentially 
 a suspect may have deleted to hide important information. 
 The success or failure of a DFR tool can decide the outcome of a case.  
 
+DFR tools are typically classified as one of two varieties, corresponding to two different approaches to file recovery.
+These varieties are \emph{metadata-based} tools and \emph{file carving} tools.
+The focus of this paper is metadata-based DFR tools, with file carving left for future work.
+
 Our experiments with a popular DF tool suite (named Autopsy \cite{autopsy}) 
 show that it does not satisfy all NIST standards for DFR. 
 Furthermore, we extensively experimented with other frequently used DFR tools. 
@@ -31,9 +35,9 @@ So, comparison of two DFR tools is scientific only if they are compared while ke
 Via extensive analysis, we design a set of test file system images (for either of FAT and NTFS) which considers each of the above factors independently. 
 We claim that this list of test cases is exhaustive and thus claim that our evaluation gives a complete picture. 
 
-As there are many file systems (e.g., ext4, HFS, etc.) in addition to FAT and NTFS, one might be interested to know why we chose 
-FAT and NTFS for the current work. The reason is FAT and NTFS are two widely-used file systems and 
-real-life forensics investigation often involves these two file systems. 
+As there are many file systems (e.g., ext4, HFS, etc.) in addition to FAT and NTFS, one might be interested to know why we chose FAT and NTFS for the current work. 
+Because FAT and NTFS are very widely used on external storage devices and devices running Microsoft Windows, respectively,
+real-life forensics investigation often involves these two file systems.
 While we leave other file systems for future study, our current methodology could be 
 used on other file systems to make a similar study.
 

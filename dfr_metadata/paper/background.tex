@@ -31,11 +31,11 @@ The FAT table is also shown, which determines the chain of clusters (from cluste
 
 
 The change in metadata and actual content of foo.txt is illustrated in Figure~\ref{fig:fat2} when the file is deleted.
-The first character of the file name (say ``foo.txt") is flaged (``\_oo.txt") to denote that the file is deleted, 
-but remianing part of the directory entry can be still available. In the FAT table, the deleted file's corresponding
+The first character of the file name (say ``foo.txt") is flagged (``\_oo.txt") to denote that the file is deleted, 
+but the remaining part of the directory entry can be still available. In the FAT table, the deleted file's corresponding
 entries are \emph{zeroed}, which denotes that those clusters are available to be allocated to a new file (if necessary).
 However, the actual content carrying clusters (say cluster 100 to cluster 200)
-can be still sitting there unless they get \emph{overwritten} by another file. 
+can still be intact unless they get \emph{overwritten} by another file. 
   
 \begin{figure}[h]
     \centering
