@@ -92,3 +92,8 @@ It is also possible for File B's metadata entry to be overwritten at some point 
 The standards document acknowledges that the ``potential for corruption [is] inherent with data that is no longer maintained by a file system,''\cite{meta:dfr:standards} and that the recovered object ``may not completely match the original FS-Object.''\cite{meta:dfr:standards}
 We propose the standards themselves should be revised to better account for such situations.
 This would most likely mean adding an exception to either the third or fourth core feature, for cases in which data blocks are overwritten and subsequently deallocated.
+
+\subsection{Future Work}
+The NIST CFTT standard includes several optional features; these features could be explored using a similar methodology.
+We only created test images for the FAT and NTFS filesystems; our process could be expanded to other common filesystems such as ext4 and HFS.
+NIST CFTT has a separate set of standards for file carving DFR tools; future work could involve creating test cases for file carving tools.
