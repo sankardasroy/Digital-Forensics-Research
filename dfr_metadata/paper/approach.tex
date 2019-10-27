@@ -39,14 +39,14 @@ We designed the following test cases:
         \caption{Test Case 2. Fragmented file A is deleted.}
         \label{fig:case_2}
     \end{figure}
-    \item [3] Fragmented deleted file, with a deleted file in between the fragments
-    \item [4i] Beginning of deleted file overwritten by an active file
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case4ii.png}
         \caption{Test Case 4ii. Deleted file A is partially overwritten by file B.}
         \label{fig:case_4ii}
     \end{figure}
+    \item [3] Fragmented deleted file, with a deleted file in between the fragments
+    \item [4i] Beginning of deleted file overwritten by an active file
     \item [4ii] Middle of deleted file overwritten by an active file (Illustrated in Figure \ref{fig:case_4ii})
     \item [4iii] Deleted file partially overwritten by an active file which doesn't end on a sector boundary
     \item [4iv] Deleted file entirely overwritten by an active file
@@ -61,13 +61,13 @@ We designed the following test cases:
         \caption{Test Case 6. Fragmented file A is deleted. File A is then partially overwritten by file C.}
         \label{fig:case_6}
     \end{figure}
-    \item [7] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another deleted file
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case8.png}
         \caption{Test Case 8. Fragmented file A, which starts at the end of the filesystem and wraps around to the beginning, is deleted.}
         \label{fig:case_8}
     \end{figure}
+    \item [7] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another deleted file
     \item [8] Deleted file fragmented from the end of the file system to the beginning (Illustrated in Figure \ref{fig:case_8})
     \item [9] Deleted file fragmented from the end of the file system to after an active file
     \item [10] Deleted file fragmented from the end of the file system to after a deleted file
@@ -93,12 +93,14 @@ Meanwhile, when writing to an NTFS file system, Windows 10 appears to use a ``be
 
 \subsection{Recovering Files}
 
+We selected five popular DFR tools for testing: Autopsy\cite{autopsy}, Recuva\cite{recuva}, FTK Imager\cite{ftk}, TestDisk\cite{testdisk}, and Magnet AXIOM\cite{axiom}. Note that Autopsy uses a set of DF tools known as The Sleuth Kit (TSK) for metadata-based recovery, so TSK is also implicitly covered by this study.
+
 The settings we used when testing each tool are as follows:
-For Autopsy\cite{autopsy}, we performed a standard recovery with all ingest modules disabled.
-For Recuva\cite{recuva} we perfomed a standard recovery using the free version with default settings.
-For FTK Imager\cite{ftk}, we performed a standard recovery using the free version with default settings.
-For TestDisk\cite{testdisk} we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
-For Magnet AXIOM\cite{axiom} we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
+For Autopsy, we performed a standard recovery with all ingest modules disabled.
+For Recuva we perfomed a standard recovery using the free version with default settings.
+For FTK Imager, we performed a standard recovery using the free version with default settings.
+For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
+For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
 
 \subsection{Results}
 
