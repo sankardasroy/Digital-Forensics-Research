@@ -93,11 +93,11 @@ Meanwhile, when writing to an NTFS file system, Windows 10 appears to use a ``be
 \subsection{Recovering Files}
 
 The settings we used when testing each tool are as follows:
-For Autopsy, we performed a standard recovery with all ingest modules disabled.
-For Recuva we perfomed a standard recovery using the free version with default settings.
-For FTK Imager, we performed a standard recovery using the free version with default settings.
-For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
-For Magnet Axiom we performed a ``full scan'' in Axiom Process and exported all files accessible in ``Filesystem View'' in Axiom Examine.
+For Autopsy\cite{autopsy}, we performed a standard recovery with all ingest modules disabled.
+For Recuva\cite{recuva} we perfomed a standard recovery using the free version with default settings.
+For FTK Imager\cite{ftk}, we performed a standard recovery using the free version with default settings.
+For TestDisk\cite{testdisk} we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
+For Magnet AXIOM\cite{axiom} we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
 
 \subsection{Results}
 
@@ -129,7 +129,7 @@ These judgements are summarized in Figure \ref{fig:results_fat} for FAT test cas
     \end{subfigure}~~
     \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_fat.png}
-        \subcaption{Magnet Axiom}
+        \subcaption{Magnet AXIOM}
     \end{subfigure}~~
         
     \caption{Test results on FAT test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, grey is not tested.}
@@ -157,7 +157,7 @@ These judgements are summarized in Figure \ref{fig:results_fat} for FAT test cas
     \end{subfigure}~~
     \begin{subfigure}{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_ntfs.png}
-        \subcaption{Magnet Axiom}
+        \subcaption{Magnet AXIOM}
     \end{subfigure}~~
         
     \caption{Test results on NTFS test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, grey is not tested.}
@@ -168,11 +168,11 @@ For cases in which a tool does not fulfull core feature 1, in other words, it ca
 
 \subsubsection{Recovering Fragmented Files}
 In cases of fragmentation in FAT file systems, we found each tool generally approaches recovery in one of two ways. 
-Recuva and Magnet Axiom start from the beginning of the file and recover the full length of the file even if an active file exists in that space. 
+Recuva and Magnet AXIOM start from the beginning of the file and recover the full length of the file even if an active file exists in that space. 
 Autopsy, FTK, and TestDisk will start from the beginning of the file and recover the full length, but skip over any active files they encounter.
-Autopsy, FTK, and TestDisk recover all of file A, while Recuva and Magnet Axiom's recovered images erroneously contain data from file B, causing them to fail core feature 4. 
+Autopsy, FTK, and TestDisk recover all of file A, while Recuva and Magnet AXIOM's recovered images erroneously contain data from file B, causing them to fail core feature 4. 
 When the space in between fragments is unallocated, all tools recover the file as though it was contiguous, pulling some erroneous data and failing core feature 4. 
-When the fragmentation occurs at the end of the file system, Recuva, FTK, and TestDisk recover only the first fragment, while Autopsy returns a short file of null data, and Magnet Axiom reports an error and returns an empty file.
+When the fragmentation occurs at the end of the file system, Recuva, FTK, and TestDisk recover only the first fragment, while Autopsy returns a short file of null data, and Magnet AXIOM reports an error and returns an empty file.
 Cases with fragmentation are trivial for NTFS file systems as more information is available from the metadata. 
 Unsurprisingly, no tools had problems with fragmentation cases for NTFS.
 
@@ -180,8 +180,8 @@ Unsurprisingly, no tools had problems with fragmentation cases for NTFS.
 In cases where a file has been overwritten by an active file, we found most tools recover the deleted file as though it is not overwritten, failing core feature 4. 
 A few exceptions are FTK Imager, which recovers the file up to the point where it has been overwritten, and Autopsy, which generally recovers only the first cluster of an overwritten file in FAT, and behaves like the other tools for NTFS. 
 TestDisk also exhibits the same behavior as FTK for FAT case 4ii only. 
-Strangely, Magnet Axiom's recovered objects for FAT cases 4i and 4ii include the overwritten sections, but nothing after them.
-Other Magnet Axiom results were similar to the other tools.
+Strangely, Magnet AXIOM's recovered objects for FAT cases 4i and 4ii include the overwritten sections, but nothing after them.
+Other Magnet AXIOM results were similar to the other tools.
 When the overwriting file has also been deleted, all tools recover the first file as though it is not overwritten.
 
 \subsubsection{Abnormal Results}
@@ -194,5 +194,5 @@ For FAT cases 4ii, 6, 8, 9, and 10, Autopsy returns a 1.5 KiB file of null data.
 TestDisk fails to identify a file for NTFS cases 4iii and 4iv only. 
 These are the only test cases in which a tool does not fulfill core feature 1.
 
-For FAT cases 4i and 4ii, Magnet Axiom does not recover the entire length of the deleted file, but it also does not exclude the overwritten sections. 
+For FAT cases 4i and 4ii, Magnet AXIOM does not recover the entire length of the deleted file, but it also does not exclude the overwritten sections. 
 In both cases, it recovers up to the end of the overwritten sections, rather than up to the beginning like FTK does.
