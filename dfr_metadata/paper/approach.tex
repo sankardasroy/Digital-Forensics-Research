@@ -6,12 +6,12 @@ To test the DFR tools, we first designed hypothetical test scenarios to simulate
 We then created each scenario in real file systems and saved them as raw images. 
 Using the images as input, we ran each DFR tool and attempted to recover all deleted files. 
 Finally, we compared the recovered files to their original versions in order to judge the tools' 
-compliance with the NIST standards). A high-level view of the methodology is illustrated in Figure \ref{fig:overview}.
+compliance with the NIST standards). A high-level view of the methodology for a typical test case is illustrated in Figure \ref{fig:overview}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{fig/overview.png}
-    \caption{The DFR tool targets to retrieve deleted files. The recovery accuracy is compared to the NIST CFTT standard.}
+    \caption{A filesystem containing deleted files is created on the external drive. That filesystem is then given as input to a DFR tool, which attempts to recover the deleted files. The recovered files are then analyzed to judge the DFR tool's compliance with the NIST CFTT standard.}
     \label{fig:overview}
 \end{figure}
 
