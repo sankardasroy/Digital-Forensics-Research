@@ -5,8 +5,8 @@
 Do the popular DFR tools (as available in the market) meet the NIST CFTT standards? 
 If not, which tool meets which part of the standard? 
 
-Generally, we found that the DFR tools we tested did not meet the NIST CFTT standards.
-Testdisk\cite{testdisk} failed to fulfill core feature 1 because it did not identify deleted files in two test cases.
+Generally, we found that the DFR tools we tested did not consistently meet the NIST CFTT standards.
+TestDisk\cite{testdisk} failed to fulfill core feature 1 because it did not identify deleted files in two test cases.
 All tools fulfilled core feature 2, as they produced a recovered object for every deleted file they identified.
 Autopsy\cite{autopsy} and Magnet AXIOM\cite{axiom} failed to fulfill core feature 3 because in several test cases they did not recover data they had access to.
 All tools failed to fulfill core feature 4 because in many cases they recovered data which was not part of the original file.
@@ -26,14 +26,14 @@ However, since that cluster has been overwritten, Autopsy still fails to fulfill
 Another factor that causes multiple failures is simulated in FAT cases 8, 9, and 10.
 In FAT, a file can be written starting close to the end of the file system, without enough space to fit contiguously.
 In such cases, the file must be fragmented, and since it is already at the end of the file system, the second fragment will appear closer to the beginning of the file system (this is illustrated in Figure \ref{fig:case_8}).
-This scenario could realistically occcur when the file system is almost full.
+This scenario could realistically occur when the file system is almost full.
 In these cases, no tool is able to recover the second fragment of the deleted file; however, because FAT fragmentation is unpredictable, we only require them to recover the first fragment.
 Interestingly, Autopsy and Magnet AXIOM fail to recover anything at all, with Autopsy returning a short file of null data, and Magnet AXIOM returning an empty file after displaying an error message.
 
 \subsubsection{RQ3}
 Are the free DFR tools more effective compared to the enterprise-level (proprietary) tools?
 
-As can be observed in Figure \ref{table:results_table}, no type of tool clearly outperforms the others.
+As can be observed in Table \ref{table:results_table}, no type of tool clearly outperforms the others.
 FTK Imager, a proprietary enterprise-level tool, passes the most test cases by a large margin.
 However, the other enterprise-level tool, Magnet AXIOM, passes the least test cases.
 Given the available data, we cannot reach a definite conclusion for RQ3.
@@ -64,7 +64,7 @@ As this would not be particularly useful, it is unlikely that this was the inten
 For these tests we interpret core feature 3 as requiring the first contiguous segment of unallocated clusters starting from the first cluster originally allocated to the deleted file. 
 In other words, if the file is fragmented, the tool must recover at least the first fragment. 
 If a file is partially overwritten, the tool must recover at least the clusters before the overwritten part.
-In essense, the tool is only required to recover data for which it does not have to guess what file the data belongs to.
+In essence, the tool is only required to recover data for which it does not have to guess what file the data belongs to.
 However, it should be emphasized this is an assumption and the intent of the standard in this case needs clarification.
 
 \subsubsection{Contradictory Core Features}
@@ -79,7 +79,7 @@ One such situation is when a deleted file is overwritten, and then the overwriti
     \label{fig:case_5i}
 \end{figure}
 
-Assuming the file system is NTFS (to avoid the afforementioned ambiguity with core feature 3 and FAT), the residual metadata entry for File A (in this case its Master File Table entry) should list every cluster File A once occupied. 
+Assuming the file system is NTFS (to avoid the aforementioned ambiguity with core feature 3 and FAT), the residual metadata entry for File A (in this case its Master File Table entry) should list every cluster File A once occupied. 
 All of those clusters are unallocated, so to fulfill core feature 3, the tool must recover them. 
 However, some of those clusters have been overwritten by File B. Core feature 4 requires that a tool only recover ``data blocks from the Deleted Block Pool,''\cite{meta:dfr:standards} and defines the Deleted Block Pool as all blocks which ``have not been reallocated or reused.''\cite{meta:dfr:standards}
 Core feature 3 would require tools to recover the clusters reused by File B, while core feature 4 would forbid this. 
@@ -93,6 +93,6 @@ We propose the standards themselves should be revised to better account for such
 This would most likely mean adding an exception to either the third or fourth core feature, for cases in which data blocks are overwritten and subsequently deallocated.
 
 \subsection{Future Work}
-The NIST CFTT standard includes several optional features; these features could be explored using a similar methodology.
-We only created test images for the FAT and NTFS filesystems; our process could be expanded to other common filesystems such as ext4 and HFS.
-NIST CFTT has a separate set of standards for file carving DFR tools; future work could involve creating test cases for file carving tools.
+The NIST CFTT standard\cite{meta:dfr:standards} includes several optional features; these features could be explored using a similar methodology.
+We only created test images for the FAT and NTFS file systems; our process could be expanded to other common file systems such as ext4 and HFS.
+NIST CFTT has a separate set of standards for file carving DFR tools; future work could involve creating and evaluating test cases for file carving tools.

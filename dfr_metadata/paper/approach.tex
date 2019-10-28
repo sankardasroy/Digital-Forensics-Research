@@ -2,16 +2,16 @@
 
 \subsection{Overview}
 
-To test the DFR tools, we first designed hypothetical test scenarios to simulate the challenges of real-world file recovery.
-We then created each scenario in real file systems and saved them as raw images. 
-Using the images as input, we ran each DFR tool and attempted to recover all deleted files. 
-Finally, we compared the recovered files to their original versions in order to judge the tools' 
-compliance with the NIST standards). A high-level view of the methodology for a typical test case is illustrated in Figure \ref{fig:overview}.
+To test the DFR tools, we first design hypothetical test scenarios to simulate the challenges of real-world file recovery.
+We then create each scenario in real file systems and save them as raw images. 
+Using the images as input, we run each DFR tool and attempt to recover all deleted files. 
+Finally, we compare the recovered files to their original versions in order to judge the tools' 
+compliance with the NIST standards. A high-level view of the methodology for a typical test case is illustrated in Figure \ref{fig:overview}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{fig/overview.png}
-    \caption{A filesystem containing deleted files is created on the external drive. That filesystem is then given as input to a DFR tool, which attempts to recover the deleted files. The recovered files are then analyzed to judge the DFR tool's compliance with the NIST CFTT standard.}
+    \caption{A file system containing deleted files is created on the external drive. That file system is then given as input to a DFR tool, which attempts to recover the deleted files. The recovered files are then analyzed to judge the DFR tool's compliance with the NIST CFTT standard.}
     \label{fig:overview}
 \end{figure}
 
@@ -29,10 +29,10 @@ These factors are thus the foundation of our test scenarios, with all cases besi
 The goal is to create test cases which are canonical; in other words, they constitute the basic elements of a file recovery scenario.
 We suggest such a canonical list of test cases should be considered representative of all possible scenarios within the scope of the standards.
 
-We designed the following test cases:
+Following are descriptions of the test cases we designed. When test cases are illustrated in figures, each row represents the file system at a point in time. An arrow indicates a change in the file system, which is illustrated in the following row. Files are distinguished by unique letters, and if they are deleted they are marked as such.
 \begin{itemize}
-    \item [1] Single deleted file
-    \item [2] Fragmented deleted file, with an active file in between the fragments (Illustrated in Figure \ref{fig:case_2})
+    \item [1] The file system contains a single deleted file
+    \item [2] Fragmented deleted file, with an active file in between the fragments (as illustrated in Figure \ref{fig:case_2})
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case2.png}
@@ -42,19 +42,19 @@ We designed the following test cases:
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case4ii.png}
-        \caption{Test Case 4ii. Deleted file A is partially overwritten by file B.}
+        \caption{Test Case 4ii. Deleted file A is partially overwritten by active file B.}
         \label{fig:case_4ii}
     \end{figure}
     \item [3] Fragmented deleted file, with a deleted file in between the fragments
     \item [4i] Beginning of deleted file overwritten by an active file
-    \item [4ii] Middle of deleted file overwritten by an active file (Illustrated in Figure \ref{fig:case_4ii})
+    \item [4ii] Middle of deleted file overwritten by an active file (as illustrated in Figure \ref{fig:case_4ii})
     \item [4iii] Deleted file partially overwritten by an active file which doesn't end on a sector boundary
     \item [4iv] Deleted file entirely overwritten by an active file
-    \item [5i] Beginning of deleted file overwritten by another deleted file (Illustrated in Figure \ref{fig:case_5i})
+    \item [5i] Beginning of deleted file overwritten by another deleted file (as illustrated in Figure \ref{fig:case_5i})
     \item [5ii] Middle of deleted file overwritten by another deleted file
     \item [5iii] Deleted file partially overwritten by a deleted file which doesn't end on a sector boundary
     \item [5iv] Deleted file entirely overwritten by a deleted file
-    \item [6] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another active file (Illustrated in Figure \ref{fig:case_6})
+    \item [6] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another active file (as illustrated in Figure \ref{fig:case_6})
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case6.png}
@@ -64,11 +64,11 @@ We designed the following test cases:
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case8.png}
-        \caption{Test Case 8. Fragmented file A, which starts at the end of the filesystem and wraps around to the beginning, is deleted.}
+        \caption{Test Case 8. Fragmented file A, which starts at the end of the file system and wraps around to the beginning, is deleted.}
         \label{fig:case_8}
     \end{figure}
     \item [7] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another deleted file
-    \item [8] Deleted file fragmented from the end of the file system to the beginning (Illustrated in Figure \ref{fig:case_8})
+    \item [8] Deleted file fragmented from the end of the file system to the beginning (as illustrated in Figure \ref{fig:case_8})
     \item [9] Deleted file fragmented from the end of the file system to after an active file
     \item [10] Deleted file fragmented from the end of the file system to after a deleted file
 
@@ -78,11 +78,11 @@ Because NTFS keeps track of the locations of all parts of a file even after dele
 
 \subsection{Creating Test Images}
 % Step by step process
-All test file systems were created in partitions on a 32 GB flash drive. For each test case, the first step is to entirely write over the partition with zeros. This ensures all cases start from identical, reproduceable conditions. A new file system is written to the partition, then new files are written to the file system and deleted. The files used are simple text files containing one letter repeated (e.g. ``aa1M'' is 1 MiB of the letter 'a'). Files are written to the test file system by simply copying them from another drive. In some cases we also append data to a file in the test file system. Once the test file system matches the intended scenario, a read-only image of the partition is created. All tests are performed on these images rather than the original drive.
+All test file systems were created in partitions on a 32 GB flash drive. For each test case, the first step is to entirely write over the partition with zeros. This ensures all cases start from identical, reproduceable conditions. A new file system is written to the partition, then new files are written to the file system and deleted. The files used are simple text files containing one letter repeated (e.g., ``aa1M'' is 1 MiB of the letter `a'). Files are written to the test file system by simply copying them from another drive. In some cases we also append data to a file in the test file system to create fragmentation. Once the test file system matches the intended scenario, a read-only image of the partition is created. All tests are performed on these images rather than the original drive. Note that when creating FAT test cases we use Ubuntu 18.04 and for NTFS test cases we use Windows 10.
 
 \subsubsection{Challenges}
 % Caching problem
-It is important to consider when creating test images that the low-level behavior of file operations is not always obvious. For example, when writing a file, there is no guarantee the file's data will be immediately written to the disk. The operating system may cache the operation and wait until the optimal time to perform the write, in order to maximize system performance. We observed this early on, as writing a file and subsequently deleting it would always result in the file's metadata being written, but often left no evidence of the file's data having ever existed. This behavior is obviously undesireable because it leaves nothing meaningful to be recovered. We resolved this by using the ``sync'' system call, which causes any such cached data to be immediately written to the disk, in between file writes and deletions. Unmounting the file system after writes has a similar effect.
+It is important to consider when creating test images that the low-level behavior of file operations is not always obvious. For example, when writing a file, there is no guarantee the file's data will be immediately written to the disk. The operating system may cache the operation and wait until the optimal time to perform the write, in order to maximize system performance. We observed this early on, as writing a file and subsequently deleting it would always result in the file's metadata being written, but often left no evidence of the file's data having ever existed. This behavior is obviously undesirable because it leaves nothing meaningful to be recovered. We resolved this by using the \emph{sync} system call, which causes any such cached data to be immediately written to the disk, in between file writes and deletions. Unmounting the file system after writes has a similar effect.
 
 % Learning and using the allocation algorithms
 Another type of low-level behavior relevant to the image creation process is the allocation algorithm. The operating system must have some kind of algorithm to decide where in the data area new files should be written. Common allocation algorithms include ``first available,'' ``next available,'' and ``best fit.''
@@ -97,7 +97,7 @@ We selected five popular DFR tools for testing: Autopsy\cite{autopsy}, Recuva\ci
 
 The settings we used when testing each tool are as follows:
 For Autopsy, we performed a standard recovery with all ingest modules disabled.
-For Recuva we perfomed a standard recovery using the free version with default settings.
+For Recuva we performed a standard recovery using the free version with default settings.
 For FTK Imager, we performed a standard recovery using the free version with default settings.
 For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
 For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
@@ -109,7 +109,7 @@ If the recovered file is identical to the original, obviously all standards have
 While this is ideal, it is often impossible to perfectly recover a file (such as when it is overwritten) so the standards do not require it. 
 In our results, the file is only ever recovered perfectly in FAT cases 1 and 2, and NTFS cases 1-3. 
 For all other cases, the tool is judged on each core feature individually. 
-These judgements are summarized in Figure \ref{fig:results_fat} for FAT test cases and Figure \ref{fig:results_ntfs} for NTFS test cases.
+These judgments are summarized in Figure \ref{fig:results_fat} for FAT test cases and Figure \ref{fig:results_ntfs} for NTFS test cases.
 
 \begin{figure*}[h!]
     \centering
@@ -135,7 +135,7 @@ These judgements are summarized in Figure \ref{fig:results_fat} for FAT test cas
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
         
-    \caption{Test results on FAT test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, grey is not tested.}
+    \caption{Test results on FAT test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, gray is not tested.}
     \label{fig:results_fat}
 \end{figure*}
 
@@ -163,11 +163,11 @@ These judgements are summarized in Figure \ref{fig:results_fat} for FAT test cas
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
         
-    \caption{Test results on NTFS test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, grey is not tested.}
+    \caption{Test results on NTFS test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, gray is not tested.}
     \label{fig:results_ntfs}
 \end{figure*}
 
-For cases in which a tool does not fulfull core feature 1, in other words, it cannot find a deleted file, we make no judgement about the remaining core features.
+For cases in which a tool does not fulfill core feature 1, in other words, it cannot find a deleted file, we make no judgment about the remaining core features.
 
 \subsubsection{Recovering Fragmented Files}
 In cases of fragmentation in FAT file systems, we found each tool generally approaches recovery in one of two ways. 

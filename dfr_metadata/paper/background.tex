@@ -1,12 +1,12 @@
 \section{Background}
 
-In this section, we present some of design basics of FAT file system and NTFS file system, 
+In this section, we present some of design basics (often simplified to aid readability) of FAT file system and NTFS file system, 
 which are relevant to what we discuss in the latter part of the paper. 
 We highlight what information remains in the file system after a file is deleted, 
 which leads to understanding of how metadata-based file-recovery might work. 
 Finally, we present the \emph{core features} of NIST standards for such recovery tools.  
 
-\subsection{FAT Filesystem}
+\subsection{FAT File System}
 As in many other file systems, a file in FAT system has metadata in addition to the actual file content. 
 The main metadata of a file (say foo.txt) in FAT system is called a \emph{directory entry}, which is of 32 bytes.
 The directory entry of a file (say foo.txt) has three main \emph{essential} elements: (a) file name, (b) file size, and 
@@ -15,7 +15,8 @@ out the index of other clusters of the file by reading a global table called the
 can determine the chain of clusters which hold the data of a file. In particular, 
 for each cluster (say x) of the file system, the FAT table has an entry, and 
 if FAT(x) is 0, then that means cluster x is currently unallocated. 
-On the other hand, if FAT(x) is y, then that means cluster y is the next cluster after cluster x (as part of the same file). 
+On the other hand, if FAT(x) is y, then that means cluster y is the next cluster after cluster x (as part of the same file).
+If FAT(x) is EOF, that indicates cluster x is the last cluster of the file.
    
 As an example, the directory entry of foo.txt and the clusters (holding the actual content of foo.txt) 
 are illustrated in Figure~\ref{fig:fat1}. The FAT table is also shown, which tells us that foo.txt's data is stored 
@@ -30,7 +31,7 @@ The FAT table is also shown, which determines the chain of clusters (from cluste
 \end{figure}
 
 
-The change in metadata and actual content of foo.txt is illustrated in Figure~\ref{fig:fat2} when the file is deleted.
+The change in metadata and actual content of foo.txt is illustrated in Figure~\ref{fig:fat2} after the file is deleted.
 The first character of the file name (say ``foo.txt") is flagged (``\_oo.txt") to denote that the file is deleted, 
 but the remaining part of the directory entry can be still available. In the FAT table, the deleted file's corresponding
 entries are \emph{zeroed}, which denotes that those clusters are available to be allocated to a new file (if necessary).
@@ -46,7 +47,7 @@ can still be intact until they are \emph{overwritten} by another file.
 
 Furthermore, it is possible that the content of a file is not stored in contiguous clusters in FAT file system, 
 and this phenomenon is called \emph{fragmentation}.
-If the orginal file foo.txt has two fragments, it may look as illustrated in Figure~\ref{fig:fat3} where the file's first fragment is from cluster 100 to cluster 101 and the 
+If the original file foo.txt has two fragments, it may look as illustrated in Figure~\ref{fig:fat3} where the file's first fragment is from cluster 100 to cluster 101 and the 
 second fragment is from cluster 200 to cluster 298. 
 
 \begin{figure}[h]
@@ -56,8 +57,8 @@ second fragment is from cluster 200 to cluster 298.
 as determined by the FAT table.}
     \label{fig:fat3}
 \end{figure}
-\subsection{NTFS Filesystem}
-In an NTFS system, a file has an entry in the Master File Table (MFT) where each entry is typically 1024 bytes. 
+\subsection{NTFS File System}
+In an NTFS system, each file has an entry in the Master File Table (MFT) where every entry is typically 1024 bytes. 
 If a file is short, then all of its metadata as well as the actual content can sit inside the MFT entry; otherwise, 
 the file content can be non-resident (i.e., not in MFT entry) and located in other clusters.
   
@@ -73,14 +74,14 @@ This file has two fragments (cluster 100-101 and cluster 200-298).}
     \label{fig:ntfs}
 \end{figure}
 \subsection{Metadata-Based Deleted File Recovery}
-The previous discussion indicates that in many cases a deleted file's metadata 
+The previous discussion implies that in many cases a deleted file's metadata 
 (e.g., directory entry in FAT or MFT entry in NTFS) can be still available, 
 and it is possible to recover the file content using this metadata. 
 This is called metadata-based deleted file recovery.
 
 For instance, in the example of Figure~\ref{fig:fat2},
 we can see from the directory entry of foo.txt that 
-the deleted file starts in cluster 100 and has a size of 100 clusters;
+the deleted file starts in cluster 100 and has a size of 101 clusters;
 thus, we can reason that the deleted file content is in cluster 100 to cluster 200.
 We can recover the whole file via reading the raw content of these clusters (e.g., by using dd command in Kali Linux). 
 
@@ -89,11 +90,8 @@ That is why in certain situations where the deleted file is fragmented, metadata
 On the other hand, if a file is fragmented in NTFS, the corresponding MFT entry does contain information on all the runs (i.e., fragments) of the file
 (as shown in Figure~\ref{fig:ntfs}). Consequently, fragmentation does not introduce any extra challenge in file recovery in NTFS.
 
-To avoid confusion, note that in addition to metadata-based recovery, there is another file recovery mechanism called \emph{file carving} which does not  
-rely on metadata. We leave evaluation of \emph{file carving} tools on NIST standards for future study. 
-
 \subsection{NIST Standards}
-The NIST standards list four \emph{core features} upon which metadata-based DFR tools are to be judged.
+The NIST standards\ref{meta:dfr:standards} list four \emph{core features} upon which metadata-based DFR tools are to be judged.
 Following is the text of each core feature as well as our interpretation of each in the context of this work:
 \begin{enumerate}
  \item ``The tool shall identify all deleted File System-Object entries accessible in residual metadata.''\cite{meta:dfr:standards}

@@ -2,7 +2,7 @@
 \section{Introduction}
 
 Both in corporate and government settings, digital forensic (DF) tools are used for post-mortem investigation of cyber-crimes and cyber-attacks. 
-Nowadays it is common \cite{df:news} for the police to use DF tools to follow an electronic trail of evidence to track down a suspect. 
+Nowadays it is common \cite{df:news} for law enforcement to use DF tools to follow an electronic trail of evidence to track down a suspect. 
 To maintain the quality and integrity of DF tools, National Institute of Standards and Technology (NIST)'s 
 Computer Forensics Tool Testing Program (CFTT) \cite{cftt:nist} 
 set standards for these tools. Maintaining the standards of DF tools 
@@ -14,7 +14,7 @@ tools that are for Deleted File Recovery (DFR) \cite{meta:dfr:standards}.
 As the name suggests, a DFR tool attempts to retrieve deleted files
 from a file system of a computer. As an example, given a hard disk or a USB drive 
 (which might have been seized from the suspect computer or collected from the crime scene), a 
-forensics professional can use a DFR tool to investigate about (and potentially retrieve) deleted files that 
+forensics professional can use a DFR tool to investigate about (and potentially retrieve) files which 
 a suspect deleted to hide important information. 
 The success or failure of a DFR tool can decide the outcome of a case.  
 
@@ -40,11 +40,11 @@ As there are many file systems (e.g., ext4, HFS, etc.) in addition to FAT and NT
 Because FAT and NTFS are very widely used on external storage devices and devices running Microsoft Windows, respectively,
 real-life forensics investigation often involves these two file systems.
 While we leave other file systems for future study, our current methodology could be 
-used on other file systems to make a similar study.
+extended to other file systems to make a similar study.
 
 The main contributions of the paper are listed as follows:
 \begin{itemize}
-\item We design and build an exhaustive list of canonical test file system (FAT and NTFS) images to test the DFR tool per NIST standards. 
+\item We design and build an exhaustive list of canonical test file system (FAT and NTFS) images to evaluate the DFR tool per NIST standards. 
 \item We perform evaluation of frequently-used DFR tools (including free tools as well as proprietary ones) on the test images.
 \item For the interesting cases of tools' success or failure, we provide logical explanation.
 \item We provide critique on applicability of some of the NIST standards in a practical setting. 
@@ -52,12 +52,13 @@ The main contributions of the paper are listed as follows:
 
 
 The NIST CFTT portal currently publishes reports of only a subset of DFR tools. 
-However, the scope of tools needs to be expanded as many new tools come to market and become popular.
+However, that set needs to be expanded as many new tools come to market and become popular.
 Also, existing DFR tools should be retested to ensure their reliability is consistent 
 as new patches and features come out. 
 Adding new reports to the CFTT website will allow tool developers a 
 chance to continually develop their tools for the better. We will submit our study reports to the CFTT portal.
+At the time of writing, it does not publish test reports for any of the tools we tested.
 
-As a side benefit, our work leads to a few hands-on lab-modules to be used in digital forensics courses 
-at BGSU, enriching the new DF specialization program in the CS department. We will also make these modules
-available for relevant instructors at other universities.
+%As a side benefit, our work leads to a few hands-on lab-modules to be used in digital forensics courses 
+%at BGSU, enriching the new DF specialization program in the CS department. We will also make these modules
+%publicly available to be used by relevant instructors at other universities.
