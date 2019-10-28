@@ -33,12 +33,14 @@ Interestingly, Autopsy and Magnet AXIOM fail to recover anything at all, with Au
 \subsubsection{RQ3}
 Are the free DFR tools more effective compared to the enterprise-level (proprietary) tools?
 
-As can be observed in Figure \ref{fig:results_table}, no type of tool clearly outperforms the others.
+As can be observed in Figure \ref{table:results_table}, no type of tool clearly outperforms the others.
 FTK Imager, a proprietary enterprise-level tool, passes the most test cases by a large margin.
 However, the other enterprise-level tool, Magnet AXIOM, passes the least test cases.
 Given the available data, we cannot reach a definite conclusion for RQ3.
 
-\begin{figure}[h]
+\begin{table}[h!]
+    \caption{DFR tools sorted by type. ``Passes'' refers to the number of test cases in which a tool fulfills all 4 core features.}
+    \label{table:results_table}
     \begin{tabular}{| c | c | c |}
     \hline
     \textbf{DFR Tool} &  \textbf{Type} &  \textbf{Passes} \\ \hline
@@ -48,10 +50,7 @@ Given the available data, we cannot reach a definite conclusion for RQ3.
     FTK Imager & proprietary enterprise & 18 \\ \hline
     Magnet AXIOM & proprietary enterprise & 4 \\ \hline
     \end{tabular}
-    
-    \caption{DFR tools sorted by type. ``Passes'' refers to the number of test cases in which a tool fulfills all 4 core features.}
-    \label{fig:results_table}
-\end{figure}
+\end{table}    
 
 \subsection{Ambiguity in Standards}
 While determining how to interpret the NIST standards, we encountered ambiguities in their current wording.
