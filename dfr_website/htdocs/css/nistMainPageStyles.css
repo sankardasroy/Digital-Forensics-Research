@@ -1,0 +1,83 @@
+body {
+	margin: 0;
+}
+
+.index_page {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-gap: 1em;
+	background-color: lightgray;
+	padding: 8px 8px 8px 8px;
+}
+
+.header {
+	grid-column: 1 / 4;
+	background-color: white;
+	color: black;
+	padding: 2em 0 2em 0;
+	border: mediumblue solid 0.25em;
+}
+
+.navbar a {
+	text-decoration: none;
+	color: black;
+}
+
+#project_title {
+	margin: 0em 0em 1em 0.5em;
+	font-size: 2.25em;
+	font-family: Georgia;
+}
+
+#project_statement {
+	margin: 0 0 0em .75em;
+	font-family: Courier New;
+	font-size: 1.75em;
+}
+
+.navbar {
+	grid-column: 1 / 4;
+	display: flex;
+	flex-direction: row;
+	padding: 1em;
+	background-color: lightcyan;
+}
+
+.choice {
+	padding: 2em;
+	width: 100%;
+	cursor: pointer;
+	margin: 1em;
+	font-size: 1.5em;
+	background-color: cornsilk;
+	border-radius: 0.5em;
+}
+
+.choice:hover {
+	text-decoration: underline;
+	background-color: ivory;
+}
+
+.introductions {
+	grid-column: 1 / 4;
+	display: flex;
+	flex-direction: row;
+	padding: 1em;
+	background-color: lightcyan;
+	text-align: center;
+}
+
+#dfrIntro, #hwbIntro, #mfIntro {
+	margin: 1em;
+    font-size: 1.25em;
+    font-family: Arial;
+}
+
+.footer {
+	grid-column: 1 / 4;
+	font-size: 1.5em;
+	background-color: white;
+	border: mediumblue solid 0.25em;
+	font-family: Georgia;
+	padding-left: 0.5em;
+}

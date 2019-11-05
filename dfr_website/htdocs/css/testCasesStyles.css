@@ -1,0 +1,20 @@
+body {
+	background-color: lightcyan;
+}
+
+.testCasePage {
+	display: grid;
+	grid-template-columns: auto;
+	justify-content: center;
+}
+
+.testCaseImage {
+	height: 200px;
+	width: 800px;
+}
+
+.download_link {
+	font-size: 1.25em;
+	font-style: italic;
+	font-family: Arial;
+}
