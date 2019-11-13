@@ -31,33 +31,28 @@
 				<p id="background">Digital forensic tools are used for post-mortem investigation of cyber-crimes and cyber-attacks both in corporate and government organizations. National Institute of Standards and Technology (NIST)’s Computer Forensics Tool Testing Program (CFTT) established standards for digital forensic tools to help determine the quality and integrity of such tools. The quality and integrity of these tools are especially important in judicial proceedings. Using a forensic tool that does not follow the standards may cause evidence to be thrown out in court cases (which are increasingly reliant on digital data). Consequently, incorrect results from a forensic tool can also lead improper prosecution of an innocent defendant. The focus of our proposed research is about standardization of one class of forensic tools that are for Deleted File Recovery (DFR). The CFTT standard for DFR tools consists of four core features and a set of optional features.</p><br>
 				
 				<h1>Process</h1>
-				<p id="process">In order to test DFR tools, we had to simulate real-world file recovery challenges. With the help of our test cases, we create the scenarios in real file system and save them as raw images. Using these raw images as input, we run each DRF tool and attempt to recover all deleted files. Fnally, we compare the recoverd files to their original versions in order to judge the tools' compliance with NIST standards.<br><br>
+				<p id="process">In order to test DFR tools, we had to simulate real-world file recovery challenges. With the help of our test cases, we create the scenarios in real file system and save them as raw images. Using these raw images as input, we run each DRF tool and attempt to recover all deleted files. Finally, we compare the recoverd files to their original versions in order to judge the tools' compliance with NIST standards.<br><br>
 				<strong>Generating Test Cases:</strong><br>
 				<p id="process">To generate test cases, users need to have a USB drive and create partitions in them (USB drives). The following are the steps used to create the intended file system inside the partition. <br>
 				<p class="process_points"><strong>1.</strong> Zero out partition (make sure the USB drive is entirely empty).</p>
                 <p class="process_points"><strong>2.</strong> Use standard files (size and contents) to fill up the USB drive with scenario.</p>
                 <p class="process_points"><strong>3.</strong> Delete the files that are intended to be recovered.</p>
-                <p class="process_points"><strong>4.</strong> Create raw image of partition using dd tool. Screenshots of this process are provided below.</p><br>
-                <img class="screenshot" src="../images/Web3.png">
-                <img class="screenshot" src="../images/Web6.png">
+                <p class="process_points"><strong>4.</strong> Create raw image of partition using dd tool.</p><br>
 
                 <p id="evalDFRtools"><strong>Evaluating DFR Tools:</strong> For each tool, the following steps were followed</p>
-				<p class="process_points"><strong>1.</strong> Use the generated image as input into the DFR software.</p>
+				<p class="process_points"><strong>1.</strong> Use the generated image as input into the DFR software. How this process is done can be viewed <a href="#">here.</a></p>
 				<p class="process_points"><strong>2.</strong> Analyze results compared to NIST Standards.</p>
 				<p class="process_points">Below is a visual example of the results after inputing the generated image into the tools</p>
 				<img id="test_case_example" src="../images/features.png" download>
 			    </p><br>
 
                 <h1>Test Cases</h1> 
-				<p class="test_cases">We created the cases with different scenarios in mind and possibilities of users deleting data. All diagrams can be found on Appendix B. Here are a few examples of very common instances that can show the importance of a reliable DFR tool.<br><br>
+				<p class="test_cases">We created the cases with different scenarios in mind and possibilities of users deleting data. Here are a few examples of very common instances from the test cases that can be used to evaluate DFR tools.<br><br>
                 Case 1 (Data is deleted). This case is the base standard for all tools. The purpose of this case is to test all the tools to see if they identify and recover a single deleted file. Criminals or users can inadvertently delete critical data and believe it is gone forever.</p>
                 <img class="test_case" src="../images/case1.png">
 
                 <p class="test_cases">Case 4i (Data is deleted and overwritten in hopes of not being found). This test is a bit more complicated, for both the tool and how it happens. It is possible to find methods and tools that promise creating a new file to ensure the deleted file is gone forever. By overwriting the first portion of the deleted file, the goal is to prevent the tool from recognizing A. However, according to NIST standards, the tools should be able to recover as much of file A as possible without recovering file B.</p>
                 <img class="test_case" src="../images/case4i.png">
-
-                <p class="test_cases">Case 5i (Data is deleted and overwritten and deleted again in hopes of only the most recently deleted data is retrieved). Even more complicated than the previous example. By deleting file B that overwrote A, the purpose is to make the tools believe that file B is part of A. However, according to NIST standards, the tools should recover file A and file B separately.</p>
-                <img class="test_case" src="../images/case5i.png">
 
                 <p class="test_cases">All test cases and disk images that were used for testing can be viewed and downloaded <a href="testCases.html">here.</a></p>
 
