@@ -5,6 +5,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Data File Recovery</title>
 		<link rel="stylesheet" type="text/css" href="../css/nistDfrPageStyles.css" media="screen">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 
 	<body>
@@ -17,6 +18,7 @@
 			</div>
 
 			<nav class="navbar">
+				<button class="navbutton" onclick="window.location.href='nistMainPage.html';"><i class="fa fa-angle-double-left"></i><a class="navlink" href="nistMainPage.html">Return</a></button>
 				<button class="navbutton"><a class="navlink" href="#">Background</a></button>
 				<button class="navbutton"><a class="navlink" href="#">Process</a></button>
 				<button class="navbutton"><a class="navlink" href="#">Test Cases</a></button>
@@ -31,33 +33,33 @@
 				<h1>Process</h1>
 				<p id="process">In order to test DFR tools, we had to simulate real-world file recovery challenges. With the help of our test cases, we create the scenarios in real file system and save them as raw images. Using these raw images as input, we run each DRF tool and attempt to recover all deleted files. Fnally, we compare the recoverd files to their original versions in order to judge the tools' compliance with NIST standards.<br><br>
 				<strong>Generating Test Cases:</strong><br>
-				<p id="process">To generate test cases, users need to have a usb drive and create partitions in them (usb drives). The following are the steps used to create the intended file system inside the partition. <br>
-				<p class="process_points"><strong>1.</strong> Zero out partition (make sure the usb drive is entirely empty).</p>
-                <p class="process_points"><strong>2.</strong> Use standard files (size and contents) to fill up the usb drive with scenario.</p>
-                <p id="pp2a">a. Files were created in 1 Megabyte (MB) block sizes unless specified otherwise.</p>
-                <p class="process_points"><strong>3.</strong> Delete the appropriate files that are intended to be recovered.</p>
-                <p class="process_points"><strong>4.</strong> Create image of partition using dd tool.</p><br>
+				<p id="process">To generate test cases, users need to have a USB drive and create partitions in them (USB drives). The following are the steps used to create the intended file system inside the partition. <br>
+				<p class="process_points"><strong>1.</strong> Zero out partition (make sure the USB drive is entirely empty).</p>
+                <p class="process_points"><strong>2.</strong> Use standard files (size and contents) to fill up the USB drive with scenario.</p>
+                <p class="process_points"><strong>3.</strong> Delete the files that are intended to be recovered.</p>
+                <p class="process_points"><strong>4.</strong> Create raw image of partition using dd tool. Screenshots of this process are provided below.</p><br>
+                <img class="screenshot" src="../images/Web3.png">
+                <img class="screenshot" src="../images/Web6.png">
 
                 <p id="evalDFRtools"><strong>Evaluating DFR Tools:</strong> For each tool, the following steps were followed</p>
-				<p class="process_points"><strong>1.</strong> Use the image as input for the DRF tools.</p>
+				<p class="process_points"><strong>1.</strong> Use the generated image as input into the DFR software.</p>
 				<p class="process_points"><strong>2.</strong> Analyze results compared to NIST Standards.</p>
-				<img id="test_case_example" src="../images/features.png">
-				<p class="process_points">This example can be downloaded <a href="../images/features.png" download>here.</a></p>
+				<p class="process_points">Below is a visual example of the results after inputing the generated image into the tools</p>
+				<img id="test_case_example" src="../images/features.png" download>
 			    </p><br>
 
                 <h1>Test Cases</h1> 
-				<p id="test_cases">We created the cases with different scenarios in mind and possibilities of users deleting data. All diagrams can be found on Appendix B. Here are a few examples of very common instances that can show the importance of a reliable DFR tool.
+				<p class="test_cases">We created the cases with different scenarios in mind and possibilities of users deleting data. All diagrams can be found on Appendix B. Here are a few examples of very common instances that can show the importance of a reliable DFR tool.<br><br>
                 Case 1 (Data is deleted). This case is the base standard for all tools. The purpose of this case is to test all the tools to see if they identify and recover a single deleted file. Criminals or users can inadvertently delete critical data and believe it is gone forever.</p>
-                <p class="download_link">This image can be downloaded <a href="../images/case1.png">here.</a></p>
                 <img class="test_case" src="../images/case1.png">
 
-                <p id="test_cases">Case 4i (Data is deleted and overwritten in hopes of not being found). This test is a bit more complicated, for both the tool and how it happens. It is possible to find methods and tools that promise creating a new file to ensure the deleted file is gone forever. By overwriting the first portion of the deleted file, the goal is to prevent the tool from recognizing A. However, according to NIST standards, the tools should be able to recover as much of file A as possible without recovering file B.</p>
-                <p class="download_link">This image can be downloaded <a href="../images/case4i.png">here.</a></p>
+                <p class="test_cases">Case 4i (Data is deleted and overwritten in hopes of not being found). This test is a bit more complicated, for both the tool and how it happens. It is possible to find methods and tools that promise creating a new file to ensure the deleted file is gone forever. By overwriting the first portion of the deleted file, the goal is to prevent the tool from recognizing A. However, according to NIST standards, the tools should be able to recover as much of file A as possible without recovering file B.</p>
                 <img class="test_case" src="../images/case4i.png">
 
-                <p id="test_cases">Case 5i (Data is deleted and overwritten and deleted again in hopes of only the most recently deleted data is retrieved). Even more complicated than the previous example. By deleting file B that overwrote A, the purpose is to make the tools believe that file B is part of A. However, according to NIST standards, the tools should recover file A and file B separately.</p>
-                <p class="download_link">This image can be downloaded <a href="../images/case5i.png">here.</a></p>
+                <p class="test_cases">Case 5i (Data is deleted and overwritten and deleted again in hopes of only the most recently deleted data is retrieved). Even more complicated than the previous example. By deleting file B that overwrote A, the purpose is to make the tools believe that file B is part of A. However, according to NIST standards, the tools should recover file A and file B separately.</p>
                 <img class="test_case" src="../images/case5i.png">
+
+                <p class="test_cases">All test cases and disk images that were used for testing can be viewed and downloaded <a href="testCases.html">here.</a></p>
 
                 <h1>Results</h1>
                 <p id="results">The final result of each test case is displayed using color-coded tables that can be viewed and downloaded <a href="testCases.html">here.</a></p><br>
