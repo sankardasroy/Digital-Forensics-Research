@@ -27,26 +27,25 @@
 			</nav>
 
 			<div class="page_content">
-				<h1>Background</h1>
+				<h1>A. Background</h1>
 				<p id="background">Digital forensic tools are used for post-mortem investigation of cyber-crimes and cyber-attacks both in corporate and government organizations. National Institute of Standards and Technology (NIST)’s Computer Forensics Tool Testing Program (CFTT) established standards for digital forensic tools to help determine the quality and integrity of such tools. The quality and integrity of these tools are especially important in judicial proceedings. Using a forensic tool that does not follow the standards may cause evidence to be thrown out in court cases (which are increasingly reliant on digital data). Consequently, incorrect results from a forensic tool can also lead improper prosecution of an innocent defendant. The focus of our proposed research is about standardization of one class of forensic tools that are for Deleted File Recovery (DFR). The CFTT standard for DFR tools consists of four core features and a set of optional features.</p><br>
 				
-				<h1>Process</h1>
+				<h1>B. Process</h1>
 				<p id="process">In order to test DFR tools, we had to simulate real-world file recovery challenges. With the help of our test cases, we create the scenarios in real file system and save them as raw images. Using these raw images as input, we run each DRF tool and attempt to recover all deleted files. Finally, we compare the recoverd files to their original versions in order to judge the tools' compliance with NIST standards.<br><br>
-				<strong>Generating Test Cases:</strong><br>
+				<strong>1. Generating Test Cases:</strong><br>
 				<p id="process">To generate test cases, users need to have a USB drive and create partitions in them (USB drives). The following are the steps used to create the intended file system inside the partition. <br>
-				<p class="process_points"><strong>1.</strong> Zero out partition (make sure the USB drive is entirely empty).</p>
-                <p class="process_points"><strong>2.</strong> Use standard files (size and contents) to fill up the USB drive with scenario.</p>
-                <p class="process_points"><strong>3.</strong> Delete the files that are intended to be recovered.</p>
-                <p class="process_points"><strong>4.</strong> Create raw image of partition using dd tool.</p><br>
+				<p class="process_points"><strong>a.</strong> Zero out partition (make sure the USB drive is entirely empty).</p>
+                <p class="process_points"><strong>b.</strong> Use standard files (size and contents) to fill up the USB drive with scenario.</p>
+                <p class="process_points"><strong>c.</strong> Delete the files that are intended to be recovered.</p>
+                <p class="process_points"><strong>d.</strong> Create raw image of partition using dd tool.</p><br>
 
-                <p id="evalDFRtools"><strong>Evaluating DFR Tools:</strong> For each tool, the following steps were followed</p>
-				<p class="process_points"><strong>1.</strong> Use the generated image as input into the DFR software. How this process is done can be viewed <a href="#">here.</a></p>
-				<p class="process_points"><strong>2.</strong> Analyze results compared to NIST Standards.</p>
-				<p class="process_points">Below is a visual example of the results after inputing the generated image into the tools</p>
+                <p id="evalDFRtools"><strong>2. Evaluating DFR Tools:</strong> For each tool, the following steps were followed</p>
+				<p class="process_points"><strong>a.</strong> Use the generated image as input into the DFR software. An example of feeding a test image into a dfr tool is shown <a href="Screenshot.html">here.</a></p>
+				<p class="process_points"><strong>b.</strong> Analyze results compared to NIST Standards.</p>
 				<img id="test_case_example" src="../images/features.png" download>
 			    </p><br>
 
-                <h1>Test Cases</h1> 
+                <h1>C. Test Cases</h1> 
 				<p class="test_cases">We created the cases with different scenarios in mind and possibilities of users deleting data. Here are a few examples of very common instances from the test cases that can be used to evaluate DFR tools.<br><br>
                 Case 1 (Data is deleted). This case is the base standard for all tools. The purpose of this case is to test all the tools to see if they identify and recover a single deleted file. Criminals or users can inadvertently delete critical data and believe it is gone forever.</p>
                 <img class="test_case" src="../images/case1.png">
@@ -56,10 +55,10 @@
 
                 <p class="test_cases">All test cases and disk images that were used for testing can be viewed and downloaded <a href="testCases.html">here.</a></p>
 
-                <h1>Results</h1>
-                <p id="results">The final result of each test case is displayed using color-coded tables that can be viewed and downloaded <a href="testCases.html">here.</a></p><br>
+                <h1>D. Results</h1>
+                <p id="results">To be added.</a></p><br>
 
-                <h1>Conclusion</h1>
+                <h1>E. Conclusion</h1>
                 <p id="conclusion">Based on the data collected, a few conclusions can be made. DFR tools had better results when run on NTFS file systems instead of FAT. This can be because of how the different file systems store the metadata surrounding a file. In NTFS it is easier for DFR tools to determine what is a deleted file, and what should not be recovered. However, even in NTFS a stronger conclusion can be made that none of the DFR tools tested meet the core standards as defined by NIST. Only in the easiest and simplest cases do all tools properly recover the file. For a more meaningful conclusion, there are two possibilities. Either the tools are not good enough, or the standards themselves are insufficient. The majority of failures were on the grounds of the third and fourth core features. DFR-CR-03 states that a tool must recover “all non-allocated data blocks identified in a residual metadata entry.” In other words, all sections of the drive indicated by file system structures as belonging to the deleted file, besides those which have been reassigned to a new file, should be recovered. This is reasonable; however, the meaning varies depending on what is considered “residual metadata,” which differs based on the file system. For example, in the FAT file system, the only information about a deleted file is the file size and starting location on the disk. If the file is fragmented into multiple parts, there is no direct evidence of it. In this situation we determined that only the first fragment must be recovered, because residual metadata gives no information about fragmentation. DFR-CR-04 states that a tool must only recover “data blocks from the Deleted Block Pool.” In other words, all of the data in the recovered file must be from the original deleted file. There are some situations in which this is impossible for the tool to determine with certainty. The test cases 5i-5iv illustrate this. When a deleted file is overwritten by a second file, and then the second file is deleted as well, there is no way to tell which file overwrote which. Both FAT and NTFS store time information about files; however, that information is non-essential metadata, meaning it is not necessary for the operation of the file system and can thus be altered without consequence. With just the essential metadata, in this case simply the locations of each file on the disk, the tool must guess which file came first to avoid violating the fourth core feature. If it makes a conservative estimate and only recovers the parts of each file that don’t overlap the other, it would fail to fulfill the third core feature. File recovery is not an exact science, and there are many cases where metadata is simply not enough to properly recover a file. For the standards to be realistic, they must be more specific about what constitutes “residual metadata” for various types of file systems and resolve situations where the third and fourth core features will be in conflict.</p>
 			</div>
 
