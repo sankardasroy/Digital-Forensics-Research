@@ -114,8 +114,6 @@
 
                 <h1>D. Results</h1>
 
-				<p id="results">To be added.</p>
-
 				<p id="process"> <strong> Results Interpretation </strong></p>
 				<p id="process"> When files are recovered, we compare them with the original files to determine if all the core features were met or not. The following are the core features [1] used check a tools reliability as required by NIST; </p>
                 <p class="process_points"> DFR-CR-01 The tool shall identify all deleted File System-Object entries accessible in residual metadata. </p>
@@ -125,8 +123,16 @@
 				<p class="process_points"> metadata entry. </p>
 				<p class="process_points"> DFR-CR-04 Each Recovered Object shall consist only of data blocks from the Deleted Block Pool. </p>
 				<p id="process"> The rows in the table represent test cases while the columns represent the core features. The first table is for FAT file system while the second table is for NTFS. </p>
+
+				<div id="example_images">
+                	<img class="result_image" src="../results/autopsy_results_fat.png">
+                	<img class="result_image" src="../results/autopsy_results_ntfs.png">
+                </div>
+
 				<p id="process"> Let’s analyse row number 3 (test case 3) for both tables. In the first table (FAT test cases), all five tools have blue for the first three features and red for feature number 4. This means that the tools were able to meet core requirement 1, 2 and 3 but failed to met core requirement 4 (which requires the recovered file to only have data from the deleted file). </p>
 				<p id="process"> In the second table (NTFS test cases), all five tools have blue for all 4 features in row number 3 (test case 3). This simply means all the core features were met as the recovered file was identical to the deleted file. </p>
+
+				<p id="results_link">To view the results of all test cases with all of the tools that were used, click <a href="testResults.html">here.</a></p>
 
                 <h1>E. Conclusion</h1>
 

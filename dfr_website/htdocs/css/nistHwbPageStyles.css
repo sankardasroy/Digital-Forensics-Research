@@ -1,8 +1,8 @@
 body {
-	margin: 0;
+	background-color: lightgrey;
 }
 
-.dfr_page {
+.hwb_page {
 	display: grid;
 	grid-template-columns: auto auto auto;
 	grid-gap: 1em;
@@ -61,6 +61,7 @@ body {
 .page_content > p {
 	line-height: 1.5em;
 	font-family: Arial;
+	font-size: 1.25em
 }
 
 h1 {
@@ -72,73 +73,59 @@ i {
 	cursor: pointer;
 }
 
-#background {
+#description {
 	font-size: 1.25em;
 	text-indent: 40px;
 }
 
-#process {
+.activity_steps {
 	font-size: 1.25em;
-}
-
-.process_points {
-	font-size: 1.25em;
-	text-indent: 40px;
-}
-
-.screenshot {
-	width: 600px;
-	height: 500px;
-	margin-right: 0.75em;
-	margin-bottom: 1em;
-}
-
-#evalDFRtools {
-	font-size: 1.25em;
-}
-
-.test_cases {
-	font-size: 1.25em;
-	text-indent: 40px;
-}
-
-.test_case {
-	margin-bottom: 1.5em;
-}
-
-#test_case_example {
-	width: 800px;
-	height: 300px;
 	margin-bottom: 0;
-	cursor: pointer;
 }
 
-.download_link {
+.activity_info {
+	padding-left: 40px;
+	margin-bottom: 0;
+}
+
+.hwbImages {
+	width: 850px;
+	height: 650px;
+	margin-bottom: 0.5em;
+}
+
+li {
 	font-size: 1.25em;
-	font-style: italic;
+	font-family: Courier New;
+	line-height: 1.5em;
 }
 
-#results {
+.instructions1 {
+	margin-top: 1.5em;
+	list-style: lower-alpha;
+}
+
+.instructions2 {
+	list-style: lower-alpha;
+
+}
+
+#results_table {
+	margin-bottom: 1em;
 	font-size: 1.25em;
-	text-indent: 40px;
+	border-collapse: collapse;
 }
 
-#example_images {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
+th, td {
+	padding: 1.5em 2em 1.5em 2em;
+	text-align: center;
+	border: 2px solid black;
 }
 
-.result_image {
-	width: 250px;
-	height: 450px;
+th {
+	background-color: powderblue;
 }
 
-#results_link {
-	font-size: 1.25em;
-}
-
-#conclusion {
-	font-size: 1.25em;
-	text-indent: 40px;
+td {
+	background-color: cornsilk;
 }
