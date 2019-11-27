@@ -115,22 +115,22 @@
                 <h1>D. Results</h1>
 
 				<p id="process"> <strong> Results Interpretation </strong></p>
-				<p id="process"> When files are recovered, we compare them with the original files to determine if all the core features were met or not. The following are the core features [1] used check a tools reliability as required by NIST; </p>
+				<p id="process"> When files are recovered, we compare them with the original files to determine if all the core features were met or not. The following are the core features <strong> <a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf"> [1] </a></strong> used check a tools reliability as required by NIST; </p>
                 <p class="process_points"> DFR-CR-01 The tool shall identify all deleted File System-Object entries accessible in residual metadata. </p>
 				<p class="process_points"> DFR-CR-02 The tool shall construct a Recovered Object for each deleted File System Object entry </p> 
 				<p class="process_points"> accessible in residual metadata. </p>
 				<p class="process_points"> DFR-CR-03 Each Recovered Object shall include all non-allocated data blocks identified in a residual </p>
 				<p class="process_points"> metadata entry. </p>
 				<p class="process_points"> DFR-CR-04 Each Recovered Object shall consist only of data blocks from the Deleted Block Pool. </p>
-				<p id="process"> The rows in the table represent test cases while the columns represent the core features. The first table is for FAT file system while the second table is for NTFS. </p>
+				<p id="process"> The rows in each table below represent test cases while the columns represent the core features. The first table is to evauluate autopsy (as an example) in each test case of FAT file system. Where as the second table is for autopsy in each test case of NTFS file system. </p>
 
 				<div id="example_images">
                 	<img class="result_image" src="../results/autopsy_results_fat.png">
                 	<img class="result_image" src="../results/autopsy_results_ntfs.png">
                 </div>
 
-				<p id="process"> Let’s analyse row number 3 (test case 3) for both tables. In the first table (FAT test cases), all five tools have blue for the first three features and red for feature number 4. This means that the tools were able to meet core requirement 1, 2 and 3 but failed to met core requirement 4 (which requires the recovered file to only have data from the deleted file). </p>
-				<p id="process"> In the second table (NTFS test cases), all five tools have blue for all 4 features in row number 3 (test case 3). This simply means all the core features were met as the recovered file was identical to the deleted file. </p>
+				<p id="process"> As an example let’s analyse row number 3 (FAT 3) in the first table: Autopsy has blue for the first three features and red for feature number 4. This means that the tool is able to meet core requirement 1, 2 and 3 but failed to meet core requirement 4 (which requires the recovered file to only have data from the Deleted Block Pool). </p>
+				<p id="process"> In the second table, Autopsy has blue for all 4 features in row number 3 (NTFS 3). This simply means all the core features were met by Autopsy, as the recovered file was identical to the deleted file. </p>
 
 				<p id="results_link">To view the results of all test cases with all of the tools that were used, click <a href="testResults.html">here.</a></p>
 
