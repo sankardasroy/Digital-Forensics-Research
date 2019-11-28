@@ -5,7 +5,6 @@ body {
 .index_page {
 	display: grid;
 	grid-template-columns: auto auto auto;
-	grid-gap: 1em;
 	background-color: lightgray;
 	padding: 8px 8px 8px 8px;
 }
@@ -14,8 +13,10 @@ body {
 	grid-column: 1 / 4;
 	background-color: white;
 	color: black;
-	padding: 2em 0 2em 0;
+	padding: 3em 0 3em 0;
 	border: mediumblue solid 0.25em;
+	text-align: center;
+	margin-bottom: 0.5em;
 }
 
 .navbar a {
@@ -26,12 +27,12 @@ body {
 #project_title {
 	margin: 0em 0em 1em 0.5em;
 	font-size: 2.25em;
-	font-family: Georgia;
+	font-family: Verdana, sans-serif;
 }
 
 #project_statement {
 	margin: 0 0 0em .75em;
-	font-family: Courier New;
+	font-family: Alegraya, sans-serif;
 	font-size: 1.75em;
 }
 
@@ -41,6 +42,7 @@ body {
 	flex-direction: row;
 	padding: 1em;
 	background-color: lightcyan;
+	margin-bottom: 0;
 }
 
 .choice {
@@ -50,7 +52,6 @@ body {
 	margin: 1em;
 	font-size: 1.5em;
 	background-color: cornsilk;
-	border-radius: 0.5em;
 }
 
 .choice:hover {
@@ -62,15 +63,18 @@ body {
 	grid-column: 1 / 4;
 	display: flex;
 	flex-direction: row;
-	padding: 1em;
-	background-color: lightcyan;
+	padding: 2em 1em 2em 1em;
+	background-color: white;
 	text-align: center;
+	margin: 0;
+	border: 0.25em mediumblue solid;
 }
 
 #dfrIntro, #hwbIntro, #mfIntro {
-	margin: 1em;
+	margin: 0 1em 0 1em;
     font-size: 1.25em;
     font-family: Arial;
+    background-color: white;
 }
 
 #dfrIntro {
@@ -87,9 +91,10 @@ body {
 
 .footer {
 	grid-column: 1 / 4;
-	font-size: 1.5em;
-	background-color: white;
-	border: mediumblue solid 0.25em;
-	font-family: Georgia;
+	font-size: 0.75em;
+	font-family: Verdana, sans-serif;
 	padding-left: 0.5em;
+	margin-top: 0;
+	padding-top: 5em;
+	background-color: lightcyan
 }

@@ -16,6 +16,7 @@ body {
 	color: black;
 	padding: 2em 0 2em 0;
 	border: mediumblue solid 0.25em;
+	text-align: center;
 }
 
 .navbar a {
@@ -26,12 +27,12 @@ body {
 #project_title {
 	margin: 0em 0em 1em 0.5em;
 	font-size: 2.25em;
-	font-family: Georgia;
+	font-family: Verdana, sans-serif;
 }
 
 #project_statement {
 	margin: 0 0 0em .75em;
-	font-family: Courier New;
+	font-family: Alegraya, sans-serif;
 	font-size: 1.75em;
 }
 
@@ -84,6 +85,14 @@ i {
 .process_points {
 	font-size: 1.25em;
 	text-indent: 40px;
+}
+
+.navbar a {
+	font-style: italic;
+}
+
+p a {
+	font-style: italic;
 }
 
 .screenshot {

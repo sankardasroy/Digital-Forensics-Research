@@ -16,6 +16,7 @@ body {
 	color: black;
 	padding: 2em 0 2em 0;
 	border: mediumblue solid 0.25em;
+	text-align: center;
 }
 
 .navbar a {
@@ -26,12 +27,12 @@ body {
 #project_title {
 	margin: 0em 0em 1em 0.5em;
 	font-size: 2.25em;
-	font-family: Georgia;
+	font-family: Verdana;
 }
 
 #project_statement {
 	margin: 0 0 0em .75em;
-	font-family: Courier New;
+	font-family: Alegraya, sans-serif;
 	font-size: 1.75em;
 }
 
@@ -65,7 +66,7 @@ body {
 }
 
 h1 {
-	font-family: Georgia;	
+	font-family: Verdana;	
 }
 
 i {
@@ -79,8 +80,10 @@ i {
 }
 
 .activity_steps {
-	font-size: 1.25em;
+	font-size: 1.5em;
+	margin-top: 1.5em;
 	margin-bottom: 0;
+	font-family: Arial;
 }
 
 .activity_info {
@@ -96,18 +99,43 @@ i {
 
 li {
 	font-size: 1.25em;
-	font-family: Courier New;
-	line-height: 1.5em;
+	font-family: Georgia, sans-serif;
+	line-height: 2em;
+}
+
+table a {
+	font-style: italic;
+}
+
+p a {
+	font-style: italic;
+}
+
+.navbar a {
+	font-style: italic;
 }
 
 .instructions1 {
 	margin-top: 1.5em;
-	list-style: lower-alpha;
+	list-style: none;
 }
 
 .instructions2 {
-	list-style: lower-alpha;
+	list-style: none;
 
+}
+
+ol {
+	counter-reset: item;
+}
+
+ol > li {
+	counter-increment: item;
+}
+
+ol > li:before {
+	font-weight: bold;
+	content: counter(item, lower-alpha) ".";
 }
 
 #results_table {
