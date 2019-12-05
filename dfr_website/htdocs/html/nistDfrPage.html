@@ -17,7 +17,6 @@
 	</head>
 
 
-
 	<body>
 
 		<div class="dfr_page">
@@ -33,8 +32,6 @@
 				</header>
 
 			</div>
-
-
 
 			<nav class="navbar">
 
@@ -52,19 +49,15 @@
 
 			</nav>
 
-
-
 			<div class="page_content">
 
 				<h1><a name="background_jump">A. Background</a></h1>
 
-				<p id="background">Digital forensic tools are used for post-mortem investigation of cyber-crimes and cyber-attacks both in corporate and government organizations. National Institute of Standards and Technology (NIST)’s Computer Forensics Tool Testing Program (CFTT) established standards for digital forensic tools to help determine the quality and integrity of such tools. The quality and integrity of these tools are especially important in judicial proceedings. Using a forensic tool that does not follow the standards may cause evidence to be thrown out in court cases (which are increasingly reliant on digital data). Consequently, incorrect results from a forensic tool can also lead improper prosecution of an innocent defendant. The focus of our proposed research is about standardization of one class of forensic tools that are for Deleted File Recovery (DFR). The CFTT standard for DFR tools consists of four core features and a set of optional features.</p><br>
-
-				
+				<p id="background">Digital forensic tools are used for post-mortem investigation of cyber-crimes and cyber-attacks both in corporate and government organizations. National Institute of Standards and Technology (NIST)’s Computer Forensics Tool Testing Program (CFTT) compiled standards for digital forensic tools to help determine the quality and integrity of such tools <strong><a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf">[1]</a></strong>. The quality and integrity of these tools are especially important in judicial proceedings. Using a forensic tool that does not follow the standards may cause evidence to be thrown out in court cases (which are increasingly reliant on digital data). Consequently, incorrect results from a forensic tool can also lead improper prosecution of an innocent defendant. The focus of our proposed research is about standardization of one class of forensic tools that are for Deleted File Recovery (DFR). The CFTT standard for DFR tools consists of four core features and a set of optional features.</p><br>
 
 				<h1><a name="process_jump">B. Process</a></h1>
 
-				<p id="process">In order to test DFR tools, we had to simulate real-world file recovery challenges. With the help of our test cases, we create the scenarios in real file system and save them as raw images. Using these raw images as input, we run each DRF tool and attempt to recover all deleted files. Finally, we compare the recoverd files to their original versions in order to judge the tools' compliance with NIST standards.<br><br>
+				<p id="process">In order to test DFR tools, we had to simulate real-world file recovery challenges. With the help of our test cases, we create the scenarios in real file system and save them as raw disk images. Using these raw disk images as input, we run each DRF tool and attempt to recover all deleted files. Finally, we compare the recoverd files to their original versions in order to judge the tools' compliance with NIST standards.<br><br>
 
 				<strong>1. Generating Test Cases:</strong><br>
 
@@ -76,52 +69,50 @@
 
                 <p class="process_points"><strong>c.</strong> Delete the files that are intended to be recovered.</p>
 
-                <p class="process_points"><strong>d.</strong> Create raw image of partition using dd tool.</p><br>
-
-
+                <p class="process_points"><strong>d.</strong> Create raw disk image of partition using dd tool.</p><br>
 
                 <p id="evalDFRtools"><strong>2. Evaluating DFR Tools:</strong> For each tool, the following steps were followed</p>
 
-				<p class="process_points"><strong>a.</strong> Use the generated image as input into the DFR software. An example of feeding a test image into a dfr tool is shown <a href="Screenshot.html">here.</a></p>
+				<p class="process_points"><strong>a.</strong> Use the generated disk image as input into the DFR software. An example of feeding a disk image into a dfr tool is shown <a href="Screenshot.html">here.</a></p>
 
-				<p class="process_points"><strong>b.</strong> Analyze results compared to NIST Standards.</p>
+				<p class="process_points"><strong>b.</strong> Analyze results compared to NIST Standards. (In particular, 4 core features <strong><a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf">[1]</a></strong>)</p>
 
 				<img id="test_case_example" src="../images/features.png" download>
 
 			    </p><br>
 
-
-
                 <h1><a name="test_case_jump">C. Test Cases</a></h1> 
 
-				<p class="test_cases">We created the cases with different scenarios in mind and possibilities of users deleting data. Here are a few examples of very common instances from the test cases that can be used to evaluate DFR tools.<br><br>
+				<p class="test_cases">We created a set of representative test cases representing various file deletion scenarios. Here are a few example test cases that can be used to evaluate DFR tools.<br><br>
 
-                Case 1 (Data is deleted). This case is the base standard for all tools. The purpose of this case is to test all the tools to see if they identify and recover a single deleted file. Criminals or users can inadvertently delete critical data and believe it is gone forever.</p>
+                Case 1 (Data is deleted). This is the simplest possible test case. The purpose of this case is to test our DFR tools to see if they identify and recover a single deleted file.</p>
 
                 <img class="test_case" src="../images/case1.png">
 
-
-
-                <p class="test_cases">Case 4i (Data is deleted and overwritten in hopes of not being found). This test is a bit more complicated, for both the tool and how it happens. It is possible to find methods and tools that promise creating a new file to ensure the deleted file is gone forever. By overwriting the first portion of the deleted file, the goal is to prevent the tool from recognizing A. However, according to NIST standards, the tools should be able to recover as much of file A as possible without recovering file B.</p>
+                <p class="test_cases">Case 4i. This test is a bit more complicated, for both the tool and how it happens. File A is deleted and then the first part of file A is overwritten by an active file B. This test case explores whether the DFR tool can recover the remaining part of file A.</p>
 
                 <img class="test_case" src="../images/case4i.png">
 
-
-
                 <p class="test_cases">All test cases and disk images that were used for testing can be viewed and downloaded <a href="testCases.html">here.</a></p>
-
-
 
                 <h1><a name="results_jump">D. Results</a></h1>
 
 				<p id="process"> <strong> Results Interpretation </strong></p>
-				<p id="process"> When files are recovered, we compare them with the original files to determine if all the core features were met or not. The following are the core features <strong> <a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf"> [1] </a></strong> used check a tools reliability as required by NIST; </p>
+
+				<p id="process"> When files are recovered, we compare them with the original files to determine if all the core features were met or not. The following are the core features <strong> <a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf">[1]</a></strong> used check a tools reliability as required by NIST; </p>
+
                 <p class="process_points"> DFR-CR-01 The tool shall identify all deleted File System-Object entries accessible in residual metadata. </p>
-				<p class="process_points"> DFR-CR-02 The tool shall construct a Recovered Object for each deleted File System Object entry </p> 
+
+				<p class="process_points"> DFR-CR-02 The tool shall construct a Recovered Object for each deleted File System Object entry </p>
+
 				<p class="process_points"> accessible in residual metadata. </p>
+
 				<p class="process_points"> DFR-CR-03 Each Recovered Object shall include all non-allocated data blocks identified in a residual </p>
+
 				<p class="process_points"> metadata entry. </p>
+
 				<p class="process_points"> DFR-CR-04 Each Recovered Object shall consist only of data blocks from the Deleted Block Pool. </p>
+
 				<p id="process"> The rows in each table below represent test cases while the columns represent the core features. The first table is used to evaluate Autopsy (as an example), in each test case of FAT file system. Where as the second table is for Autopsy in each test case of NTFS file system. </p>
 
 				<div id="example_images">
@@ -130,6 +121,7 @@
                 </div>
 
 				<p id="process"> As an example let’s analyse row number 3 (FAT 3) in the first table: Autopsy has blue for the first three features and red for feature number 4. This means that the tool is able to meet core requirement 1, 2 and 3 but failed to meet core requirement 4 (which requires the recovered file to only have data from the Deleted Block Pool). </p>
+
 				<p id="process"> In the second table, Autopsy has blue for all 4 features in row number 3 (NTFS 3). This simply means all the core features were met by Autopsy, as the recovered file was identical to the deleted file. </p>
 
 				<p id="results_link">To view the results of all test cases with all of the tools that were used, click <a href="testResults.html">here.</a></p>
@@ -143,8 +135,6 @@
 				<p id="process"> [1] <a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf"> https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf </a></p>
 
 			</div>
-
-
 
 		</div>
 
