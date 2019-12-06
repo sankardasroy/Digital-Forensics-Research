@@ -25,9 +25,9 @@
 
 				<header>
 
-					<p id="project_title"><strong>Deleted File Recovery</strong></p>
+					<p id="project_title"><strong>Deleted File Recovery (DFR)</strong></p>
 
-					<p id="project_statement">An evaluation of different deleted file recovery tools that includes the methods used for testing and the research findings.</p>
+					<p id="project_statement">An evaluation of dfr tools, including the test methodology.</p>
 
 				</header>
 
@@ -73,7 +73,7 @@
 
                 <p id="evalDFRtools"><strong>2. Evaluating DFR Tools:</strong> For each tool, the following steps were followed</p>
 
-				<p class="process_points"><strong>a.</strong> Use the generated disk image as input into the DFR software. An example of feeding a disk image into a dfr tool is shown <a href="Screenshot.html">here.</a></p>
+				<p class="process_points"><strong>a.</strong> Use the generated disk image as input into the DFR tool. An example of feeding a disk image into a dfr tool is shown <a href="Screenshot.html">here.</a></p>
 
 				<p class="process_points"><strong>b.</strong> Analyze results compared to NIST Standards. (In particular, 4 core features <strong><a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf">[1]</a></strong>)</p>
 
@@ -89,7 +89,7 @@
 
                 <img class="test_case" src="../images/case1.png">
 
-                <p class="test_cases">Case 4i. (Data is deleted and partially overwritten). File A is deleted and then the first part of file A is overwritten by an active file B. This test case explores whether the DFR tool can recover the remaining part of file A.</p>
+                <p class="test_cases">Case 4i. (Data is deleted and partially overwritten). This test is a bit more complicated, for both the tool and how it happens. File A is deleted and then the first part of file A is overwritten by an active file B. This test case explores whether the DFR tool can recover the remaining part of file A.</p>
 
                 <img class="test_case" src="../images/case4i.png">
 
@@ -99,7 +99,7 @@
 
 				<p id="process"> <strong> Results Interpretation </strong></p>
 
-				<p id="process"> When files are recovered, we compare them with the original files to determine if all the core features were met or not. The following are the core features <strong> <a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf">[1]</a></strong> used check a tools reliability as required by NIST; </p>
+				<p id="process"> When files are recovered, we compare them with the original files to determine if all the core features were met or not. The following are the core features <strong> <a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf">[1]</a></strong> used to check a tool's reliability to determine which core features are met; </p>
 
                 <p class="process_points"> DFR-CR-01 The tool shall identify all deleted File System-Object entries accessible in residual metadata. </p>
 
@@ -113,18 +113,18 @@
 
 				<p class="process_points"> DFR-CR-04 Each Recovered Object shall consist only of data blocks from the Deleted Block Pool. </p>
 
-				<p id="process"> The rows in each table below represent test cases while the columns represent the core features. The first table is used to evaluate Autopsy (as an example), in each test case of FAT file system. Where as the second table is for Autopsy in each test case of NTFS file system. </p>
+				<p id="process"> The rows in each table below represent test cases while the columns represent the core features. The first table shows evaluate of Autopsy (as an example) for each test case of FAT file system. The second table is for Autopsy in each test case of NTFS file system. </p>
 
 				<div id="example_images">
                 	<img class="result_image" src="../results/autopsy_results_fat.png">
                 	<img class="result_image" src="../results/autopsy_results_ntfs.png">
                 </div>
 
-				<p id="process"> As an example let’s analyse row number 3 (FAT 3) in the first table: Autopsy has blue for the first three features and red for feature number 4. This means that the tool is able to meet core requirement 1, 2 and 3 but failed to meet core requirement 4 (which requires the recovered file to only have data from the Deleted Block Pool). </p>
+				<p id="process"> As an example, let’s analyze row number 3 (FAT 3) in the first table: Autopsy has blue for the first three features and red for feature number 4. This means that the tool is able to meet core feauture 1, 2 and 3 but failed to meet core feature 4 (which requires the recovered file to only have data from the Deleted Block Pool). </p>
 
 				<p id="process"> In the second table, Autopsy has blue for all 4 features in row number 3 (NTFS 3). This simply means all the core features were met by Autopsy, as the recovered file was identical to the deleted file. </p>
 
-				<p id="results_link">To view the results of all test cases with all of the tools that were used, click <a href="testResults.html">here.</a></p>
+				<p id="results_link">To view the results of all test cases on several tools, click <a href="testResults.html">here.</a> The same disk images that are used here can be used to evaluate other dfr tools.</p>
 
                 <h1><a name="conclusion_jump">E. Conclusion</a></h1>
 
