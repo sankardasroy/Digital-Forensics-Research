@@ -1,0 +1,17 @@
+This folder contains Word templates for submissions to the EAI Endorsed Transactions:
+
+  
+** EAI Endorsed Transactions Word 2000 Template.dot **
+   Template compatible with Word 2000 and later.  Also works with OpenOffice/
+   LibreOffice.
+
+  
+** EAI Endorsed Transactions Word 2007 Template.dotx **
+   Template for use with Word 2007 and later.  This may not be fully compatible
+   with some versions of OpenOffice/LibreOffice.
+
+  
+** EAI-Endorsed-Transactions-Word.zip **
+   Archive file containing both templates.
+
+

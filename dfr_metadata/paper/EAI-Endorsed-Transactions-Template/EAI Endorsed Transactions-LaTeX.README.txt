@@ -1,0 +1,28 @@
+This folder contains LaTeX and BibTeX classes for the preparation of submissions
+to the EAI Endorsed Transactions:
+
+  
+** icst.cls **
+   Documentclass for EAI Endorsed Transactions submissions.
+
+  
+** icstnum.bst **
+   BibTeX style for the EAI Endorsed Transactions, to be used for numbered citations.
+
+  
+** icstauth.bst **
+   BibTeX style for the EAI Endorsed Transactions, to be used for author-year citations.
+
+  
+** ICSTdoc.pdf **
+   PDF documentation describing how to use the ICST LaTeX and BibTeX styles.
+
+  
+** icstdoc.tex **
+   LaTeX source for the documentation.  
+You can browse this for an example
+   of the EAI documentclass in use.
+
+  
+** EAI-endorsed-transactions-latex.zip **
+   Archive file containing all the above files.

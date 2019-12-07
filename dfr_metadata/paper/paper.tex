@@ -1,117 +1,61 @@
-%
-% It is an example file showing how to use the 'acm_proc_article-sp.cls' V3.2SP
-% LaTeX2e document class file for Conference Proceedings submissions.
+% icstdoc.tex V1.12 6 May 2011
 
-\documentclass{mcurcsm}
-%\documentclass{acm_proc_article-sp}
+\documentclass[fonts]{icst}
 
-\usepackage[letterpaper,breaklinks=true]{hyperref}
-\usepackage[hyphenbreaks=true]{breakurl}
-\usepackage{balance}    % to balance the last page's columns
+\usepackage{moreverb}
 
-\usepackage{graphicx}
+\usepackage[breaklinks,colorlinks,bookmarksopen,bookmarksnumbered,linkcolor=ICSTblue,citecolor=blue,urlcolor=ICSTblue]{hyperref}
+\usepackage{breakurl}
+\usepackage{doi}
+
 \usepackage{subcaption}
 
-\usepackage{color}
-\newcommand{\comment}[1]{{\color{red}{NOTE: {#1}}}}
+
+\newcommand\BibTeX{{\rmfamily B\kern-.05em \textsc{i\kern-.025em b}\kern-.08em
+T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\def\volumeyear{2019}
+
+\journalname{XXXXXX}
+\articletype{Research Article/Editorial}
+\setcounter{page}{01}
+ \def\volumeyear{XXXX}
+ \def\volumenumber{XX}
+  \def\issuemonth{XX-XX}
+  \def\issuenumber{X}
+  \def\articleid{XX}
+  \def\copyrightholder{Author Name\textit{ et al.}, licensed to ICST}
+%  \copyrightnote{This is an open access article distributed under the terms of the Creative Commons Attribution license (\url{http://creativecommons.org/licenses/by/3.0/}), which permits unlimited use, distribution and reproduction in any medium so long as the original work is properly cited.}
+  \def\articledoi{10.4108/XX.X.X.XX}
+\received{XXXX}
+  \accepted{XXXX}
+  \published{XXXX}
 
 \begin{document}
 
-    \title{NIST Standards Compliance of Metadata-Based Deleted-File-Recovery (DFR) Tools}
-%   \subtitle{[And a sample article]
-%   \titlenote{A full version of this paper is available as
-%   \textit{Author's Guide to Preparing ACM SIG Proceedings Using
-%   \LaTeX$2_\epsilon$\ and BibTeX} at
-%   \url{http://www.acm.org/eaddress.htm}}}
+\runningheads{A. Smith, J.R. Wakeling}{A demonstration of the \journalabb\ class file}
 
-%
-% You need the command \numberofauthors to handle the 'placement
-% and alignment' of the authors beneath the title.
-%
-% For aesthetic reasons, we recommend 'three authors at a time'
-% i.e. three 'name/affiliation blocks' be placed beneath the title.
-%
-% NOTE: You are NOT restricted in how many 'rows' of
-% "name/affiliations" may appear. We just ask that you restrict
-% the number of 'columns' to three.
-%
-% Because of the available 'opening page real-estate'
-% we ask you to refrain from putting more than six authors
-% (two rows with three columns) beneath the article title.
-% More than six makes the first-page appear very cluttered indeed.
-%
-% Use the \alignauthor commands to handle the names
-% and affiliations for an 'aesthetic maximum' of six authors.
-% Add names, affiliations, addresses for
-% the seventh etc. author(s) as the argument for the
-% \additionalauthors command.
-% These 'additional authors' will be output/set for you
-% without further effort on your part as the last section in
-% the body of your article BEFORE References or any Appendices.
+\title{A demonstration of the \LaTeXe\ class file for
+\itshape{\journalnamelc}\tnoteref{1}}
 
-\numberofauthors{2} 
+\author{Alistair Smith\affil{1}, Joseph Rushton Wakeling\affil{2}\fnoteref{1}}
 
-\author{
-% You can go ahead and credit any number of authors here,
-% e.g. one 'row of three' or two rows (consisting of one row of three
-% and a second row of one, two or three).
-%
-% The command \alignauthor (no curly braces needed) should
-% precede each author name, affiliation/snail-mail address and
-% e-mail address. Additionally, tag each line of
-% affiliation/address with \affaddr, and tag the
-% e-mail address with \email.
-%
-% 1st. author
-\alignauthor
-Andrew Meyer\\
-       \affaddr{Bowling Green State University}\\
-       \affaddr{Bowling Green, Ohio, USA}\\
-%       \affaddr{Address continued}\\
-       \email{apmeyer@bgsu.edu}
-% 2nd. author
-\alignauthor
-Sankardas Roy\\
-       \affaddr{Bowling Green State University}\\
-       \affaddr{Bowling Green, Ohio, USA}\\
-%       \affaddr{Address continued}\\
-       \email{sanroy@bgsu.edu}
-% 3rd. author
-%\alignauthor 
-%Third Author\titlenote{You can use a ``titlenote'' to recognize your advisor.}\\
-%       \affaddr{Affiliation}\\
-%       \affaddr{Address}\\
-%       \affaddr{Address continued}\\
-%       \email{third.author@email.invalid}
-%
-%\and  % use '\and' if you need 'another row' of author names
-%
+\address{\affilnum{1}Sunrise Setting Ltd, 12a Fore Street, St. Marychurch, Torquay, Devon, TQ1~4NE, UK\\
+\affilnum{2}Institute for Computer Sciences, Social Informatics and Telecommunications Engineering (ICST)}
+
+\abstract{This paper describes the use of the \LaTeXe\
+\textsf{\journalclass} class file for setting papers for
+submission to \emph{\journalnamelc}.}
+
+\keywords{class file, \LaTeXe, \emph{\journalabb}}
+
+\tnotetext[1]{Please ensure that you use the most up to date
+class file, available from EAI at \url{http://doc.eai.eu/publications/transactions/latex/}
 }
 
-% There's nothing stopping you putting the seventh, eighth, etc.
-% author on the opening page (as the 'third row') but we ask,
-% for aesthetic reasons that you place these 'additional authors'
-% in the \additional authors block, viz.
-%\additionalauthors{Additional authors: John Smith (The Th{\o}rv{\"a}ld Group,
-%email: {\texttt{jsmith@affiliation.org}}) and Julius P.~Kumquat
-%(The Kumquat Consortium, email: {\texttt{jpkumquat@consortium.net}}).}
-%\date{30 July 1999}
-% Just remember to make sure that the TOTAL number of authors
-% is the number that will appear on the first page PLUS the
-% number that will appear in the \additionalauthors section.
+\fnotetext[1]{Corresponding author.  Email: \email{publications@eai.eu}}
 
 \maketitle
-\begin{abstract}
-Digital forensics (DF) tools are used for post-mortem investigation of cyber-crimes. 
-National Institute of Standards and Technology (NIST) 
-has set standards for DF tools. Compliance with the standards by DF tools is critical to ensure 
-integrity of the outcome of forensics analysis. 
-In this paper, we consider standardization of one class of DF tools for Deleted File Recovery (DFR). 
-Via extensive experiments we evaluate frequently-used DFR tools on NIST standards, and 
-find that tools do not satisfy some of the standards.  
-We compile a comparative analysis of these tools, which could help the user choose the right DFR tool. 
-%We hope our findings will trigger more research activities on compliance of standards from the researcher community as well as the practitioners. 
-\end{abstract}
 
 \input{intro.tex}
 
@@ -122,60 +66,19 @@ We compile a comparative analysis of these tools, which could help the user choo
 \input{approach.tex}
 
 \input{discussion.tex}
-%%% To balance the columns, we need this to be in the code for the LEFT column
-% on the last page
-\balance
 
-\input{conclusion.tex}
-
-%Papers should be no more than ten pages, single- spaced, with 12pt font
-%for the text content. Left, right, top and bottom margins need to be 1''.  Pages
-%should not be numbered (they will be numbered for the proceedings). The title
-%and author information are single-column centered at the top of the first page.   
-%
-%The remaining document should be double- column format. Please give an address
-%and email address for each author of the paper. Sections (if used) should be
-%numbered and titled. Figures, tables, and other diagrams should be numbered and
-%titled. Please try to include each figure near the text it addresses. If
-%necessary, you may elect to place large figures at the end of your paper using
-%the full width of the page (single-column format). 
-%
-%Follow the rules of accepted grammar and mathematical formatting. Remember that
-%the quality of your paper is one of the criteria for judgment. 
-
-%\subsection{References}
-%Use the standard CACM format for references -- that is, a numbered list at the
-%end of the article, ordered alphabetically by first author, and referenced by
-%numbers in brackets~\cite{bowman:reasoning}.  The references are also in 12pt,
-%but that section is ragged right.  Other references that may prove helpful
-%include~\cite{Dupre:1995:BW,Lamport:LaTeX,Mittelbach:2004:LC}.
-%
-%\subsection{Page Number, Headers and Footers}
-%Do not include headers, footers, or page numbers in your submission.  These will
-%be added when the proceedings are assembled.
-
-%ACKNOWLEDGMENTS are optional
-\section{Acknowledgments} A. Meyer's work has been partially supported by a grant from BGSU's Center for Undergraduate Research and Scholarship 
+\ack A. Meyer's work has been partially supported by a grant from BGSU's Center for Undergraduate Research and Scholarship 
 (CURS) in summer of 2019. S. Roy's work has been partially supported by a NIST grant (grant number: 70NANB17H321; Year 2017-19) that he has been awarded with as a Co-PI. 
 Quinton Currier at BGSU assisted with the testing process.
-% This section is optional; it is a location for you to acknowledge grants,
-% funding, editing assistance and what have you.  In the present case, for
-% example, the authors would like to thank the maintainers of ACM's conference
-% proceeding \LaTeX\ template from which this document is directly derived and the
-% past organizers of the MCURCSM conference.
 
-%
-% The following two commands are all you need in the
-% initial runs of your .tex file to
-% produce the bibliography for the citations in your paper.
-\bibliographystyle{plain}
-\bibliography{mybib}  % mybib.bib is the name of the Bibliography in this case
-% You must have a proper ".bib" file
-%  and remember to run:
-% latex bibtex latex latex
-% to resolve all references
-%
+\begin{thebibliography}{9}
 
+\bibitem{R1} \textsc{Kopka~H.} and \textsc{Daly~P.W.} (2003) \emph{A Guide to \LaTeX}
+(Addison-Wesley), 4th~ed.
 
-% That's all folks!
+\bibitem{R2} \textsc{Lamport~L.} (1994) \emph{\LaTeX: a Document Preparation System}
+(Addison-Wesley), 2nd~ed.
+
+\bibitem{R3} \textsc{Mittelbach~F.} and \textsc{Goossens~M} (2004) \emph{The \LaTeX\ Companion} (Addison-Wesley), 2nd~ed.
+\end{thebibliography}
 \end{document}
