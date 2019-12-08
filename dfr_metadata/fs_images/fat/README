@@ -3,5 +3,3 @@ Each image has a corresponding text file containing the commands used invoked in
 All images were created on an Ubuntu 18.04 virtual machine.
 
 The drive referenced in each text file (/dev/sda) is a flash drive with 4MiB paritions numbered 1-16.
-
-Files with "MA" in their names were specifically prepared for Magnet Axiom, because it cannot recover files with no extension. These only difference between these images and the others is the addition of .txt file extensions to all recovery files.

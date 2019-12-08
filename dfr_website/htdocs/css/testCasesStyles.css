@@ -1,0 +1,55 @@
+body {
+	background-color: lightcyan;
+}
+
+.testCasePage {
+	display: grid;
+	grid-template-columns: auto;
+	justify-content: center;
+}
+
+.testCaseImage {
+	height: 300px;
+	width: 800px;
+}
+
+.download_link {
+	font-size: 1.25em;
+	font-style: italic;
+	font-family: Arial;
+}
+
+#results {
+	border: 2px solid black;
+	font-size: 1.25em;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+caption {
+	font-size: 1.5em;
+	margin: 0.75em 0 1em 0;
+	font-family: Georgia;
+}
+
+th, td {
+	padding: 0.75em;
+	text-align: center;
+	border: 2px solid black;
+}
+
+th {
+	font-family: Courier New;
+}
+
+td {
+	font-family: Arial;
+}
+
+.oddRow {
+	background-color: powderblue;
+}
+
+.evenRow {
+	background-color: cornsilk;
+}

@@ -1,0 +1,20 @@
+body {
+	background-color: lightcyan;
+}
+
+.ScreenshotPage{
+	display: grid;
+	grid-template-columns: auto;
+	justify-content: center;
+}
+
+.ScreenshotImage {
+	height: 600px;
+	width: 1000px;
+}
+
+.download_link {
+	font-size: 1.25em;
+	font-style: italic;
+	font-family: Arial;
+}

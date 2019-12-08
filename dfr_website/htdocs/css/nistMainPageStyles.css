@@ -1,0 +1,100 @@
+body {
+	margin: 0;
+}
+
+.index_page {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	background-color: lightgray;
+	padding: 8px 8px 8px 8px;
+}
+
+.header {
+	grid-column: 1 / 4;
+	background-color: white;
+	color: black;
+	padding: 3em 0 3em 0;
+	border: mediumblue solid 0.25em;
+	text-align: center;
+	margin-bottom: 0.5em;
+}
+
+.navbar a {
+	text-decoration: none;
+	color: black;
+}
+
+#project_title {
+	margin: 0em 0em 1em 0.5em;
+	font-size: 2.25em;
+	font-family: Verdana, sans-serif;
+}
+
+#project_statement {
+	margin: 0 0 0em .75em;
+	font-family: Alegraya, sans-serif;
+	font-size: 1.75em;
+}
+
+.navbar {
+	grid-column: 1 / 4;
+	display: flex;
+	flex-direction: row;
+	padding: 1em;
+	background-color: lightcyan;
+	margin-bottom: 0;
+}
+
+.choice {
+	padding: 2em;
+	width: 100%;
+	cursor: pointer;
+	margin: 1em;
+	font-size: 1.5em;
+	background-color: cornsilk;
+}
+
+.choice:hover {
+	text-decoration: underline;
+	background-color: ivory;
+}
+
+.introductions {
+	grid-column: 1 / 4;
+	display: flex;
+	flex-direction: row;
+	padding: 2em 1em 2em 1em;
+	background-color: white;
+	text-align: center;
+	margin: 0;
+	border: 0.25em mediumblue solid;
+}
+
+#dfrIntro, #hwbIntro, #mfIntro {
+	margin: 0 1em 0 1em;
+    font-size: 1.25em;
+    font-family: Arial;
+    background-color: white;
+}
+
+#dfrIntro {
+	width: 31%;
+}
+
+#hwbIntro {
+	width: 31%;
+}
+
+#mfIntro {
+	width: 31%;
+}
+
+.footer {
+	grid-column: 1 / 4;
+	font-size: 0.75em;
+	font-family: Verdana, sans-serif;
+	padding-left: 0.5em;
+	margin-top: 0;
+	padding-top: 5em;
+	background-color: lightcyan
+}
