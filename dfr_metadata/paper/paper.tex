@@ -5,6 +5,8 @@
 \usepackage{moreverb}
 
 \usepackage[breaklinks,colorlinks,bookmarksopen,bookmarksnumbered,linkcolor=ICSTblue,citecolor=blue,urlcolor=ICSTblue]{hyperref}
+\def\UrlBreaks{\do\/\do-\do.}
+
 \usepackage{breakurl}
 \usepackage{doi}
 
@@ -24,8 +26,8 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
   \def\issuemonth{XX-XX}
   \def\issuenumber{X}
   \def\articleid{XX}
-  \def\copyrightholder{Author Name\textit{ et al.}, licensed to ICST}
-%  \copyrightnote{This is an open access article distributed under the terms of the Creative Commons Attribution license (\url{http://creativecommons.org/licenses/by/3.0/}), which permits unlimited use, distribution and reproduction in any medium so long as the original work is properly cited.}
+  \def\copyrightholder{Andrew Meyer\textit{ et al.}, licensed to ICST}
+  \copyrightnote{This is an open access article distributed under the terms of the Creative Commons Attribution license (\url{http://creativecommons.org/licenses/by/3.0/}), which permits unlimited use, distribution and reproduction in any medium so long as the original work is properly cited.}
   \def\articledoi{10.4108/XX.X.X.XX}
 \received{XXXX}
   \accepted{XXXX}
@@ -33,54 +35,48 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \begin{document}
 
-\runningheads{A. Smith, J.R. Wakeling}{A demonstration of the \journalabb\ class file}
+\runningheads{A. Meyer, S. Roy}{NIST Standards Compliance of Metadata-Based Deleted-File-Recovery (DFR) Tools}
 
-\title{A demonstration of the \LaTeXe\ class file for
-\itshape{\journalnamelc}\tnoteref{1}}
+\title{NIST Standards Compliance of Metadata-Based Deleted-File-Recovery (DFR) Tools}
 
-\author{Alistair Smith\affil{1}, Joseph Rushton Wakeling\affil{2}\fnoteref{1}}
+\author{Andrew Meyer\affil{1}\fnoteref{1}, Sankardas Roy\affil{2}\fnoteref{2}}
 
-\address{\affilnum{1}Sunrise Setting Ltd, 12a Fore Street, St. Marychurch, Torquay, Devon, TQ1~4NE, UK\\
-\affilnum{2}Institute for Computer Sciences, Social Informatics and Telecommunications Engineering (ICST)}
+\address{\affilnum{1}Bowling Green State University, Bowling Green, Ohio, USA\\
+\affilnum{2}Bowling Green State University, Bowling Green, Ohio, USA}
 
-\abstract{This paper describes the use of the \LaTeXe\
-\textsf{\journalclass} class file for setting papers for
-submission to \emph{\journalnamelc}.}
+\abstract{Digital forensics (DF) tools are used for post-mortem investigation of cyber-crimes. 
+National Institute of Standards and Technology (NIST) 
+has set standards for DF tools. Compliance with the standards by DF tools is critical to ensure 
+integrity of the outcome of forensics analysis. 
+In this paper, we consider standardization of one class of DF tools for Deleted File Recovery (DFR). 
+Via extensive experiments we evaluate frequently-used DFR tools on NIST standards, and 
+find that tools do not satisfy some of the standards.  
+We compile a comparative analysis of these tools, which could help the user choose the right DFR tool. 
+We hope our findings will trigger more research activities on compliance of standards from the researcher community as well as the practitioners.}
 
-\keywords{class file, \LaTeXe, \emph{\journalabb}}
+\keywords{Deleted File Recovery, Digital Forensics, Metadata, NIST, Standards, File System, FAT, NTFS}
 
-\tnotetext[1]{Please ensure that you use the most up to date
-class file, available from EAI at \url{http://doc.eai.eu/publications/transactions/latex/}
-}
+%\tnotetext[1]{Please ensure that you use the most up to date
+%class file, available from EAI at \url{http://doc.eai.eu/publications/transactions/latex/}
+%}
 
-\fnotetext[1]{Corresponding author.  Email: \email{publications@eai.eu}}
+\fnotetext[1]{Corresponding author.  Email: \email{apmeyer@bgsu.edu}}
+\fnotetext[2]{Corresponding author.  Email: \email{sanroy@bgsu.edu}}
 
 \maketitle
 
 \input{intro.tex}
-
 \input{rq.tex}
-
 \input{background.tex}
-
 \input{approach.tex}
-
 \input{discussion.tex}
-
 \input{conclusion.tex}
 
 \ack A. Meyer's work has been partially supported by a grant from BGSU's Center for Undergraduate Research and Scholarship 
 (CURS) in summer of 2019. S. Roy's work has been partially supported by a NIST grant (grant number: 70NANB17H321; Year 2017-19) that he has been awarded with as a Co-PI. 
 Quinton Currier at BGSU assisted with the testing process.
 
-\begin{thebibliography}{9}
+\bibliographystyle{icstnum}
+\bibliography{mybib}
 
-\bibitem{R1} \textsc{Kopka~H.} and \textsc{Daly~P.W.} (2003) \emph{A Guide to \LaTeX}
-(Addison-Wesley), 4th~ed.
-
-\bibitem{R2} \textsc{Lamport~L.} (1994) \emph{\LaTeX: a Document Preparation System}
-(Addison-Wesley), 2nd~ed.
-
-\bibitem{R3} \textsc{Mittelbach~F.} and \textsc{Goossens~M} (2004) \emph{The \LaTeX\ Companion} (Addison-Wesley), 2nd~ed.
-\end{thebibliography}
 \end{document}
