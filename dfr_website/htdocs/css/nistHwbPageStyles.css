@@ -1,4 +1,5 @@
 body {
+	margin: 0;
 	background-color: lightgrey;
 }
 
@@ -66,7 +67,7 @@ body {
 }
 
 h1 {
-	font-family: Verdana;	
+	font-family: Georgia;	
 }
 
 i {
@@ -99,7 +100,7 @@ i {
 
 li {
 	font-size: 1.25em;
-	font-family: Georgia, sans-serif;
+	font-family: Helvetica, sans-serif;
 	line-height: 2em;
 }
 
@@ -118,24 +119,17 @@ p a {
 .instructions1 {
 	margin-top: 1.5em;
 	list-style: none;
+	font-family: Helvetica;
 }
 
 .instructions2 {
 	list-style: none;
-
+	font-family: Helvetica;
 }
 
-ol {
-	counter-reset: item;
-}
-
-ol > li {
-	counter-increment: item;
-}
-
-ol > li:before {
-	font-weight: bold;
-	content: counter(item, lower-alpha) ".";
+ul {
+	margin-left: 40px;
+	font-family: Helvetica;
 }
 
 #results_table {

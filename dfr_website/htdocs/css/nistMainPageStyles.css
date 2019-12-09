@@ -1,11 +1,11 @@
 body {
 	margin: 0;
+	background-color: lightgray;
 }
 
 .index_page {
 	display: grid;
 	grid-template-columns: auto auto auto;
-	background-color: lightgray;
 	padding: 8px 8px 8px 8px;
 }
 

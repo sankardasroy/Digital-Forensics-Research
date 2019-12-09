@@ -17,7 +17,7 @@
 
 					<p id="project_title"><strong>Hardware Write Blockers</strong></p>
 
-					<p id="project_statement">An evaluation of test results for hardware write block tools that also includes a hands-on activity with the purpose of becoming familiar with a hardware write blocker and its basic functionality.</p>
+					<p id="project_statement">A hands-on activity to evaluate hardware write blocker (HWB) and a sample set of test results are available here.</p>
 
 				</header>
 
@@ -38,11 +38,11 @@
 			</nav>
 
 			<div class="page_content">
-			    	<h1><a name="description_jump">A. Test Case and Test Drive Description</a></h1>
+			    	<h1><a name="description_jump">A. An Overview</a></h1>
 
-			    	<p id="description">The purpose of the experiments was to test a write blocker’s ability to write-protect a SATA drive. This test can be repeated to test multiple types of connections (interfaces) between a computer and the write blocker. Test the ability of the write blocker to block write commands from the ATA and SCSI command sets issued from a test computer from modifying a SATA drive. The manufacturer, model & size of the test drive used for this test: The hard drive as a 160gb drive manufactured by western digital.</p><br>
+			    	<p id="description">We design a HWB evaluation module, which is to test HWB's ability to write protect a hard drive. This test can be repeated to test multiple types of connections (interfaces) between a computer and the write blocker. In particular, this evaluation module tests the ability of the HWB to block write commands (from the ATA and SCSI command sets) issued from a test computer from modifying a hard drive. The manufacturer, model & size of the test drive used in this test may vary.</p><br>
 
-			    	<h1><a name="activity_jump">B. HWB Evaluation Module: Exercise for Students</a></h1>
+			    	<h1><a name="activity_jump">B. HWB Evaluation Module: Our Hands-On Activity</a></h1>
 
 			    	<h2 class="activity_steps"><strong>1. Goals</strong></h2>
 			    	<p class="activity_info">To become familiar with (a) Hardware Write Blocker (HWB) and its basic functionality, (b) NIST CFTT Federated Testing system, and how to use this system to evaluate a HWB.</p><br>
@@ -51,52 +51,46 @@
 			    	<p class="activity_info">Visit NIST CFTT program’s website on HWB, and read documents on HWB specifications Version 2.0 and the test plan for Version 2.0. <a href="https://www.nist.gov/itl/ssd/software-quality-group/computer-forensics-tool-testing-program-cftt/cftt-technical/hardware">here.</a></p><br>
 
 			    	<h2 class="activity_steps"><strong>3. Tasks</strong></h2>
-			    	<p class="activity_info">The first task is to use the Federated Testing iso file (which is available in C: drive in any computer in lab) to start a VM on VirtualBox. Below are some of the intermediate steps (i.e. screenshots), which you will go through.</p><br>
+			    	<p class="activity_info">The first task is to use the Federated Testing iso file (which can be downloaded <a href="#">here</a>) to start a VM on VirtualBox. Below are some of the intermediate steps (i.e. screenshots), which you will go through.</p><br>
  
 			    	<img class="hwbImages" src="../screenshots/hwbImage1.png">
 			    	<img class="hwbImages" src="../screenshots/hwbImage2.png">
 			    	<img class="hwbImages" src="../screenshots/hwbImage3.png">
 			    	<img class="hwbImages" src="../screenshots/hwbImage4.png">
 
-			    	<p class="activity_info">As for the second task; On the welcome page of Federated Testing Forensic Tool Testing Environment, click on “Test a hardware write block tool” (which is available on the left panel). Then, walk over the following steps to test a HWB:</p>
+			    	<p class="activity_info">The second task is as follows; On the welcome page of Federated Testing Forensic Tool Testing Environment, click on “Test a hardware write block tool” (which is available on the left panel). Then, walk over the following steps to test a HWB:</p>
 
-			    	<ol class="instructions1">
-			    		<li> Go to “Hardware Write Block Home” page and click on “ … Get Started”.</li>
-						<li> Now click on “Format your Log Drive”. Assuming you do not use an external flash drive, system will show internal virtual drive /dev/sda to you to select as the log drive.</li>
-						<li> Follow the instruction to mount the Log Drive.</li>
-						<li> Go to “Generate test cases and start testing”.</li>
-						<li> Select a hardware write block type. Choose the “hard drive” option.</li>
-						<li> Describe the write blocker. Put in detailed information on manufacturer and model name, and so on. Select the drive type as SATA. Choose USB3 as the type of connection between test computer and HWB.</li>
-						<li> Review test selections.</li>
-						<li> Select the FT-HWB-SATA option and ‘Run test case’.</li>
-						<li> Get results.</li>
-						<li> Generate a test report; a test report copy will be written in the Log Drive.</li>
-						<li> Open the test report in a Windows computer, and copy the content of the report to a new word document. This will look like the following.</li>
-					</ol>
+			    	<ul class="instructions1">
+			    		<li> <strong>a.</strong> Go to “Hardware Write Block Home” page and click on “ … Get Started”.</li>
+						<li> <strong>b.</strong> Now click on “Format your Log Drive”. Assuming you do not use an external flash drive, system will show internal virtual drive /dev/sda to you to select as the log drive.</li>
+						<li> <strong>c.</strong> Follow the instruction to mount the Log Drive.</li>
+						<li> <strong>d.</strong> Go to “Generate test cases and start testing”.</li>
+						<li> <strong>e.</strong> Select a hardware write block type. Choose the “hard drive” option.</li>
+						<li> <strong>f.</strong> Describe the write blocker. Put in detailed information on manufacturer and model name, and so on. Select the drive type as SATA. Choose USB3 as the type of connection between test computer and HWB.</li>
+						<li> <strong>g.</strong> Review test selections.</li>
+						<li> <strong>h.</strong> Select the FT-HWB-SATA option and ‘Run test case’.</li>
+						<li> <strong>i.</strong> Get results.</li>
+						<li> <strong>j.</strong> Generate a test report; a test report copy will be written in the Log Drive.</li>
+						<li> <strong>k.</strong> Open the test report in a Windows computer, and copy the content of the report to a new word document. This will look like the following.</li>
+					</ul>
 
 					<img class="hwbImages" src="../screenshots/testReport.png">
 
-					<p class="activity_info">Now delete or replace the green text with related, correct, or specific information.
-					As an example, under “2.Testing Organization” write the following.<br>
-					Organization conducting test: BGSU<br>
-					Contact: S. Roy (sanroy@bgsu.edu)<br>
-					Report date: Nov 14, 2019<br>
-					Authored by: your name<br>
-					Reviewed by: other members in your group<br>
-					Reviewed by date: Nov 14, 2019<br>
+					<p class="activity_info">Now delete or replace the green text with related, correct, or specific information.</p>
+					<br>
 
-					<ol type="a" start="12" class="instructions2">
-						<li> Go to the log file in the Log Drive (something like hwbtestlog.txt) and find the detailed test results. Now focus on a specific write command (e.g., opcode 30h). During the test, this command (30h) was issued to write to one sector (say S) of the hard disk, and the details are in the appendix. Check the (reported) content of the sector S before the test and after the test. Briefly verify whether they are “unchanged”.</li>
-						<li> Submit your test-report on Canvas.</li><br>
-					</ol>
+					<ul type="a" start="12" class="instructions2">
+						<li> <strong>l.</strong> Go to the log file in the Log Drive (something like hwbtestlog.txt) and find the detailed test results. Now focus on a specific write command (e.g., opcode 30h). During the test, this command (30h) was issued to write to one sector (say S) of the hard disk, and the details are in the appendix. Check the (reported) content of the sector S before the test and after the test. Briefly verify whether they are “unchanged”.</li>
+						<li> <strong>m.</strong> Submit your test-report on Canvas.</li><br>
+					</ul>
 
-					<h1><a name="results_jump">C. Test Case Results</a></h1>
+					<h1><a name="results_jump">C. Test Results</a></h1>
 
 					<table id="results_table">
 						<tr>
-							<th>Result Evaluation 1</th>
-							<th>Result Evaluation 2</th>
-							<th>Result Evaluation 3</th>
+							<th>Result Sample 1</th>
+							<th>Result Sample 2</th>
+							<th>Result Sample 3</th>
 						</tr>
 
 						<tr>
