@@ -37,17 +37,17 @@
 
 				<button class="navbutton" onclick="window.location.href='nistMainPage.html';"><i class="fa fa-angle-double-left"></i><a class="navlink" href="nistMainPage.html">Return</a></button>
 
-				<button class="navbutton"><a class="navlink" href="#background_jump">Background</a></button>
+				<button class="navbutton" onclick="window.location.href='#background_jump';"><a class="navlink" href="#background_jump">Background</a></button>
 
-				<button class="navbutton"><a class="navlink" href="#process_jump">Process</a></button>
+				<button class="navbutton" onclick="window.location.href='#process_jump';"><a class="navlink" href="#process_jump">Process</a></button>
 
-				<button class="navbutton"><a class="navlink" href="#test_case_jump">Test Cases</a></button>
+				<button class="navbutton" onclick="window.location.href='#test_case_jump';"><a class="navlink" href="#test_case_jump">Test Cases</a></button>
 
-				<button class="navbutton"><a class="navlink" href="#results_jump">Results</a></button>
+				<button class="navbutton" onclick="window.location.href='#results_jump';"><a class="navlink" href="#results_jump">Results</a></button>
 
-				<button class="navbutton"><a class="navlink" href="#conclusion_jump">Conclusion</a></button>
+				<button class="navbutton" onclick="window.location.href='#conclusion_jump';"><a class="navlink" href="#conclusion_jump">Conclusion</a></button>
 
-				<button id="top_return"><a class="navlink" href="#background_jump">Back To Top</a></button> 
+				<button id="top_return" onclick="window.location.href='#background_jump';"><a class="navlink" href="#background_jump">Back To Top</a></button> 
 
 			</nav>
 
@@ -61,7 +61,7 @@
 
 				<p id="process">In order to test DFR tools, we had to simulate real-world file recovery challenges. With the help of our test cases, we create the scenarios in real file system and save them as raw disk images. Using these raw disk images as input, we run each DRF tool and attempt to recover all deleted files. Finally, we compare the recoverd files to their original versions in order to judge the tools' compliance with NIST standards.<br><br>
 
-				<strong>1. Generating Test Cases: (watch this <a href="https://www.youtube.com/watch?v=u7cJezSPrQw">video</a>)</strong><br>
+				<strong>1. Generating Test Cases: (watch this <a href="https://www.youtube.com/watch?v=oQ_xkn3f-0o&list=PLyH-rCwMujkwr_NXnGO5HVGvsigUOH0bJ">video</a>)</strong><br>
 
 				<p id="process">To generate test cases, users need to have a USB drive and create partitions in them (USB drives). The following are the steps used to create the intended file system inside the partition. <br>
 
@@ -77,9 +77,9 @@
 
 				<p class="process_points"><strong>a.</strong> Use the generated disk image as input into the DFR tool. An example of feeding a disk image into a DFR tool is shown <a href="Screenshot.html">here.</a></p>
 
-				<p class="process_points"><strong>b.</strong>Collect the recovered files returned by the DFR tool (watch this <a href="https://www.youtube.com/watch?v=eHmdgiooo4k">video</a>).</p>
+				<p class="process_points"><strong>b.</strong>Collect the recovered files returned by the DFR tool (watch this <a href="https://www.youtube.com/watch?v=E1Otv6ZkoHA&list=PLyH-rCwMujkwr_NXnGO5HVGvsigUOH0bJ&index=2">video</a>).</p>
 
-				<p class="process_points"><strong>c.</strong> Analyze the recovered files per NIST Standards (i.e., 4 core features <strong><a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf">[1]</a></strong>), (watch this <a href="https://www.youtube.com/watch?v=9T2MaZjdUvE">video</a>).</p>
+				<p class="process_points"><strong>c.</strong> Analyze the recovered files per NIST Standards (i.e., 4 core features <strong><a href="https://www.nist.gov/system/files/documents/2017/04/28/DFR-req-1-1-pd-01.pdf">[1]</a></strong>), (watch this <a href="https://www.youtube.com/watch?v=iyNj3-UpiRo&list=PLyH-rCwMujkwr_NXnGO5HVGvsigUOH0bJ&index=3">video</a>).</p>
 
 				<img id="test_case_example" src="../images/corefeatures.png" download>
 
@@ -117,7 +117,7 @@
 
 				<p class="process_points"> DFR-CR-04 Each Recovered Object shall consist only of data blocks from the Deleted Block Pool. </p>
 
-				<p id="process"> The rows in each table below represent test cases while the columns represent the core features. The first table shows evaluate of Autopsy (as an example) for each test case of FAT file system. The second table is for Autopsy in each test case of NTFS file system. </p>
+				<p id="process"> The rows in each table below represent test cases while the columns represent the core features. The first table shows evaluate of Autopsy (as an example) for each test case of FAT file system (as demonstrated in this <a href="https://www.youtube.com/watch?v=iyNj3-UpiRo&list=PLyH-rCwMujkwr_NXnGO5HVGvsigUOH0bJ&index=3">video</a>). The second table is for Autopsy in each test case of NTFS file system. </p>
 
 				<div id="example_images">
                 	<img class="result_image" src="../results/autopsy_results_fat.png">

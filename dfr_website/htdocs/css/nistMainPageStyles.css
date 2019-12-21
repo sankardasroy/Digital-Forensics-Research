@@ -5,6 +5,7 @@ body {
 
 .index_page {
 	display: grid;
+	background-color: lightgray;
 	grid-template-columns: auto auto auto;
 	padding: 8px 8px 8px 8px;
 }

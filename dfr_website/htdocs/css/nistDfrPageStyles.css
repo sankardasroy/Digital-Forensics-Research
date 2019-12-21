@@ -5,6 +5,7 @@ body {
 
 .dfr_page {
 	display: grid;
+	background-color: lightgray;
 	grid-template-columns: auto auto auto;
 	grid-gap: 1em;
 	padding: 8px 8px 8px 8px;

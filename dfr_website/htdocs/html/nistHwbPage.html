@@ -29,13 +29,13 @@
 
 				<button class="navbutton" onclick="window.location.href='nistMainPage.html';"><i class="fa fa-angle-double-left"></i><a class="navlink" href="nistMainPage.html">Return</a></button>
 
-				<button class="navbutton"><a class="navlink" href="#description_jump">Description</a></button>
+				<button class="navbutton" onclick="window.location.href='#description_jump';"><a class="navlink" href="#description_jump">Description</a></button>
 
-				<button class="navbutton"><a class="navlink" href="#activity_jump">Activity</a></button>
+				<button class="navbutton" onclick="window.location.href='#activity_jump';"><a class="navlink" href="#activity_jump">Activity</a></button>
 
-				<button class="navbutton"><a class="navlink" href="#results_jump">Results</a></button>
+				<button class="navbutton" onclick="window.location.href='#results_jump';"><a class="navlink" href="#results_jump">Results</a></button>
 
-				<button id="top_return"><a class="navlink" href="#description_jump">Back To Top</a></button> 
+				<button id="top_return" onclick="window.location.href='#description_jump';"><a class="navlink" href="#description_jump">Back To Top</a></button> 
 
 			</nav>
 
@@ -52,7 +52,7 @@
 			    	<h2 class="activity_steps"><strong>2. Preparation</strong></h2>
 			    	<p class="activity_info">Visit NIST CFTT program’s website on HWB, and read documents on HWB specifications Version 2.0 and the test plan for Version 2.0. <a href="https://www.nist.gov/itl/ssd/software-quality-group/computer-forensics-tool-testing-program-cftt/cftt-technical/hardware">here.</a></p><br>
 
-			    	<h2 class="activity_steps"><strong>3. Tasks</strong></h2>
+			    	<h2 class="activity_steps"><strong>3. Tasks</strong> (Watch this <a href="https://www.youtube.com/watch?v=xjvHHeI7qn8&list=PLyH-rCwMujkxDm2liE4S-8eW9HHLNZbr8">video</a>)</h2>
 			    	<p class="activity_info">The first task is to use the Federated Testing iso file (which can be downloaded <a href="https://s3.amazonaws.com/cftt.cfreds.nist.gov/cftt/cftt-federated-testing-version-4.iso">here</a>) to start a VM on VirtualBox. Below are some of the intermediate steps (i.e. screenshots), which you will go through.</p><br>
  
 			    	<img class="hwbImages" src="../screenshots/hwbImage1.png">
@@ -60,7 +60,11 @@
 			    	<img class="hwbImages" src="../screenshots/hwbImage3.png">
 			    	<img class="hwbImages" src="../screenshots/hwbImage4.png">
 
-			    	<p class="activity_info">The second task is as follows; On the welcome page of Federated Testing Forensic Tool Testing Environment, click on “Test a hardware write block tool” (which is available on the left panel). Then, walk over the following steps to test a HWB:</p>
+			    	<p class="activity_info">The second task is to make physical connections among the devices which we need for this test. In particular, connect the target hard drive (to be protected) to one side of the HWB whose other side is connected to the forensic computer (NIST CFTT Linux system). The setup may look like the following figure:
+
+			    	<img class="hwbImages" src="../images/to-be-replaced.jpg">
+
+			    	<p class="activity_info">The third task is as follows; On the welcome page of Federated Testing Forensic Tool Testing Environment, click on “Test a hardware write block tool” (which is available on the left panel). Then, walk over the following steps to test a HWB:</p>
 
 			    	<ul class="instructions1">
 			    		<li> <strong>a.</strong> Go to “Hardware Write Block Home” page and click on “ … Get Started”.</li>
