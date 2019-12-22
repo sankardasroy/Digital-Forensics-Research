@@ -6,9 +6,9 @@ Do the popular DFR tools (as available in the market) meet the NIST CFTT standar
 If not, which tool meets which part of the standard? 
 
 Generally, we found that the DFR tools we tested did not consistently meet the NIST CFTT standards.
-TestDisk\cite{testdisk} failed to fulfill core feature 1 because it did not identify deleted files in two test cases.
+TestDisk failed to fulfill core feature 1 because it did not identify deleted files in two test cases.
 All tools fulfilled core feature 2, as they produced a recovered object for every deleted file they identified.
-Autopsy\cite{autopsy} and Magnet AXIOM\cite{axiom} failed to fulfill core feature 3 because in several test cases they did not recover data they had access to.
+Autopsy and Magnet AXIOM failed to fulfill core feature 3 because in several test cases they did not recover data they had access to.
 All tools failed to fulfill core feature 4 because in many cases they recovered data which was not part of the original file.
 
 \subsubsection{RQ2}
@@ -17,7 +17,7 @@ What factors make the tools fail or succeed?
 The most common factor causing tools to fail is when a deleted file has been overwritten.
 Core feature 4 requires that a tool only recover data which was originally a part of the deleted file.
 A tool's success regarding this feature is thus a measure of its restraint.
-The only tool to consistently fulfill core feature 4 is FTK Imager.\cite{ftk}
+The only tool to consistently fulfill core feature 4 is FTK Imager.
 When it detects that a file has been partially or completely overwritten by another file, it omits the deleted sections (and everything after them in FAT).
 However, in cases when the overwriting file has also been deleted, even FTK fails to fulfill this core feature.
 It is worth noting that Autopsy does appear to react to overwritten files; for some cases of overwriting in FAT, it returns only a single cluster, presumably the starting cluster of the deleted file.

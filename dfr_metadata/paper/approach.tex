@@ -30,22 +30,29 @@ The goal is to create test cases which are canonical; in other words, they const
 We suggest such a canonical list of test cases should be considered representative of all possible scenarios within the scope of the standards.
 
 Following are descriptions of the test cases we designed. When test cases are illustrated in figures, each row represents the file system at a point in time. An arrow indicates a change in the file system, which is illustrated in the following row. Files are distinguished by unique letters, and if they are deleted they are marked as such.
+\subsubsection{Simple Case}
 \begin{itemize}
-    \item [1] The file system contains a single deleted file
-    \item [2] Fragmented deleted file, with an active file in between the fragments (as illustrated in Figure \ref{fig:case_2})
+    \item [1] The file system contains a single deleted file.
+\end{itemize}
+\subsubsection{Fragmented Files}
+\begin{itemize}
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case2.png}
         \caption{Test Case 2. Fragmented file A is deleted.}
         \label{fig:case_2}
     \end{figure}
+    \item [2] Fragmented deleted file, with an active file in between the fragments (as illustrated in Figure \ref{fig:case_2})
+    \item [3] Fragmented deleted file, with a deleted file in between the fragments
+\end{itemize}
+\subsubsection{Overwritten Files}
+\begin{itemize}
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case4ii.png}
         \caption{Test Case 4ii. Deleted file A is partially overwritten by active file B.}
         \label{fig:case_4ii}
     \end{figure}
-    \item [3] Fragmented deleted file, with a deleted file in between the fragments
     \item [4i] Beginning of deleted file overwritten by an active file
     \item [4ii] Middle of deleted file overwritten by an active file (as illustrated in Figure \ref{fig:case_4ii})
     \item [4iii] Deleted file partially overwritten by an active file which doesn't end on a sector boundary
@@ -54,24 +61,29 @@ Following are descriptions of the test cases we designed. When test cases are il
     \item [5ii] Middle of deleted file overwritten by another deleted file
     \item [5iii] Deleted file partially overwritten by a deleted file which doesn't end on a sector boundary
     \item [5iv] Deleted file entirely overwritten by a deleted file
-    \item [6] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another active file (as illustrated in Figure \ref{fig:case_6})
-    \begin{figure}[h]
+\end{itemize}
+\subsubsection{Fragmented and Overwritten Files}
+ \begin{itemize}
+     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case6.png}
         \caption{Test Case 6. Fragmented file A is deleted. File A is then partially overwritten by file C.}
         \label{fig:case_6}
     \end{figure}
+    \item [6] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another active file (as illustrated in Figure \ref{fig:case_6})
+    \item [7] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another deleted file
+ \end{itemize}
+\subsubsection{Out-of-Order Fragmentation}
+\begin{itemize}
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case8.png}
         \caption{Test Case 8. Fragmented file A, which starts at the end of the file system and wraps around to the beginning, is deleted.}
         \label{fig:case_8}
     \end{figure}
-    \item [7] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another deleted file
     \item [8] Deleted file fragmented from the end of the file system to the beginning (as illustrated in Figure \ref{fig:case_8})
     \item [9] Deleted file fragmented from the end of the file system to after an active file
     \item [10] Deleted file fragmented from the end of the file system to after a deleted file
-
 \end{itemize}
 
 Because NTFS keeps track of the locations of all parts of a file even after deletion, fragmentation is not particularly interesting. Cases 8, 9, and 10 would be redundant with case 2, so we have excluded them for NTFS. Due to how NTFS allocates space for files, cases 4ii and 5ii cannot occur as a result of normal file operations, so they have also been excluded. No cases are excluded for FAT tests.
@@ -107,9 +119,6 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
 After testing each tool, we analyzed the recovered object(s) from each test case. 
 If the recovered file is identical to the original, obviously all standards have been met. 
 While this is ideal, it is often impossible to perfectly recover a file (such as when it is overwritten) so the standards do not require it. 
-In our results, the file is only ever recovered perfectly in FAT cases 1 and 2, and NTFS cases 1-3. 
-For all other cases, the tool is judged on each core feature individually. 
-These judgments are summarized in Figure \ref{fig:results_fat} for FAT test cases and Figure \ref{fig:results_ntfs} for NTFS test cases.
 
 \begin{figure*}[h!]
     \centering
@@ -166,6 +175,12 @@ These judgments are summarized in Figure \ref{fig:results_fat} for FAT test case
     \caption{Test results on NTFS test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, gray is not tested.}
     \label{fig:results_ntfs}
 \end{figure*}
+
+In our results, the file is only ever recovered perfectly in FAT cases 1 and 2, and NTFS cases 1-3. 
+For all other cases, the tool is judged on each core feature individually. 
+These judgments are summarized in Figure \ref{fig:results_fat} for FAT test cases and Figure \ref{fig:results_ntfs} for NTFS test cases.
+
+
 
 For cases in which a tool does not fulfill core feature 1, in other words, it cannot find a deleted file, we make no judgment about the remaining core features.
 
