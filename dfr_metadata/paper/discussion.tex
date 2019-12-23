@@ -92,9 +92,12 @@ The standards document acknowledges that the ``potential for corruption [is] inh
 We propose the standards themselves should be revised to better account for such situations.
 This would most likely mean adding an exception to either the third or fourth core feature, for cases in which data blocks are overwritten and subsequently deallocated.
 
-\subsection{Related Work}
+\subsection{Related Work} \label{sec:discussion:subsec:related}
+
+James Lyle from NIST published an article~\cite{LyleICDF2C-2011} in 2012, which lays out a strategy to evaluate the metadata-based DFR tools. To the best of our knowledge, 
+his is one of the first works that identified some of the challenges in setting standards for evaluation of metadata-based DFR tools.
 
 \subsection{Future Work}
-The NIST CFTT standard\cite{meta:dfr:standards} includes several optional features; these features could be explored using a similar methodology.
+The NIST CFTT standard~\cite{meta:dfr:standards} includes several optional features; these features could be explored using a similar methodology.
 We only created test images for the FAT and NTFS file systems; our process could be expanded to other common file systems such as ext4 and HFS.
 NIST CFTT has a separate set of standards for file carving DFR tools; future work could involve creating and evaluating test cases for file carving tools.
