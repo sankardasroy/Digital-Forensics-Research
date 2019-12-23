@@ -91,16 +91,16 @@ On the other hand, if a file is fragmented in NTFS, the corresponding MFT entry 
 (as shown in Figure~\ref{fig:ntfs}). Consequently, fragmentation does not introduce any extra challenge in file recovery in NTFS.
 
 \subsection{NIST Standards}
-The NIST standards\cite{meta:dfr:standards} list four \emph{core features} upon which metadata-based DFR tools are to be judged.
+The NIST standards~\cite{meta:dfr:standards} list four \emph{core features} upon which metadata-based DFR tools are to be judged.
 Following is the text of each core feature as well as our interpretation of each in the context of this work:
 \begin{enumerate}
- \item ``The tool shall identify all deleted File System-Object entries accessible in residual metadata.''\cite{meta:dfr:standards}
+ \item ``The tool shall identify all deleted File System-Object entries accessible in residual metadata.''~\cite{meta:dfr:standards}
  We consider a tool passing this standard if it identifies to the user each file system metadata entry that is marked as deleted.
- \item ``The tool shall construct a Recovered Object for each deleted File System-Object entry accessible in residual metadata.''\cite{meta:dfr:standards}
+ \item ``The tool shall construct a Recovered Object for each deleted File System-Object entry accessible in residual metadata.''~\cite{meta:dfr:standards}
  We consider a tool passing this standard as long as it outputs a file for each deleted file, even if the output file is empty.
- \item ``Each Recovered Object shall include all non-allocated data blocks identified in a residual metadata entry.''\cite{meta:dfr:standards}
+ \item ``Each Recovered Object shall include all non-allocated data blocks identified in a residual metadata entry.''~\cite{meta:dfr:standards}
  For FAT file systems, we consider a tool passing this standard if it recovers at least the first contiguous segment of unallocated sectors starting from the first sector originally allocated to the deleted file. For NTFS file systems, the tool must recover all unallocated sectors originally allocated to the deleted file.
- \item ``Each Recovered Object shall consist only of data blocks from the Deleted Block Pool.''\cite{meta:dfr:standards}
+ \item ``Each Recovered Object shall consist only of data blocks from the Deleted Block Pool.''~\cite{meta:dfr:standards}
  We consider a tool passing this standard if the recovered file consists only of data from the original deleted file, or null data to represent omitted portions.
 \end{enumerate}
 

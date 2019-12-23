@@ -81,29 +81,36 @@ One such situation is when a deleted file is overwritten, and then the overwriti
 
 Assuming the file system is NTFS (to avoid the aforementioned ambiguity with core feature 3 and FAT), the residual metadata entry for File A (in this case its Master File Table entry) should list every cluster File A once occupied. 
 All of those clusters are unallocated, so to fulfill core feature 3, the tool must recover them. 
-However, some of those clusters have been overwritten by File B. Core feature 4 requires that a tool only recover ``data blocks from the Deleted Block Pool,''\cite{meta:dfr:standards} and defines the Deleted Block Pool as all blocks which ``have not been reallocated or reused.''\cite{meta:dfr:standards}
+However, some of those clusters have been overwritten by File B. Core feature 4 requires that a tool only recover ``data blocks from the Deleted Block Pool,''~\cite{meta:dfr:standards} and defines the Deleted Block Pool as all blocks which ``have not been reallocated or reused.''~\cite{meta:dfr:standards}
 Core feature 3 would require tools to recover the clusters reused by File B, while core feature 4 would forbid this. 
 It could be argued that the tool should use File B's metadata to recognize that File B overwrote File A, but this is not always realistic. 
-While the file system stores information such as creation and modification times, this is not ``essential metadata,'' meaning it is not involved in the operation of the file system, so operating systems may implement it inconsistently, or not at all.\cite{carrier:filesystems}
+While the file system stores information such as creation and modification times, this is not ``essential metadata,'' meaning it is not involved in the operation of the file system, so operating systems may implement it inconsistently, or not at all.~\cite{carrier:filesystems}
 Since the time information cannot be counted on to be reliable, there is no way to know for sure which file overwrote which. 
 It is also possible for File B's metadata entry to be overwritten at some point before File A's, in which event there is no way for the tool to know File B even existed.
 
-The standards document acknowledges that the ``potential for corruption [is] inherent with data that is no longer maintained by a file system,''\cite{meta:dfr:standards} and that the recovered object ``may not completely match the original FS-Object.''\cite{meta:dfr:standards}
+The standards document acknowledges that the ``potential for corruption [is] inherent with data that is no longer maintained by a file system,''~\cite{meta:dfr:standards} and that the recovered object ``may not completely match the original FS-Object.''~\cite{meta:dfr:standards}
 We propose the standards themselves should be revised to better account for such situations.
 This would most likely mean adding an exception to either the third or fourth core feature, for cases in which data blocks are overwritten and subsequently deallocated.
 
 \subsection{Related Work} \label{sec:discussion:subsec:related}
+
+K.K. Arthur and H.S. Venter published an article~\cite{arthur2004} in 2004 which analyzes several DF tools, including FTK Imager.
+While the tools are judged based in part on file recovery capabilities, the article does not explain in detail how these judgements were reached.
+The article also addresses tools' disk imaging and hashing functionalities.
 
 James Lyle from NIST published an article~\cite{lyle2011-ICDF2C} in 2011, which lays out a strategy to evaluate the metadata-based DFR tools. To the best of our knowledge, 
 his is one of the first works that identified some of the challenges in setting standards for evaluation of metadata-based DFR tools.
 In our understanding, NIST considered the above findings~\cite{lyle2011-ICDF2C} while they built the standards for metadata-based DFR tools.  
 The NIST standards~\cite{meta:dfr:standards} are publicly available on the NIST CFTT portal~\cite{cftt:nist}, which we have used in the current work.
 
-Write few lines of paper2. add citation. At the end state the difference from our paper.
+Rodrigo Morocho et al. from the Technical University of Machala published an article~\cite{morocho2016} in 2016, which analyzes a variety of DF tools, including Autopsy and FTK. 
+The article discusses a wide range of DF tools, not just DFR tools, and compares them on metrics such as price and supported features. 
+It does not address a specific standards document, instead taking a more general approach.
 
-Write few lines of paper3. add citation. At the end state the difference from our paper.
+B. V. Prasanthi from the Vishnu Institute of Technology published an article~\cite{prasanthi2016} in 2016, which presents a general review of DF tools. 
+The article summarizes the features of several tools but does not make any claims about the quality or standards compliance of specific tools.
+It also includes a variety of DF tools besides DFR tools.
 
-Write few lines of paper4. add citation. At the end state the difference from our paper.
 
 \subsection{Future Work}
 The NIST CFTT standard~\cite{meta:dfr:standards} includes several optional features; these features could be explored using a similar methodology.
