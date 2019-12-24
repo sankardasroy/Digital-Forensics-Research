@@ -117,6 +117,13 @@ Note that Autopsy uses a set of DF tools known as The Sleuth Kit (TSK) for metad
 These tools were chosen based on popularity and availability.
 We also made sure to choose a combination of free and proprietary tools, in order to address one of the research questions.
 
+The settings we used when testing each tool are as follows:
+For Autopsy, we performed a standard recovery with all ingest modules disabled.
+For Recuva we performed a standard recovery using the free version with default settings.
+For FTK Imager, we performed a standard recovery using the free version with default settings.
+For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
+For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
+
 \begin{figure*}[h]
     \centering
 
@@ -172,13 +179,6 @@ We also made sure to choose a combination of free and proprietary tools, in orde
     \caption{Test results on NTFS test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, gray is not tested.}
     \label{fig:results_ntfs}
 \end{figure*}
-
-The settings we used when testing each tool are as follows:
-For Autopsy, we performed a standard recovery with all ingest modules disabled.
-For Recuva we performed a standard recovery using the free version with default settings.
-For FTK Imager, we performed a standard recovery using the free version with default settings.
-For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
-For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
 
 \subsection{Results}
 
