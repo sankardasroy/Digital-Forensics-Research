@@ -90,7 +90,13 @@ It is also possible for File B's metadata entry to be overwritten at some point 
 
 The standards document acknowledges that the ``potential for corruption [is] inherent with data that is no longer maintained by a file system,''~\cite{meta:dfr:standards} and that the recovered object ``may not completely match the original FS-Object.''~\cite{meta:dfr:standards}
 We propose the standards themselves should be revised to better account for such situations.
-This would most likely mean adding an exception to either the third or fourth core feature, for cases in which data blocks are overwritten and subsequently deallocated.
+This could mean adding an exception to either the third or fourth core feature, for cases in which data blocks are overwritten and subsequently deallocated.
+
+NIST's James Lyle proposes that rather than deal with the complications involved in accomidating many different file systems, standards should be written for ``an ideal file system that leaves in residual metadata  all  information  required  to  reconstruct  a  deleted  file.''~\cite{lyle2011-ICDF2C} 
+While this can result in tools being held to an impossible standard when using certain file systems, Lyle says this is acceptable because the user experience is the same regardless of whether a feature is impossible or has merely been left out.~\cite{lyle2011-ICDF2C}
+If the NIST standards were created with such an ideal file system in mind, the current standards may be adequite.
+However, that philosophy should be clarified in the standards document to avoid confusion.
+
 
 \subsection{Related Work} \label{sec:discussion:subsec:related}
 
