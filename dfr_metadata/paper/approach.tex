@@ -30,11 +30,11 @@ The goal is to create test cases which are canonical; in other words, they const
 We suggest such a canonical list of test cases should be considered representative of all possible scenarios within the scope of the standards.
 
 Following are descriptions of the test cases we designed. When test cases are illustrated in figures, each row represents the file system at a point in time. An arrow indicates a change in the file system, which is illustrated in the following row. Files are distinguished by unique letters, and if they are deleted they are marked as such.
-\subsubsection{Simple Case}
+\subsubsection{Simple Deleted File}
 \begin{itemize}
     \item [1] The file system contains a single deleted file.
 \end{itemize}
-\subsubsection{Fragmented Files}
+\subsubsection{Deleted File is Fragmented}
 \begin{itemize}
     \begin{figure}[h]
         \centering
@@ -45,7 +45,7 @@ Following are descriptions of the test cases we designed. When test cases are il
     \item [2] Fragmented deleted file, with an active file in between the fragments (as illustrated in Figure~\ref{fig:case_2})
     \item [3] Fragmented deleted file, with a deleted file in between the fragments
 \end{itemize}
-\subsubsection{Overwritten Files}
+\subsubsection{Deleted File is Overwritten}
 \begin{itemize}
     \begin{figure}[h]
         \centering
@@ -62,7 +62,7 @@ Following are descriptions of the test cases we designed. When test cases are il
     \item [5iii] Deleted file partially overwritten by a deleted file which doesn't end on a sector boundary
     \item [5iv] Deleted file entirely overwritten by a deleted file
 \end{itemize}
-\subsubsection{Fragmented and Overwritten Files}
+\subsubsection{Deleted File is Fragmented and Overwritten}
  \begin{itemize}
      \begin{figure}[h]
         \centering
@@ -73,7 +73,7 @@ Following are descriptions of the test cases we designed. When test cases are il
     \item [6] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another active file (as illustrated in Figure~\ref{fig:case_6})
     \item [7] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another deleted file
  \end{itemize}
-\subsubsection{Out-of-Order Fragmentation}
+\subsubsection{Deleted File is Fragmented Out-of-Order}
 \begin{itemize}
     \begin{figure}[h]
         \centering
