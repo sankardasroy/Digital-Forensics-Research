@@ -123,13 +123,6 @@ Note that Autopsy uses a set of DF tools known as The Sleuth Kit (TSK) for metad
 These tools were chosen based on popularity and availability.
 We also made sure to choose a combination of free and proprietary tools, in order to address one of the research questions.
 
-The settings we used when testing each tool are as follows:
-For Autopsy, we performed a standard recovery with all ingest modules disabled.
-For Recuva we performed a standard recovery using the free version with default settings.
-For FTK Imager, we performed a standard recovery using the free version with default settings.
-For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
-For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
-
 \begin{figure*}[h]
     \centering
 
@@ -186,6 +179,15 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
     \label{fig:results_ntfs}
 \end{figure*}
 
+The settings we used when testing each tool are as follows:
+For Autopsy, we performed a standard recovery with all ingest modules disabled.
+For Recuva we performed a standard recovery using the free version with default settings.
+For FTK Imager, we performed a standard recovery using the free version with default settings.
+For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
+For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
+
+
+
 \subsection{Results}
 
 After testing each tool, we analyzed the recovered object(s) from each test case. 
@@ -195,8 +197,6 @@ While this is ideal, it is often impossible to perfectly recover a file (such as
 In our results, the file is only ever recovered perfectly in FAT cases 1 and 2, and NTFS cases 1-3. 
 For all other cases, the tool is judged on each core feature individually. 
 These judgments are summarized in Figure~\ref{fig:results_fat} for FAT test cases and Figure~\ref{fig:results_ntfs} for NTFS test cases.
-
-
 
 For cases in which a tool does not fulfill core feature 1, in other words, it cannot find a deleted file, we make no judgment about the remaining core features.
 
