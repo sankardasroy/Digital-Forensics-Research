@@ -2,10 +2,10 @@
 
 \subsection{Answering Research Questions}
 \subsubsection{RQ1}
-Do the popular DFR tools meet the NIST CFTT standards? 
-If not, which tool meets which part of the standard? 
+Do the popular DFR tools meet the NIST CFTT expectation? 
+If not, which tool meets which part of the expectation? 
 
-Generally, we found that the DFR tools we tested did not consistently meet the NIST CFTT standards.
+Generally, we found that the DFR tools we tested did not consistently meet the NIST CFTT expectation.
 TestDisk failed to fulfill core feature 1 because it did not identify deleted files in two test cases.
 All tools fulfilled core feature 2, as they produced a recovered object for every deleted file they identified.
 Autopsy and Magnet AXIOM failed to fulfill core feature 3 because in several test cases they did not recover data they had access to.
@@ -53,7 +53,7 @@ Given the available data, we cannot reach a definite conclusion for RQ3.
 \end{table}    
 
 \subsection{Ambiguity in Standards}
-While determining how to interpret the NIST standards, we encountered ambiguities in their current wording.
+While determining how to interpret the NIST guidelines, we encountered ambiguities in their current wording.
 
 \subsubsection{Core Feature 3 and FAT Fragmentation}
 Core feature 3's requirement that a tool recover ``all non-allocated data blocks identified in a residual metadata entry''\cite{meta:dfr:standards} is not well-defined when considering a FAT file system. 
@@ -97,8 +97,8 @@ many different file systems, standards should be written for ``an ideal file sys
 residual metadata  all  information  required  to  reconstruct  a  deleted  file''~\cite{lyle2011-ICDF2C}. 
 While this can result in tools being held to an impossible standard when using certain file systems, 
 Lyle says that is acceptable because the user experience will be the same regardless of whether a feature is impossible or has merely been left out.
-If the NIST standards were created with such an ideal file system in mind, the current standards may be adequate.
-However, that philosophy should be clarified in the standards document to avoid confusion.
+If the NIST guidelines were created with such an ideal file system in mind, the current standards may be adequate.
+However, that philosophy should be clarified in the guidelines document to avoid confusion.
 
 
 \subsection{Related Work} \label{sec:discussion:subsec:related}
@@ -109,8 +109,8 @@ The article also addresses DF tools' disk imaging and hashing functionalities.
 
 James Lyle from NIST published an article~\cite{lyle2011-ICDF2C} in 2011, which lays out a strategy to evaluate the metadata-based DFR tools. To the best of our knowledge, 
 his is one of the first works that identified some of the challenges in setting standards for evaluation of metadata-based DFR tools.
-In our understanding, NIST considered the above findings~\cite{lyle2011-ICDF2C} while they built the standards for metadata-based DFR tools.  
-The NIST standards~\cite{meta:dfr:standards} are publicly available on the NIST CFTT portal~\cite{cftt:nist}, which we have used in the current work.
+In our understanding, NIST considered the above findings~\cite{lyle2011-ICDF2C} while they set the guidelines for metadata-based DFR tools.  
+The NIST guidelines~\cite{meta:dfr:standards} are publicly available on the NIST CFTT portal~\cite{cftt:nist}, which we have used in the current work.
 
 Recently, Loja et al.~\cite{loja2016} analyzed a variety of DF tools, including Autopsy and FTK. 
 They discussed a wide range of DF tools, not just DFR tools, and compared them on metrics such as price and supported features. 
@@ -121,6 +121,6 @@ It~\cite{prasanthi2016} also includes a variety of DF tools besides DFR tools.
 
 
 \subsection{Future Work}
-The NIST CFTT standard~\cite{meta:dfr:standards} includes several optional features; these features could be explored using a similar methodology.
+The NIST CFTT guidelines~\cite{meta:dfr:standards} include several optional features; these features could be explored using a similar methodology.
 We only created test images for the FAT and NTFS file systems; our process could be expanded to other common file systems such as ext4 and HFS.
-NIST CFTT has a separate set of standards for file carving DFR tools; future work could involve creating and evaluating test cases for file carving tools.
+NIST CFTT has a separate set of guidelines for file carving DFR tools; future work could involve creating and evaluating test cases for file carving tools.

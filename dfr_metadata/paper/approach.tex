@@ -6,28 +6,33 @@ To test the DFR tools, we first design hypothetical test scenarios to simulate t
 We then create each scenario in real file systems and save them as raw images. 
 Using the images as input, we run each DFR tool and attempt to recover all deleted files. 
 Finally, we compare the recovered files to their original versions in order to judge the tools' 
-compliance with the NIST standards. A high-level view of the methodology for a typical test case is illustrated in Figure~\ref{fig:overview}.
+meeting with the NIST expectation. A high-level view of the methodology for a typical test case is illustrated in Figure~\ref{fig:overview}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{fig/overview.png}
-    \caption{A file system containing deleted files is created on the external drive. That file system is then given as input to a DFR tool, which attempts to recover the deleted files. The recovered files are then analyzed to judge the DFR tool's compliance with the NIST CFTT standard.}
+    \caption{A file system containing deleted files is created on the external drive. 
+That file system is then given as input to a DFR tool, which attempts to recover the deleted files. 
+The recovered files are then analyzed to judge the DFR tool's meeting with the NIST CFTT expectation.}
     \label{fig:overview}
 \end{figure}
 
 \subsection{Designing Recovery Scenarios}
-To test the DFR tools' compliance with the standards, we designed a variety of scenarios in which a tool might have to recover a deleted file. 
+To test the DFR tools' meeting with the expectation, we designed a variety of scenarios in which a tool might have to recover a deleted file. 
 We started with the simplest possible case: a file system containing just one deleted file. 
 This case is ideal and trivial, but by adding more files, we can create a greater variety of scenarios.
 
-The NIST standards limit their scope to recovery of files which were ``created and deleted in a process similar to how an end-user would create and delete files,''~\cite{meta:dfr:standards} and exclude ``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted.''~\cite{meta:dfr:standards}
-In other words, these standards address situations in which files were deleted via normal file system operations as implemented by a typical operating system, as opposed to direct modification of the file system by a user.
+The NIST guidelines limit their scope to recovery of files which were ``created and deleted in a process similar to 
+how an end-user would create and delete files,''~\cite{meta:dfr:standards} and exclude 
+``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted.''~\cite{meta:dfr:standards}
+In other words, these guidelines address situations in which files were deleted via normal file system operations as 
+implemented by a typical operating system, as opposed to direct modification of the file system by a user.
 Within these constraints, there are two factors which can significantly complicate the file recovery process: 
 fragmentation, and overwriting. 
 
 These factors are thus the foundation of our test scenarios, with all cases besides the first involving either fragmented files, overwritten files, or a combination of both. 
 The goal is to create test cases which are canonical; in other words, they constitute the basic elements of a file recovery scenario.
-We suggest such a canonical list of test cases should be considered representative of all possible scenarios within the scope of the standards.
+We suggest such a canonical list of test cases should be considered representative of wide variety of scenarios within the scope of the guidelines.
 
 Following are descriptions of the test cases we designed. 
 We have separated them into five categories: 
@@ -184,7 +189,7 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
 \subsection{Results}
 
 After testing each tool, we analyzed the recovered object(s) from each test case. 
-If the recovered file is identical to the original, obviously all standards have been met. 
+If the recovered file is identical to the original, obviously all expectations have been met. 
 While this is ideal, it is often impossible to perfectly recover a file (such as when it is overwritten) so the standards do not require it. 
 
 In our results, the file is only ever recovered perfectly in FAT cases 1 and 2, and NTFS cases 1-3. 
