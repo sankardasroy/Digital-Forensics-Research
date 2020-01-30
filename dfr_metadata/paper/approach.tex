@@ -12,7 +12,8 @@ meeting with the NIST expectation. A high-level view of the methodology for a ty
     \centering
     \includegraphics[width=\linewidth]{fig/overview.pdf}
     \caption{A file system containing deleted files is created on the external drive. 
-That file system is then given as input to a DFR tool, which attempts to recover the deleted files. 
+The drive's raw data is then saved as a read-only file, called a \emph{disk image} or \emph{file system image}.
+The disk image is given as input to a DFR tool, which attempts to recover the deleted files. 
 The recovered files are then analyzed to judge the DFR tool's meeting with the NIST CFTT expectation.}
     \label{fig:overview}
 \end{figure}
