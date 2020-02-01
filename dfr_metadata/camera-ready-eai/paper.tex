@@ -1,0 +1,80 @@
+% icstdoc.tex V1.12 6 May 2011
+
+\documentclass[fonts]{icst}
+
+\usepackage{moreverb}
+
+\usepackage[breaklinks,colorlinks,bookmarksopen,bookmarksnumbered,linkcolor=ICSTblue,citecolor=blue,urlcolor=ICSTblue]{hyperref}
+\def\UrlBreaks{\do\/\do-\do.}
+
+\usepackage{breakurl}
+\usepackage{doi}
+
+\usepackage{subcaption}
+
+
+\newcommand\BibTeX{{\rmfamily B\kern-.05em \textsc{i\kern-.025em b}\kern-.08em
+T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\def\volumeyear{2019}
+
+\journalname{XXXXXX}
+\articletype{Research Article/Editorial}
+\setcounter{page}{01}
+ \def\volumeyear{XXXX}
+ \def\volumenumber{XX}
+  \def\issuemonth{XX-XX}
+  \def\issuenumber{X}
+  \def\articleid{XX}
+  \def\copyrightholder{Andrew Meyer\textit{ et al.}, licensed to ICST}
+  \copyrightnote{This is an open access article distributed under the terms of the Creative Commons Attribution license (\url{http://creativecommons.org/licenses/by/3.0/}), which permits unlimited use, distribution and reproduction in any medium so long as the original work is properly cited.}
+  \def\articledoi{10.4108/XX.X.X.XX}
+\received{XXXX}
+  \accepted{XXXX}
+  \published{XXXX}
+
+\begin{document}
+
+\runningheads{A. Meyer, S. Roy}{Do Metadata-based Deleted-File-Recovery (DFR) Tools Meet NIST Guidelines?}
+
+\title{Do Metadata-based Deleted-File-Recovery (DFR) Tools Meet NIST Guidelines?}
+
+\author{Andrew Meyer\affil{1}, Sankardas Roy\affil{2}\fnoteref{1}}
+
+\address{\affilnum{1}Bowling Green State University, Bowling Green, Ohio, USA\\
+\affilnum{2}Bowling Green State University, Bowling Green, Ohio, USA}
+
+\abstract{Digital forensics (DF) tools are used for post-mortem investigation of cyber-crimes. 
+CFTT (Computer Forensics Tool Testing) Program at National Institute of Standards and Technology (NIST) 
+has defined expectations for a DF tool's behavior. Understanding these expectations and how DF tools work 
+is critical for ensuring integrity of the forensic analysis results. 
+In this paper, we consider standardization of one class of DF tools which are for Deleted File Recovery (DFR). 
+We design a list of canonical test file system images to evaluate a DFR tool.
+Via extensive experiments we find that many popular DFR tools do not satisfy some of the standards, and 
+we compile a comparative analysis of these tools, which could help the user choose the right tool. 
+Furthermore, one of our research questions identifies the factors which make a DFR tool fail. 
+Moreover, we also provide critique on applicability of the standards. 
+Our findings is likely to trigger more research on compliance of standards from the researcher community as well as the practitioners.}
+
+\keywords{Deleted File Recovery, Digital Forensics, Metadata, NIST Guidelines, File System, FAT, NTFS}
+
+\fnotetext[1]{Corresponding author.  Email: \email{sanroy@bgsu.edu}}
+
+\maketitle
+
+\input{intro.tex}
+\input{rq.tex}
+\input{background.tex}
+\input{approach.tex}
+\input{discussion.tex}
+\input{conclusion.tex}
+
+\ack A. Meyer's work has been partially supported by a grant from BGSU's Center for Undergraduate Research and Scholarship 
+(CURS) in summer of 2019. S. Roy's work has been partially supported by a NIST grant (grant number: 70NANB17H321; Year 2017-19) that he has been awarded with as a Co-PI. 
+Any opinions or findings expressed in this paper are those of the authors and do not necessarily reflect the views of the funding agencies.
+Quinton Currier at BGSU assisted with the testing process.
+
+\bibliographystyle{icstnum}
+\bibliography{mybib}
+
+\end{document}
