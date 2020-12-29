@@ -1,0 +1,83 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Review Volume (last updated on 20-4-2015)                            %%
+%% Trim Size: 9in x 6in                                                 %%
+%% Text Area: 7.35in (include runningheads) x 4.5in                     %%
+%% Main Text: 10 on 13pt                                                %%
+%% For support: Yolande Koh, <ykoh@wspc.com.sg>                         %%
+%%              D. Rajesh Babu, <rajesh@wspc.com.sg>                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%\documentclass[wsdraft]{ws-rv9x6} % to draw border line around text area
+\documentclass{ws-rv9x6}
+\usepackage{subfigure}   % required only when side-by-side / subfigures are used
+\usepackage{ws-rv-thm}   % comment this line when `amsthm / theorem / ntheorem` package is used
+\usepackage{ws-rv-van}   % numbered citation & references (default)
+%\usepackage{ws-index}   % to produce multiple indexes
+\makeindex
+%\newindex{aindx}{adx}{and}{Author Index}       % author index
+%\renewindex{default}{idx}{ind}{Subject Index}  % subject index
+
+\begin{document}
+
+\chapter[Evaluating Deleted File Recovery (DFR) tools per NIST guidelines]{Evaluating Deleted File Recovery (DFR) tools per NIST guidelines\\ subtitle\label{ra_ch1}}
+
+\author[F. Author and S. Author]{First Author and Second Author\footnote{Author footnote.}}
+%\index[aindx]{Author, F.} % or \aindx{Author, F.}
+%\index[aindx]{Author, S.} % or \aindx{Author, S.}
+
+\address{CS Department, BGSU,\\
+Bowling Green, Ohio, USA 43403, \\
+f\_author@bgsu.edu\footnote{Affiliation footnote.}}
+
+\begin{abstract}
+The abstract should summarize the context, content and conclusions of
+the paper in less than 200 words. It should not contain any references
+or displayed equations. Typeset the abstract in 9 pt Times roman with
+baselineskip of 11 pt, making an indentation of 1.5 pica on the left
+and right margins.
+\end{abstract}
+
+%\markboth{Even Page Header}{Odd Page Header} % Customized running heads
+
+\body
+
+%\tableofcontents
+
+\section{Introduction}\label{intro}
+
+fill in
+
+\section{other}
+
+\subsection{something}
+
+fill in
+
+\section{Background}
+
+fill in
+
+\section{Approach}
+
+fill in
+
+\section{Conclusion}\label{conclusion}
+
+\section{Acknowledgments}
+Acknowledgments to funding bodies etc. may be placed in a separate
+section at the end of the text, before the Appendices. This should not
+be numbered so use \verb|\section*{Acknowledgements}|.
+
+\section{Appendix}\index{appendix}
+Appendices should be used only when absolutely necessary. They
+should come before the References.
+
+
+\bibliographystyle{ws-rv-van}
+\bibliography{ws-rv-sample}
+
+%\blankpage
+%\printindex[aindx]                 % to print author index
+%\printindex                        % to print subject index
+
+\end{document} 
