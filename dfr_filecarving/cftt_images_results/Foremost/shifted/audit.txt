@@ -1,0 +1,50 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Mon Dec 28 20:14:15 2020
+Invocation: foremost -o ../Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/shifted graphic-shifted_1305311317.dd 
+Output directory: /vault/file/research/dfr/Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/shifted
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: graphic-shifted_1305311317.dd
+Start: Mon Dec 28 20:14:15 2020
+Length: 317 MB (332867072 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00000001.bmp 	     900 KB 	        513 	  (640 x 480)
+1:	00243264.jpg 	     876 KB 	  124551169 	 
+2:	00245018.jpg 	       1 MB 	  125449727 	 
+3:	00248196.jpg 	       1 MB 	  127076356 	 
+4:	00252138.jpg 	     779 KB 	  129095166 	 
+5:	00253706.jpg 	       1 MB 	  129897488 	 
+6:	00256399.jpg 	       1 MB 	  131276784 	 
+7:	00258908.jpg 	     827 KB 	  132560960 	 
+8:	00260628.jpg 	       1 MB 	  133441664 	 
+9:	00205834.gif 	      80 KB 	  105387009 	  (2580 x 1932)
+10:	00218956.gif 	      51 KB 	  112105983 	  (2580 x 1932)
+11:	00225508.gif 	       1 KB 	  115460100 	  (2580 x 1932)
+12:	00229663.gif 	       5 KB 	  117587966 	  (2580 x 1932)
+13:	00234134.gif 	      33 KB 	  119876624 	  (259 x 194)
+14:	00234218.gif 	       1 KB 	  119920112 	  (1932 x 2580)
+15:	00238631.gif 	       1 KB 	  122179136 	  (2580 x 1932)
+16:	00243072.gif 	      16 KB 	  124452992 	  (259 x 194)
+17:	00263172.png 	       5 MB 	  134744065 	  (1932 x 2580)
+18:	00275213.png 	       7 MB 	  140909567 	  (2580 x 1932)
+19:	00291198.png 	       7 MB 	  149093380 	  (2580 x 1932)
+20:	00307038.png 	      10 MB 	  157203966 	  (2580 x 1932)
+21:	00328663.png 	      11 MB 	  168275472 	  (2580 x 1932)
+22:	00351321.png 	       8 MB 	  179876848 	  (2580 x 1932)
+23:	00367869.png 	       8 MB 	  188348992 	  (2580 x 1932)
+24:	00385045.png 	       8 MB 	  197143168 	  (2580 x 1932)
+Finish: Mon Dec 28 20:14:20 2020
+
+25 FILES EXTRACTED
+	
+jpg:= 8
+gif:= 8
+bmp:= 1
+png:= 8
+------------------------------------------------------------------
+
+Foremost finished at Mon Dec 28 20:14:20 2020

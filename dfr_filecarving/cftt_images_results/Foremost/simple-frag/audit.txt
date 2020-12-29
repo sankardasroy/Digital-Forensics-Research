@@ -1,0 +1,44 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Mon Dec 28 20:13:05 2020
+Invocation: foremost -o ../Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/simple-frag graphic-simple-frag_1305121236.dd 
+Output directory: /vault/file/research/dfr/Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/simple-frag
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: graphic-simple-frag_1305121236.dd
+Start: Mon Dec 28 20:13:05 2020
+Length: 317 MB (333065216 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00000001.bmp 	     900 KB 	        512 	  (640 x 480)
+1:	00243419.jpg 	     876 KB 	  124630528 	 
+2:	00245172.jpg 	       1 MB 	  125528064 	 
+3:	00248349.jpg 	       1 MB 	  127154688 	 
+4:	00252293.jpg 	     785 KB 	  129174016 	 
+5:	00253868.jpg 	       1 MB 	  129980416 	 
+6:	00256585.jpg 	       1 MB 	  131371520 	 
+7:	00259077.jpg 	     843 KB 	  132647424 	 
+8:	00260797.jpg 	       1 MB 	  133528064 	 
+9:	00205912.gif 	      80 KB 	  105426944 	  (2580 x 1932)
+10:	00219033.gif 	      51 KB 	  112144896 	  (2580 x 1932)
+11:	00225584.gif 	       1 KB 	  115499008 	  (2580 x 1932)
+12:	00229741.gif 	       5 KB 	  117627392 	  (2580 x 1932)
+13:	00234219.gif 	      49 KB 	  119920128 	  (259 x 194)
+14:	00234327.gif 	       1 KB 	  119975424 	  (1932 x 2580)
+15:	00238723.gif 	       1 KB 	  122226176 	  (2580 x 1932)
+16:	00243164.gif 	      80 KB 	  124499968 	  (259 x 194)
+17:	00263404.png 	       5 MB 	  134862848 	  (1932 x 2580)
+18:	00351584.png 	       8 MB 	  180011008 	  (2580 x 1932)
+Finish: Mon Dec 28 20:13:10 2020
+
+19 FILES EXTRACTED
+	
+jpg:= 8
+gif:= 8
+bmp:= 1
+png:= 2
+------------------------------------------------------------------
+
+Foremost finished at Mon Dec 28 20:13:10 2020

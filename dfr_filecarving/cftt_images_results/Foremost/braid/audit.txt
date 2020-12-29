@@ -1,0 +1,35 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Mon Dec 28 20:12:00 2020
+Invocation: foremost -o ../Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/braid graphic-braid_1305121235.dd 
+Output directory: /vault/file/research/dfr/Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/braid
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: graphic-braid_1305121235.dd
+Start: Mon Dec 28 20:12:00 2020
+Length: 137 MB (143815680 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00095949.jpg 	     876 KB 	   49125888 	 
+1:	00097702.jpg 	       2 MB 	   50023424 	 
+2:	00104815.jpg 	     779 KB 	   53665280 	 
+3:	00067666.gif 	      80 KB 	   34644992 	  (2580 x 1932)
+4:	00080787.gif 	      51 KB 	   41362944 	  (2580 x 1932)
+5:	00082971.gif 	       1 KB 	   42481152 	  (2580 x 1932)
+6:	00091487.gif 	       5 KB 	   46841344 	  (2580 x 1932)
+7:	00000001.bmp 	     900 KB 	        512 	  (640 x 480)
+8:	00106374.png 	       5 MB 	   54463488 	  (1932 x 2580)
+9:	00150232.png 	      10 MB 	   76918784 	  (2580 x 1932)
+Finish: Mon Dec 28 20:12:03 2020
+
+10 FILES EXTRACTED
+	
+jpg:= 3
+gif:= 4
+bmp:= 1
+png:= 2
+------------------------------------------------------------------
+
+Foremost finished at Mon Dec 28 20:12:03 2020

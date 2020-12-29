@@ -1,0 +1,39 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Mon Dec 28 20:13:44 2020
+Invocation: foremost -o ../Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/partial graphic-partials_1305121236.dd 
+Output directory: /vault/file/research/dfr/Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/partial
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: graphic-partials_1305121236.dd
+Start: Mon Dec 28 20:13:44 2020
+Length: 226 MB (237287936 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00168573.jpg 	     876 KB 	   86309376 	 
+1:	00172233.jpg 	       1 MB 	   88183296 	 
+2:	00174599.jpg 	     322 KB 	   89394688 	 
+3:	00177932.jpg 	       1 MB 	   91101184 	 
+4:	00181482.jpg 	     756 KB 	   92918784 	 
+5:	00139890.gif 	      80 KB 	   71623680 	  (2580 x 1932)
+6:	00156942.gif 	       1 KB 	   80354304 	  (2580 x 1932)
+7:	00159437.gif 	       5 KB 	   81631744 	  (2580 x 1932)
+8:	00161229.gif 	      41 KB 	   82549248 	  (259 x 194)
+9:	00161321.gif 	       1 KB 	   82596352 	  (1932 x 2580)
+10:	00168406.gif 	      40 KB 	   86223872 	  (259 x 194)
+11:	00000001.bmp 	     900 KB 	        512 	  (640 x 480)
+12:	00183059.png 	       5 MB 	   93726208 	  (1932 x 2580)
+13:	00245515.png 	       8 MB 	  125703680 	  (2580 x 1932)
+Finish: Mon Dec 28 20:13:48 2020
+
+14 FILES EXTRACTED
+	
+jpg:= 5
+gif:= 6
+bmp:= 1
+png:= 2
+------------------------------------------------------------------
+
+Foremost finished at Mon Dec 28 20:13:48 2020

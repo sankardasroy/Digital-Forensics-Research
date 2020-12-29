@@ -1,0 +1,50 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Mon Dec 28 20:12:24 2020
+Invocation: foremost -o ../Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/nofill graphic-nofill_1305121236.dd 
+Output directory: /vault/file/research/dfr/Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/nofill
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: graphic-nofill_1305121236.dd
+Start: Mon Dec 28 20:12:24 2020
+Length: 316 MB (332205056 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00000001.jpg 	     876 KB 	        512 	 
+1:	00072583.jpg 	       1 MB 	   37162496 	 
+2:	00003555.gif 	      80 KB 	    1820160 	  (2580 x 1932)
+3:	00016676.gif 	      51 KB 	    8538112 	  (2580 x 1932)
+4:	00023225.gif 	       1 KB 	   11891200 	  (2580 x 1932)
+5:	00075758.gif 	       5 KB 	   38788096 	  (2580 x 1932)
+6:	00131925.gif 	      33 KB 	   67545600 	  (259 x 194)
+7:	00001754.bmp 	     900 KB 	     898048 	  (640 x 480)
+8:	00044561.png 	       5 MB 	   22815232 	  (1932 x 2580)
+9:	00056601.png 	       7 MB 	   28979712 	  (2580 x 1932)
+10:	00080220.png 	       7 MB 	   41072640 	  (2580 x 1932)
+11:	00224627.jpg 	       1 MB 	  115009024 	 
+12:	00250181.jpg 	     779 KB 	  128092672 	 
+13:	00274382.jpg 	       1 MB 	  140483584 	 
+14:	00293574.jpg 	       1 MB 	  150309888 	 
+15:	00325257.jpg 	     827 KB 	  166531584 	 
+16:	00228565.png 	      10 MB 	  117025280 	  (2580 x 1932)
+17:	00251740.png 	      11 MB 	  128890880 	  (2580 x 1932)
+18:	00277059.png 	       8 MB 	  141854208 	  (2580 x 1932)
+19:	00326913.png 	       8 MB 	  167379456 	  (2580 x 1932)
+20:	00460898.jpg 	       1 MB 	  235979776 	 
+21:	00463313.gif 	       1 KB 	  237216256 	  (1932 x 2580)
+22:	00467693.gif 	       1 KB 	  239458816 	  (2580 x 1932)
+23:	00518802.gif 	      16 KB 	  265626624 	  (259 x 194)
+24:	00472070.png 	       8 MB 	  241699840 	  (2580 x 1932)
+Finish: Mon Dec 28 20:12:29 2020
+
+25 FILES EXTRACTED
+	
+jpg:= 8
+gif:= 8
+bmp:= 1
+png:= 8
+------------------------------------------------------------------
+
+Foremost finished at Mon Dec 28 20:12:29 2020

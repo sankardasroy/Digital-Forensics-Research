@@ -1,0 +1,37 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Mon Dec 28 20:13:26 2020
+Invocation: foremost -o ../Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/disorder graphic-disorder_1305121235.dd 
+Output directory: /vault/file/research/dfr/Digital-Forensics-Research/dfr_filecarving/cftt_images_results/Foremost/disorder
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: graphic-disorder_1305121235.dd
+Start: Mon Dec 28 20:13:26 2020
+Length: 258 MB (270865920 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00194175.jpg 	     183 KB 	   99417600 	 
+1:	00200069.jpg 	       1 MB 	  102435328 	 
+2:	00202904.jpg 	     436 KB 	  103886848 	 
+3:	00165973.gif 	      80 KB 	   84978176 	  (2580 x 1932)
+4:	00168598.gif 	      51 KB 	   86322176 	  (2580 x 1932)
+5:	00177643.gif 	       1 KB 	   90953216 	  (2580 x 1932)
+6:	00182885.gif 	       5 KB 	   93637120 	  (2580 x 1932)
+7:	00183803.gif 	      30 KB 	   94107136 	  (259 x 194)
+8:	00183873.gif 	       1 KB 	   94142976 	  (1932 x 2580)
+9:	00191866.gif 	       1 KB 	   98235392 	  (2580 x 1932)
+10:	00001441.bmp 	     900 KB 	     737792 	  (640 x 480)
+11:	00205921.jpg 	       1 MB 	  105431552 	 
+12:	00209834.jpg 	     273 KB 	  107435008 	 
+Finish: Mon Dec 28 20:13:30 2020
+
+13 FILES EXTRACTED
+	
+jpg:= 5
+gif:= 7
+bmp:= 1
+------------------------------------------------------------------
+
+Foremost finished at Mon Dec 28 20:13:30 2020

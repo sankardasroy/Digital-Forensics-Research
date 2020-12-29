@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dfxml xmloutputversion='1.0'>
+  <metadata 
+  xmlns='http://www.forensicswiki.org/wiki/Category:Digital_Forensics_XML' 
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' 
+  xmlns:dc='http://purl.org/dc/elements/1.1/'>
+    <dc:type>Carve Report</dc:type>
+  </metadata>
+  <creator>
+    <package>PhotoRec</package>
+    <version>7.1</version>
+    <build_environment>
+      <compiler>GCC 10.1</compiler>
+      <library name='libext2fs' version='1.45.6'/>
+      <library name='libewf' version='none'/>
+      <library name='libjpeg' version='libjpeg-turbo-2.0.4'/>
+      <library name='libntfs' version='libntfs-3g'/>
+      <library name='zlib' version='1.2.11'/>
+    </build_environment>
+    <execution_environment>
+      <os_sysname>Linux</os_sysname>
+      <os_release>5.9.11-3-MANJARO</os_release>
+      <os_version>#1 SMP PREEMPT Sat Nov 28 09:08:57 UTC 2020</os_version>
+      <host>lime</host>
+      <arch>x86_64</arch>
+      <uid>1000</uid>
+      <start_time>2020-12-28T20:04:24-0500</start_time>
+    </execution_environment>
+  </creator>
+  <source>
+    <image_filename>graphic-disorder_1305121235.dd</image_filename>
+    <sectorsize>512</sectorsize>
+    <image_size>270865920</image_size>
+    <volume>
+      <byte_runs>
+        <byte_run offset='0' img_offset='0' len='270865920'/>
+      </byte_runs>
+    </volume>
+  </source>
+  <configuration>
+  </configuration>
+  <fileobject>
+    <filename>f0001802.bmp</filename>
+    <filesize>8798374</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='922624' len='8798720'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0001441.bmp</filename>
+    <filesize>921654</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='737792' len='184832'/>
+      <byte_run offset='184832' img_offset='9721344' len='737280'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0096918.bmp</filename>
+    <filesize>9969174</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='49622016' len='9969664'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0073536.bmp</filename>
+    <filesize>14953734</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='37650432' len='11971584'/>
+      <byte_run offset='11971584' img_offset='59591680' len='2982400'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0063789.bmp</filename>
+    <filesize>9969190</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='32659968' len='4990464'/>
+      <byte_run offset='4990464' img_offset='62574080' len='4979200'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0036517.bmp</filename>
+    <filesize>14953734</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='18696704' len='13963264'/>
+      <byte_run offset='13963264' img_offset='67553280' len='990720'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0181985.txt</filename>
+    <filesize>2065</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='93176320' len='2560'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0182881.txt</filename>
+    <filesize>2048</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='93635072' len='2048'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0202584.txt</filename>
+    <filesize>2048</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='103723008' len='2048'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0202900.txt</filename>
+    <filesize>2048</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='103884800' len='2048'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0267034.txt</filename>
+    <filesize>2048</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='136721408' len='2048'/>
+    </byte_runs>
+  </fileobject>
+  <fileobject>
+    <filename>f0271361.txt</filename>
+    <filesize>2048</filesize>
+    <byte_runs>
+      <byte_run offset='0' img_offset='138936832' len='2048'/>
+    </byte_runs>
+  </fileobject>
+</dfxml>
