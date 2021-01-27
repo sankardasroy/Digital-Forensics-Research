@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2021.1.21)  25 JAN 2021 12:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2021.1.21)  27 JAN 2021 15:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -397,31 +397,140 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 
-] (./chapter.bbl) [2] (./chapter.aux) ) 
+] [2] [3]
+
+LaTeX Warning: Reference `fig:fat1' on page 4 undefined on input line 151.
+
+
+LaTeX Warning: Reference `fig:fat2' on page 4 undefined on input line 163.
+
+
+LaTeX Warning: Reference `fig:fat3' on page 4 undefined on input line 179.
+
+
+LaTeX Warning: Reference `fig:ntfs' on page 4 undefined on input line 200.
+
+[4]
+
+LaTeX Warning: Reference `fig:fat2' on page 5 undefined on input line 221.
+
+
+LaTeX Warning: Reference `fig:ntfs' on page 5 undefined on input line 230.
+
+[5]
+
+LaTeX Warning: Citation `carving_standards' on page 6 undefined on input line 2
+58.
+
+
+LaTeX Warning: Citation `carving_standards' on page 6 undefined on input line 2
+62.
+
+
+LaTeX Warning: Citation `carving_standards' on page 6 undefined on input line 2
+65.
+
+
+LaTeX Warning: Citation `carving_standards' on page 6 undefined on input line 2
+68.
+
+
+LaTeX Warning: Citation `carving_standards' on page 6 undefined on input line 2
+71.
+
+
+LaTeX Warning: Citation `carving_standards' on page 6 undefined on input line 2
+74.
+
+[6]
+
+LaTeX Warning: Reference `fig:overview' on page 7 undefined on input line 322.
+
+[7]
+
+LaTeX Warning: Reference `fig:case_2' on page 8 undefined on input line 377.
+
+
+LaTeX Warning: Reference `fig:case_4ii' on page 8 undefined on input line 389.
+
+[8]
+
+LaTeX Warning: Reference `fig:case_5i' on page 9 undefined on input line 392.
+
+
+LaTeX Warning: Reference `fig:case_6' on page 9 undefined on input line 405.
+
+
+LaTeX Warning: Reference `fig:case_8' on page 9 undefined on input line 416.
+
+[9] [10]
+
+LaTeX Warning: Reference `fig:results_fat' on page 11 undefined on input line 5
+27.
+
+
+LaTeX Warning: Reference `fig:results_ntfs' on page 11 undefined on input line 
+527.
+
+[11]
+
+LaTeX Warning: Citation `cftt_carving_images' on page 12 undefined on input lin
+e 569.
+
+[12]
+
+LaTeX Warning: Citation `photorec' on page 13 undefined on input line 589.
+
+
+LaTeX Warning: Citation `foremost' on page 13 undefined on input line 589.
+
+
+LaTeX Warning: Citation `scalpel' on page 13 undefined on input line 589.
+
+[13]
+
+LaTeX Warning: Citation `imagemagick' on page 14 undefined on input line 611.
+
+[14]
+
+LaTeX Warning: Reference `fig:case_8' on page 15 undefined on input line 647.
+
+[15]
+
+LaTeX Warning: Reference `fig:case_5i' on page 16 undefined on input line 684.
+
+[16] [17] [18] (./chapter.bbl [19]) [20] (./chapter.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4084 strings out of 479383
- 54278 string characters out of 5875830
- 340470 words of memory out of 5000000
- 21107 multiletter control sequences out of 15000+600000
- 412260 words of font info for 61 fonts, out of 8000000 for 9000
+ 4122 strings out of 479383
+ 54737 string characters out of 5875830
+ 348521 words of memory out of 5000000
+ 21142 multiletter control sequences out of 15000+600000
+ 413045 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,10n,98p,314b,206s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmss8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
-/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmti9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10
-.pfb>
-Output written on chapter.pdf (2 pages, 153492 bytes).
+ 94i,11n,98p,926b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmss8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
+r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmti8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb
+></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on chapter.pdf (20 pages, 282572 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 141 PDF objects out of 1000 (max. 8388607)
+ 100 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
