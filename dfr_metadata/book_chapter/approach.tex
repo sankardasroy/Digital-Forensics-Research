@@ -1,0 +1,301 @@
+\section{Approach}
+\subsection{Overview}
+\begin{paraphrase}
+ To test the DFR tools, we first design hypothetical test scenarios to simulate the challenges of real-world file recovery.
+We then create each scenario in real file systems and save them as raw images. 
+Using the images as input, we run each DFR tool and attempt to recover all deleted files. 
+Finally, we compare the recovered files to their original versions in order to judge the tools' 
+meeting with the NIST expectation. A high-level view of the methodology for a typical test case is illustrated in Figure~\ref{fig:overview}.
+
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=\linewidth]{fig/overview.pdf}
+%     \caption{A file system containing deleted files is created on the external drive. 
+% The drive's raw data is then saved as a read-only file, called a \emph{disk image} or \emph{file system image}.
+% The disk image is given as input to a DFR tool, which attempts to recover the deleted files. 
+% The recovered files are then analyzed to judge the DFR tool's meeting with the NIST CFTT expectation.}
+%     \label{fig:overview}
+% \end{figure}
+\end{paraphrase}
+
+
+\subsection{Metadata-Based Tools}
+\subsubsection{Designing Recovery Scenarios}
+\begin{paraphrase}
+ To test the DFR tools' meeting with the expectation, we designed a variety of scenarios in which a tool might have to recover a deleted file. 
+We started with the simplest possible case: a file system containing just one deleted file. 
+This case is ideal and trivial, but by adding more files, we can create a greater variety of scenarios.
+
+The NIST guidelines limit their scope to recovery of files which were ``created and deleted in a process similar to 
+how an end-user would create and delete files,''~\cite{meta:dfr:standards} and exclude 
+``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted.''~\cite{meta:dfr:standards}
+In other words, these guidelines address situations in which files were deleted via normal file system operations as 
+implemented by a typical operating system, as opposed to direct modification of the file system by a user.
+Within these constraints, there are two factors which can significantly complicate the file recovery process: 
+fragmentation, and overwriting. 
+
+These factors are thus the foundation of our test scenarios, with all cases besides the first involving either fragmented files, overwritten files, or a combination of both. 
+The goal is to create test cases which are canonical; in other words, they constitute the basic elements of a file recovery scenario.
+We suggest such a canonical list of test cases should be considered representative of wide variety of scenarios within the scope of the guidelines.
+
+Following are descriptions of the test cases we designed. 
+We have separated them into five categories: 
+{\bf(a)} a case with just a simple deleted file, 
+{\bf (b)} cases involving fragmentation,
+{\bf (c)} cases involving overwritten files,
+{\bf (d)} cases with a combination of fragmentation and overwriting,
+and {\bf (e)} cases with a file fragmented ``out of order.''
+
+When test cases are illustrated in figures, each row represents the file system at a point in time. An arrow indicates a change in the file system, which is illustrated in the following row. Files are distinguished by unique letters, and if they are deleted they are marked as such.
+
+\paragraph{Simple Deleted File}
+\begin{itemize}%[align=parleft, labelwidth=4em, leftmargin =\dimexpr\labelwidth+\labelsep\relax]
+    \item [Case 1] The file system contains a single deleted file.
+\end{itemize}
+\paragraph{Deleted File is Fragmented}
+\begin{itemize}%[align=parleft, labelwidth=4em, leftmargin =\dimexpr\labelwidth+\labelsep\relax]
+%     \begin{figure}[h]
+%         \centering
+%         \includegraphics[width=\linewidth]{fig/case2.png}
+%         \caption{Test Case 2. Fragmented file A is deleted.}
+%         \label{fig:case_2}
+%     \end{figure}
+    \item [Case 2] Fragmented deleted file, with an active file in between the fragments (as illustrated in Figure~\ref{fig:case_2})
+    \item [Case 3] Fragmented deleted file, with a deleted file in between the fragments
+\end{itemize}
+\paragraph{Deleted File is Overwritten}
+\begin{itemize}%[align=parleft, labelwidth=4em, leftmargin =\dimexpr\labelwidth+\labelsep\relax]
+%     \begin{figure}[h]
+%         \centering
+%         \includegraphics[width=\linewidth]{fig/case4ii.png}
+%         \caption{Test Case 4ii. Deleted file A is partially overwritten by active file B.}
+%         \label{fig:case_4ii}
+%     \end{figure}
+    \item [Case 4i] Beginning of deleted file overwritten by an active file
+    \item [Case 4ii] Middle of deleted file overwritten by an active file (as illustrated in Figure~\ref{fig:case_4ii})
+    \item [Case 4iii] Deleted file partially overwritten by an active file which doesn't end on a sector boundary
+    \item [Case 4iv] Deleted file entirely overwritten by an active file
+    \item [Case 5i] Beginning of deleted file overwritten by another deleted file (as illustrated in Figure~\ref{fig:case_5i})
+    \item [Case 5ii] Middle of deleted file overwritten by another deleted file
+    \item [Case 5iii] Deleted file partially overwritten by a deleted file which doesn't end on a sector boundary
+    \item [Case 5iv] Deleted file entirely overwritten by a deleted file
+\end{itemize}
+\paragraph{Deleted File is Fragmented and Overwritten}
+ \begin{itemize}%[align=parleft, labelwidth=4em, leftmargin =\dimexpr\labelwidth+\labelsep\relax]
+%      \begin{figure}[h]
+%         \centering
+%         \includegraphics[width=\linewidth]{fig/case6.png}
+%         \caption{Test Case 6. Fragmented file A is deleted. File A is then partially overwritten by file C.}
+%         \label{fig:case_6}
+%     \end{figure}
+    \item [Case 6] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another active file (as illustrated in Figure~\ref{fig:case_6})
+    \item [Case 7] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another deleted file
+ \end{itemize}
+\paragraph{Deleted File is Fragmented Out-of-Order}
+\begin{itemize}%[align=parleft, labelwidth=4em, leftmargin =\dimexpr\labelwidth+\labelsep\relax]
+%     \begin{figure}[h]
+%         \centering
+%         \includegraphics[width=\linewidth]{fig/case8.png}
+%         \caption{Test Case 8. Fragmented file A, which starts at the end of the file system and wraps around to the beginning, is deleted.}
+%         \label{fig:case_8}
+%     \end{figure}
+    \item [Case 8] Deleted file fragmented from the end of the file system to the beginning (as illustrated in Figure~\ref{fig:case_8})
+    \item [Case 9] Deleted file fragmented from the end of the file system to after an active file
+    \item [Case 10] Deleted file fragmented from the end of the file system to after a deleted file
+\end{itemize}
+
+Because NTFS keeps track of the locations of all parts of a file even after deletion, fragmentation is not particularly interesting. Cases 8, 9, and 10 would be redundant with case 2, so we have excluded them for NTFS. Due to how NTFS allocates space for files, cases 4ii and 5ii cannot occur as a result of normal file operations, so they have also been excluded. No cases are excluded for FAT tests.
+\end{paraphrase}
+
+
+\subsubsection{Creating Test Images}
+
+\begin{paraphrase}
+ All test file systems were created in partitions on a 32 GB flash drive. For each test case, the first step is to entirely write over the partition with zeros. This ensures all cases start from identical, reproduceable conditions. A new file system is written to the partition, then files are written to the file system and deleted. The files used are simple text files containing one letter repeated (e.g., ``aa1M'' is 1 MiB of the letter `a').
+ \end{paraphrase}
+ Note that text files cannot be recovered with file carving, so this will force tools which combine both DFR methods to rely solely on metadata-based recovery.
+ \begin{paraphrase}
+ Files are written to the test file system by simply copying them from another drive. In some cases we also append data to a file in the test file system to create fragmentation. Once the test file system matches the intended scenario, a read-only image of the partition is created. All tests are performed on these images rather than the original drive. Note that when creating FAT test cases we use Ubuntu 18.04 and for NTFS test cases we use Windows 10.
+\end{paraphrase}
+
+\subsubsection{Challenges}
+
+\begin{paraphrase}
+ % Caching problem
+It is important to consider when creating test images that the low-level behavior of file operations is not always obvious. For example, when writing a file, there is no guarantee the file's data will be immediately written to the disk. The operating system may cache the operation and wait until the optimal time to perform the write, in order to maximize system performance. We observed this early on, as writing a file and subsequently deleting it would always result in the file's metadata being written, but often left no evidence of the file's data having ever existed. This behavior is obviously undesirable because it leaves nothing meaningful to be recovered. We resolved this by using the \emph{sync} system call, which causes any such cached data to be immediately written to the disk, in between file writes and deletions. Unmounting the file system after writes has a similar effect.
+
+% Learning and using the allocation algorithms
+Another type of low-level behavior relevant to the image creation process is the allocation algorithm. The operating system must have some kind of algorithm to decide where in the data area new files should be written. Common allocation algorithms include ``first available,'' ``next available,'' and ``best fit.''
+Learning and understanding whatever algorithm the OS uses is very helpful for forcing a specific arrangement of files. We observed that when writing to a FAT file system, Linux uses a ``next available'' algorithm. After the file system is mounted, the first write will start at the first free space in the data area. The next file will be written starting from the first free space after the previous file.
+Meanwhile, when writing to an NTFS file system, Windows 10 appears to use a ``best fit'' algorithm. In this case, Windows tries to find the smallest space in which the file can fit without being fragmented, and write it there.
+\end{paraphrase}
+
+\subsubsection{Recovering Files}
+\begin{paraphrase}
+ We selected five popular DFR tools for testing: Autopsy~\cite{autopsy}, Recuva~\cite{recuva}, FTK Imager~\cite{ftk}, TestDisk~\cite{testdisk}, and Magnet AXIOM~\cite{axiom}. 
+Note that Autopsy uses a set of DF tools known as The Sleuth Kit (TSK) for metadata-based recovery, so TSK is also implicitly covered by this study. 
+These tools were chosen based on popularity and availability.
+We also made sure to choose a combination of free and proprietary tools, in order to address one of the research questions.
+
+The settings we used when testing each tool are as follows:
+For Autopsy, we performed a standard recovery with all ingest modules disabled.
+For Recuva we performed a standard recovery using the free version with default settings.
+For FTK Imager, we performed a standard recovery using the free version with default settings.
+For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
+For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
+\end{paraphrase}
+
+\subsubsection{Results}
+\begin{paraphrase}
+
+% \begin{figure*}[h]
+%     \centering
+% 
+%     \begin{subfigure}{0.17\linewidth}
+%         \includegraphics[width=\linewidth]{fig/autopsy_results_fat.png}
+%         \subcaption{Autopsy}
+%     \end{subfigure}~~
+%     \begin{subfigure}{0.17\linewidth}
+%         \includegraphics[width=\linewidth]{fig/recuva_results_fat.png}
+%         \subcaption{Recuva}
+%     \end{subfigure}~~
+%     \begin{subfigure}{0.17\linewidth}
+%         \includegraphics[width=\linewidth]{fig/ftk_results_fat.png}
+%         \subcaption{FTK}
+%     \end{subfigure}~~
+%     \begin{subfigure}{0.17\linewidth}
+%         \includegraphics[width=\linewidth]{fig/testdisk_results_fat.png}
+%         \subcaption{TestDisk}
+%     \end{subfigure}~~
+%     \begin{subfigure}{0.17\linewidth}
+%         \includegraphics[width=\linewidth]{fig/axiom_results_fat.png}
+%         \subcaption{Magnet AXIOM}
+%     \end{subfigure}~~
+%         
+%     \caption{Test results on FAT test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, gray is not tested.}
+%     \label{fig:results_fat}
+% \end{figure*}
+% 
+% \begin{figure*}[h]
+%     \centering
+% 
+%     \begin{subfigure}{0.17\linewidth}
+%         \includegraphics[width=\linewidth]{fig/autopsy_results_ntfs.png}
+%         \subcaption{Autopsy}
+%     \end{subfigure}~~
+%     \begin{subfigure}{0.17\linewidth}
+%         \includegraphics[width=\linewidth]{fig/recuva_results_ntfs.png}
+%         \subcaption{Recuva}
+%     \end{subfigure}~~
+%     \begin{subfigure}{0.17\linewidth}
+%         \includegraphics[width=\linewidth]{fig/ftk_results_ntfs.png}
+%         \subcaption{FTK}
+%     \end{subfigure}~~
+%     \begin{subfigure}{0.17\linewidth}
+%         \includegraphics[width=\linewidth]{fig/testdisk_results_ntfs.png}
+%         \subcaption{TestDisk}
+%     \end{subfigure}~~
+%     \begin{subfigure}{0.17\linewidth}
+%         \includegraphics[width=\linewidth]{fig/axiom_results_ntfs.png}
+%         \subcaption{Magnet AXIOM}
+%     \end{subfigure}~~
+%         
+%     \caption{Test results on NTFS test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, gray is not tested.}
+%     \label{fig:results_ntfs}
+% \end{figure*}
+
+ After testing each tool, we analyzed the recovered object(s) from each test case. 
+If the recovered file is identical to the original, obviously all expectations have been met. 
+While this is ideal, it is often impossible to perfectly recover a file (such as when it is overwritten) so the standards do not require it. 
+
+In our results, the file is only ever recovered perfectly in FAT cases 1 and 2, and NTFS cases 1-3. 
+For all other cases, the tool is judged on each core feature individually. 
+These judgments are summarized in Figure~\ref{fig:results_fat} for FAT test cases and Figure~\ref{fig:results_ntfs} for NTFS test cases.
+
+For cases in which a tool does not fulfill core feature 1, in other words, it cannot find a deleted file, we make no judgment about the remaining core features.
+
+\paragraph{Recovering Fragmented Files}
+In cases of fragmentation in FAT file systems, we found each tool generally approaches recovery in one of two ways. 
+Recuva and Magnet AXIOM start from the beginning of the file and recover the full length of the file even if an active file exists in that space. 
+Autopsy, FTK, and TestDisk will start from the beginning of the file and recover the full length, but skip over any active files they encounter.
+Autopsy, FTK, and TestDisk recover all of file A, while Recuva and Magnet AXIOM's recovered images erroneously contain data from file B, causing them to fail core feature 4. 
+When the space in between fragments is unallocated, all tools recover the file as though it was contiguous, pulling some erroneous data and failing core feature 4. 
+When the fragmentation occurs at the end of the file system, Recuva, FTK, and TestDisk recover only the first fragment, while Autopsy returns a short file of null data, and Magnet AXIOM reports an error and returns an empty file.
+Cases with fragmentation are trivial for NTFS file systems as more information is available from the metadata. 
+Unsurprisingly, no tools had problems with fragmentation cases for NTFS.
+
+\paragraph{Recovering Overwritten Files}
+In cases where a file has been overwritten by an active file, we found most tools recover the deleted file as though it is not overwritten, failing core feature 4. 
+A few exceptions are FTK Imager, which recovers the file up to the point where it has been overwritten, and Autopsy, which generally recovers only the first cluster of an overwritten file in FAT, and behaves like the other tools for NTFS. 
+TestDisk also exhibits the same behavior as FTK for FAT case 4ii only. 
+Strangely, Magnet AXIOM's recovered objects for FAT cases 4i and 4ii include the overwritten sections, but nothing after them.
+Other Magnet AXIOM results were similar to the other tools.
+When the overwriting file has also been deleted, all tools recover the first file as though it is not overwritten.
+
+\paragraph{Abnormal Results}
+A few results stand out as unusual.
+These are cases for which it is difficult to infer from the recovered object what approach a tool is using.
+
+For FAT cases 4ii, 6, 8, 9, and 10, Autopsy returns a 1.5 KiB file of null data.
+1.5 KiB is equivalent to 3 sectors, while a FAT cluster in our cases is defined as 4 sectors (2 KiB).
+
+TestDisk fails to identify a file for NTFS cases 4iii and 4iv only. 
+These are the only test cases in which a tool does not fulfill core feature 1.
+
+For FAT cases 4i and 4ii, Magnet AXIOM does not recover the entire length of the deleted file, but it also does not exclude the overwritten sections. 
+In both cases, it recovers up to the end of the overwritten sections, rather than up to the beginning like FTK does.
+\end{paraphrase}
+
+
+
+
+\subsection{Carving-Based Tools}
+
+\subsubsection{CFTT Test Cases}
+To evaluate the file carving tools, we used six disk images prepared by CFTT\cite{cftt_carving_images}.
+Each of these images contains between 20 and 40 graphical files of the JPG, PNG, GIF, BMP, and TIF formats.
+Importantly, the CFTT images do not contain valid file-systems.
+This ensures that a tool which utilizes both DFR methods can be evaluated solely on its file carving ability.
+
+Despite the differences between the methods, metadata-based DFR and file carving are complicated by the same two file-system behaviors: fragmentation and overwriting. Thus, the CFTT test cases are somewhat similar to the ones we created for metadata-based DFR; each is built around a specific variation of fragmentation or overwriting of deleted files.
+Following are summaries of each CFTT test image:
+\begin{itemize}
+ \item \textbf{basic:} 40 contiguous files, with space in between each file
+ \item \textbf{nofill:} 40 contiguous files, with no space in between each file
+ \item \textbf{simple-frag:} 40 fragmented files, with space in between each fragment
+ \item \textbf{braid:} 10 contiguous files and 10 fragmented files, which are fragmented around each other in an A-B-A-B pattern
+ \item \textbf{disorder:} 35 fragmented files, 30 of which are fragmented out-of-order such that the fragment containing the footer comes before the fragment containing the header
+ \item \textbf{partials:} 15 complete files, 5 of which are fragmented, and 25 incomplete files where at least one fragment has been overwritten or manually destroyed
+
+\end{itemize}
+
+
+\subsubsection{Recovering Files}
+
+ We selected four popular file carving tools for testing: PhotoRec~\cite{photorec}, Foremost~\cite{foremost}, Scalpel~\cite{scalpel}, and Magnet AXIOM~\cite{axiom}.
+ \begin{paraphrase}
+These tools were chosen based on popularity and availability.
+\end{paraphrase}
+% We also made sure to choose a combination of free and proprietary tools, in order to address one of the research questions.
+
+The settings we used when testing each tool are as follows:
+For PhotoRec and Foremost, we used the default settings.
+For Scalpel, we manually enabled recovery of the JPG, PNG, GIF, BMP, and TIF formats, and otherwise used default settings.
+For Magnet Axiom, we ran a ``full scan'' with default settings in AXIOM Process and exported all graphical files from ``Artifact View'' in AXIOM Examine.
+We also exported an XML carving report from Axiom Examine as unlike the other tools it does not create one automatically.
+
+\subsubsection{Evaluating Results}
+The main challenge when testing file carving tools is verifying the results. 
+For metadata-based tools this is fairly simple; the deleted files in our tests are all simple text files which can be checked at a glance.
+However, text files lack a standard header and footer and thus cannot be recovered with file carving, so the test images use more complicated formats such as JPG.
+As a result, it would be impractical to evaluate a tool based on the carved files alone.
+
+Fortunately, all four of the carving tools we evaluated produce an itemized report of carving results. CFTT provides detailed information about the contents of the test images, so we can compare the tools' reports with the true arrangement of files in each image. This is particularly important for core feature 1, core feature 2, and core feature 3 since they are concerned with the specific data blocks the tool carves. PhotoRec's report gives a start and end address for each file, and multiple start and end addresses if it attempts to carve a fragmented file. The other tools' reports only list the starting address and size of each file, so we assumed they never attempt to carve more than one fragment per file.
+
+Checking core feature 4 is slightly complicated by the fact that carving tools cannot recover the filename, but we can use the first sector listed for each file in the carving report to match them with the original files and check the file extensions.
+
+For core feature 5, we make use of the \emph{identify} command from the ImageMagick~\cite{imagemagick} tool suite. Upon input of a graphical file, identify will output the file format and other information. Relevant to core feature 5 is that the return code will indicate whether the file is valid or corrupt. We add the \emph{-regard-warnings} flag so an error or warning while parsing the file will mean the file is considerd corrupt.
+
+\subsubsection{Results}
+
+\TODO{TODO} 
