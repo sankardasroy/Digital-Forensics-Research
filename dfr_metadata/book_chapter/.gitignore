@@ -17,6 +17,7 @@
 # *.ps
 # *.eps
 paper.pdf
+chapter.pdf
 declarations.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
