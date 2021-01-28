@@ -47,65 +47,76 @@ We have separated them into five categories:
 and {\bf (e)} cases with a file fragmented ``out of order.''
 
 When test cases are illustrated in figures, each row represents the file system at a point in time. An arrow indicates a change in the file system, which is illustrated in the following row. Files are distinguished by unique letters, and if they are deleted they are marked as such.
+\end{paraphrase}
 
-\paragraph{Simple Deleted File}
-\begin{itemize}%[align=parleft, labelwidth=4em, leftmargin =\dimexpr\labelwidth+\labelsep\relax]
-    \item [Case 1] The file system contains a single deleted file.
-\end{itemize}
+\paragraph{Basic Deleted File}
+\begin{arabiclist}
+    \item Deleted file is contiguous and the only file on the disk
+\end{arabiclist}
 \paragraph{Deleted File is Fragmented}
-\begin{itemize}%[align=parleft, labelwidth=4em, leftmargin =\dimexpr\labelwidth+\labelsep\relax]
+\begin{arabiclist}[2]
+\setcounter{enumi}{1}
 %     \begin{figure}[h]
 %         \centering
 %         \includegraphics[width=\linewidth]{fig/case2.png}
 %         \caption{Test Case 2. Fragmented file A is deleted.}
 %         \label{fig:case_2}
 %     \end{figure}
-    \item [Case 2] Fragmented deleted file, with an active file in between the fragments (as illustrated in Figure~\ref{fig:case_2})
-    \item [Case 3] Fragmented deleted file, with a deleted file in between the fragments
-\end{itemize}
+    \item Deleted file is fragmented around an active file (as illustrated in Figure~\ref{fig:case_2})
+    \item Deleted file is fragmented around another deleted file
+\end{arabiclist}
 \paragraph{Deleted File is Overwritten}
-\begin{itemize}%[align=parleft, labelwidth=4em, leftmargin =\dimexpr\labelwidth+\labelsep\relax]
+\begin{arabiclist}
+\setcounter{enumi}{3}
 %     \begin{figure}[h]
 %         \centering
 %         \includegraphics[width=\linewidth]{fig/case4ii.png}
 %         \caption{Test Case 4ii. Deleted file A is partially overwritten by active file B.}
 %         \label{fig:case_4ii}
 %     \end{figure}
-    \item [Case 4i] Beginning of deleted file overwritten by an active file
-    \item [Case 4ii] Middle of deleted file overwritten by an active file (as illustrated in Figure~\ref{fig:case_4ii})
-    \item [Case 4iii] Deleted file partially overwritten by an active file which doesn't end on a sector boundary
-    \item [Case 4iv] Deleted file entirely overwritten by an active file
-    \item [Case 5i] Beginning of deleted file overwritten by another deleted file (as illustrated in Figure~\ref{fig:case_5i})
-    \item [Case 5ii] Middle of deleted file overwritten by another deleted file
-    \item [Case 5iii] Deleted file partially overwritten by a deleted file which doesn't end on a sector boundary
-    \item [Case 5iv] Deleted file entirely overwritten by a deleted file
-\end{itemize}
+    \item Deleted file is overwritten at the front by an active file
+    \item Deleted file is overwritten in the middle by an active file (as illustrated in Figure~\ref{fig:case_4ii})
+    \item Deleted file is overwritten by an active file that does not end on a sector boundary (size is not a multiple of 512 bytes)
+    \item Deleted file is completely overwritten by an active file
+    \item Deleted file is overwritten at the front by another deleted file (as illustrated in Figure~\ref{fig:case_5i})
+    \item Deleted file is overwritten in the middle by another deleted file
+    \item Deleted file is overwritten by another deleted file that does not end on a sector boundary (size is not a multiple of 512 bytes)
+    \item Deleted file completely overwritten by another deleted file
+\end{arabiclist}
 \paragraph{Deleted File is Fragmented and Overwritten}
- \begin{itemize}%[align=parleft, labelwidth=4em, leftmargin =\dimexpr\labelwidth+\labelsep\relax]
+ \begin{arabiclist}
+ \setcounter{enumi}{11}
 %      \begin{figure}[h]
 %         \centering
 %         \includegraphics[width=\linewidth]{fig/case6.png}
 %         \caption{Test Case 6. Fragmented file A is deleted. File A is then partially overwritten by file C.}
 %         \label{fig:case_6}
 %     \end{figure}
-    \item [Case 6] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another active file (as illustrated in Figure~\ref{fig:case_6})
-    \item [Case 7] Fragmented deleted file, with an active file in between the fragments, with the second fragment overwritten by another deleted file
- \end{itemize}
+    \item Deleted file is fragmented around an active file, and the second fragment is overwritten by another active file (as illustrated in Figure~\ref{fig:case_6})
+    \item Deleted file is fragmented around an active file, and the second fragment is overwritten by another deleted file
+ \end{arabiclist}
+
 \paragraph{Deleted File is Fragmented Out-of-Order}
-\begin{itemize}%[align=parleft, labelwidth=4em, leftmargin =\dimexpr\labelwidth+\labelsep\relax]
+\begin{arabiclist}
+\setcounter{enumi}{13}
 %     \begin{figure}[h]
 %         \centering
 %         \includegraphics[width=\linewidth]{fig/case8.png}
 %         \caption{Test Case 8. Fragmented file A, which starts at the end of the file system and wraps around to the beginning, is deleted.}
 %         \label{fig:case_8}
 %     \end{figure}
-    \item [Case 8] Deleted file fragmented from the end of the file system to the beginning (as illustrated in Figure~\ref{fig:case_8})
-    \item [Case 9] Deleted file fragmented from the end of the file system to after an active file
-    \item [Case 10] Deleted file fragmented from the end of the file system to after a deleted file
-\end{itemize}
+    \item Deleted file fragmented out-of-order (as illustrated in Figure~\ref{fig:case_8})
+    \item Deleted file fragmented out-of-order with an active file in between the fragments
+    \item eleted file fragmented out-of-order with a deleted file in between the fragments
+\end{arabiclist}
 
-Because NTFS keeps track of the locations of all parts of a file even after deletion, fragmentation is not particularly interesting. Cases 8, 9, and 10 would be redundant with case 2, so we have excluded them for NTFS. Due to how NTFS allocates space for files, cases 4ii and 5ii cannot occur as a result of normal file operations, so they have also been excluded. No cases are excluded for FAT tests.
-\end{paraphrase}
+
+
+Fragmentation is trivial in NTFS because information about the runs of a file persist after deletion.
+Since this renders Cases 2, 3, 14, 15, and 16 functionally identical, we only test Cases 2 and 3 for NTFS.
+Cases 5 and 9 cannot be created through regular file operations in NTFS, due to NTFS's file allocation behavior.
+Thus, we also exclude Cases 5 and 9 for NTFS.
+We do not exclude any test cases when using FAT.
 
 
 \subsubsection{Creating Test Images}
@@ -148,61 +159,61 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
 \subsubsection{Results}
 \begin{paraphrase}
 
-% \begin{figure*}[h]
-%     \centering
-% 
-%     \begin{subfigure}{0.17\linewidth}
-%         \includegraphics[width=\linewidth]{fig/autopsy_results_fat.png}
-%         \subcaption{Autopsy}
-%     \end{subfigure}~~
-%     \begin{subfigure}{0.17\linewidth}
-%         \includegraphics[width=\linewidth]{fig/recuva_results_fat.png}
-%         \subcaption{Recuva}
-%     \end{subfigure}~~
-%     \begin{subfigure}{0.17\linewidth}
-%         \includegraphics[width=\linewidth]{fig/ftk_results_fat.png}
-%         \subcaption{FTK}
-%     \end{subfigure}~~
-%     \begin{subfigure}{0.17\linewidth}
-%         \includegraphics[width=\linewidth]{fig/testdisk_results_fat.png}
-%         \subcaption{TestDisk}
-%     \end{subfigure}~~
-%     \begin{subfigure}{0.17\linewidth}
-%         \includegraphics[width=\linewidth]{fig/axiom_results_fat.png}
-%         \subcaption{Magnet AXIOM}
-%     \end{subfigure}~~
-%         
-%     \caption{Test results on FAT test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, gray is not tested.}
-%     \label{fig:results_fat}
-% \end{figure*}
-% 
-% \begin{figure*}[h]
-%     \centering
-% 
-%     \begin{subfigure}{0.17\linewidth}
-%         \includegraphics[width=\linewidth]{fig/autopsy_results_ntfs.png}
-%         \subcaption{Autopsy}
-%     \end{subfigure}~~
-%     \begin{subfigure}{0.17\linewidth}
-%         \includegraphics[width=\linewidth]{fig/recuva_results_ntfs.png}
-%         \subcaption{Recuva}
-%     \end{subfigure}~~
-%     \begin{subfigure}{0.17\linewidth}
-%         \includegraphics[width=\linewidth]{fig/ftk_results_ntfs.png}
-%         \subcaption{FTK}
-%     \end{subfigure}~~
-%     \begin{subfigure}{0.17\linewidth}
-%         \includegraphics[width=\linewidth]{fig/testdisk_results_ntfs.png}
-%         \subcaption{TestDisk}
-%     \end{subfigure}~~
-%     \begin{subfigure}{0.17\linewidth}
-%         \includegraphics[width=\linewidth]{fig/axiom_results_ntfs.png}
-%         \subcaption{Magnet AXIOM}
-%     \end{subfigure}~~
-%         
-%     \caption{Test results on NTFS test cases for each DFR tool. Rows represent test cases whereas columns represent NIST core features. Blue is passing, red is failing, gray is not tested.}
-%     \label{fig:results_ntfs}
-% \end{figure*}
+\begin{figure}
+    \centering
+
+    \begin{subfigure}{0.17\linewidth}
+        \includegraphics[width=\linewidth]{fig/autopsy_results_fat.pdf}
+        \subcaption{Autopsy}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
+        \includegraphics[width=\linewidth]{fig/recuva_results_fat.pdf}
+        \subcaption{Recuva}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
+        \includegraphics[width=\linewidth]{fig/ftk_results_fat.pdf}
+        \subcaption{FTK}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
+        \includegraphics[width=\linewidth]{fig/testdisk_results_fat.pdf}
+        \subcaption{TestDisk}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
+        \includegraphics[width=\linewidth]{fig/axiom_results_fat.pdf}
+        \subcaption{Magnet AXIOM}
+    \end{subfigure}~~
+        
+    \caption{Test results on metadata-based DFR tools using FAT-formatted test images. Each row corresponds to a test image and each collumn corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
+    \label{fig:results_fat}
+\end{figure}
+
+\begin{figure}
+    \centering
+
+    \begin{subfigure}{0.17\linewidth}
+        \includegraphics[width=\linewidth]{fig/autopsy_results_ntfs.pdf}
+        \subcaption{Autopsy}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
+        \includegraphics[width=\linewidth]{fig/recuva_results_ntfs.pdf}
+        \subcaption{Recuva}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
+        \includegraphics[width=\linewidth]{fig/ftk_results_ntfs.pdf}
+        \subcaption{FTK}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
+        \includegraphics[width=\linewidth]{fig/testdisk_results_ntfs.pdf}
+        \subcaption{TestDisk}
+    \end{subfigure}~~
+    \begin{subfigure}{0.17\linewidth}
+        \includegraphics[width=\linewidth]{fig/axiom_results_ntfs.pdf}
+        \subcaption{Magnet AXIOM}
+    \end{subfigure}~~
+        
+    \caption{Test results on metadata-based DFR tools using NTFS-formatted test images. Each row corresponds to a test image and each collumn corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
+    \label{fig:results_ntfs}
+\end{figure}
 
  After testing each tool, we analyzed the recovered object(s) from each test case. 
 If the recovered file is identical to the original, obviously all expectations have been met. 

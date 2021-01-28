@@ -9,7 +9,8 @@
 %%
 %\documentclass[wsdraft]{ws-rv9x6} % to draw border line around text area
 \documentclass{ws-rv9x6}
-\usepackage{subfigure}   % required only when side-by-side / subfigures are used
+%\usepackage{subfigure}   % required only when side-by-side / subfigures are used
+\usepackage{subcaption}
 \usepackage{ws-rv-thm}   % comment this line when `amsthm / theorem / ntheorem` package is used
 \usepackage{ws-rv-van}   % numbered citation & references (default)
 %\usepackage{ws-index}   % to produce multiple indexes
@@ -21,8 +22,8 @@
 \newcommand{\TODO}[1]{\textcolor{red}{#1}} % for temporary working notes
 \newenvironment{paraphrase}{\color{blue}}{\color{black}} % for text from old paper that needs to be paraphrased
 
-
-
+ 
+ 
 \begin{document}
 
 \chapter[Evaluating Deleted File Recovery (DFR) tools per NIST guidelines]{Evaluating Deleted File Recovery (DFR) tools per NIST guidelines\\ subtitle\label{ra_ch1}}
@@ -34,7 +35,7 @@
 \address{CS Department, BGSU,\\
 Bowling Green, Ohio, USA 43403, \\
 f\_author@bgsu.edu\footnote{Affiliation footnote.}}
-
+ 
 \begin{abstract}
 The abstract should summarize the context, content and conclusions of
 the paper in less than 200 words. It should not contain any references
