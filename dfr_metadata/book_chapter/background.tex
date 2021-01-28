@@ -146,7 +146,7 @@ Following is the text of each core feature as well as our interpretation of each
 We consider a tool as passing if each recovered file only contains data from one file on the original disk.
  
  \item ``The file type of a carved file shall match the file type of its contents''.~\cite{carving_standards}
- We consider a tool as passing if each file it recovers is given the same file extension as it did before it was deleted. We exclude false positives as they have no corresponding file to compare to, and only consider files which were carved starting from a valid header signature.
+ We interpret this to mean that the file extension given to a recovered file must accurately describe the format of the file data. We exclude false positives from this evaluation because their data is highly unlikely to be of any file format. So, we only consider files which were carved starting from a valid header signature.
  
  \item ``The tool shall return carved files in a state that conforms to a valid file of the carved file type''.~\cite{carving_standards}
  We consider a tool as passing if each recovered file can be parsed without error by some application software.

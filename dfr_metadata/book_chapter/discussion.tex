@@ -144,9 +144,10 @@ It~\cite{prasanthi2016} also includes a variety of DF tools besides DFR tools.
 
 
 \subsection{Future Work}
-\begin{paraphrase}
 
-The NIST CFTT guidelines~\cite{meta:dfr:standards} include several optional features; these features could be explored using a similar methodology.
-We only created test images for the FAT and NTFS file systems; our process could be expanded to other common file systems such as ext4 and HFS.
-\end{paraphrase}
-\TODO{Mention thumbnails and other embedded images} 
+In addition to the four core features, there are several optional features listed in the NIST CFTT guidelines for metadata-based DFR tools~\cite{meta:dfr:standards}.
+Future work could extend our methodology to evaluate metadata-based tools on these optional features.
+Our evaluation of metadata-based tools was limited in scope to just the FAT and NTFS file systems, making it somewhat Windows-centric.
+As investigators need to be able to recover evidence from Linux or MacOS devices, futrure work could evaluate metadata-based tools on ext4, HFS, and other common file systems.
+It is common for files to be embedded within other files, for example thumbnails in some graphical formats.
+Future work could test the ability of file carving tools to recover these files, and interpret and critique the NIST guidelines in the context of embedded files.
