@@ -7,15 +7,17 @@ Using the images as input, we run each DFR tool and attempt to recover all delet
 Finally, we compare the recovered files to their original versions in order to judge the tools' 
 meeting with the NIST expectation. A high-level view of the methodology for a typical test case is illustrated in Figure~\ref{fig:overview}.
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{fig/overview.pdf}
-%     \caption{A file system containing deleted files is created on the external drive. 
-% The drive's raw data is then saved as a read-only file, called a \emph{disk image} or \emph{file system image}.
-% The disk image is given as input to a DFR tool, which attempts to recover the deleted files. 
-% The recovered files are then analyzed to judge the DFR tool's meeting with the NIST CFTT expectation.}
-%     \label{fig:overview}
-% \end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{fig/overview.pdf}
+    \caption{
+        A read-only \emph{disk image}, a file which contains the raw data of a file system, is obtained for each test case.
+        For metatada-based test cases, we create a file system on an external drive and delete files from it, then save it as a disk image.
+        For file carving test cases, we use a set of disk images prepared by NIST CFTT.
+        In either case disk image is input to a DFR tool, whose output is checked for compliance with the NIST guidelines for metadata-based DFR or file carving, depending on the tool.
+    }
+    \label{fig:overview}
+\end{figure}
 \end{paraphrase}
 
 
@@ -56,29 +58,35 @@ When test cases are illustrated in figures, each row represents the file system 
 \paragraph{Deleted File is Fragmented}
 \begin{arabiclist}[2]
 \setcounter{enumi}{1}
-%     \begin{figure}[h]
-%         \centering
-%         \includegraphics[width=\linewidth]{fig/case2.png}
-%         \caption{Test Case 2. Fragmented file A is deleted.}
-%         \label{fig:case_2}
-%     \end{figure}
-    \item Deleted file is fragmented around an active file (as illustrated in Figure~\ref{fig:case_2})
+    \begin{figure}
+        \centering
+        \includegraphics[width=\linewidth]{fig/case2.pdf}
+        \caption{Disk 2. File A is fragmented, and has been deleted.}
+        \label{fig:case2}
+    \end{figure}
+    \item Deleted file is fragmented around an active file (as illustrated in Figure~\ref{fig:case2})
     \item Deleted file is fragmented around another deleted file
 \end{arabiclist}
 \paragraph{Deleted File is Overwritten}
 \begin{arabiclist}
 \setcounter{enumi}{3}
-%     \begin{figure}[h]
-%         \centering
-%         \includegraphics[width=\linewidth]{fig/case4ii.png}
-%         \caption{Test Case 4ii. Deleted file A is partially overwritten by active file B.}
-%         \label{fig:case_4ii}
-%     \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\linewidth]{fig/case5.pdf}
+        \caption{Disk 5. File A has been deleted and partially overwritten by file B.}
+        \label{fig:case5}
+    \end{figure}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=\linewidth]{fig/case8.pdf}
+        \caption{Disk 8. File A has been deleted and partially overwritten by file B, which has since been deleted}
+        \label{fig:case8}
+    \end{figure}
     \item Deleted file is overwritten at the front by an active file
-    \item Deleted file is overwritten in the middle by an active file (as illustrated in Figure~\ref{fig:case_4ii})
+    \item Deleted file is overwritten in the middle by an active file (as illustrated in Figure~\ref{fig:case5})
     \item Deleted file is overwritten by an active file that does not end on a sector boundary (size is not a multiple of 512 bytes)
     \item Deleted file is completely overwritten by an active file
-    \item Deleted file is overwritten at the front by another deleted file (as illustrated in Figure~\ref{fig:case_5i})
+    \item Deleted file is overwritten at the front by another deleted file (as illustrated in Figure~\ref{fig:case8})
     \item Deleted file is overwritten in the middle by another deleted file
     \item Deleted file is overwritten by another deleted file that does not end on a sector boundary (size is not a multiple of 512 bytes)
     \item Deleted file completely overwritten by another deleted file
@@ -86,26 +94,26 @@ When test cases are illustrated in figures, each row represents the file system 
 \paragraph{Deleted File is Fragmented and Overwritten}
  \begin{arabiclist}
  \setcounter{enumi}{11}
-%      \begin{figure}[h]
-%         \centering
-%         \includegraphics[width=\linewidth]{fig/case6.png}
-%         \caption{Test Case 6. Fragmented file A is deleted. File A is then partially overwritten by file C.}
-%         \label{fig:case_6}
-%     \end{figure}
-    \item Deleted file is fragmented around an active file, and the second fragment is overwritten by another active file (as illustrated in Figure~\ref{fig:case_6})
+     \begin{figure}[h]
+        \centering
+        \includegraphics[width=\linewidth]{fig/case12.pdf}
+        \caption{Disk 12. File A is fragmented and has been deleted. The second fragment has then been overwritten by file C}
+        \label{fig:case12}
+    \end{figure}
+    \item Deleted file is fragmented around an active file, and the second fragment is overwritten by another active file (as illustrated in Figure~\ref{fig:case12})
     \item Deleted file is fragmented around an active file, and the second fragment is overwritten by another deleted file
  \end{arabiclist}
 
 \paragraph{Deleted File is Fragmented Out-of-Order}
 \begin{arabiclist}
 \setcounter{enumi}{13}
-%     \begin{figure}[h]
-%         \centering
-%         \includegraphics[width=\linewidth]{fig/case8.png}
-%         \caption{Test Case 8. Fragmented file A, which starts at the end of the file system and wraps around to the beginning, is deleted.}
-%         \label{fig:case_8}
-%     \end{figure}
-    \item Deleted file fragmented out-of-order (as illustrated in Figure~\ref{fig:case_8})
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=\linewidth]{fig/case14.pdf}
+        \caption{Disk 14. File A is fragmented out-of-order, and has been deleted}
+        \label{fig:case14}
+    \end{figure}
+    \item Deleted file fragmented out-of-order (as illustrated in Figure~\ref{fig:case14})
     \item Deleted file fragmented out-of-order with an active file in between the fragments
     \item eleted file fragmented out-of-order with a deleted file in between the fragments
 \end{arabiclist}
@@ -284,10 +292,6 @@ Following are summaries of each CFTT test image:
 \subsubsection{Recovering Files}
 
  We selected four popular file carving tools for testing: PhotoRec~\cite{photorec}, Foremost~\cite{foremost}, Scalpel~\cite{scalpel}, and Magnet AXIOM~\cite{axiom}.
- \begin{paraphrase}
-These tools were chosen based on popularity and availability.
-\end{paraphrase}
-% We also made sure to choose a combination of free and proprietary tools, in order to address one of the research questions.
 
 The settings we used when testing each tool are as follows:
 For PhotoRec and Foremost, we used the default settings.

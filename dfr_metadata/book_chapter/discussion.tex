@@ -66,13 +66,6 @@ When designing test cases, we found situations in which core features 3 and 4 ar
 Core feature 3 specifies ``all non-allocated data blocks identified in a residual metadata entry,''\cite{meta:dfr:standards} but that can sometimes still include data from other files. 
 One such situation is when a deleted file is overwritten, and then the overwriting file is also deleted, such as in case 5i (as seen in Figure \ref{fig:case_5i}).
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{fig/case5i.png}
-%     \caption{Test Case 5i}
-%     \label{fig:case_5i}
-% \end{figure}
-
 Assuming the file system is NTFS (to avoid the aforementioned ambiguity with core feature 3 and FAT), the residual metadata entry for File A (in this case its Master File Table entry) should list every cluster File A once occupied. 
 All of those clusters are unallocated, so to fulfill core feature 3, the tool must recover them. 
 However, some of those clusters have been overwritten by File B. Core feature 4 requires that a tool only recover ``data blocks from the Deleted Block Pool,''~\cite{meta:dfr:standards} and defines the Deleted Block Pool as all blocks which ``have not been reallocated or reused.''~\cite{meta:dfr:standards}
