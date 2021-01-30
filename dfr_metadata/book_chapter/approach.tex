@@ -126,13 +126,15 @@ We do not exclude any test cases when using FAT.
 
 \subsubsection{Creating Test Images}
 
-\begin{paraphrase}
- All test file systems were created in partitions on a 32 GB flash drive. For each test case, the first step is to entirely write over the partition with zeros. This ensures all cases start from identical, reproduceable conditions. A new file system is written to the partition, then files are written to the file system and deleted. The files used are simple text files containing one letter repeated (e.g., ``aa1M'' is 1 MiB of the letter `a').
- \end{paraphrase}
- Note that text files cannot be recovered with file carving, so this will force tools which combine both DFR methods to rely solely on metadata-based recovery.
- \begin{paraphrase}
- Files are written to the test file system by simply copying them from another drive. In some cases we also append data to a file in the test file system to create fragmentation. Once the test file system matches the intended scenario, a read-only image of the partition is created. All tests are performed on these images rather than the original drive. Note that when creating FAT test cases we use Ubuntu 18.04 and for NTFS test cases we use Windows 10.
-\end{paraphrase}
+We create the test cases on a 32 GB flash drive, using 4 MiB partitions for FAT cases and 6 MiB partitions for NTFS cases.
+For each case, it is important to start by writing over the partition with zeroes, ensuring the image is easily reproduceable.
+Next, a file system should be written to the partition, and files should be written to it and deleted until the file system matches one of the planned test cases.
+We used text files, each containing a single repeated letter (e.g., ``aa1M'' is a text file containing 1 MiB of the letter `a')
+Note that text files cannot be recovered with file carving, so this choice forces tools which combine both DFR methods to rely solely on metadata-based recovery.
+We write files to the test file system by copying them from another drive, and appending to files when we need to force fragmentation.
+Once the test file system matches one of the planned test cases, we use the \emph{dd} utility to create a disk image of that partition.
+Since the disk image can be made read-only, it is safer and more convenient to run tests on the disk image instead of the physical drive.
+Note that we create FAT test cases using Ubuntu 18.04 and NTFS test cases using Windows 10.
 
 \subsubsection{Challenges}
 
