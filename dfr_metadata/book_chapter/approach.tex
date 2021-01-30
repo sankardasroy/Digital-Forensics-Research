@@ -138,22 +138,36 @@ Note that we create FAT test cases using Ubuntu 18.04 and NTFS test cases using 
 
 \subsubsection{Challenges}
 
-\begin{paraphrase}
  % Caching problem
-It is important to consider when creating test images that the low-level behavior of file operations is not always obvious. For example, when writing a file, there is no guarantee the file's data will be immediately written to the disk. The operating system may cache the operation and wait until the optimal time to perform the write, in order to maximize system performance. We observed this early on, as writing a file and subsequently deleting it would always result in the file's metadata being written, but often left no evidence of the file's data having ever existed. This behavior is obviously undesirable because it leaves nothing meaningful to be recovered. We resolved this by using the \emph{sync} system call, which causes any such cached data to be immediately written to the disk, in between file writes and deletions. Unmounting the file system after writes has a similar effect.
+Creating test images can be difficult without a solid understanding of low-level file system behavior.
+For example, a newly written file may not have its data written to the disk right away.
+Even with fast modern storage, disk I/O involves a considerable amount of overhead.
+To improve performance, operating systems generally prefer to write data in one larger batch versus several small batches.
+So, the operating system will often store write operations in a cache and wait for a more optimal moment to actually write to the disk.
+Typically, this optimization only causes problems in the event of sudden power loss or improper shutdown, but it can also make the state of the file system less predictable.
+We found that we were often deleting a file while it was still cached, meaning it would never be written to the disk to begin with.
+This is obviously a problem as it leaves nothing on the disk to recover.
+Thankfully, Linux and Windows both provide a \emph{sync} system call, which causes the cached writes to be performed immediately.
+Calling sync before each file deletion resolves the issue; alternatively, unmounting the file system triggers similar behavior.
 
 % Learning and using the allocation algorithms
-Another type of low-level behavior relevant to the image creation process is the allocation algorithm. The operating system must have some kind of algorithm to decide where in the data area new files should be written. Common allocation algorithms include ``first available,'' ``next available,'' and ``best fit.''
-Learning and understanding whatever algorithm the OS uses is very helpful for forcing a specific arrangement of files. We observed that when writing to a FAT file system, Linux uses a ``next available'' algorithm. After the file system is mounted, the first write will start at the first free space in the data area. The next file will be written starting from the first free space after the previous file.
-Meanwhile, when writing to an NTFS file system, Windows 10 appears to use a ``best fit'' algorithm. In this case, Windows tries to find the smallest space in which the file can fit without being fragmented, and write it there.
-\end{paraphrase}
+Since most of the test images involve manipulating file data into certain arrangments, it is also helpful to have some understanding of allocation algorithms.
+Allocation algorithm refers to the steps the operating system takes to decide where on the disk to write new data.
+Generally, the operating system wants to limit fragmentation, as contiguous files are more efficient to read and write to.
+Common allocation algorithms like ``first available,'' ``next available,'' and ``best fit'' will place files according to that general principle, but use differing strategies to do so.
+Understanding the allocation algorithm removes a lot of trial and error from the process of making test images.
+For example, we observed that Linux uses a ``next available'' algorithm when writing to FAT.
+After mounting the file system, the first file to be written will be placed at the first available space in the file system.
+However, unlike the ``first available'' algorithm, the operating system remembers where it last placed a file, and it will place the next file at the first available space after that saved location, even if space opens up at the beginning of the file system.
+Windows, on the other hand, uses a ``best fit'' algorithm when writing to NTFS.
+This allocation algorithm takes a more proactive approach to reducing fragmentation by writing each file to the smallest space in which it can fit without being fragmented.
+
 
 \subsubsection{Recovering Files}
 \begin{paraphrase}
  We selected five popular DFR tools for testing: Autopsy~\cite{autopsy}, Recuva~\cite{recuva}, FTK Imager~\cite{ftk}, TestDisk~\cite{testdisk}, and Magnet AXIOM~\cite{axiom}. 
 Note that Autopsy uses a set of DF tools known as The Sleuth Kit (TSK) for metadata-based recovery, so TSK is also implicitly covered by this study. 
 These tools were chosen based on popularity and availability.
-We also made sure to choose a combination of free and proprietary tools, in order to address one of the research questions.
 
 The settings we used when testing each tool are as follows:
 For Autopsy, we performed a standard recovery with all ingest modules disabled.
