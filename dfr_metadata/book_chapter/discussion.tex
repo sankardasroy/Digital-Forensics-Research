@@ -27,7 +27,7 @@ However, since that cluster has been overwritten, Autopsy still fails to fulfill
 
 Another factor that causes multiple failures is simulated in FAT cases 8, 9, and 10.
 In FAT, a file can be written starting close to the end of the file system, without enough space to fit contiguously.
-In such cases, the file must be fragmented, and since it is already at the end of the file system, the second fragment will appear closer to the beginning of the file system (this is illustrated in Figure \ref{fig:case_8}).
+In such cases, the file must be fragmented, and since it is already at the end of the file system, the second fragment will appear closer to the beginning of the file system (this is illustrated in Figure \ref{fig:case14}).
 This scenario could realistically occur when the file system is almost full.
 In these cases, no tool is able to recover the second fragment of the deleted file; however, because FAT fragmentation is unpredictable, we only require them to recover the first fragment.
 Interestingly, Autopsy and Magnet AXIOM fail to recover anything at all, with Autopsy returning a short file of null data, and Magnet AXIOM returning an empty file after displaying an error message.
@@ -64,7 +64,7 @@ However, it should be emphasized this is an assumption and the intent of the sta
 \begin{paraphrase}
 When designing test cases, we found situations in which core features 3 and 4 are entirely incompatible. 
 Core feature 3 specifies ``all non-allocated data blocks identified in a residual metadata entry,''\cite{meta:dfr:standards} but that can sometimes still include data from other files. 
-One such situation is when a deleted file is overwritten, and then the overwriting file is also deleted, such as in case 5i (as seen in Figure \ref{fig:case_5i}).
+One such situation is when a deleted file is overwritten, and then the overwriting file is also deleted, such as in case 5i (as seen in Figure \ref{fig:case8}).
 
 Assuming the file system is NTFS (to avoid the aforementioned ambiguity with core feature 3 and FAT), the residual metadata entry for File A (in this case its Master File Table entry) should list every cluster File A once occupied. 
 All of those clusters are unallocated, so to fulfill core feature 3, the tool must recover them. 

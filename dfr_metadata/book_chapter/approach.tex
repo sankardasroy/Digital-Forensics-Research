@@ -1,11 +1,14 @@
 \section{Approach}
 \subsection{Overview}
-\begin{paraphrase}
- To test the DFR tools, we first design hypothetical test scenarios to simulate the challenges of real-world file recovery.
-We then create each scenario in real file systems and save them as raw images. 
-Using the images as input, we run each DFR tool and attempt to recover all deleted files. 
-Finally, we compare the recovered files to their original versions in order to judge the tools' 
-meeting with the NIST expectation. A high-level view of the methodology for a typical test case is illustrated in Figure~\ref{fig:overview}.
+
+To properly evaluate DFR tools, we must see how they perform in various file recovery scenarios.
+We do this by running the tools on various \emph{disk images}, each containing a file system with some deleted files.
+The recovered files output by a DFR tool are examined to see how well the tool meets the NIST guidelines for deleted file recovery.
+By using test images designed to each emphasize specific recovery tasks, we can get a sense of a tools' strengths and weaknesses, and what tasks are especially difficult for certain types of tools.
+With this in mind, we designed several disk images to test metadata-based DFR tools.
+NIST CFTT has already designed a set of images for testing file carving tools, so we use those rather than creating our own.
+A high-level illustration of our methodology can be seen in Figure~\ref{fig:overview}.
+
 
 \begin{figure}[h]
     \centering
@@ -18,38 +21,32 @@ meeting with the NIST expectation. A high-level view of the methodology for a ty
     }
     \label{fig:overview}
 \end{figure}
-\end{paraphrase}
-
 
 \subsection{Metadata-Based Tools}
 \subsubsection{Designing Recovery Scenarios}
-\begin{paraphrase}
- To test the DFR tools' meeting with the expectation, we designed a variety of scenarios in which a tool might have to recover a deleted file. 
-We started with the simplest possible case: a file system containing just one deleted file. 
-This case is ideal and trivial, but by adding more files, we can create a greater variety of scenarios.
 
-The NIST guidelines limit their scope to recovery of files which were ``created and deleted in a process similar to 
-how an end-user would create and delete files,''~\cite{meta:dfr:standards} and exclude 
-``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted.''~\cite{meta:dfr:standards}
-In other words, these guidelines address situations in which files were deleted via normal file system operations as 
-implemented by a typical operating system, as opposed to direct modification of the file system by a user.
-Within these constraints, there are two factors which can significantly complicate the file recovery process: 
-fragmentation, and overwriting. 
+We begin by designing a set of test cases to simulate common challenges of metadata-based deleted file recovery.
+In order to get the most information possible about each tools' capabilities, we design our test cases to be atomic.
+We first isolate the most basic challenges of file recovery, and create test cases for them.
+Then, we create test cases which combine those basic challenges.
+Our intention with this atomic approach is to create test cases that are generalizeable to the majority of recovery scenarios, even the many which we do not explicitly cover.
 
-These factors are thus the foundation of our test scenarios, with all cases besides the first involving either fragmented files, overwritten files, or a combination of both. 
-The goal is to create test cases which are canonical; in other words, they constitute the basic elements of a file recovery scenario.
-We suggest such a canonical list of test cases should be considered representative of wide variety of scenarios within the scope of the guidelines.
+In addition to this philosophy, we must remain within the scope of the NIST guidelines.
+NIST requires test images to be ``created and deleted in a process similar to how an end-user would create and delete files.''~\cite{meta:dfr:standards}
+We take this to mean that any interaction with the file system must be through a standard operating systems'  read and write operations.
+We are not allowed to edit the file system directly, as ``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted''~\cite{meta:dfr:standards} are explicitly out of scope.
 
-Following are descriptions of the test cases we designed. 
-We have separated them into five categories: 
-{\bf(a)} a case with just a simple deleted file, 
-{\bf (b)} cases involving fragmentation,
-{\bf (c)} cases involving overwritten files,
-{\bf (d)} cases with a combination of fragmentation and overwriting,
-and {\bf (e)} cases with a file fragmented ``out of order.''
+Within these constraints, we can induce two phenomena which make file recovery more challenging: fragmentation and overwriting.
+Following the afforementioned goal of making our tests atomic, all our test cases (besides the first trivial case) use fragmented and/or overwritten files as building blocks.
+As such, our test cases fall into five general categories:
+{\bf(a)} no fragmentation or overwriting, 
+{\bf (b)} only fragmentation,
+{\bf (c)} only overwriting,
+{\bf (d)} both fragmentation and overwriting,
+and {\bf (e)} fragmentation ``out of order.''
 
-When test cases are illustrated in figures, each row represents the file system at a point in time. An arrow indicates a change in the file system, which is illustrated in the following row. Files are distinguished by unique letters, and if they are deleted they are marked as such.
-\end{paraphrase}
+
+Following is a description of each test case. A selection of test cases are illustrated, with each column portraying the state of the file system at a point in time. Each file is given a unique letter and shading, and the start and end of a fragmented file are denoted when relevant.
 
 \paragraph{Basic Deleted File}
 \begin{arabiclist}
@@ -170,23 +167,23 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
 \begin{figure}
     \centering
 
-    \begin{subfigure}{0.17\linewidth}
+    \begin{subfigure}[t]{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/autopsy_results_fat.pdf}
         \subcaption{Autopsy}
     \end{subfigure}~~
-    \begin{subfigure}{0.17\linewidth}
+    \begin{subfigure}[t]{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/recuva_results_fat.pdf}
         \subcaption{Recuva}
     \end{subfigure}~~
-    \begin{subfigure}{0.17\linewidth}
+    \begin{subfigure}[t]{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results_fat.pdf}
         \subcaption{FTK}
     \end{subfigure}~~
-    \begin{subfigure}{0.17\linewidth}
+    \begin{subfigure}[t]{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/testdisk_results_fat.pdf}
         \subcaption{TestDisk}
     \end{subfigure}~~
-    \begin{subfigure}{0.17\linewidth}
+    \begin{subfigure}[t]{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_fat.pdf}
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
@@ -198,23 +195,23 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
 \begin{figure}
     \centering
 
-    \begin{subfigure}{0.17\linewidth}
+    \begin{subfigure}[t]{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/autopsy_results_ntfs.pdf}
         \subcaption{Autopsy}
     \end{subfigure}~~
-    \begin{subfigure}{0.17\linewidth}
+    \begin{subfigure}[t]{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/recuva_results_ntfs.pdf}
         \subcaption{Recuva}
     \end{subfigure}~~
-    \begin{subfigure}{0.17\linewidth}
+    \begin{subfigure}[t]{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results_ntfs.pdf}
         \subcaption{FTK}
     \end{subfigure}~~
-    \begin{subfigure}{0.17\linewidth}
+    \begin{subfigure}[t]{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/testdisk_results_ntfs.pdf}
         \subcaption{TestDisk}
     \end{subfigure}~~
-    \begin{subfigure}{0.17\linewidth}
+    \begin{subfigure}[t]{0.17\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_ntfs.pdf}
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
