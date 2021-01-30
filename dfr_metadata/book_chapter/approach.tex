@@ -251,7 +251,7 @@ Note that in the two test cases where core feature 1 is not met, meaning no dele
 
 
 \paragraph{Recovering Fragmented Files}
-We observed that tools typically use one of two strategies in the event of FAT fragmentation.
+We observe that tools typically use one of two strategies in the event of FAT fragmentation.
 The first is to simply ignore fragmentation and recover the full length of a file as though it is contiguous, even if there are active files in that length.
 Recuva and Magnet AXIOM seem to take this approach.
 The second strategy is to still recover the full length of the file, but only from unallocated space.
@@ -264,19 +264,23 @@ All tools seem to struggle with out-of-order fragmentation.
 When the first fragment is at the very end of the file system, Recuva, FTK, and TestDisk only recover the first fragment, Autopsy returns a small amount of null data, and Magnet AXIOM returns an empty file and an error message.
 
 In NTFS more information about a file's location remain after the file is deleted, so recovering fragmented files is trivial.
-All tools were able to handle fragmentation in NTFS with no issues.
+All tools we tested are able to handle fragmentation in NTFS with no issues.
 
-
-\begin{paraphrase}
 
 \paragraph{Recovering Overwritten Files}
-In cases where a file has been overwritten by an active file, we found most tools recover the deleted file as though it is not overwritten, failing core feature 4. 
-A few exceptions are FTK Imager, which recovers the file up to the point where it has been overwritten, and Autopsy, which generally recovers only the first cluster of an overwritten file in FAT, and behaves like the other tools for NTFS. 
-TestDisk also exhibits the same behavior as FTK for FAT case 4ii only. 
-Strangely, Magnet AXIOM's recovered objects for FAT cases 4i and 4ii include the overwritten sections, but nothing after them.
-Other Magnet AXIOM results were similar to the other tools.
-When the overwriting file has also been deleted, all tools recover the first file as though it is not overwritten.
+We observe that when a deleted file is overwritten by an active file, most tools still attempt to recover the overwritten part as though it was part of the original file, failing core feature 4.
+The only tool to consistently meet core feature 4 in these cases is FTK Imager, which only recovers data from before the overwritten part.
+TestDisk also does this for FAT case 5 only, otherwise behaving like the other tools.
+In FAT, Autopsy only recovers the first cluster of an overwritted file, regardless of what part was overwritten.
+In NTFS, it gives the same results as other tools.
+For FAT cases 4 and 5, Magnet AXIOM recovers up to the end overwritten sections, but no further.
+This is a bit strange as it suggests Magnet AXIOM can detect overwriting, but still returns the overwritten part.
+For other cases it behaves like the other tools.
 
+When a deleted file is overwitten by another deleted file, even FTK acts as though the overwritten part belongs to the original file.
+This suggests that the tools which can detect overwriting do so based on the allocation status of each data block; other than that, they only consider the metadata of the file being recovered, not the files around it.
+
+\begin{paraphrase}
 \paragraph{Abnormal Results}
 A few results stand out as unusual.
 These are cases for which it is difficult to infer from the recovered object what approach a tool is using.
@@ -290,8 +294,6 @@ These are the only test cases in which a tool does not fulfill core feature 1.
 For FAT cases 4i and 4ii, Magnet AXIOM does not recover the entire length of the deleted file, but it also does not exclude the overwritten sections. 
 In both cases, it recovers up to the end of the overwritten sections, rather than up to the beginning like FTK does.
 \end{paraphrase}
-
-
 
 
 \subsection{Carving-Based Tools}
