@@ -46,74 +46,71 @@ As such, our test cases fall into five general categories:
 and {\bf (e)} fragmentation ``out of order.''
 
 
-Following is a description of each test case. A selection of test cases are illustrated, with each column portraying the state of the file system at a point in time. Each file is given a unique letter and shading, and the start and end of a fragmented file are denoted when relevant.
+Following is a description of each test case.
+We have given each a distinct name in line with the naming scheme for the CFTT file carving test cases.
+A selection of test cases are illustrated, with each column portraying the state of the file system at a point in time. 
+Each file is given a unique letter and shading, and the start and end of a fragmented file are denoted when relevant.
 
 \paragraph{Basic Deleted File}
-\begin{arabiclist}
-    \item Deleted file is contiguous and the only file on the disk
-\end{arabiclist}
+\begin{itemize}
+    \item[\textbf{basic:}] Deleted file is contiguous and the only file on the disk
+\end{itemize}
 \paragraph{Deleted File is Fragmented}
-\begin{arabiclist}[2]
-\setcounter{enumi}{1}
+\begin{itemize}
     \begin{figure}
         \centering
         \includegraphics[width=\linewidth]{fig/case2.pdf}
-        \caption{Disk 2. File A is fragmented, and has been deleted.}
+        \caption{fragments1: File A is fragmented, and has been deleted.}
         \label{fig:case2}
     \end{figure}
-    \item Deleted file is fragmented around an active file (as illustrated in Figure~\ref{fig:case2})
-    \item Deleted file is fragmented around another deleted file
-\end{arabiclist}
+    \item[\textbf{fragments1:}] Deleted file is fragmented around an active file (as illustrated in Figure~\ref{fig:case2})
+    \item[\textbf{fragments2:}] Deleted file is fragmented around another deleted file
+\end{itemize}
 \paragraph{Deleted File is Overwritten}
-\begin{arabiclist}
-\setcounter{enumi}{3}
+\begin{itemize}
     \begin{figure}
         \centering
         \includegraphics[width=\linewidth]{fig/case5.pdf}
-        \caption{Disk 5. File A has been deleted and partially overwritten by file B.}
+        \caption{overwrite1: File A has been deleted and partially overwritten by file B.}
         \label{fig:case5}
     \end{figure}
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case8.pdf}
-        \caption{Disk 8. File A has been deleted and partially overwritten by file B, which has since been deleted}
+        \caption{overwrite4: File A has been deleted and partially overwritten by file B, which has since been deleted}
         \label{fig:case8}
     \end{figure}
-    \item Deleted file is overwritten at the front by an active file
-    \item Deleted file is overwritten in the middle by an active file (as illustrated in Figure~\ref{fig:case5})
-    \item Deleted file is overwritten by an active file that does not end on a sector boundary (size is not a multiple of 512 bytes)
-    \item Deleted file is completely overwritten by an active file
-    \item Deleted file is overwritten at the front by another deleted file (as illustrated in Figure~\ref{fig:case8})
-    \item Deleted file is overwritten in the middle by another deleted file
-    \item Deleted file is overwritten by another deleted file that does not end on a sector boundary (size is not a multiple of 512 bytes)
-    \item Deleted file completely overwritten by another deleted file
-\end{arabiclist}
+    \item[\textbf{overwrite1:}] Deleted file is overwritten at the front by an active file
+    \item[\textbf{overwrite2:}] Deleted file is overwritten in the middle by an active file (as illustrated in Figure~\ref{fig:case5})
+    \item[\textbf{overwrite3:}] Deleted file is completely overwritten by an active file
+    \item[\textbf{overwrite4:}] Deleted file is overwritten at the front by another deleted file (as illustrated in Figure~\ref{fig:case8})
+    \item[\textbf{overwrite5:}] Deleted file is overwritten in the middle by another deleted file
+    \item[\textbf{overwrite6:}] Deleted file completely overwritten by another deleted file
+\end{itemize}
 \paragraph{Deleted File is Fragmented and Overwritten}
- \begin{arabiclist}
- \setcounter{enumi}{11}
+ \begin{itemize}
      \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case12.pdf}
-        \caption{Disk 12. File A is fragmented and has been deleted. The second fragment has then been overwritten by file C}
+        \caption{combo1: File A is fragmented and has been deleted. The second fragment has then been overwritten by file C}
         \label{fig:case12}
     \end{figure}
-    \item Deleted file is fragmented around an active file, and the second fragment is overwritten by another active file (as illustrated in Figure~\ref{fig:case12})
-    \item Deleted file is fragmented around an active file, and the second fragment is overwritten by another deleted file
- \end{arabiclist}
+    \item[\textbf{combo1:}] Deleted file is fragmented around an active file, and the second fragment is overwritten by another active file (as illustrated in Figure~\ref{fig:case12})
+    \item[\textbf{combo2:}] Deleted file is fragmented around an active file, and the second fragment is overwritten by another deleted file
+ \end{itemize}
 
 \paragraph{Deleted File is Fragmented Out-of-Order}
-\begin{arabiclist}
-\setcounter{enumi}{13}
+\begin{itemize}
     \begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case14.pdf}
-        \caption{Disk 14. File A is fragmented out-of-order, and has been deleted}
+        \caption{disorder1: File A is fragmented out-of-order, and has been deleted}
         \label{fig:case14}
     \end{figure}
-    \item Deleted file fragmented out-of-order (as illustrated in Figure~\ref{fig:case14})
-    \item Deleted file fragmented out-of-order with an active file in between the fragments
-    \item eleted file fragmented out-of-order with a deleted file in between the fragments
-\end{arabiclist}
+    \item[\textbf{disorder1:}] Deleted file fragmented out-of-order (as illustrated in Figure~\ref{fig:case14})
+    \item[\textbf{disorder2:}] Deleted file fragmented out-of-order with an active file in between the fragments
+    \item[\textbf{disorder3:}] Deleted file fragmented out-of-order with a deleted file in between the fragments
+\end{itemize}
 
 
 
@@ -182,23 +179,23 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
 \begin{figure}
     \centering
 
-    \begin{subfigure}[t]{0.17\linewidth}
+    \begin{subfigure}[t]{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/autopsy_results_fat.pdf}
         \subcaption{Autopsy}
     \end{subfigure}~~
-    \begin{subfigure}[t]{0.17\linewidth}
+    \begin{subfigure}[t]{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/recuva_results_fat.pdf}
         \subcaption{Recuva}
-    \end{subfigure}~~
-    \begin{subfigure}[t]{0.17\linewidth}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results_fat.pdf}
         \subcaption{FTK}
     \end{subfigure}~~
-    \begin{subfigure}[t]{0.17\linewidth}
+    \begin{subfigure}[b]{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/testdisk_results_fat.pdf}
         \subcaption{TestDisk}
     \end{subfigure}~~
-    \begin{subfigure}[t]{0.17\linewidth}
+    \begin{subfigure}[b]{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_fat.pdf}
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
@@ -210,23 +207,23 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
 \begin{figure}
     \centering
 
-    \begin{subfigure}[t]{0.17\linewidth}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/autopsy_results_ntfs.pdf}
         \subcaption{Autopsy}
     \end{subfigure}~~
-    \begin{subfigure}[t]{0.17\linewidth}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/recuva_results_ntfs.pdf}
         \subcaption{Recuva}
-    \end{subfigure}~~
-    \begin{subfigure}[t]{0.17\linewidth}
+    \end{subfigure}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results_ntfs.pdf}
         \subcaption{FTK}
     \end{subfigure}~~
-    \begin{subfigure}[t]{0.17\linewidth}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/testdisk_results_ntfs.pdf}
         \subcaption{TestDisk}
     \end{subfigure}~~
-    \begin{subfigure}[t]{0.17\linewidth}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_ntfs.pdf}
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
@@ -241,12 +238,12 @@ Note that a file does not need to be perfectly recovered for a tool to meet the 
 Sometimes, as with overwritten files, part of the file's data literally no longer exists on the disk, so recovering the entire file is impossible.
 The NIST guidelines are designed with this reality in mind.
 
-Most tools recover files perfectly for FAT case 2, and all tools recover files perfectly for FAT case 1 and NTFS cases 1-3.
+Most tools recover files perfectly for FAT fragments1, and all tools recover files perfectly for FAT basic, NTFS basic, and NTFS fragments1 and fragments2.
 For the other cases, we need to examine the recovered files closely to see which core features are being met.
 We judge each tool as either meeting or failing each core feature individually for each test case.
 Results are shown in Figure~\ref{fig:results_fat} and Figure~\ref{fig:results_ntfs} for FAT and NTFS test cases, respectively.
 
-Note that in the two test cases where core feature 1 is not met, meaning no deleted file was detected, we cannot make a judgement for the other core features as they are all dependent on core feature 1.
+Note that in the one test case where DFR-CR-01 is not met, meaning no deleted file was detected, we cannot make a judgement for the other core features as they are all dependent on DFR-CR-01.
 
 
 
@@ -257,43 +254,38 @@ Recuva and Magnet AXIOM seem to take this approach.
 The second strategy is to still recover the full length of the file, but only from unallocated space.
 So, any active files will be skipped over.
 Autopsy, FTK, and TestDisk seem to take this approach.
-This is most easily observed in FAT case 2; Autopsy, FTK, and TestDisk will skip over file B to recover all of file A, while Recuva and Magnet AXIOM will recover the first fragment of file A along with the active file B.
-This is why Recuva and Magnet AXIOM fail core feature 4 for that case.
-However, when a file is fragmented around another deleted file, like in FAT case 3, all tools take the first approach and erroneously return file B as part of file A.
+This is most easily observed in FAT fragment1; Autopsy, FTK, and TestDisk will skip over file B to recover all of file A, while Recuva and Magnet AXIOM will recover the first fragment of file A along with the active file B.
+This is why Recuva and Magnet AXIOM fail DFR-CR-04 for that case.
+However, when a file is fragmented around another deleted file, like in FAT fragment2, all tools take the first approach and erroneously return file B as part of file A.
 All tools seem to struggle with out-of-order fragmentation.
 When the first fragment is at the very end of the file system, Recuva, FTK, and TestDisk only recover the first fragment, Autopsy returns a small amount of null data, and Magnet AXIOM returns an empty file and an error message.
 
-In NTFS more information about a file's location remain after the file is deleted, so recovering fragmented files is trivial.
+In NTFS more information about a file's location remains after the file is deleted, so recovering fragmented files is trivial.
 All tools we tested are able to handle fragmentation in NTFS with no issues.
 
 
 \paragraph{Recovering Overwritten Files}
-We observe that when a deleted file is overwritten by an active file, most tools still attempt to recover the overwritten part as though it was part of the original file, failing core feature 4.
-The only tool to consistently meet core feature 4 in these cases is FTK Imager, which only recovers data from before the overwritten part.
-TestDisk also does this for FAT case 5 only, otherwise behaving like the other tools.
+We observe that when a deleted file is overwritten by an active file, most tools still attempt to recover the overwritten part as though it was part of the original file, failing DFR-CR-04.
+The only tool to consistently meet DFR-CR-04 in these cases is FTK Imager, which only recovers data from before the overwritten part.
+TestDisk also does this for FAT overwrite2 only, otherwise behaving like the other tools.
 In FAT, Autopsy only recovers the first cluster of an overwritted file, regardless of what part was overwritten.
 In NTFS, it gives the same results as other tools.
-For FAT cases 4 and 5, Magnet AXIOM recovers up to the end overwritten sections, but no further.
+For FAT overwrite1 and overwrite2, Magnet AXIOM recovers up to the end overwritten sections, but no further.
 This is a bit strange as it suggests Magnet AXIOM can detect overwriting, but still returns the overwritten part.
 For other cases it behaves like the other tools.
 
 When a deleted file is overwitten by another deleted file, even FTK acts as though the overwritten part belongs to the original file.
 This suggests that the tools which can detect overwriting do so based on the allocation status of each data block; other than that, they only consider the metadata of the file being recovered, not the files around it.
 
-\begin{paraphrase}
-\paragraph{Abnormal Results}
-A few results stand out as unusual.
-These are cases for which it is difficult to infer from the recovered object what approach a tool is using.
+\paragraph{Miscellaneous}
+Several FAT test cases (overwrite2, combo1, disorder1, disorder2, and disorder3) cause Autopsy to return a 1.5 KiB file containign null data.
+This is particularly odd because a FAT cluster is 2 KiB; making these the only recovered objects not divisible into clusters.
+Given the odd size and contents, we suspect this is some sort of error state rather than an attempted recovered file.
 
-For FAT cases 4ii, 6, 8, 9, and 10, Autopsy returns a 1.5 KiB file of null data.
-1.5 KiB is equivalent to 3 sectors, while a FAT cluster in our cases is defined as 4 sectors (2 KiB).
-
-TestDisk fails to identify a file for NTFS cases 4iii and 4iv only. 
-These are the only test cases in which a tool does not fulfill core feature 1.
-
-For FAT cases 4i and 4ii, Magnet AXIOM does not recover the entire length of the deleted file, but it also does not exclude the overwritten sections. 
-In both cases, it recovers up to the end of the overwritten sections, rather than up to the beginning like FTK does.
-\end{paraphrase}
+TestDisk does not identify any deleted file in NTFS overwrite3.
+While the deleted file's data is entirely overwritten in this case, information about the file is still present in metadata.
+Since this only happens in NTFS and not FAT, meaning the precice location of the deleted file is still available, it is possible that TestDisk is able to detect the fact that the file has been overwritten, and simply ignores it.
+Even if this is the case, the file information is still available in metadata, so the for TestDisk to meet DFR-CR-01, it must identify the file regardless of whether it can be recovered.
 
 
 \subsection{Carving-Based Tools}
@@ -333,11 +325,11 @@ For metadata-based tools this is fairly simple; the deleted files in our tests a
 However, text files lack a standard header and footer and thus cannot be recovered with file carving, so the test images use more complicated formats such as JPG.
 As a result, it would be impractical to evaluate a tool based on the carved files alone.
 
-Fortunately, all four of the carving tools we evaluated produce an itemized report of carving results. CFTT provides detailed information about the contents of the test images, so we can compare the tools' reports with the true arrangement of files in each image. This is particularly important for core feature 1, core feature 2, and core feature 3 since they are concerned with the specific data blocks the tool carves. PhotoRec's report gives a start and end address for each file, and multiple start and end addresses if it attempts to carve a fragmented file. The other tools' reports only list the starting address and size of each file, so we assumed they never attempt to carve more than one fragment per file.
+Fortunately, all four of the carving tools we evaluated produce an itemized report of carving results. CFTT provides detailed information about the contents of the test images, so we can compare the tools' reports with the true arrangement of files in each image. This is particularly important for FC-CR-01, FC-CR-02, and FC-CR-03 since they are concerned with the specific data blocks the tool carves. PhotoRec's report gives a start and end address for each file, and multiple start and end addresses if it attempts to carve a fragmented file. The other tools' reports only list the starting address and size of each file, so we assumed they never attempt to carve more than one fragment per file.
 
-Checking core feature 4 is slightly complicated by the fact that carving tools cannot recover the filename, but we can use the first sector listed for each file in the carving report to match them with the original files and check the file extensions.
+Checking FC-CR-04 is slightly complicated by the fact that carving tools cannot recover the filename, but we can use the first sector listed for each file in the carving report to match them with the original files and check the file extensions.
 
-For core feature 5, we make use of the \emph{identify} command from the ImageMagick~\cite{imagemagick} tool suite. Upon input of a graphical file, identify will output the file format and other information. Relevant to core feature 5 is that the return code will indicate whether the file is valid or corrupt. We add the \emph{-regard-warnings} flag so an error or warning while parsing the file will mean the file is considerd corrupt.
+For FC-CR-05, we make use of the \emph{identify} command from the ImageMagick~\cite{imagemagick} tool suite. Upon input of a graphical file, identify will output the file format and other information. Relevant to FC-CR-05 is that the return code will indicate whether the file is valid or corrupt. We add the \emph{-regard-warnings} flag so an error or warning while parsing the file will mean the file is considerd corrupt.
 
 \subsubsection{Results}
 
