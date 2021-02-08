@@ -162,7 +162,7 @@ This allocation algorithm takes a more proactive approach to reducing fragmentat
 
 \subsubsection{Recovering Files}
 \begin{paraphrase}
- We selected five popular DFR tools for testing: Autopsy~\cite{autopsy}, Recuva~\cite{recuva}, FTK Imager~\cite{ftk}, TestDisk~\cite{testdisk}, and Magnet AXIOM~\cite{axiom}. 
+ We selected five popular DFR tools for testing: Autopsy~\cite{autopsy}, Recuva~\cite{recuva}, FTK Imager~\cite{ftk}, TestDisk~\cite{testdisk}, and Magnet AXIOM~\cite{axiom_meta}. 
 Note that Autopsy uses a set of DF tools known as The Sleuth Kit (TSK) for metadata-based recovery, so TSK is also implicitly covered by this study. 
 These tools were chosen based on popularity and availability.
 
@@ -311,7 +311,8 @@ Following are summaries of each CFTT test image:
 
 \subsubsection{Recovering Files}
 
- We selected four popular file carving tools for testing: PhotoRec~\cite{photorec}, Foremost~\cite{foremost}, Scalpel~\cite{scalpel}, and Magnet AXIOM~\cite{axiom}.
+We selected four popular file carving tools for testing: PhotoRec~\cite{photorec}, Foremost~\cite{foremost}, Scalpel~\cite{scalpel}, and Magnet AXIOM~\cite{axiom_carve}.
+Note that since tests were run at different times, the version of Magnet AXIOM used for carving tests is newer than the version used for metadata-based tests.
 
 The settings we used when testing each tool are as follows:
 For PhotoRec and Foremost, we used the default settings.
