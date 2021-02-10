@@ -354,8 +354,57 @@ For FC-CR-05, we make use of the \emph{identify} command from the ImageMagick~\c
         \subcaption{Magnet AXIOM}
     \end{subfigure}
         
-    \caption{\TODO{working version of carving results}}
+    \caption{
+    Results from testing file carving tools. 
+    Each row represents a test case, and each column represents a core feature. 
+    Since each test image contains many files, we score a tool's compliance with the NIST guidelines by determining the percentage of files for which each core feature is met.
+    In each case, scores are given in both fractional and percent form.
+    %For details on how the numbers are determined, see the explanation of core features in Section~\ref{sec:carving_features}.
+    }
     \label{fig:results_carve}
 \end{figure}
+
+% CR1: hit rate, hits/source files
+% CR2: in-bounds/carved, trivial
+% CR3: one-source/carved, often still a valid file
+% CR4: hits identified correctly/hits, trivial
+% CR5: valid/carved, 
+
+%Results for file carving tools can be seen in Figure~\ref{fig:results_carve}.
+
+For FC-CR-01, Scalpel and Magnet AXIOM score between 60\% and 70\% for all test cases, Foremost scores between 37\% and 63\%, and PhotoRec ranges from a perfect score to as low as 17\% depending on the test case.
+A high score on this core feature means a tool detects most of the original deleted files in a given test case, in other words, it has a high ``hit rate.''
+
+All tools perfectly fulfil FC-CR-02, meaning they never try to carve data from outside the drive or partition given as input.
+
+For FC-CR-03, each tool achieves high scores on some test cases and low score on others.
+A high score on this core feature means most of the files a tool recovers contain data from only one other source.
+Note that carving from multiple sources may still result in a valid file, such as in Figure~\ref{fig:CR3_fail}.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \includegraphics[width=\linewidth]{fig/iris-lavender.jpg}
+        \subcaption{Original}
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth}
+        \includegraphics[width=\linewidth]{fig/CR3_fail.png}
+        \subcaption{Carved}
+    \end{subfigure}
+    \caption{
+        \emph{iris-lavender.bmp} from the \emph{disorder} test case, as carved by PhotoRec.
+        By cross-referencing NIST CFTT's map of the test image with PhotoRec's report file, we find  that the carved file is actually composed of data from 3 files: \emph{iris-lavender.bmp}, \emph{iris-yellow.bmp}, and \emph{smoked-chicken.bmp}.
+        In this case, PhotoRec fails to meet CF-CF-03, despite outputing a valid BMP image.
+        }
+\end{figure}
+
+All tools perfectly fulfil CF-CR-04, meaning every carved file that represents a ``hit,'' is given the same file extension as its corresponding original file.
+We limit this only to ``hits,'' excluding false positives, to avoid overlapping with CF-CR-05.
+
+For CF-CR-05, PhotoRec generally scores very high, Foremost and Magnet AXIOM get high scores for some test cases and low scores for others, and Scalpel scores very low for all test cases.
+A high score on this core feature means most of the files a tool carves are valid files of some image format and can be properly parsed as that format (we test with the \emph{identify} tool from ImageMagick).
+This may imply the tool checks carved files for validity before outputting them.
+Note that identify throws a warning for six of the TIF files used to create CFTT's test images, so we ignore the warning for carved versions of those six files.
+
 
 \TODO{TODO} 

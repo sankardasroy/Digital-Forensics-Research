@@ -130,7 +130,7 @@ from the first sector originally allocated to the deleted file. For NTFS file sy
 
 \end{paraphrase}
 
-\subsubsection{For File Carving}
+\subsubsection{For File Carving} \label{sec:carving_features}
 
 \begin{paraphrase}
  The NIST guidelines~\cite{carving_standards} list five \emph{core features} upon which file carving DFR tools are to be judged.
@@ -140,6 +140,7 @@ Following is the text of each core feature as well as our interpretation of each
  \item[\textbf{FC-CR-01}] ``The tool shall return one carved file for each supported file header signature from a source file that is present in the search arena''.~\cite{carving_standards}
  
  Each file from the original disk will begin with a header signature specific to its file format. We consider a tool as passing this guideline if it carves a file starting at each of those header signatures.
+ In other words, tools that perform well on this core feature have a high ``hit rate.''
  
  \item[\textbf{FC-CR-02}] ``A carved file shall only contain data blocks from the search arena''.~\cite{carving_standards}
  

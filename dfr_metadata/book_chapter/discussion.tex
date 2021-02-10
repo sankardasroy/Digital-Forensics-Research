@@ -36,11 +36,18 @@ Interestingly, Autopsy and Magnet AXIOM fail to recover anything at all, with Au
 \subsubsection{RQ3}
 
 \TODO{TODO}
+% PhotoRec gets only full pass
 
 \subsubsection{RQ4}
 
 \TODO{TODO}
-
+% Foremost and Magnet AXIOM don't find any TIFs, TODO does Magnet AXIOM support TIF carving?
+% Tools that carve a lot of files (scalpel) do bad on CR5, reference discussion
+% PhotoRec is really bad with out-of-order carving
+% PhotoRec has excellent error checking, almost only carves valid files
+% PhotoRec has a harder time with empty speace than adjacent files, only tool to have different results between basic and nofill
+% Simple cases are easy, fragmentation and overwriting are harder
+% Disorder seems to be the hardest case, this makes sense
 
 % \subsection{Hybrid Tools} probably just cover this in the approach section
 
@@ -147,3 +154,4 @@ Our evaluation of metadata-based tools was limited in scope to just the FAT and 
 As investigators need to be able to recover evidence from Linux or MacOS devices, futrure work could evaluate metadata-based tools on ext4, HFS, and other common file systems.
 It is common for files to be embedded within other files, for example thumbnails in some graphical formats.
 Future work could test the ability of file carving tools to recover these files, and interpret and critique the NIST guidelines in the context of embedded files.
+Future work could also extend our investigation of file carving tools beyond just graphical file formats, such as to video or document file formats, which may be equally valuable to an investigation.
