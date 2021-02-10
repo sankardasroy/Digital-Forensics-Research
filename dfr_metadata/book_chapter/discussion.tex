@@ -35,8 +35,36 @@ Interestingly, Autopsy and Magnet AXIOM fail to recover anything at all, with Au
 
 \subsubsection{RQ3}
 
-\TODO{TODO}
-% PhotoRec gets only full pass
+\begin{paraphrase}
+Do the popular file carving tools meet the NIST CFTT expectation? 
+If not, which tool meets which part of the expectation?
+\end{paraphrase}
+
+In most cases, the tools do not fully meet the NIST CFTT expectation; however, they often come close.
+All tools meet FC-CR-02 and FC-CR-04 in all cases.
+
+The only case in which a tool fully meets all five core features is PhotoRec on the \emph{nofill} test case.
+PhotoRec has by far the best scores for FC-CR-05 and comes close to fully meeting it.
+However, it is inconsistent on FC-CR-01 and FC-CR-03.
+
+Foremost gets inconsistent scores on FC-CR-03, but seems to outperform the other tools on this core feature.
+Its results on FC-CR-01 mostly mirror PhotoRec's, but are generally lower.
+On FC-CR-05, it is inconsistent.
+
+Scalpel consistently recovers at least two thirds of the deleted files, tying with Magnet AXIOM for best average performance on FC-CR-01.
+However, it generally performs very poorly on FC-CR-03 and FC-CR-05, though this may be an unfair consequence of our interpretation of the NIST guidelines.
+This is discussed in more detail in Section~\ref{sec:false_pos}.
+
+Magnet AXIOM performs about the same as Scalpel on FC-CR-01, consistantly carving over two thirds of the deleted files.
+Its performance on FC-CR-03 is inconsistent in a similar way to Scalpel's, but with higher scores.
+Its performance on FC-CR-05 is inconsistent in a similar way to Foremost, but with mostly higher scores.
+
+Based on our evaluation, no one tool consistantly outperforms the others.
+Each tool meets some core features very well, and struggles with the rest.
+Thus, knowledge and understanding of these trade-offs is important when selecting a file carving tool.
+
+
+
 
 \subsubsection{RQ4}
 
@@ -98,7 +126,7 @@ However, that philosophy should be clarified in the guidelines document to avoid
 
 
 % Carving
-\subsubsection{False-Positives from File Carving}
+\subsubsection{False-Positives from File Carving} \label{sec:false_pos}
 % What to do about additional files? It's clear for CR1, but not for the others.
 
 Core features 2-5 for file carving tools establish requirements for each ``carved file.''
