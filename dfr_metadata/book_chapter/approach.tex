@@ -317,7 +317,7 @@ Note that since tests were run at different times, the version of Magnet AXIOM u
 The settings we used when testing each tool are as follows:
 For PhotoRec and Foremost, we used the default settings.
 For Scalpel, we manually enabled recovery of the JPG, PNG, GIF, BMP, and TIF formats, and otherwise used default settings.
-For Magnet Axiom, we ran a ``full scan'' with default settings in AXIOM Process and exported all graphical files from ``Artifact View'' in AXIOM Examine.
+For Magnet Axiom, we ran a ``sector-level scan'' with default settings in AXIOM Process and exported all graphical files from ``Artifact View'' in AXIOM Examine.
 We also exported an XML carving report from Axiom Examine as unlike the other tools it does not create one automatically.
 
 \subsubsection{Evaluating Results}
@@ -396,6 +396,7 @@ Note that carving from multiple sources may still result in a valid file, such a
         By cross-referencing NIST CFTT's map of the test image with PhotoRec's report file, we find  that the carved file is actually composed of data from 3 files: \emph{iris-lavender.bmp}, \emph{iris-yellow.bmp}, and \emph{smoked-chicken.bmp}.
         In this case, PhotoRec fails to meet CF-CF-03, despite outputing a valid BMP image.
         }
+    \label{fig:CR3_fail}
 \end{figure}
 
 All tools perfectly fulfil CF-CR-04, meaning every carved file that represents a ``hit,'' is given the same file extension as its corresponding original file.
