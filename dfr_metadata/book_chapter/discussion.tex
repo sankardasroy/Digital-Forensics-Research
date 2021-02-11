@@ -55,11 +55,11 @@ Scalpel consistently recovers at least two thirds of the deleted files, tying wi
 However, it generally performs very poorly on FC-CR-03 and FC-CR-05, though this may be an unfair consequence of our interpretation of the NIST guidelines.
 This is discussed in more detail in Section~\ref{sec:false_pos}.
 
-Magnet AXIOM performs about the same as Scalpel on FC-CR-01, consistantly carving over two thirds of the deleted files.
+Magnet AXIOM performs about the same as Scalpel on FC-CR-01, consistently carving over two thirds of the deleted files.
 Its performance on FC-CR-03 is inconsistent in a similar way to Scalpel's, but with higher scores.
 Its performance on FC-CR-05 is inconsistent in a similar way to Foremost, but with mostly higher scores.
 
-Based on our evaluation, no one tool consistantly outperforms the others.
+Based on our evaluation, no one tool consistently outperforms the others.
 Each tool meets some core features very well, and struggles with the rest.
 Thus, knowledge and understanding of these trade-offs is important when selecting a file carving tool.
 
@@ -74,7 +74,7 @@ What factors make the file carving tools fail or succeed?
 
 As with metadata-based recovery, the main factors which cause tools to fail are fragmentation and missing data (such as from overwriting).
 All tools perform reasonable well on the \emph{basic} and \emph{nofill} cases.
-Since these have only complete, contigous files, they are expected to be easy.
+Since these have only complete, contiguous files, they are expected to be easy.
 The \emph{simple-frag}, \emph{braid}, and \emph{disorder} cases introduce variations on fragmentation.
 Interestingly, almost all tools perform better on braid than on simple-frag.
 This makes sense as the files in braid are fragmented around other files, with no space in between, while the files in simple-frag have empty space between the fragments.
@@ -86,11 +86,11 @@ The \emph{partials} case introduces missing file data; in this case the missing 
 This case also seems to be difficult, for the same reasons as simple-frag.
 
 How conservative a tool is about its output has a big impact on its score, particularly for FC-CR-03 and FC-CR-05.
-Some tools output a smaller number of files but generally only valid files, while other tools may get more ``hits'' but also output many false posititives which do not constitute a valid file.
+Some tools output a smaller number of files but generally only valid files, while other tools may get more ``hits'' but also output many false positives which do not constitute a valid file.
 This is the main reason Scalpel performs so poorly on FC-CR-03 and FC-CR-05 despite its fairly high scores on FC-CR-01.
 We believe this represents a flaw in the NIST guidelines, and discuss it in depth in Section~\ref{sec:false_pos}.
 
-One other observation is that Foremost and Magnet AXIOM do not recover any TIF files from any of the test cases, despite both supporting the format.
+One other observation is that Foremost and Magnet AXIOM do not recover any TIFF files from any of the test cases, despite both supporting the format.
 \TODO{Does Magnet AXIOM support it?}
 
 
@@ -203,7 +203,7 @@ It~\cite{prasanthi2016} also includes a variety of DF tools besides DFR tools.
 In addition to the four core features, there are several optional features listed in the NIST CFTT guidelines for metadata-based DFR tools~\cite{meta:dfr:standards}.
 Future work could extend our methodology to evaluate metadata-based tools on these optional features.
 Our evaluation of metadata-based tools was limited in scope to just the FAT and NTFS file systems, making it somewhat Windows-centric.
-As investigators need to be able to recover evidence from Linux or MacOS devices, futrure work could evaluate metadata-based tools on ext4, HFS, and other common file systems.
+As investigators need to be able to recover evidence from Linux or MacOS devices, future work could evaluate metadata-based tools on ext4, HFS, and other common file systems.
 It is common for files to be embedded within other files, for example thumbnails in some graphical formats.
 Future work could test the ability of file carving tools to recover these files, and interpret and critique the NIST guidelines in the context of embedded files.
 Future work could also extend our investigation of file carving tools beyond just graphical file formats, such as to video or document file formats, which may be equally valuable to an investigation.

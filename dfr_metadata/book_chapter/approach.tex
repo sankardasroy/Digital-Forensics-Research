@@ -15,7 +15,7 @@ A high-level illustration of our methodology can be seen in Figure~\ref{fig:over
     \includegraphics[width=\linewidth]{fig/overview.pdf}
     \caption{
         A read-only \emph{disk image}, a file which contains the raw data of a file system, is obtained for each test case.
-        For metatada-based test cases, we create a file system on an external drive and delete files from it, then save it as a disk image.
+        For metadata-based test cases, we create a file system on an external drive and delete files from it, then save it as a disk image.
         For file carving test cases, we use a set of disk images prepared by NIST CFTT.
         In either case disk image is input to a DFR tool, whose output is checked for compliance with the NIST guidelines for metadata-based DFR or file carving, depending on the tool.
     }
@@ -37,7 +37,7 @@ We take this to mean that any interaction with the file system must be through a
 We are not allowed to edit the file system directly, as ``files and file system metadata that is specifically corrupted, modified, or otherwise manipulated to appear deleted''~\cite{meta:dfr:standards} are explicitly out of scope.
 
 Within these constraints, we can induce two phenomena which make file recovery more challenging: fragmentation and overwriting.
-Following the afforementioned goal of making our tests atomic, all our test cases (besides the first trivial case) use fragmented and/or overwritten files as building blocks.
+Following the aforementioned goal of making our tests atomic, all our test cases (besides the first trivial case) use fragmented and/or overwritten files as building blocks.
 As such, our test cases fall into five general categories:
 {\bf(a)} no fragmentation or overwriting, 
 {\bf (b)} only fragmentation,
@@ -124,7 +124,7 @@ We do not exclude any test cases when using FAT.
 \subsubsection{Creating Test Images}
 
 We create the test cases on a 32 GB flash drive, using 4 MiB partitions for FAT cases and 6 MiB partitions for NTFS cases.
-For each case, it is important to start by writing over the partition with zeroes, ensuring the image is easily reproduceable.
+For each case, it is important to start by writing over the partition with zeroes, ensuring the image is easily reproducible.
 Next, a file system should be written to the partition, and files should be written to it and deleted until the file system matches one of the planned test cases.
 We used text files, each containing a single repeated letter (e.g., ``aa1M'' is a text file containing 1 MiB of the letter `a')
 Note that text files cannot be recovered with file carving, so this choice forces tools which combine both DFR methods to rely solely on metadata-based recovery.
@@ -148,7 +148,7 @@ Thankfully, Linux and Windows both provide a \emph{sync} system call, which caus
 Calling sync before each file deletion resolves the issue; alternatively, unmounting the file system triggers similar behavior.
 
 % Learning and using the allocation algorithms
-Since most of the test images involve manipulating file data into certain arrangments, it is also helpful to have some understanding of allocation algorithms.
+Since most of the test images involve manipulating file data into certain arrangements, it is also helpful to have some understanding of allocation algorithms.
 Allocation algorithm refers to the steps the operating system takes to decide where on the disk to write new data.
 Generally, the operating system wants to limit fragmentation, as contiguous files are more efficient to read and write to.
 Common allocation algorithms like ``first available,'' ``next available,'' and ``best fit'' will place files according to that general principle, but use differing strategies to do so.
@@ -200,7 +200,7 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
         
-    \caption{Test results on metadata-based DFR tools using FAT-formatted test images. Each row corresponds to a test image and each collumn corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
+    \caption{Test results on metadata-based DFR tools using FAT-formatted test images. Each row corresponds to a test image and each column corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
     \label{fig:results_fat}
 \end{figure}
 
@@ -228,7 +228,7 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
         
-    \caption{Test results on metadata-based DFR tools using NTFS-formatted test images. Each row corresponds to a test image and each collumn corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
+    \caption{Test results on metadata-based DFR tools using NTFS-formatted test images. Each row corresponds to a test image and each column corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
     \label{fig:results_ntfs}
 \end{figure}
 
@@ -254,9 +254,9 @@ Recuva and Magnet AXIOM seem to take this approach.
 The second strategy is to still recover the full length of the file, but only from unallocated space.
 So, any active files will be skipped over.
 Autopsy, FTK, and TestDisk seem to take this approach.
-This is most easily observed in FAT fragment1; Autopsy, FTK, and TestDisk will skip over file B to recover all of file A, while Recuva and Magnet AXIOM will recover the first fragment of file A along with the active file B.
+This is most easily observed in FAT fragments1; Autopsy, FTK, and TestDisk will skip over file B to recover all of file A, while Recuva and Magnet AXIOM will recover the first fragment of file A along with the active file B.
 This is why Recuva and Magnet AXIOM fail DFR-CR-04 for that case.
-However, when a file is fragmented around another deleted file, like in FAT fragment2, all tools take the first approach and erroneously return file B as part of file A.
+However, when a file is fragmented around another deleted file, like in FAT fragments2, all tools take the first approach and erroneously return file B as part of file A.
 All tools seem to struggle with out-of-order fragmentation.
 When the first fragment is at the very end of the file system, Recuva, FTK, and TestDisk only recover the first fragment, Autopsy returns a small amount of null data, and Magnet AXIOM returns an empty file and an error message.
 
@@ -268,23 +268,23 @@ All tools we tested are able to handle fragmentation in NTFS with no issues.
 We observe that when a deleted file is overwritten by an active file, most tools still attempt to recover the overwritten part as though it was part of the original file, failing DFR-CR-04.
 The only tool to consistently meet DFR-CR-04 in these cases is FTK Imager, which only recovers data from before the overwritten part.
 TestDisk also does this for FAT overwrite2 only, otherwise behaving like the other tools.
-In FAT, Autopsy only recovers the first cluster of an overwritted file, regardless of what part was overwritten.
+In FAT, Autopsy only recovers the first cluster of an overwritten file, regardless of what part was overwritten.
 In NTFS, it gives the same results as other tools.
 For FAT overwrite1 and overwrite2, Magnet AXIOM recovers up to the end overwritten sections, but no further.
 This is a bit strange as it suggests Magnet AXIOM can detect overwriting, but still returns the overwritten part.
 For other cases it behaves like the other tools.
 
-When a deleted file is overwitten by another deleted file, even FTK acts as though the overwritten part belongs to the original file.
+When a deleted file is overwritten by another deleted file, even FTK acts as though the overwritten part belongs to the original file.
 This suggests that the tools which can detect overwriting do so based on the allocation status of each data block; other than that, they only consider the metadata of the file being recovered, not the files around it.
 
 \paragraph{Miscellaneous}
-Several FAT test cases (overwrite2, combo1, disorder1, disorder2, and disorder3) cause Autopsy to return a 1.5 KiB file containign null data.
+Several FAT test cases (overwrite2, combo1, disorder1, disorder2, and disorder3) cause Autopsy to return a 1.5 KiB file containing null data.
 This is particularly odd because a FAT cluster is 2 KiB; making these the only recovered objects not divisible into clusters.
 Given the odd size and contents, we suspect this is some sort of error state rather than an attempted recovered file.
 
 TestDisk does not identify any deleted file in NTFS overwrite3.
 While the deleted file's data is entirely overwritten in this case, information about the file is still present in metadata.
-Since this only happens in NTFS and not FAT, meaning the precice location of the deleted file is still available, it is possible that TestDisk is able to detect the fact that the file has been overwritten, and simply ignores it.
+Since this only happens in NTFS and not FAT, meaning the precise location of the deleted file is still available, it is possible that TestDisk is able to detect the fact that the file has been overwritten, and simply ignores it.
 Even if this is the case, the file information is still available in metadata, so the for TestDisk to meet DFR-CR-01, it must identify the file regardless of whether it can be recovered.
 
 
@@ -292,7 +292,7 @@ Even if this is the case, the file information is still available in metadata, s
 
 \subsubsection{CFTT Test Cases}
 To evaluate the file carving tools, we used six disk images prepared by CFTT\cite{cftt_carving_images}.
-Each of these images contains between 20 and 40 graphical files of the JPG, PNG, GIF, BMP, and TIF formats.
+Each of these images contains between 20 and 40 graphical files of the JPG, PNG, GIF, BMP, and TIFF formats.
 Importantly, the CFTT images do not contain valid file-systems.
 This ensures that a tool which utilizes both DFR methods can be evaluated solely on its file carving ability.
 
@@ -316,7 +316,7 @@ Note that since tests were run at different times, the version of Magnet AXIOM u
 
 The settings we used when testing each tool are as follows:
 For PhotoRec and Foremost, we used the default settings.
-For Scalpel, we manually enabled recovery of the JPG, PNG, GIF, BMP, and TIF formats, and otherwise used default settings.
+For Scalpel, we manually enabled recovery of the JPG, PNG, GIF, BMP, and TIFF formats, and otherwise used default settings.
 For Magnet Axiom, we ran a ``sector-level scan'' with default settings in AXIOM Process and exported all graphical files from ``Artifact View'' in AXIOM Examine.
 We also exported an XML carving report from Axiom Examine as unlike the other tools it does not create one automatically.
 
@@ -330,7 +330,7 @@ Fortunately, all four of the carving tools we evaluated produce an itemized repo
 
 Checking FC-CR-04 is slightly complicated by the fact that carving tools cannot recover the filename, but we can use the first sector listed for each file in the carving report to match them with the original files and check the file extensions.
 
-For FC-CR-05, we make use of the \emph{identify} command from the ImageMagick~\cite{imagemagick} tool suite. Upon input of a graphical file, identify will output the file format and other information. Relevant to FC-CR-05 is that the return code will indicate whether the file is valid or corrupt. We add the \emph{-regard-warnings} flag so an error or warning while parsing the file will mean the file is considerd corrupt.
+For FC-CR-05, we make use of the \emph{identify} command from the ImageMagick~\cite{imagemagick} tool suite. Upon input of a graphical file, identify will output the file format and other information. Relevant to FC-CR-05 is that the return code will indicate whether the file is valid or corrupt. We add the \emph{-regard-warnings} flag so an error or warning while parsing the file will mean the file is considered corrupt.
 
 \subsubsection{Results}
 
@@ -394,7 +394,7 @@ Note that carving from multiple sources may still result in a valid file, such a
     \caption{
         \emph{iris-lavender.bmp} from the \emph{disorder} test case, as carved by PhotoRec.
         By cross-referencing NIST CFTT's map of the test image with PhotoRec's report file, we find  that the carved file is actually composed of data from 3 files: \emph{iris-lavender.bmp}, \emph{iris-yellow.bmp}, and \emph{smoked-chicken.bmp}.
-        In this case, PhotoRec fails to meet CF-CF-03, despite outputing a valid BMP image.
+        In this case, PhotoRec fails to meet CF-CF-03, despite outputting a valid BMP image.
         }
     \label{fig:CR3_fail}
 \end{figure}
@@ -405,4 +405,4 @@ We limit this only to ``hits,'' excluding false positives, to avoid overlapping 
 For CF-CR-05, PhotoRec generally scores very high, Foremost and Magnet AXIOM get high scores for some test cases and low scores for others, and Scalpel scores very low for all test cases.
 A high score on this core feature means most of the files a tool carves are valid files of some image format and can be properly parsed as that format (we test with the \emph{identify} tool from ImageMagick).
 This may imply the tool checks carved files for validity before outputting them.
-Note that identify throws a warning for six of the TIF files used to create CFTT's test images, so we ignore the warning for carved versions of those six files.
+Note that identify throws a warning for six of the TIFF files used to create CFTT's test images, so we ignore the warning for carved versions of those six files.
