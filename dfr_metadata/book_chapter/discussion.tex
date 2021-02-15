@@ -2,36 +2,51 @@
 
 \subsection{Answering Research Questions}
 
+\subsubsection{RQ1}
 \begin{paraphrase}
- \subsubsection{RQ1}
 Do the popular DFR tools meet the NIST CFTT expectation? 
 If not, which tool meets which part of the expectation? 
+\end{paraphrase}
 
-Generally, we found that the DFR tools we tested did not consistently meet the NIST CFTT expectation.
-TestDisk failed to fulfill DFR-CR-01 because it did not identify deleted files in two test cases.
-All tools fulfilled DFR-CR-02, as they produced a recovered object for every deleted file they identified.
-Autopsy and Magnet AXIOM failed to fulfill DFR-CR-03 because in several test cases they did not recover data they had access to.
-All tools failed to fulfill DFR-CR-04 because in many cases they recovered data which was not part of the original file.
+None of the tools consistently meet the NIST CFFT guidlines; however, every tool meets the guidelines in some cases.
+All tools meet DFR-CR-01 except for TestDisk in one case, where it fails to report a deleted file in metadata.
+In that case, the file data is completely overwritten, so the tool may be deliberately choosing to omit the file; however, our interpretation of the guidelines would have it instead return an empty file.
+All tools meet DFR-CR-02 without exception, as they attemt to return something for every deleted file.
+In some FAT cases, Magnet AXIOM and Autopsy do not recover all data indicated by metadata, so they fail DFR-CR-03.
+In many cases, including both filesystems and both tools, the recovered file incorrectly contains data from other files, causing the tool to fail DFR-CR-04.
+Almost all the times a tool fails to meet the guidelines, it is due to this core feature.
 
+\begin{paraphrase}
 \subsubsection{RQ2}
 What factors make the tools fail or succeed?
-
-The most common factor causing tools to fail is when a deleted file has been overwritten.
-Core feature 4 requires that a tool only recover data which was originally a part of the deleted file.
-A tool's success regarding this feature is thus a measure of its restraint.
-The only tool to consistently fulfill DFR-CR-04 is FTK Imager.
-When it detects that a file has been partially or completely overwritten by another file, it omits the deleted sections (and everything after them in FAT).
-However, in cases when the overwriting file has also been deleted, even FTK fails to fulfill this core feature.
-It is worth noting that Autopsy does appear to react to overwritten files; for some cases of overwriting in FAT, it returns only a single cluster, presumably the starting cluster of the deleted file.
-However, since that cluster has been overwritten, Autopsy still fails to fulfill DFR-CR-04 in those cases.
-
-Another factor that causes multiple failures is simulated in FAT cases 8, 9, and 10.
-In FAT, a file can be written starting close to the end of the file system, without enough space to fit contiguously.
-In such cases, the file must be fragmented, and since it is already at the end of the file system, the second fragment will appear closer to the beginning of the file system (this is illustrated in Figure \ref{fig:case14}).
-This scenario could realistically occur when the file system is almost full.
-In these cases, no tool is able to recover the second fragment of the deleted file; however, because FAT fragmentation is unpredictable, we only require them to recover the first fragment.
-Interestingly, Autopsy and Magnet AXIOM fail to recover anything at all, with Autopsy returning a short file of null data, and Magnet AXIOM returning an empty file after displaying an error message.
 \end{paraphrase}
+
+The main factors that cause a metadata-based DFR tool to fail are fragmentated files, and overwritten files.
+As evidenced by the \emph{basic} case, all tools meet the NIST guidelines when neither of those factors are present.
+
+Most FAT tools detect simple fragmentation in FAT, but Recuva and Magnet AXIOM do not, failing DFR-CR-04 for the \emph{fragments1} case.
+When a file is fragmented around another deleted file, all tools fail to detect fragmentation, which means they all fail DFR-CR-04.
+
+Out-of-order fragmentation (the \emph{disorder} cases) in FAT causes all tools to fail to recover the full deleted file, since FAT metadata only provides the location of the first fragment, and it is difficult to detect where the other fragments will be if they are out-of-order.
+Three of the tools still meet DFR-CR-03 by just recovering the first fragment, but Autopsy and Magnet AXIOM only return null data or an empty file, failing DFR-CR-03.
+
+Most times a tool fails to meet the guidelines, it specifically fails to meet DFR-CR-04.
+This occurs most often in the \emph{overwrite} and \emph{combo} cases, which all feature overwritten deleted files.
+In these cases, we expect a tool to not recover anything from the parts of a file that were overwritten, since they now contain a different file's data.
+Thus, tools which are more conservative are more likely to meet this core feature (at the risk of failing to meet DFR-CR-04).
+The only tool to meet DFR-CR-04 for more than half of the test cases is FTK Imager.
+If a deleted file is overwritten by an active file in FAT, FTK Imager returns only up to the point the file was overwritten, then stops.
+If a deleted file is overwritten by an active file in NTFS, FTK Imager recovers all the remaining file data, replacing the overwritten part with null data.
+In either file system, if all accessible file data is overwritten, FTK Imager returns an empty file.
+The only cases where even FTK Imager returns data from the overwriting file are \emph{overwrite4}, \emph{overwrite5}, \emph{overwrite6}, and \emph{combo2}, the cases where the overwriting file has also been deleted.
+These cases are difficult for metadata-based DFR tools in general, as the tools tend to rely on file allocation status to detect overwriting (and fragmentation in FAT).
+
+Autopsy fails to meet DFR-CR-03 for the FAT \emph{overwrite2} and \emph{combo1} cases, in which the start of the deleted file is intact but a later part is overwritten.
+Instead of recovering all the intact data it can, it simply returns a single cluster.
+
+It may be observed that while DFR-CR-03 and DFR-CR-04 account for almost all the failures, a tool only ever fails to meet one of these core features.
+This makes sense as DFR-CR-03 prescribes what a tool should recover at minumum, and DFR-CR-04 prescribes what a tool should not recover.
+Thus, meeting the guidelines requires striking a balance between a conservative recovery strategy and a more aggressive one.
 
 \subsubsection{RQ3}
 
