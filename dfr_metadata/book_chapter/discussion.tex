@@ -109,30 +109,19 @@ One other observation is that Foremost and Magnet AXIOM do not recover any TIFF 
 \TODO{Does Magnet AXIOM support it?}
 
 
-%% Foremost and Magnet AXIOM don't find any TIFs, TODO does Magnet AXIOM support TIF carving?
-%% Tools that carve a lot of files (scalpel) do bad on CR5, reference discussion
-%% PhotoRec is really bad with out-of-order carving
-% PhotoRec has excellent error checking, almost only carves valid files
-%% All tools has a harder time with empty speace than adjacent files, especially PhotoRec
-%% Simple cases are easy, fragmentation and overwriting are harder
-%% Disorder seems to be the hardest case, this makes sense
-
-
 \subsection{Ambiguity in NIST Guidelines}
 % Metadata
 \subsubsection{FAT Fragmentation and Metadata-Based Tools}
-\begin{paraphrase}
-Core feature 3's requirement that a tool recover ``all non-allocated data blocks identified in a residual metadata entry''\cite{meta:dfr:standards} is not well-defined when considering a FAT file system. 
-In FAT, the only relevant metadata left over after file deletion is the address of the first cluster of file data, and the file's length. 
-If the deleted file is fragmented at any point, no evidence remains in the metadata. 
-Therefore, interpreting the wording very closely, a tool is only required to recover the first cluster of a file's data. 
-As this would not be particularly useful, it is unlikely that this was the intended meaning. 
-For these tests we interpret DFR-CR-03 as requiring the first contiguous segment of unallocated clusters starting from the first cluster originally allocated to the deleted file. 
-In other words, if the file is fragmented, the tool must recover at least the first fragment. 
-If a file is partially overwritten, the tool must recover at least the clusters before the overwritten part.
-In essence, the tool is only required to recover data for which it does not have to guess what file the data belongs to.
-However, it should be emphasized this is an assumption and the intent of the standard in this case needs clarification.
-\end{paraphrase}
+
+To fulfill DFR-CR-03, a tool must recover ``all non-allocated data blocks identified in a residual metadata entry''\cite{meta:dfr:standards}.
+However, in the FAT file system, it's debatable exactly how much is identified in metadata.
+Recall that FAT directory entries only store the starting address and the length of a file, and any other information is lost upon file deletion.
+So, for a fragmented deleted file, how much should a tool be expected to recover?
+Reading DFR-CR-03 very close to the letter, one could argue that the only data definitively identified in metadata is the first cluster; after all, the file could be fragmented between the first and second clusters, and there would be no way to tell from its metadata.
+However, this is almost certainly not the intent of the guidelines, as it sets a very low standard for performance.
+Since it is possible to reason about the point of fragmentation based on cluster allocation status and other files' metadata, we interpret DFR-CR-03 to mean tools should at least recover the first fragment of a file.
+Recovering an entire fragmented file would involve guesswork, so we do not require it.
+We suggest that NIST clarify the intent of DFR-CR-03 when filesystem specific details like this make it ambiguous.
 
 \subsubsection{Contradictory Core Features for Metadata-Based Tools}
 \begin{paraphrase}
