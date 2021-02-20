@@ -16,16 +16,16 @@ DF tools that are available in the market come from many vendors, and the govern
 As a standardization initiative of DF tools,  Computer Forensics Tool Testing Program (CFTT)~\cite{cftt:nist} 
 at National Institute of Standards and Technology (NIST) published a list of expectations for these tools. 
 
+In this article, we consider standardization of Deleted File Recovery (DFR)~\cite{meta:dfr:standards} \morecite tools which is a special type of DF tools. 
+Given a storage device such as hard disk or a USB drive, we use a DFR tool to search for and retrieve deleted files.
+DFR tools are widely used in real-life DF investigations. For instance, after capturing a hard disk from a suspect's compuuter a
+DF professional uses a DFR tool to retreive the files that the suspect might have deleted to destroy some important artifacts.
+A retrieved file might add critical evidence to a case. In other words, success or failure of a DFR tool can sway the outcome of a case.
+
+
 
 \begin{paraphrase}
-The focus of this paper is about standardization of one class of DF 
-tools that are for Deleted File Recovery (DFR)~\cite{meta:dfr:standards}. 
-As the name suggests, a DFR tool attempts to retrieve deleted files
-from a file system of a computer. As an example, given a hard disk or a USB drive 
-(which might have been seized from the suspect computer or collected from the crime scene), a 
-forensics professional can use a DFR tool to investigate about (and potentially retrieve) files which 
-a suspect deleted to hide important information. 
-The success or failure of a DFR tool can decide the outcome of a case.  
+
 
 DFR tools are typically classified as one of two varieties, corresponding to two different approaches to file recovery.
 These varieties are \emph{metadata-based} tools and \emph{file carving} tools.
