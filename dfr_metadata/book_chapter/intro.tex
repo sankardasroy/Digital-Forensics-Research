@@ -1,15 +1,14 @@
 \section{Introduction}\label{intro}
 
-
 Nowadays goverment organizations as well as private enterprises encounter cyber-attacks quite frequently.
 After such an attack law enforcement typically conducts a digital forensics (DF) investigation~\cite{df:news} \morecite 
-with the goal of identifying what caused the attack, how it was executed, and who are the potential perpetrators. 
-In addition to cyber-attacks, we encounter many other digital crimes, such as steal of intellectual properties, 
+with the goal of identifying what caused the attack, how it was executed, and who the potential perpetrators are. 
+In addition to cyber-attacks, we encounter many other digital crimes, such as theft of intellectual properties, 
 compromise of private data, and more. To conduct post-mortem analysis of cyber-attacks and digital crimes, forensics professionals
 employ multiple DF tools. 
 
 The success of the investigation depends on the accuracy and overall quality of DF tools.
-Furthermore, as the forensics investigation often culminates with a judicial proceeding in the court of law, integrity of DF tools 
+Furthermore, as the investigation often culminates with a judicial proceeding in the court of law, integrity of DF tools 
 is critical: On one hand, a court may throw out a piece of evidence if it was collected by a DF tool that does not follow the standards, 
 and on the other hand, inaccurate results from a DF tool can cause improper prosecution of an innocent defendant. 
 DF tools that are available in the market come from many vendors, and the government needs to keep an eye on the integrity of these tools. 
@@ -17,30 +16,53 @@ As a standardization initiative of DF tools,  Computer Forensics Tool Testing Pr
 at National Institute of Standards and Technology (NIST) published a list of expectations for these tools. 
 
 In this article, we consider standardization of Deleted File Recovery (DFR)~\cite{meta:dfr:standards} \morecite tools which is a special type of DF tools. 
-Given a storage device such as hard disk or a USB drive, we use a DFR tool to search for and retrieve deleted files.
-DFR tools are widely used in real-life DF investigations. For instance, after capturing a hard disk from a suspect's compuuter a
+Given a storage device, such as hard disk or a USB drive, a DF professional uses a DFR tool to search for and retrieve deleted files.
+DFR tools find widely use in real-life DF investigations. For instance, after capturing a hard disk from a suspect's compuuter a
 DF professional uses a DFR tool to retreive the files that the suspect might have deleted to destroy some important artifacts.
-A retrieved file might add critical evidence to a case. In other words, success or failure of a DFR tool can sway the outcome of a case.
+A retrieved file might add critical evidence to the case in hand. In other words, success or failure of a DFR tool can sway the outcome of a case.
 
-Depending on the working principle, we classify DFR tools into two subtypes: \emph{Metadata-based DFR} tools and \emph{file carving} tools.
+Depending on the working principle of DFR tools, they fall into two subtypes: \emph{Metadata-based DFR} tools and \emph{file carving} tools.
 The first subtype utilizes the file system metadata (if available) to identify (a.k.a. recover) a deleted file. 
 The second subtype (i.e., a file carving tool) does not rely on the file system metadata and instead utilizes target file's 
-header and footer signature for the recovery task. In this article, we independently study both \emph{metadata-based DFR} tools and \emph{file carving} tools.      
+header and footer signature for the recovery task. 
+In this article, we consider both \emph{metadata-based DFR} tools and \emph{file carving} tools, and we evaluate them up to the NIST CFTT expectations.       
 
-\begin{paraphrase}
+Scientific evaluation of a DFR tool is challenging because multiple factors of the given forensics scenario play a role in the tool's success or failure.
+A few such factors are (a) whether the target file is fragmented, (b) whether the target file is (partially) overwritten by another file, 
+(c) presence of other active or deleted files in the storage device (that hosts the files), etc.
+When we compare DFR tools we make sure that these factors are the same to ensure a fair and scientific comparison.
+To evaluate the file carving tools NIST CFTT portal provides a set of test images which are designed considering the above factors.
+We use these test images in our study of file carving tools. 
 
-Our experiments with a popular DF tool suite named Autopsy~\cite{autopsy} 
-show that it does not meet all NIST expectations for DFR. 
-Furthermore, we extensively experimented with other frequently used DFR tools. 
-We compare those tools' performance and compile a comparative analysis, which could help the user choose the right DFR tool. 
+For metadata-based DFR tools, in addition to the aforementioned factors, another factor is type of the file system (e.g. FAT vs. NTFS). 
+Unfortunately, NIST CFTT does not provide any test image for evaluation of metadata-based DFR tools.
+So, for each file system type we ourselves design a set of test images per NIST guidelines, considering each of the above factors independently.
+In particular, \TODO{we designed 13 test images for each of FAT and NTFS}, and we claim that these cover most of the real-life scenarios.
 
-Evaluating the performance of a DFR tool is complex because many elements of a forensics scenario determine 
-the success or failure of the file recovery process. 
-A few such factors are the type of the file system (FAT, NTFS, etc.), presence of other active/deleted 
-files in the file system, fragmentation of a file, a deleted file being overwritten by another file, and so on.
-So, comparison of two DFR tools is scientific only if they are compared while keeping these factors same. 
-Via extensive analysis, we design a set of test file system images (for either of FAT and NTFS) which considers each of the above factors independently. 
-We claim that this list of test cases cover most of the scenarios (except few edge cases) in real-life, and thus claim that our evaluation has broad coverage. 
+
+Via extensive experiments we evaluated multiple frequently used DFR tools\footnote{We have chosen a few tools as the subject of our study, 
+but such choosing does not imply authors' recommendation or endorsement of any particular tool.}, and we find that many tools do not meet one or more NIST expectations.
+We find that a tool correctly retrieves the deleted file in some scenarios whereas it fails in other scenarios. Furthermore, we observe that 
+two tools can perform differently on the same test image. From our experience, whenever posssible, 
+we strive to provide logical explanation of these behaviors. We find that in many cases 
+success or failure of a tool depends on its design principle. 
+For instance, a tool may employ a \emph{strong match policy} to identify a deleted file, which can help help the tool avoid retrieving a \emph{bogus file} 
+whereas the same policy can make the tool miss to retrieve a deleted file. Conversely, employing a \emph{weak match policy} leads to opposite outcomes. 
+ 
+We compare performance of the DFR tools and report a comparative analysis. In our opinion, such comparative analysis is beneficial to the DF tool 
+users as well as to the vendors: It can help the user choose the right DF tool whereas it can help the vendors identify room for improvement and their niche in the market. 
+NIST CFTT publishes reports on DFR tools' performance, but only a subset of DFR tools are covered. 
+We need to expand the coverage as more and more tools come to the market.
+Furthermore, some reports on the CFTT portal are on the outdated version of the DFR tools, which warrants update. 
+For instance, at the time of writing, the reports on Autopsy~\cite{dhs:autopsy} and FTK~\cite{dhs:ftk}, which are two frequently used DF tools, 
+\TODO{came out in 2014, which evaluate an outdated version of these tools}.   
+
+As we have tried to match DFR tools' behavior in many test scenarios with NIST CFTT expectations, we have also got an first-hand experience of applicability 
+of the NIST CFTT guidelines in a practical setting. For instance, we observe that some of the expectations are too high whereas a few others are unreasonable 
+and have room for improvement. We provide critique on applicability of the NIST CFTT guidelines.
+
+\begin{comment}
+
 
 As there are many file systems (e.g., ext4, HFS, etc.) in addition to FAT and NTFS, one might be interested to know why we chose FAT and NTFS for the current work. 
 Because FAT and NTFS are very widely used on external storage devices and devices running Microsoft Windows, respectively,
@@ -48,27 +70,9 @@ real-life forensics investigation often involves these two file systems.
 While we leave other file systems for future study, our current methodology could be 
 extended to other file systems to make a similar study.
 
-The main contributions of the paper are listed as follows:
-\begin{itemize}
-\item We design and build a list of canonical test file system (FAT and NTFS) images to evaluate the DFR tool per NIST guidelines. 
-\item We perform evaluation of frequently-used DFR tools (including free tools as well as proprietary ones)\footnote{As the subject of our evaluation study, 
-we have chosen a few tools or trade names. In no case does such choosing imply recommendation or endorsement by the authors.} on the test images.
-\item For the interesting cases of tools' success or failure, we provide logical explanation.
-\item We provide critique on applicability of some of the NIST guidelines in a practical setting. 
-\end{itemize}
-
-
-The NIST CFTT portal currently publishes reports of only a subset of DFR tools. 
-However, that set needs to be expanded as many new tools come to market and become popular.
-Also, existing DFR tools should be retested to ensure their reliability is consistent 
-as new patches and features come out. 
-Adding new reports to the CFTT website will allow tool developers a 
-chance to continually develop their tools for the better. We will submit our study reports to the CFTT portal.
-At the time of writing, the portal publishes reports for Autopsy~\cite{dhs:autopsy} and FTK~\cite{dhs:ftk}; 
-however, both reports are from 2014 and evaluate now-outdated versions of the software.
 
 As a side benefit, our work leads to a few hands-on lab-modules to be used in digital forensics courses 
 at BGSU, enriching the new DF specialization program in the CS department. We will also make these modules
 publicly available to be used by relevant instructors at other universities.
 
-\end{paraphrase} 
+\end{comment} 
