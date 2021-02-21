@@ -22,15 +22,12 @@ DFR tools are widely used in real-life DF investigations. For instance, after ca
 DF professional uses a DFR tool to retreive the files that the suspect might have deleted to destroy some important artifacts.
 A retrieved file might add critical evidence to a case. In other words, success or failure of a DFR tool can sway the outcome of a case.
 
-
+Depending on the working principle, we can classify DFR tools into two subtypes: \em{Metadata-based DFR} tools and \em{file carving} tools.
+The first subtype utilizes the file system metadata (if available) to identify (a.k.a. recover) a deleted file. 
+The second subtype (i.e., a file carving tool) does not rely on the file system metadata and instead utilizes target file's 
+header and footer signature. In this article, we independently study both \em{Metadata-based DFR} tools and \em{file carving} tools.      
 
 \begin{paraphrase}
-
-
-DFR tools are typically classified as one of two varieties, corresponding to two different approaches to file recovery.
-These varieties are \emph{metadata-based} tools and \emph{file carving} tools.
-The focus of this paper is metadata-based DFR tools, with file carving left for future work.
-In the rest of the paper, unless otherwise mentioned, by \emph{DFR tool} we mean metadata-based DFR tool.
 
 Our experiments with a popular DF tool suite named Autopsy~\cite{autopsy} 
 show that it does not meet all NIST expectations for DFR. 
