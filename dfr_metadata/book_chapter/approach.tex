@@ -99,7 +99,7 @@ Each file is given a unique letter and shading, and the start and end of a fragm
     \label{fig:case5}
 \end{figure}
 
- \begin{figure}[h]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{fig/case8.pdf}
     \caption{overwrite4: File A has been deleted and partially overwritten by file B, which has since been deleted}
@@ -168,44 +168,40 @@ This allocation algorithm takes a more proactive approach to reducing fragmentat
 
 
 \subsubsection{Recovering Files}
-\begin{paraphrase}
- We selected five popular DFR tools for testing: Autopsy~\cite{autopsy}, Recuva~\cite{recuva}, FTK Imager~\cite{ftk}, TestDisk~\cite{testdisk}, and Magnet AXIOM~\cite{axiom_meta}. 
-Note that Autopsy uses a set of DF tools known as The Sleuth Kit (TSK) for metadata-based recovery, so TSK is also implicitly covered by this study. 
-These tools were chosen based on popularity and availability.
 
-The settings we used when testing each tool are as follows:
-For Autopsy, we performed a standard recovery with all ingest modules disabled.
-For Recuva we performed a standard recovery using the free version with default settings.
-For FTK Imager, we performed a standard recovery using the free version with default settings.
-For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
-For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
-\end{paraphrase}
+\TODO{is this changed enough?}
+We chose to test five popular DFR tools: Autopsy~\cite{autopsy}, FTK Imager~\cite{ftk}, Magnet AXIOM~\cite{axiom_meta}, Recuva~\cite{recuva}, and TestDisk~\cite{testdisk}.
+For Autopsy, we performed a standard recovery with ingest modules disabled.
+For FTK Imager, we used the free version and performed a standard recovery with default settings.
+For Magnet AXIOM we used AXIOM Process to perform a ``full scan'', then exported all files accessible from ``Filesystem View'' in AXIOM Examine.
+For Recuva we used the free version to perform a standard recovery with default settings.
+For TestDisk we used ``file undelete'' in ``Advanced Filesystem Utils'' to recover files.
 
 \subsubsection{Results}
 
 \begin{figure}
     \centering
 
-    \begin{subfigure}[t]{0.3\linewidth}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/autopsy_results_fat.pdf}
         \subcaption{Autopsy}
     \end{subfigure}~~
-    \begin{subfigure}[t]{0.3\linewidth}
-        \includegraphics[width=\linewidth]{fig/recuva_results_fat.pdf}
-        \subcaption{Recuva}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.3\linewidth}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results_fat.pdf}
         \subcaption{FTK}
-    \end{subfigure}~~
-    \begin{subfigure}[b]{0.3\linewidth}
-        \includegraphics[width=\linewidth]{fig/testdisk_results_fat.pdf}
-        \subcaption{TestDisk}
-    \end{subfigure}~~
-    \begin{subfigure}[b]{0.3\linewidth}
+    \end{subfigure}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_fat.pdf}
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
+    \begin{subfigure}{0.3\linewidth}
+        \includegraphics[width=\linewidth]{fig/recuva_results_fat.pdf}
+        \subcaption{Recuva}
+    \end{subfigure}~~
+    \begin{subfigure}{0.3\linewidth}
+        \includegraphics[width=\linewidth]{fig/testdisk_results_fat.pdf}
+        \subcaption{TestDisk}
+    \end{subfigure}
         
     \caption{Test results on metadata-based DFR tools using FAT-formatted test images. Each row corresponds to a test image and each column corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
     \label{fig:results_fat}
@@ -219,21 +215,21 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
         \subcaption{Autopsy}
     \end{subfigure}~~
     \begin{subfigure}{0.3\linewidth}
-        \includegraphics[width=\linewidth]{fig/recuva_results_ntfs.pdf}
-        \subcaption{Recuva}
-    \end{subfigure}
-    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results_ntfs.pdf}
         \subcaption{FTK}
-    \end{subfigure}~~
-    \begin{subfigure}{0.3\linewidth}
-        \includegraphics[width=\linewidth]{fig/testdisk_results_ntfs.pdf}
-        \subcaption{TestDisk}
-    \end{subfigure}~~
+    \end{subfigure}
     \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_ntfs.pdf}
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
+    \begin{subfigure}{0.3\linewidth}
+        \includegraphics[width=\linewidth]{fig/recuva_results_ntfs.pdf}
+        \subcaption{Recuva}
+    \end{subfigure}~~
+    \begin{subfigure}{0.3\linewidth}
+        \includegraphics[width=\linewidth]{fig/testdisk_results_ntfs.pdf}
+        \subcaption{TestDisk}
+    \end{subfigure}
         
     \caption{Test results on metadata-based DFR tools using NTFS-formatted test images. Each row corresponds to a test image and each column corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
     \label{fig:results_ntfs}
@@ -323,7 +319,7 @@ Summaries of each CFTT test image are given in Table~\ref{carve_cases}.
 
 \subsubsection{Recovering Files}
 
-We selected four popular file carving tools for testing: PhotoRec~\cite{photorec}, Foremost~\cite{foremost}, Scalpel~\cite{scalpel}, and Magnet AXIOM~\cite{axiom_carve}.
+We chose to test four popular file carving tools: PhotoRec~\cite{photorec}, Foremost~\cite{foremost}, Scalpel~\cite{scalpel}, and Magnet AXIOM~\cite{axiom_carve}.
 Note that since tests were run at different times, the version of Magnet AXIOM used for carving tests is newer than the version used for metadata-based tests.
 
 The settings we used when testing each tool are as follows:
@@ -350,20 +346,20 @@ For FC-CR-05, we make use of the \emph{identify} command from the ImageMagick~\c
     \centering
 
     \begin{subfigure}{\linewidth}
-        \includegraphics[width=\linewidth]{fig/photorec_results_carve.pdf}
-        \subcaption{PhotoRec}
-    \end{subfigure}
-    \begin{subfigure}{\linewidth}
         \includegraphics[width=\linewidth]{fig/foremost_results_carve.pdf}
         \subcaption{Foremost}
     \end{subfigure}
     \begin{subfigure}{\linewidth}
-        \includegraphics[width=\linewidth]{fig/scalpel_results_carve.pdf}
-        \subcaption{Scalpel}
-    \end{subfigure}
-    \begin{subfigure}{\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_carve.pdf}
         \subcaption{Magnet AXIOM}
+    \end{subfigure}
+    \begin{subfigure}{\linewidth}
+        \includegraphics[width=\linewidth]{fig/photorec_results_carve.pdf}
+        \subcaption{PhotoRec}
+    \end{subfigure}
+    \begin{subfigure}{\linewidth}
+        \includegraphics[width=\linewidth]{fig/scalpel_results_carve.pdf}
+        \subcaption{Scalpel}
     \end{subfigure}
         
     \caption{
