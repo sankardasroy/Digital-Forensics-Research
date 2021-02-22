@@ -46,78 +46,83 @@ As such, our test cases fall into five general categories:
 and {\bf (e)} fragmentation ``out of order.''
 
 
-Following is a description of each test case.
+Each test case is listed in Table~\ref{meta_cases} along with a brief description.
 We have given each a distinct name in line with the naming scheme for the CFTT file carving test cases.
 A selection of test cases are illustrated, with each column portraying the state of the file system at a point in time. 
 Each file is given a unique letter and shading, and the start and end of a fragmented file are denoted when relevant.
 
-\paragraph{Basic Deleted File}
-\begin{itemize}
-    \item[\textbf{basic:}] Deleted file is contiguous and the only file on the disk
-\end{itemize}
-\paragraph{Deleted File is Fragmented}
-\begin{itemize}
-    \begin{figure}
-        \centering
-        \includegraphics[width=\linewidth]{fig/case2.pdf}
-        \caption{fragments1: File A is fragmented, and has been deleted.}
-        \label{fig:case2}
-    \end{figure}
-    \item[\textbf{fragments1:}] Deleted file is fragmented around an active file (as illustrated in Figure~\ref{fig:case2})
-    \item[\textbf{fragments2:}] Deleted file is fragmented around another deleted file
-\end{itemize}
-\paragraph{Deleted File is Overwritten}
-\begin{itemize}
-    \begin{figure}
-        \centering
-        \includegraphics[width=\linewidth]{fig/case5.pdf}
-        \caption{overwrite1: File A has been deleted and partially overwritten by file B.}
-        \label{fig:case5}
-    \end{figure}
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=\linewidth]{fig/case8.pdf}
-        \caption{overwrite4: File A has been deleted and partially overwritten by file B, which has since been deleted}
-        \label{fig:case8}
-    \end{figure}
-    \item[\textbf{overwrite1:}] Deleted file is overwritten at the front by an active file
-    \item[\textbf{overwrite2:}] Deleted file is overwritten in the middle by an active file (as illustrated in Figure~\ref{fig:case5})
-    \item[\textbf{overwrite3:}] Deleted file is completely overwritten by an active file
-    \item[\textbf{overwrite4:}] Deleted file is overwritten at the front by another deleted file (as illustrated in Figure~\ref{fig:case8})
-    \item[\textbf{overwrite5:}] Deleted file is overwritten in the middle by another deleted file
-    \item[\textbf{overwrite6:}] Deleted file completely overwritten by another deleted file
-\end{itemize}
-\paragraph{Deleted File is Fragmented and Overwritten}
- \begin{itemize}
-     \begin{figure}[h]
-        \centering
-        \includegraphics[width=\linewidth]{fig/case12.pdf}
-        \caption{combo1: File A is fragmented and has been deleted. The second fragment has then been overwritten by file C}
-        \label{fig:case12}
-    \end{figure}
-    \item[\textbf{combo1:}] Deleted file is fragmented around an active file, and the second fragment is overwritten by another active file (as illustrated in Figure~\ref{fig:case12})
-    \item[\textbf{combo2:}] Deleted file is fragmented around an active file, and the second fragment is overwritten by another deleted file
- \end{itemize}
+\begin{table}[ht!]
+\tbl{Metadata-based DFR test cases}
+{\begin{tabular*}{\textwidth}{@{}rp{0.8\linewidth}@{}} \toprule
+\multicolumn{2}{c}{\textbf{Basic Deleted File}} \\ \colrule
+\textbf{basic} & Deleted file is contiguous and the only file on the disk \\
+\colrule
+\multicolumn{2}{c}{\textbf{Deleted File is Fragmented}} \\ \colrule
+\textbf{fragments1} & Deleted file is fragmented around an active file (illustrated in Figure~\ref{fig:case2}) \\
+\textbf{fragments2} & Deleted file is fragmented around another deleted file \\
+\colrule
+\multicolumn{2}{c}{\textbf{Deleted File is Overwritten}} \\ \colrule
+\textbf{overwrite1} & Deleted file is overwritten at the front by an active file \\
+\textbf{overwrite2} & Deleted file is overwritten in the middle by an active file (illustrated in Figure~\ref{fig:case5}) \\
+\textbf{overwrite3} & Deleted file is completely overwritten by an active file \\
+\textbf{overwrite4} & Deleted file is overwritten at the front by another deleted file (illustrated in Figure~\ref{fig:case8}) \\
+\textbf{overwrite5} & Deleted file is overwritten in the middle by another deleted file \\
+\textbf{overwrite6} & Deleted file completely overwritten by another deleted file \\
+\colrule
+\multicolumn{2}{c}{\textbf{Deleted File is Fragmented and Overwritten}} \\ \colrule
+\textbf{combo1} & Deleted file is fragmented around an active file, and the second fragment is overwritten by another active file (illustrated in Figure~\ref{fig:case12}) \\
+\textbf{combo2} & Deleted file is fragmented around an active file, and the second fragment is overwritten by another deleted file \\
+\colrule
+\multicolumn{2}{c}{\textbf{Deleted File is Fragmented Out-of-Order}} \\ \colrule
+\textbf{disorder1} & Deleted file fragmented out-of-order (illustrated in Figure~\ref{fig:case14}) \\
+\textbf{disorder2} & Deleted file fragmented out-of-order with an active file in between the fragments \\
+\textbf{disorder3} & Deleted file fragmented out-of-order with a deleted file in between the fragments \\
+\botrule
+\end{tabular*}}
+\label{meta_cases}
+\end{table}
 
-\paragraph{Deleted File is Fragmented Out-of-Order}
-\begin{itemize}
-    \begin{figure}[h]
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{fig/case2.pdf}
+    \caption{fragments1: File A is fragmented, and has been deleted.}
+    \label{fig:case2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{fig/case5.pdf}
+    \caption{overwrite1: File A has been deleted and partially overwritten by file B.}
+    \label{fig:case5}
+\end{figure}
+
+ \begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{fig/case8.pdf}
+    \caption{overwrite4: File A has been deleted and partially overwritten by file B, which has since been deleted}
+    \label{fig:case8}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{fig/case12.pdf}
+    \caption{combo1: File A is fragmented and has been deleted. The second fragment has then been overwritten by file C}
+    \label{fig:case12}
+\end{figure}
+
+\begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case14.pdf}
         \caption{disorder1: File A is fragmented out-of-order, and has been deleted}
         \label{fig:case14}
-    \end{figure}
-    \item[\textbf{disorder1:}] Deleted file fragmented out-of-order (as illustrated in Figure~\ref{fig:case14})
-    \item[\textbf{disorder2:}] Deleted file fragmented out-of-order with an active file in between the fragments
-    \item[\textbf{disorder3:}] Deleted file fragmented out-of-order with a deleted file in between the fragments
-\end{itemize}
-
+\end{figure}
 
 
 Fragmentation is trivial in NTFS because information about the runs of a file persist after deletion.
-Since this renders Cases 2, 3, 14, 15, and 16 functionally identical, we only test Cases 2 and 3 for NTFS.
-Cases 5 and 9 cannot be created through regular file operations in NTFS, due to NTFS's file allocation behavior.
-Thus, we also exclude Cases 5 and 9 for NTFS.
+Since this renders the \emph{fragments} and \emph{disorder} cases functionally identical, we test only the \emph{fragments} cases for NTFS.
+Cases \emph{overwrite2} and \emph{overwrite5} cannot be created through regular file operations in NTFS, due to NTFS's file allocation behavior.
+Thus, we also exclude \emph{overwrite2} and \emph{overwrite5} for NTFS.
 We do not exclude any test cases when using FAT.
 
 
