@@ -26,10 +26,12 @@ A high-level illustration of our methodology can be seen in Figure~\ref{fig:over
 \subsubsection{Designing Recovery Scenarios}
 
 We begin by designing a set of test cases to simulate common challenges of metadata-based deleted file recovery.
-In order to get the most information possible about each tools' capabilities, we design our test cases to be atomic.
+In order to get the most information possible about each tools' capabilities, we aim to simulate a wide variety of recovery scenarios.
 We first isolate the most basic challenges of file recovery, and create test cases for them.
-Then, we create test cases which combine those basic challenges.
+Ideally, these test cases should represent the most basic ``building blocks'' of file recovery scenarios, which can be used to compose more complex scenarios.
+When appropriate, we also create test cases representing the basic combinations of these simple cases.
 Our intention with this atomic approach is to create test cases that are generalizeable to the majority of recovery scenarios, even the many which we do not explicitly cover.
+If a tool performs well on the ``building blocks'' and their basic combinations, we can predict that it will perform similarly on more complex combinations.
 
 In addition to this philosophy, we must remain within the scope of the NIST guidelines.
 NIST requires test images to be ``created and deleted in a process similar to how an end-user would create and delete files.''~\cite{meta:dfr:standards}
