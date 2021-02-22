@@ -302,16 +302,21 @@ Importantly, the CFTT images do not contain valid file systems.
 This ensures that a tool which utilizes both DFR methods can be evaluated solely on its file carving ability.
 
 Despite the differences between the methods, metadata-based DFR and file carving are complicated by the same two file-system behaviors: fragmentation and overwriting. Thus, the CFTT test cases are somewhat similar to the ones we created for metadata-based DFR; each is built around a specific variation of fragmentation or overwriting of deleted files.
-Following are summaries of each CFTT test image:
-\begin{itemize}
- \item \textbf{basic:} 40 contiguous files, with space in between each file
- \item \textbf{nofill:} 40 contiguous files, with no space in between each file
- \item \textbf{simple-frag:} 40 fragmented files, with space in between each fragment
- \item \textbf{braid:} 10 contiguous files and 10 fragmented files, which are fragmented around each other in an A-B-A-B pattern
- \item \textbf{disorder:} 35 fragmented files, 30 of which are fragmented out-of-order such that the fragment containing the footer comes before the fragment containing the header
- \item \textbf{partials:} 15 complete files, 5 of which are fragmented, and 25 incomplete files where at least one fragment has been overwritten or manually destroyed
+Summaries of each CFTT test image are given in Table~\ref{carve_cases}.
 
-\end{itemize}
+\begin{table}[ht!]
+\tbl{File carving test cases}
+{\begin{tabular*}{\textwidth}{@{}rp{0.8\linewidth}@{}} \toprule
+\textbf{basic} & 40 contiguous files, with space in between each file \\
+\textbf{nofill} & 40 contiguous files, with no space in between each file \\
+\textbf{simple-frag} & 40 fragmented files, with space in between each fragment \\
+\textbf{braid} & 10 contiguous files and 10 fragmented files, which are fragmented around each other in an A-B-A-B pattern \\
+\textbf{disorder} & 35 fragmented files, 30 of which are fragmented out-of-order such that the fragment containing the footer comes before the fragment containing the header \\
+\textbf{partials} & 15 complete files, 5 of which are fragmented, and 25 incomplete files where at least one fragment has been overwritten or manually destroyed \\
+\botrule
+\end{tabular*}}
+\label{carve_cases}
+\end{table}
 
 
 \subsubsection{Recovering Files}
