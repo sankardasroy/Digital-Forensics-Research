@@ -46,11 +46,11 @@ We find that a tool correctly retrieves the deleted file in some scenarios where
 two tools can perform differently on the same test image. From our experience, whenever posssible, 
 we strive to provide logical explanation of these behaviors. We find that in many cases 
 success or failure of a tool depends on its design principle. 
-For instance, a tool may employ a \emph{strong match policy} to identify a deleted file, which can help the tool avoid retrieving a \emph{bogus file} (i.e., a false positive) 
-whereas the same policy can make the tool miss to retrieve a deleted file. Conversely, employing a \emph{weak match policy} leads to opposite outcomes. 
+For instance, a tool may employ a \emph{strong match policy} to identify a deleted file, which can help prevent \emph{false positives} (when a tool retrieves garbage data instead of a real file),
+but this may cause the tool to miss some deleted files. Conversely, employing a \emph{weak match policy} leads to opposite outcomes. 
  
-We compare performance of the DFR tools and report a comparative analysis. In our opinion, such comparative analysis is beneficial to the DF tool 
-users as well as to the vendors: It can help the user choose the right DF tool whereas it can help the vendors identify room for improvement and their niche in the market. 
+We compare performance of the DFR tools and report a comparative analysis. In our opinion, such comparative analysis is beneficial to both DF tool 
+users and vendors: it can help users choose the right DF tool, and it can help vendors identify room for improvement and their niche in the market. 
 NIST CFTT publishes reports on DFR tools' performance, but only a subset of DFR tools are covered. 
 We need to expand the coverage as more and more tools come to the market.
 Furthermore, some reports on the CFTT portal are on the outdated version of the DFR tools, which warrants updating. 

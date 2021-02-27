@@ -26,10 +26,12 @@ A high-level illustration of our methodology can be seen in Figure~\ref{fig:over
 \subsubsection{Designing Recovery Scenarios}
 
 We begin by designing a set of test cases to simulate common challenges of metadata-based deleted file recovery.
-In order to get the most information possible about each tools' capabilities, we design our test cases to be atomic.
+In order to get the most information possible about each tools' capabilities, we aim to simulate a wide variety of recovery scenarios.
 We first isolate the most basic challenges of file recovery, and create test cases for them.
-Then, we create test cases which combine those basic challenges.
+Ideally, these test cases should represent the most basic ``building blocks'' of file recovery scenarios, which can be used to compose more complex scenarios.
+When appropriate, we also create test cases representing the basic combinations of these simple cases.
 Our intention with this atomic approach is to create test cases that are generalizeable to the majority of recovery scenarios, even the many which we do not explicitly cover.
+If a tool performs well on the ``building blocks'' and their basic combinations, we can predict that it will perform similarly on more complex combinations.
 
 In addition to this philosophy, we must remain within the scope of the NIST guidelines.
 NIST requires test images to be ``created and deleted in a process similar to how an end-user would create and delete files.''~\cite{meta:dfr:standards}
@@ -46,78 +48,83 @@ As such, our test cases fall into five general categories:
 and {\bf (e)} fragmentation ``out of order.''
 
 
-Following is a description of each test case.
+Each test case is listed in Table~\ref{meta_cases} along with a brief description.
 We have given each a distinct name in line with the naming scheme for the CFTT file carving test cases.
 A selection of test cases are illustrated, with each column portraying the state of the file system at a point in time. 
 Each file is given a unique letter and shading, and the start and end of a fragmented file are denoted when relevant.
 
-\paragraph{Basic Deleted File}
-\begin{itemize}
-    \item[\textbf{basic:}] Deleted file is contiguous and the only file on the disk
-\end{itemize}
-\paragraph{Deleted File is Fragmented}
-\begin{itemize}
-    \begin{figure}
-        \centering
-        \includegraphics[width=\linewidth]{fig/case2.pdf}
-        \caption{fragments1: File A is fragmented, and has been deleted.}
-        \label{fig:case2}
-    \end{figure}
-    \item[\textbf{fragments1:}] Deleted file is fragmented around an active file (as illustrated in Figure~\ref{fig:case2})
-    \item[\textbf{fragments2:}] Deleted file is fragmented around another deleted file
-\end{itemize}
-\paragraph{Deleted File is Overwritten}
-\begin{itemize}
-    \begin{figure}
-        \centering
-        \includegraphics[width=\linewidth]{fig/case5.pdf}
-        \caption{overwrite1: File A has been deleted and partially overwritten by file B.}
-        \label{fig:case5}
-    \end{figure}
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=\linewidth]{fig/case8.pdf}
-        \caption{overwrite4: File A has been deleted and partially overwritten by file B, which has since been deleted}
-        \label{fig:case8}
-    \end{figure}
-    \item[\textbf{overwrite1:}] Deleted file is overwritten at the front by an active file
-    \item[\textbf{overwrite2:}] Deleted file is overwritten in the middle by an active file (as illustrated in Figure~\ref{fig:case5})
-    \item[\textbf{overwrite3:}] Deleted file is completely overwritten by an active file
-    \item[\textbf{overwrite4:}] Deleted file is overwritten at the front by another deleted file (as illustrated in Figure~\ref{fig:case8})
-    \item[\textbf{overwrite5:}] Deleted file is overwritten in the middle by another deleted file
-    \item[\textbf{overwrite6:}] Deleted file completely overwritten by another deleted file
-\end{itemize}
-\paragraph{Deleted File is Fragmented and Overwritten}
- \begin{itemize}
-     \begin{figure}[h]
-        \centering
-        \includegraphics[width=\linewidth]{fig/case12.pdf}
-        \caption{combo1: File A is fragmented and has been deleted. The second fragment has then been overwritten by file C}
-        \label{fig:case12}
-    \end{figure}
-    \item[\textbf{combo1:}] Deleted file is fragmented around an active file, and the second fragment is overwritten by another active file (as illustrated in Figure~\ref{fig:case12})
-    \item[\textbf{combo2:}] Deleted file is fragmented around an active file, and the second fragment is overwritten by another deleted file
- \end{itemize}
+\begin{table}[ht!]
+\tbl{Metadata-based DFR test cases}
+{\begin{tabular*}{\textwidth}{@{}rp{0.8\linewidth}@{}} \toprule
+\multicolumn{2}{c}{\textbf{Basic Deleted File}} \\ \colrule
+\textbf{basic} & Deleted file is contiguous and the only file on the disk \\
+\colrule
+\multicolumn{2}{c}{\textbf{Deleted File is Fragmented}} \\ \colrule
+\textbf{fragments1} & Deleted file is fragmented around an active file (illustrated in Figure~\ref{fig:case2}) \\
+\textbf{fragments2} & Deleted file is fragmented around another deleted file \\
+\colrule
+\multicolumn{2}{c}{\textbf{Deleted File is Overwritten}} \\ \colrule
+\textbf{overwrite1} & Deleted file is overwritten at the front by an active file \\
+\textbf{overwrite2} & Deleted file is overwritten in the middle by an active file (illustrated in Figure~\ref{fig:case5}) \\
+\textbf{overwrite3} & Deleted file is completely overwritten by an active file \\
+\textbf{overwrite4} & Deleted file is overwritten at the front by another deleted file (illustrated in Figure~\ref{fig:case8}) \\
+\textbf{overwrite5} & Deleted file is overwritten in the middle by another deleted file \\
+\textbf{overwrite6} & Deleted file completely overwritten by another deleted file \\
+\colrule
+\multicolumn{2}{c}{\textbf{Deleted File is Fragmented and Overwritten}} \\ \colrule
+\textbf{combo1} & Deleted file is fragmented around an active file, and the second fragment is overwritten by another active file (illustrated in Figure~\ref{fig:case12}) \\
+\textbf{combo2} & Deleted file is fragmented around an active file, and the second fragment is overwritten by another deleted file \\
+\colrule
+\multicolumn{2}{c}{\textbf{Deleted File is Fragmented Out-of-Order}} \\ \colrule
+\textbf{disorder1} & Deleted file fragmented out-of-order (illustrated in Figure~\ref{fig:case14}) \\
+\textbf{disorder2} & Deleted file fragmented out-of-order with an active file in between the fragments \\
+\textbf{disorder3} & Deleted file fragmented out-of-order with a deleted file in between the fragments \\
+\botrule
+\end{tabular*}}
+\label{meta_cases}
+\end{table}
 
-\paragraph{Deleted File is Fragmented Out-of-Order}
-\begin{itemize}
-    \begin{figure}[h]
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{fig/case2.pdf}
+    \caption{fragments1: File A is fragmented, and has been deleted.}
+    \label{fig:case2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{fig/case5.pdf}
+    \caption{overwrite1: File A has been deleted and partially overwritten by file B.}
+    \label{fig:case5}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{fig/case8.pdf}
+    \caption{overwrite4: File A has been deleted and partially overwritten by file B, which has since been deleted}
+    \label{fig:case8}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{fig/case12.pdf}
+    \caption{combo1: File A is fragmented and has been deleted. The second fragment has then been overwritten by file C}
+    \label{fig:case12}
+\end{figure}
+
+\begin{figure}[h]
         \centering
         \includegraphics[width=\linewidth]{fig/case14.pdf}
         \caption{disorder1: File A is fragmented out-of-order, and has been deleted}
         \label{fig:case14}
-    \end{figure}
-    \item[\textbf{disorder1:}] Deleted file fragmented out-of-order (as illustrated in Figure~\ref{fig:case14})
-    \item[\textbf{disorder2:}] Deleted file fragmented out-of-order with an active file in between the fragments
-    \item[\textbf{disorder3:}] Deleted file fragmented out-of-order with a deleted file in between the fragments
-\end{itemize}
-
+\end{figure}
 
 
 Fragmentation is trivial in NTFS because information about the runs of a file persist after deletion.
-Since this renders Cases 2, 3, 14, 15, and 16 functionally identical, we only test Cases 2 and 3 for NTFS.
-Cases 5 and 9 cannot be created through regular file operations in NTFS, due to NTFS's file allocation behavior.
-Thus, we also exclude Cases 5 and 9 for NTFS.
+Since this renders the \emph{fragments} and \emph{disorder} cases functionally identical, we test only the \emph{fragments} cases for NTFS.
+Cases \emph{overwrite2} and \emph{overwrite5} cannot be created through regular file operations in NTFS, due to NTFS's file allocation behavior.
+Thus, we also exclude \emph{overwrite2} and \emph{overwrite5} for NTFS.
 We do not exclude any test cases when using FAT.
 
 
@@ -161,44 +168,40 @@ This allocation algorithm takes a more proactive approach to reducing fragmentat
 
 
 \subsubsection{Recovering Files}
-\begin{paraphrase}
- We selected five popular DFR tools for testing: Autopsy~\cite{autopsy}, Recuva~\cite{recuva}, FTK Imager~\cite{ftk}, TestDisk~\cite{testdisk}, and Magnet AXIOM~\cite{axiom_meta}. 
-Note that Autopsy uses a set of DF tools known as The Sleuth Kit (TSK) for metadata-based recovery, so TSK is also implicitly covered by this study. 
-These tools were chosen based on popularity and availability.
 
-The settings we used when testing each tool are as follows:
-For Autopsy, we performed a standard recovery with all ingest modules disabled.
-For Recuva we performed a standard recovery using the free version with default settings.
-For FTK Imager, we performed a standard recovery using the free version with default settings.
-For TestDisk we used the ``file undelete'' feature under ``Advanced Filesystem Utils.''
-For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all files accessible in ``Filesystem View'' in AXIOM Examine.
-\end{paraphrase}
+\TODO{is this changed enough?}
+We chose to test five popular DFR tools: Autopsy~\cite{autopsy}, FTK Imager~\cite{ftk}, Magnet AXIOM~\cite{axiom_meta}, Recuva~\cite{recuva}, and TestDisk~\cite{testdisk}.
+For Autopsy, we performed a standard recovery with ingest modules disabled.
+For FTK Imager, we used the free version and performed a standard recovery with default settings.
+For Magnet AXIOM we used AXIOM Process to perform a ``full scan'', then exported all files accessible from ``Filesystem View'' in AXIOM Examine.
+For Recuva we used the free version to perform a standard recovery with default settings.
+For TestDisk we used ``file undelete'' in ``Advanced Filesystem Utils'' to recover files.
 
 \subsubsection{Results}
 
 \begin{figure}
     \centering
 
-    \begin{subfigure}[t]{0.3\linewidth}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/autopsy_results_fat.pdf}
         \subcaption{Autopsy}
     \end{subfigure}~~
-    \begin{subfigure}[t]{0.3\linewidth}
-        \includegraphics[width=\linewidth]{fig/recuva_results_fat.pdf}
-        \subcaption{Recuva}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.3\linewidth}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results_fat.pdf}
         \subcaption{FTK}
-    \end{subfigure}~~
-    \begin{subfigure}[b]{0.3\linewidth}
-        \includegraphics[width=\linewidth]{fig/testdisk_results_fat.pdf}
-        \subcaption{TestDisk}
-    \end{subfigure}~~
-    \begin{subfigure}[b]{0.3\linewidth}
+    \end{subfigure}
+    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_fat.pdf}
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
+    \begin{subfigure}{0.3\linewidth}
+        \includegraphics[width=\linewidth]{fig/recuva_results_fat.pdf}
+        \subcaption{Recuva}
+    \end{subfigure}~~
+    \begin{subfigure}{0.3\linewidth}
+        \includegraphics[width=\linewidth]{fig/testdisk_results_fat.pdf}
+        \subcaption{TestDisk}
+    \end{subfigure}
         
     \caption{Test results on metadata-based DFR tools using FAT-formatted test images. Each row corresponds to a test image and each column corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
     \label{fig:results_fat}
@@ -212,21 +215,21 @@ For Magnet AXIOM we performed a ``full scan'' in AXIOM Process and exported all 
         \subcaption{Autopsy}
     \end{subfigure}~~
     \begin{subfigure}{0.3\linewidth}
-        \includegraphics[width=\linewidth]{fig/recuva_results_ntfs.pdf}
-        \subcaption{Recuva}
-    \end{subfigure}
-    \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/ftk_results_ntfs.pdf}
         \subcaption{FTK}
-    \end{subfigure}~~
-    \begin{subfigure}{0.3\linewidth}
-        \includegraphics[width=\linewidth]{fig/testdisk_results_ntfs.pdf}
-        \subcaption{TestDisk}
-    \end{subfigure}~~
+    \end{subfigure}
     \begin{subfigure}{0.3\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_ntfs.pdf}
         \subcaption{Magnet AXIOM}
     \end{subfigure}~~
+    \begin{subfigure}{0.3\linewidth}
+        \includegraphics[width=\linewidth]{fig/recuva_results_ntfs.pdf}
+        \subcaption{Recuva}
+    \end{subfigure}~~
+    \begin{subfigure}{0.3\linewidth}
+        \includegraphics[width=\linewidth]{fig/testdisk_results_ntfs.pdf}
+        \subcaption{TestDisk}
+    \end{subfigure}
         
     \caption{Test results on metadata-based DFR tools using NTFS-formatted test images. Each row corresponds to a test image and each column corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
     \label{fig:results_ntfs}
@@ -297,21 +300,26 @@ Importantly, the CFTT images do not contain valid file systems.
 This ensures that a tool which utilizes both DFR methods can be evaluated solely on its file carving ability.
 
 Despite the differences between the methods, metadata-based DFR and file carving are complicated by the same two file-system behaviors: fragmentation and overwriting. Thus, the CFTT test cases are somewhat similar to the ones we created for metadata-based DFR; each is built around a specific variation of fragmentation or overwriting of deleted files.
-Following are summaries of each CFTT test image:
-\begin{itemize}
- \item \textbf{basic:} 40 contiguous files, with space in between each file
- \item \textbf{nofill:} 40 contiguous files, with no space in between each file
- \item \textbf{simple-frag:} 40 fragmented files, with space in between each fragment
- \item \textbf{braid:} 10 contiguous files and 10 fragmented files, which are fragmented around each other in an A-B-A-B pattern
- \item \textbf{disorder:} 35 fragmented files, 30 of which are fragmented out-of-order such that the fragment containing the footer comes before the fragment containing the header
- \item \textbf{partials:} 15 complete files, 5 of which are fragmented, and 25 incomplete files where at least one fragment has been overwritten or manually destroyed
+Summaries of each CFTT test image are given in Table~\ref{carve_cases}.
 
-\end{itemize}
+\begin{table}[ht!]
+\tbl{File carving test cases}
+{\begin{tabular*}{\textwidth}{@{}rp{0.8\linewidth}@{}} \toprule
+\textbf{basic} & 40 contiguous files, with space in between each file \\
+\textbf{nofill} & 40 contiguous files, with no space in between each file \\
+\textbf{simple-frag} & 40 fragmented files, with space in between each fragment \\
+\textbf{braid} & 10 contiguous files and 10 fragmented files, which are fragmented around each other in an A-B-A-B pattern \\
+\textbf{disorder} & 35 fragmented files, 30 of which are fragmented out-of-order such that the fragment containing the footer comes before the fragment containing the header \\
+\textbf{partials} & 15 complete files, 5 of which are fragmented, and 25 incomplete files where at least one fragment has been overwritten or manually destroyed \\
+\botrule
+\end{tabular*}}
+\label{carve_cases}
+\end{table}
 
 
 \subsubsection{Recovering Files}
 
-We selected four popular file carving tools for testing: PhotoRec~\cite{photorec}, Foremost~\cite{foremost}, Scalpel~\cite{scalpel}, and Magnet AXIOM~\cite{axiom_carve}.
+We chose to test four popular file carving tools: PhotoRec~\cite{photorec}, Foremost~\cite{foremost}, Scalpel~\cite{scalpel}, and Magnet AXIOM~\cite{axiom_carve}.
 Note that since tests were run at different times, the version of Magnet AXIOM used for carving tests is newer than the version used for metadata-based tests.
 
 The settings we used when testing each tool are as follows:
@@ -338,20 +346,20 @@ For FC-CR-05, we make use of the \emph{identify} command from the ImageMagick~\c
     \centering
 
     \begin{subfigure}{\linewidth}
-        \includegraphics[width=\linewidth]{fig/photorec_results_carve.pdf}
-        \subcaption{PhotoRec}
-    \end{subfigure}
-    \begin{subfigure}{\linewidth}
         \includegraphics[width=\linewidth]{fig/foremost_results_carve.pdf}
         \subcaption{Foremost}
     \end{subfigure}
     \begin{subfigure}{\linewidth}
-        \includegraphics[width=\linewidth]{fig/scalpel_results_carve.pdf}
-        \subcaption{Scalpel}
-    \end{subfigure}
-    \begin{subfigure}{\linewidth}
         \includegraphics[width=\linewidth]{fig/axiom_results_carve.pdf}
         \subcaption{Magnet AXIOM}
+    \end{subfigure}
+    \begin{subfigure}{\linewidth}
+        \includegraphics[width=\linewidth]{fig/photorec_results_carve.pdf}
+        \subcaption{PhotoRec}
+    \end{subfigure}
+    \begin{subfigure}{\linewidth}
+        \includegraphics[width=\linewidth]{fig/scalpel_results_carve.pdf}
+        \subcaption{Scalpel}
     \end{subfigure}
         
     \caption{
