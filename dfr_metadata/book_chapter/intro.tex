@@ -37,7 +37,7 @@ We use these test images in our study of file carving tools.
 For metadata-based DFR tools, in addition to the aforementioned factors, another factor is type of the file system (e.g. FAT vs. NTFS). 
 Unfortunately, NIST CFTT does not provide any test image for evaluation of metadata-based DFR tools.
 So, for each file system type we ourselves design a set of test images per NIST guidelines, considering each of the above factors independently.
-In particular, \TODO{we designed 13 test images for each of FAT and NTFS}, and we claim that these cover most of the real-life scenarios.
+In particular, we designed 14 test images for FAT and NTFS, and we claim that these cover most of the real-life scenarios.
 
 
 Via extensive experiments we evaluated multiple frequently used DFR tools\footnote{We have chosen a few tools as the subject of our study, 
@@ -46,20 +46,20 @@ We find that a tool correctly retrieves the deleted file in some scenarios where
 two tools can perform differently on the same test image. From our experience, whenever posssible, 
 we strive to provide logical explanation of these behaviors. We find that in many cases 
 success or failure of a tool depends on its design principle. 
-For instance, a tool may employ a \emph{strong match policy} to identify a deleted file, which can help the tool avoid retrieving a \emph{bogus file} 
+For instance, a tool may employ a \emph{strong match policy} to identify a deleted file, which can help the tool avoid retrieving a \emph{bogus file} (i.e., a false positive) 
 whereas the same policy can make the tool miss to retrieve a deleted file. Conversely, employing a \emph{weak match policy} leads to opposite outcomes. 
  
 We compare performance of the DFR tools and report a comparative analysis. In our opinion, such comparative analysis is beneficial to the DF tool 
 users as well as to the vendors: It can help the user choose the right DF tool whereas it can help the vendors identify room for improvement and their niche in the market. 
 NIST CFTT publishes reports on DFR tools' performance, but only a subset of DFR tools are covered. 
 We need to expand the coverage as more and more tools come to the market.
-Furthermore, some reports on the CFTT portal are on the outdated version of the DFR tools, which warrants update. 
+Furthermore, some reports on the CFTT portal are on the outdated version of the DFR tools, which warrants updating. 
 For instance, at the time of writing, the reports on Autopsy~\cite{dhs:autopsy} and FTK~\cite{dhs:ftk}, which are two frequently used DF tools, 
 \TODO{came out in 2014, which evaluate an outdated version of these tools}.   
 
-As we have tried to match DFR tools' behavior in many test scenarios with NIST CFTT expectations, we have also got an first-hand experience of applicability 
+As we have tried to compare DFR tools' behavior in many test scenarios with NIST CFTT expectations, we have also gotten a first-hand experience of applicability 
 of the NIST CFTT guidelines in a practical setting. For instance, we observe that some of the expectations are too high whereas a few others are unreasonable 
-and have room for improvement. We provide critique on applicability of the NIST CFTT guidelines.
+and have room for clarification or improvement. We provide critique on applicability of the NIST CFTT guidelines.
 
 
 \commentOut{
