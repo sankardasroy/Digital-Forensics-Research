@@ -3,10 +3,7 @@
 \subsection{Answering Research Questions}
 
 \subsubsection{RQ1}
-\begin{paraphrase}
-Do the popular DFR tools meet the NIST CFTT expectation? 
-If not, which tool meets which part of the expectation? 
-\end{paraphrase}
+\emph{How well do our selected metadata-based DFR tools meet each of the NIST CFTT guidelines?}
 
 None of the tools consistently meet the NIST CFFT guidlines; however, every tool meets the guidelines in some cases.
 All tools meet DFR-CR-01 except for TestDisk in one case, where it fails to report a deleted file in metadata.
@@ -16,10 +13,9 @@ In some FAT cases, Magnet AXIOM and Autopsy do not recover all data indicated by
 In many cases, including both filesystems and both tools, the recovered file incorrectly contains data from other files, causing the tool to fail DFR-CR-04.
 Almost all the times a tool fails to meet the guidelines, it is due to this core feature.
 
-\begin{paraphrase}
+
 \subsubsection{RQ2}
-What factors make the tools fail or succeed?
-\end{paraphrase}
+\emph{What conditions influence the success and failure of metadata-based DFR tools?}
 
 The main factors that cause a metadata-based DFR tool to fail are fragmentated files, and overwritten files.
 As evidenced by the \emph{basic} case, all tools meet the NIST guidelines when neither of those factors are present.
@@ -50,10 +46,7 @@ Thus, meeting the guidelines requires striking a balance between a conservative 
 
 \subsubsection{RQ3}
 
-\begin{paraphrase}
-Do the popular file carving tools meet the NIST CFTT expectation? 
-If not, which tool meets which part of the expectation?
-\end{paraphrase}
+\emph{How well do our selected file carving tools meet each of the NIST CFTT guidelines?}
 
 In most cases, the tools do not fully meet the NIST CFTT expectation; however, they often come close.
 All tools meet FC-CR-02 and FC-CR-04 in all cases.
@@ -83,9 +76,7 @@ Thus, knowledge and understanding of these trade-offs is important when selectin
 
 \subsubsection{RQ4}
 
-\begin{paraphrase}
-What factors make the file carving tools fail or succeed?
-\end{paraphrase}
+\emph{What conditions influence the success and failure of file carving tools?}
 
 As with metadata-based recovery, the main factors which cause tools to fail are fragmentation and missing data (such as from overwriting).
 All tools perform reasonable well on the \emph{basic} and \emph{nofill} cases.
@@ -121,35 +112,26 @@ Reading DFR-CR-03 very close to the letter, one could argue that the only data d
 However, this is almost certainly not the intent of the guidelines, as it sets a very low standard for performance.
 Since it is possible to reason about the point of fragmentation based on cluster allocation status and other files' metadata, we interpret DFR-CR-03 to mean tools should at least recover the first fragment of a file.
 Recovering an entire fragmented file would involve guesswork, so we do not require it.
-We suggest that NIST clarify the intent of DFR-CR-03 when filesystem specific details like this make it ambiguous.
 
-\subsubsection{Contradictory Core Features for Metadata-Based Tools}
-\begin{paraphrase}
-When designing test cases, we found situations in which core features 3 and 4 are entirely incompatible. 
-Core feature 3 specifies ``all non-allocated data blocks identified in a residual metadata entry,''\cite{meta:dfr:standards} but that can sometimes still include data from other files. 
-One such situation is when a deleted file is overwritten, and then the overwriting file is also deleted, such as in case 5i (as seen in Figure \ref{fig:case8}).
+NIST's James Lyle, who wrote about the challenges of evaluating DFR tools in 2011, 
+claims that trying to anticipate the details of every major file system would make the guidelines overly complex. 
+Instead, Lyle suggests they be written for `an ideal file system that leaves in 
+residual metadata  all  information  required  to  reconstruct  a  deleted  file''~\cite{lyle2011-ICDF2C}, even if this means sometimes holding a tool to an impossible standard.
+He further justifies this approach by pointing out that whether a feature is impossible or merely absent, the user experience is the same.
+Since the NIST CFTT guidelines seem to have been written with this philosophy in mind, it may not be reasonable to clarify specific edge cases like like the one in this section.
+However, the context of this ``ideal file system'' should be explicitly stated in the guidelines document.
 
-Assuming the file system is NTFS (to avoid the aforementioned ambiguity with DFR-CR-03 and FAT), the residual metadata entry for File A (in this case its Master File Table entry) should list every cluster File A once occupied. 
-All of those clusters are unallocated, so to fulfill DFR-CR-03, the tool must recover them. 
-However, some of those clusters have been overwritten by File B. Core feature 4 requires that a tool only recover ``data blocks from the Deleted Block Pool,''~\cite{meta:dfr:standards} and defines the Deleted Block Pool as all blocks which ``have not been reallocated or reused.''~\cite{meta:dfr:standards}
-Core feature 3 would require tools to recover the clusters reused by File B, while DFR-CR-04 would forbid this. 
-It could be argued that the tool should use File B's metadata to recognize that File B overwrote File A, but this is not always realistic. 
-While the file system stores information such as creation and modification times, this is not ``essential metadata,'' meaning it is not involved in the operation of the file system, so operating systems may implement it inconsistently, or not at all.~\cite{carrier:filesystems}
-Since the time information cannot be counted on to be reliable, there is no way to know for sure which file overwrote which. 
-It is also possible for File B's metadata entry to be overwritten at some point before File A's, in which event there is no way for the tool to know File B even existed.
+\subsubsection{Incompatible Core Features for Metadata-Based Tools}
 
-The standards document acknowledges that the ``potential for corruption [is] inherent with data that is no longer maintained by a file system,''~\cite{meta:dfr:standards} and that the recovered object ``may not completely match the original FS-Object.''~\cite{meta:dfr:standards}
-We propose the standards themselves should be revised to better account for such situations.
-This could mean adding an exception to either the third or fourth core feature, for cases in which data blocks are overwritten and subsequently deallocated.
-
-NIST's James Lyle proposes that rather than deal with the complications involved in accommodating 
-many different file systems, standards should be written for ``an ideal file system that leaves in 
-residual metadata  all  information  required  to  reconstruct  a  deleted  file''~\cite{lyle2011-ICDF2C}. 
-While this can result in tools being held to an impossible standard when using certain file systems, 
-Lyle says that is acceptable because the user experience will be the same regardless of whether a feature is impossible or has merely been left out.
-If the NIST guidelines were created with such an ideal file system in mind, the current standards may be adequate.
-However, that philosophy should be clarified in the guidelines document to avoid confusion.
-\end{paraphrase}
+Under some circumstances, it is impossible for a tool to meet both DFR-CR-03 and DFR-CR-04 at the same time.
+For example, suppose a file ``A'' in NTFS is deleted and overwritten, and the file ``B'' that overwrote it is also deleted.
+In NTFS, the full run of file A is accessible from metadata after deletion, and since file B was also deleted, all the clusters in file A's run are unallocated.
+DFR-CR-03 requires a tool to recover `all non-allocated data blocks identified in a residual metadata entry,''\cite{meta:dfr:standards} so the entire run of file A should be recovered.
+However, this would include data from file B, which is forbidden by DFR-CR-04.
+DFR-CR-04 requires that a recovered file contain only data from the ``deleted block pool,'' which is the set of data blocks from the deleted file which ``have not been reallocated or reused.''\cite{meta:dfr:standards}
+Meeting DFR-CR-03 requires recovering data that was reused for file B, so in this case DFR-CR-03 and DFR-CR-04 are incompatible.
+This situation occurs in the cases \emph{overwrite4}, \emph{overwrite5}, \emph{overwrite6}, and \emph{combo2} for both FAT and NTFS, and in these cases each tool meets DFR-CR-03 but not DFR-CR-04.
+\TODO{Suggestion?}
 
 
 
@@ -157,8 +139,8 @@ However, that philosophy should be clarified in the guidelines document to avoid
 \subsubsection{False-Positives from File Carving} \label{sec:false_pos}
 % What to do about additional files? It's clear for CR1, but not for the others.
 
-Core features 2-5 for file carving tools establish requirements for each ``carved file.''
-The guidelines document defines a carved file as ``A file created by a carving tool purported to be one of the source files present in the search arena.''~\cite{carving_standards}
+All core features for file carving tools besides the first set requirements specifically for all ``carved files.''
+The guidelines document defines a carved file as ``a file created by a carving tool purported to be one of the source files present in the search arena.''~\cite{carving_standards}
 This means even false positives which are not part of one of the original files affect a tools' evaluation on four out of five of the core features.
 We suggest that this results in misleading and less informative results, especially when those results are used to compare different tools.
  
