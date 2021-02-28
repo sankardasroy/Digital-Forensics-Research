@@ -86,7 +86,9 @@ If file $f$ is a small file, then the whole file content as well as the metadata
 inside $f$'s MFT entry; 
 otherwise, $f$'s content is \emph{non-resident} and is stored in other clusters. 
 Figure~\ref{fig:ntfs} illustrates an example where the file bar.txt's content is non-resident, 
-and it has two fragments.
+and it has two fragments. When a file $f$ is deleted in NTFS, 
+the corresponding entry in MFT is flagged as deleted and the corresponding clusters 
+(if any) are flagged as deleted, but the metadata and file content remain intact otherwise.
 Note that NTFS file system does not have specific zones for data area in contrast of 
 FAT having specific area for data and specific area for the FAT table.
 
@@ -101,23 +103,20 @@ FAT having specific area for data and specific area for the FAT table.
  
 
 \subsubsection{Recovering deleted files}\label{subsubsec:meta-recovery}
-\begin{paraphrase}
- The previous discussion implies that in many cases a deleted file's metadata 
-(e.g., directory entry in FAT or MFT entry in NTFS) can be still available, 
-and it is possible to recover the file content using this metadata. 
-This is called metadata-based deleted file recovery.
 
-For instance, in the example of Figure~\ref{fig:fat2},
-we can see from the directory entry of foo.txt that 
-the deleted file starts in cluster 100 and has a size of 101 clusters;
-thus, we can reason that the deleted file content is in cluster 100 to cluster 200.
-We can recover the whole file via reading the raw content of these clusters (e.g., by using dd command in Kali Linux). 
+From the previous discussion we note that in many situations the metadata
+(e.g., directory entry in FAT or MFT entry in NTFS) of the deleted file remains
+unchanged and can be used for identifying and recovering the deleted file.
+As an example, the directory entry of bar.txt in Figure~\ref{fig:fat2} tells us
+that the file's content starts from cluster $200$, 
+and using the \emph{size} field value (e.g., $5$) we can infer that the file's content
+is hosted in the cluster chain from cluster $200$ to cluster $204$, assuming that there is no
+fragmentation. We can recover the file via reading the raw content of these $5$ clusters, e.g.,
+by using dd command in Linux.  
 
-Note that in FAT system the \emph{directory entry} of a file only refers to the starting cluster, and it does not carry any information about the file fragments.
-That is why in certain situations where the deleted file is fragmented, metadata-based file recovery in FAT system encounters challenges.
-On the other hand, if a file is fragmented in NTFS, the corresponding MFT entry does contain information on all the runs (i.e., fragments) of the file
-(as shown in Figure~\ref{fig:ntfs}). Consequently, fragmentation does not introduce any extra challenge in file recovery in NTFS.
-\end{paraphrase}
+We encounter one critical challenge while recovering a fragmented file in FAT because \emph{directory entry}
+of a file does not contain any information about the fragments. However, we do not face this challenge 
+in file recovering in NTFS because MFT entry (as shown in Figure~\ref{fig:ntfs}) does contain the start and end cluster index for each run (i.e., fragment). 
 
 \subsection{File Carving}\label{subsec:file-carving}
 
