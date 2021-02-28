@@ -1,18 +1,22 @@
 \section{Background}
 
+We present some of the background material in this section that would prepare
+us for the latter part of the article. 
+In particular, we present an overview of metadata-based recovery and file carving. 
+Then, we present the NIST CFTT expectations for such recovery tools.  
+
+
+\subsection{Metadata-based deleted file recovery}
+This recovery mechanism relies on the residual metadata of the deleted files, 
+which are still present in the file system. Note that different file systems
+manage the metadata in different ways.
+In Section \ref{subsubsec:fat-overview} and Section \ref{subsubsec:ntfs-overview}, 
+we present an overview of FAT and NTFS file systems, respectively, which is often
+simplified to aid readability. 
+Then, in Section \ref{subsubsec:meta-recovery}, we discuss how metadata can help in recovery.
+
 \begin{paraphrase}
- In this section, we present some of design basics (often simplified to aid readability) of FAT file system and NTFS file system, 
-which are relevant to what we discuss in the latter part of the paper. 
-We highlight what information remains in the file system after a file is deleted, 
-which leads to understanding of how metadata-based file-recovery might work. 
-Finally, we present the \emph{core features} of NIST standards for such recovery tools.  
-\end{paraphrase}
-
-\TODO{Add a few lines about carving}
-
-
-\subsection{FAT File System}
-\begin{paraphrase}
+\subsubsection{FAT File System} \label{subsubsec:fat-overview}
  As in many other file systems, a file in FAT system has metadata in addition to the actual file content. 
 The main metadata of a file (say foo.txt) in FAT system is called a \emph{directory entry}, which is of 32 bytes.
 The directory entry of a file (say foo.txt) has three main \emph{essential} elements: (a) file name, (b) file size, and 
@@ -67,7 +71,7 @@ second fragment is from cluster 200 to cluster 298.
 
 
 
-\subsection{NTFS File System}
+\subsubsection{NTFS File System} \label{subsubsec:ntfs-overview}
 \begin{paraphrase}
 
 In an NTFS system, each file has an entry in the Master File Table (MFT) where every entry is typically 1024 bytes. 
@@ -88,7 +92,7 @@ In this case, the example file has two fragments.
  
 \end{paraphrase}
 
-\subsection{Metadata-Based Deleted File Recovery}
+\subsubsection{Metadata-Based Recovery}\label{subsubsec:meta-recovery}
 \begin{paraphrase}
  The previous discussion implies that in many cases a deleted file's metadata 
 (e.g., directory entry in FAT or MFT entry in NTFS) can be still available, 
@@ -107,7 +111,7 @@ On the other hand, if a file is fragmented in NTFS, the corresponding MFT entry 
 (as shown in Figure~\ref{fig:ntfs}). Consequently, fragmentation does not introduce any extra challenge in file recovery in NTFS.
 \end{paraphrase}
 
-\subsection{File Carving}
+\subsection{File Carving}\label{subsec:file-carving}
 
 \TODO{TODO}
 
