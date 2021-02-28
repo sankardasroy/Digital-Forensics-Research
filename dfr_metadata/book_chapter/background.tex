@@ -46,9 +46,11 @@ a file bar.txt. The FAT table is also shown. We can infer from the FAT table tha
      \label{fig:fat1}
  \end{figure}
 
+When a file is deleted in FAT system, most of the actual content and metadata might 
+remain intact in many cases. 
 Figure~\ref{fig:fat2} illustrates the status of the file system after the file bar.txt is deleted.
 All fields of the directory entry remain unchanged except the first character of the file name 
-is replaced with an underscore ('\_'). The main change happens in the FAT table where all entries
+is replaced with an underscore (`\_') to flag the \emph{deleted} status. The main change happens in the FAT table where all entries
 that were associated with bar.txt are \emph{zeroed}. However, the clusters (holding the file content) 
 remain intact until some other file (partially or fully) \emph{overwrites} them. 
 
@@ -56,37 +58,38 @@ remain intact until some other file (partially or fully) \emph{overwrites} them.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{fig/fat2.png}
-    \caption{The actual data part and metadata of bar.txt are shown after the file is deleted whereas its entries in the FAT table (i.e., entry $200$ to entry $204$) are zeroed.}
+    \caption{The actual data part and metadata of bar.txt after the file is deleted whereas its entries in the FAT table (i.e., entry $200$ to entry $204$) are zeroed.}
     \label{fig:fat2}
 \end{figure}
 
-\begin{paraphrase}
-Furthermore, it is possible that the content of a file is not stored in contiguous clusters in FAT file system, 
-and this phenomenon is called \emph{fragmentation}.
-If the original file foo.txt has two fragments, it may look as illustrated in Figure~\ref{fig:fat3} where the file's first fragment is from cluster 100 to cluster 101 and the 
-second fragment is from cluster 200 to cluster 298. 
+So far, we have considered a file whose actual content is stored in contiguous clusters. 
+It is also possible that a file's content is not stored in contiguous clusters, and such a file is 
+called a \emph{fragmented} file. Figure~\ref{fig:fat3} illustrates an example where file bar.txt is fragmented.
 
  \begin{figure}[h]
      \centering
      \includegraphics[width=\linewidth]{fig/fat3.png}
-     \caption{The layout of metadata and actual content of a file foo.txt is shown whereas the file has two fragments (cluster 100-101 and cluster 200-298) 
- as determined by the FAT table.}
+     \caption{The actual content and metadata of bar.txt is shown. Per the FAT table the file has two fragments (cluster 200-201 and cluster 204).}
      \label{fig:fat3}
  \end{figure}
-\end{paraphrase}
 
 
 
 \subsubsection{NTFS File System} \label{subsubsec:ntfs-overview}
-\begin{paraphrase}
 
-In an NTFS system, each file has an entry in the Master File Table (MFT) where every entry is typically 1024 bytes. 
-If a file is short, then all of its metadata as well as the actual content can sit inside the MFT entry; otherwise, 
-the file content can be non-resident (i.e., not in MFT entry) and located in other clusters.
-  
-As an example, the MFT entry of foo.txt and the actual content carrying clusters are illustrated in Figure~\ref{fig:ntfs}.
-The MFT entry indicates that there are two runs of clusters (100-101 and 200-298) which carry the actual file content. 
-In this case, the example file has two fragments.
+NTFS file system does not maintain a global table (like the FAT table) 
+that holds the status for each cluster. Instead NTFS maintains a global table called 
+MFT (Master File Table) that
+holds information for each file in the system. In particular, each file $f$ has an 
+entry in MFT, which holds information about file $f$, and the size of this entry is 1024 bytes.  
+If file $f$ is a small file, then the whole file content as well as the metadata will be stored
+inside $f$'s MFT entry; 
+otherwise, $f$'s content is \emph{non-resident} and is stored in other clusters. 
+Figure~\ref{fig:ntfs} illustrates an example where the file bar.txt's content is non-resident, 
+and it has two fragments.
+Note that NTFS file system does not have specific zones for data area in contrast of 
+FAT having specific area for data and specific area for the FAT table.
+
 
  \begin{figure}[h]
      \centering
@@ -96,7 +99,6 @@ In this case, the example file has two fragments.
      \label{fig:ntfs}
  \end{figure}
  
-\end{paraphrase}
 
 \subsubsection{Metadata-Based Recovery}\label{subsubsec:meta-recovery}
 \begin{paraphrase}
