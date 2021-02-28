@@ -35,8 +35,8 @@ To evaluate the file carving tools NIST CFTT portal provides a set of test image
 We use these test images in our study of file carving tools. 
 
 For metadata-based DFR tools, in addition to the aforementioned factors, another factor is type of the file system (e.g. FAT vs. NTFS). 
-Unfortunately, NIST CFTT does not provide any test image for evaluation of metadata-based DFR tools.
-So, for each file system type we ourselves design a set of test images per NIST guidelines, considering each of the above factors independently.
+Unfortunately, NIST CFTT does not provide any test image for evaluation of metadata-based DFR tools \cite{meta:dfr:standards}.
+So, for each file system type we ourselves design a set of test images per NIST guidelines \cite{meta:dfr:standards}, considering each of the above factors independently.
 In particular, we designed 14 test images for FAT and NTFS, and we claim that these cover most of the real-life scenarios.
 
 
@@ -51,7 +51,7 @@ but this may cause the tool to miss some deleted files. Conversely, employing a 
  
 We compare performance of the DFR tools and report a comparative analysis. In our opinion, such comparative analysis is beneficial to both DF tool 
 users and vendors: it can help users choose the right DF tool, and it can help vendors identify room for improvement and their niche in the market. 
-NIST CFTT publishes reports on DFR tools' performance, but only a subset of DFR tools are covered. 
+NIST CFTT publishes reports on DFR tools' performance, but only a subset of DFR tools are covered \morecite. 
 We need to expand the coverage as more and more tools come to the market.
 Furthermore, some reports on the CFTT portal are on the outdated version of the DFR tools, which warrants updating. 
 For instance, at the time of writing, the reports on Autopsy~\cite{dhs:autopsy} and FTK~\cite{dhs:ftk}, which are two frequently used DF tools, 
