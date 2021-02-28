@@ -120,7 +120,15 @@ in file recovering in NTFS because MFT entry (as shown in Figure~\ref{fig:ntfs})
 
 \subsection{File Carving}\label{subsec:file-carving}
 
-\TODO{TODO}
+File carving does not rely on the file system metadata, and hence is independent of the type of the 
+file system (e.g. FAT vs. NTFS). In file carving, we assume that the target file has 
+a known header and footer signature (i.e., a sequence of special bytes). As an example, 
+jpg files have such header and footer signature. The file carving process basically
+scans the whole storage space (i.e. the target storage device where we plan to recover deleted files from) 
+byte by byte and identifies each match of header and footer signature. 
+Then, the content between any header and any footer is potentially a recovered file. 
+Depending on the strong vs weak match policy, there could be \emph{false positives} (i.e., bogus files) 
+and \emph{false negatives} (i.e., missed files). 
 
 \subsection{NIST Guidelines}
 \subsubsection{For Metadata-Based DFR}
