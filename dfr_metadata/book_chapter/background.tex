@@ -127,8 +127,9 @@ jpg files have such header and footer signature. The file carving process basica
 scans the whole storage space (i.e. the target storage device where we plan to recover deleted files from) 
 byte by byte and identifies each match of header and footer signature. 
 Then, the content between any header and any footer is potentially a recovered file. 
-Depending on the strong vs weak match policy, there could be \emph{false positives} (i.e., bogus files) 
-and \emph{false negatives} (i.e., missed files). 
+Depending on the strong vs weak match policy, there could be \emph{false positives} 
+(i.e., bogus files being retrieved) 
+and \emph{false negatives} (i.e., files missed to be retrieved). 
 
 \subsection{NIST Guidelines}
 \subsubsection{For Metadata-Based DFR}
