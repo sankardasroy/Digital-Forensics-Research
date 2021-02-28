@@ -28,13 +28,13 @@ As an example, the directory entry of foo.txt and the clusters (holding the actu
 are illustrated in Figure~\ref{fig:fat1}. The FAT table is also shown, which tells us that foo.txt's data is stored 
 in contiguous clusters, starting from cluster 100 and ending at cluster 200.
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{fig/fat1.pdf}
-%     \caption{File foo.txt in a FAT file system. The \emph{directory entry} of this file and the actual file content clusters (shaded) are shown. 
-% The FAT table is also shown, which determines the chain of clusters (from cluster 100 to cluster 200) of foo.txt.}
-%     \label{fig:fat1}
-% \end{figure}
+\begin{figure}[h]
+     \centering
+     \includegraphics[width=\linewidth]{fig/fat1.png}
+     \caption{File foo.txt in a FAT file system. The \emph{directory entry} of this file and the actual file content clusters (shaded) are shown. 
+ The FAT table is also shown, which determines the chain of clusters (from cluster 100 to cluster 200) of foo.txt.}
+     \label{fig:fat1}
+ \end{figure}
 
 
 The change in metadata and actual content of foo.txt is illustrated in Figure~\ref{fig:fat2} after the file is deleted.
@@ -44,25 +44,25 @@ entries are \emph{zeroed}, which denotes that those clusters are available to be
 However, the actual content carrying clusters (say cluster 100 to cluster 200)
 can still be intact until they are \emph{overwritten} by another file. 
   
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{fig/fat2.pdf}
-%     \caption{The metadata and actual content of foo.txt are shown after the file is deleted whereas the corresponding entries (i.e., 100-200) in the FAT table are zeroed.}
-%     \label{fig:fat2}
-% \end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{fig/fat2.png}
+    \caption{The metadata and actual content of foo.txt are shown after the file is deleted whereas the corresponding entries (i.e., 100-200) in the FAT table are zeroed.}
+    \label{fig:fat2}
+\end{figure}
 
 Furthermore, it is possible that the content of a file is not stored in contiguous clusters in FAT file system, 
 and this phenomenon is called \emph{fragmentation}.
 If the original file foo.txt has two fragments, it may look as illustrated in Figure~\ref{fig:fat3} where the file's first fragment is from cluster 100 to cluster 101 and the 
 second fragment is from cluster 200 to cluster 298. 
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{fig/fat3.pdf}
-%     \caption{The layout of metadata and actual content of a file foo.txt is shown whereas the file has two fragments (cluster 100-101 and cluster 200-298) 
-% as determined by the FAT table.}
-%     \label{fig:fat3}
-% \end{figure}
+ \begin{figure}[h]
+     \centering
+     \includegraphics[width=\linewidth]{fig/fat3.png}
+     \caption{The layout of metadata and actual content of a file foo.txt is shown whereas the file has two fragments (cluster 100-101 and cluster 200-298) 
+ as determined by the FAT table.}
+     \label{fig:fat3}
+ \end{figure}
 \end{paraphrase}
 
 
@@ -78,13 +78,13 @@ As an example, the MFT entry of foo.txt and the actual content carrying clusters
 The MFT entry indicates that there are two runs of clusters (100-101 and 200-298) which carry the actual file content. 
 In this case, the example file has two fragments.
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{fig/ntfs.pdf}
-%     \caption{To illustrate NTFS file system, the MFT entry of foo.txt and the actual content carrying clusters are shown. 
-% This file has two fragments (cluster 100-101 and cluster 200-298).}
-%     \label{fig:ntfs}
-% \end{figure}
+ \begin{figure}[h]
+     \centering
+     \includegraphics[width=\linewidth]{fig/ntfs.png}
+     \caption{To illustrate NTFS file system, the MFT entry of foo.txt and the actual content carrying clusters are shown. 
+ This file has two fragments (cluster 100-101 and cluster 200-298).}
+     \label{fig:ntfs}
+ \end{figure}
  
 \end{paraphrase}
 
