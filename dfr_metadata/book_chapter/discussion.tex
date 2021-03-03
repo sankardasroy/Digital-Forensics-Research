@@ -97,7 +97,6 @@ This is the main reason Scalpel performs so poorly on FC-CR-03 and FC-CR-05 desp
 We believe this represents a flaw in the NIST guidelines, and discuss it in depth in Section~\ref{sec:false_pos}.
 
 One other observation is that Foremost and Magnet AXIOM do not recover any TIFF files from any of the test cases, despite both supporting the format.
-\TODO{Does Magnet AXIOM support it?}
 
 
 \subsection{Ambiguity in NIST Guidelines}
@@ -131,7 +130,7 @@ However, this would include data from file B, which is forbidden by DFR-CR-04.
 DFR-CR-04 requires that a recovered file contain only data from the ``deleted block pool,'' which is the set of data blocks from the deleted file which ``have not been reallocated or reused.''\cite{meta:dfr:standards}
 Meeting DFR-CR-03 requires recovering data that was reused for file B, so in this case DFR-CR-03 and DFR-CR-04 are incompatible.
 This situation occurs in the cases \emph{overwrite4}, \emph{overwrite5}, \emph{overwrite6}, and \emph{combo2} for both FAT and NTFS, and in these cases each tool meets DFR-CR-03 but not DFR-CR-04.
-\TODO{Suggestion?}
+As in the previous section, the user experience is the same regardless of whether or not a task is impossible, so this edge case probably does not justify an update to the guidelines.
 
 
 
