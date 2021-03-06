@@ -164,24 +164,29 @@ This should make the trade-offs of certain tools more apparent, enabling investi
 
 \subsection{Related Work}
 
-\begin{paraphrase}
- Arthur et al. published an article~\cite{arthur2004} in 2004 which analyzes several DF (digital forensics) tools, including FTK Imager.
-While the tools are judged based in part on file recovery capabilities, the article does not present how these judgments were reached.
-The article also addresses DF tools' disk imaging and hashing functionalities.
+Wu et al.~\cite{wu2020digital} presented a survey on recent advances in the field of DF tools. 
+This is a study of the currently available DF tools in general, including file carving tools.
 
-James Lyle from NIST published an article~\cite{lyle2011-ICDF2C} in 2011, which lays out a strategy to evaluate the metadata-based DFR tools. To the best of our knowledge, 
-his is one of the first works that identified some of the challenges in setting standards for evaluation of metadata-based DFR tools.
-In our understanding, NIST considered the above findings~\cite{lyle2011-ICDF2C} while they set the guidelines for metadata-based DFR tools.  
-The NIST guidelines~\cite{meta:dfr:standards} are publicly available on the NIST CFTT portal~\cite{cftt:nist}, which we have used in the current work.
+From the experience of designing Scalpel, Richard et al.~\cite{richard2005scalpel} presented 
+a set of requirements to fulfill to make a file carving tool perform well. 
+Laurenson~\cite{laurenson2013performance} reviewed six file carving tools to evaluate their performance quality.
+Interestingly, the research community proposed multiple approaches for file carving. 
+For instance, Sencur et al.~\cite{sencar2009identification} exploited bit sequence 
+matching to identify fragments of a JPEG file. Furthermore, Gladyshev 
+et al.~\cite{gladyshev2017decision} used decision theoretic analysis to carve JPEG files.
+Moreover, to recover files from an Ext4 system, Dewald et al.~\cite{dewald2017afeic} built a tool 
+that is not solely dependent on metadata information. Their tool uses 
+file carving as well as metadata analysis to reconstruct the file.
 
-Recently, Loja et al.~\cite{loja2016} analyzed a variety of DF tools, including Autopsy and FTK. 
-They discussed a wide range of DF tools, not just DFR tools, and compared them on metrics such as price and supported features. 
-In contrast with our paper, their work does not follow a specific standards document and takes a more general approach instead.
-Furthermore, B. V. Prasanthi~\cite{prasanthi2016} presented a general review of DF tools. 
-In particular, Prasanthi summarizes the features of several tools but does not make any claims about standards compliance of specific tools (which is contrast with our work).
-It~\cite{prasanthi2016} also includes a variety of DF tools besides DFR tools.
-\TODO{Do these already cover carving? Are there any papers specifically on carving we should cite?}
-\end{paraphrase}
+Lyle~\cite{lyle2011-ICDF2C} proposed a strategy to evaluate metadata-based DFR tools, 
+which, in our understanding, NIST CFTT considered while setting the guidelines 
+for evaluation of such tools~\cite{meta:dfr:standards}. These guidelines are 
+publicly available on the NIST CFTT portal~\cite{cftt:nist}, which we have 
+extensively referred to in the current article.
+
+Recently, Lee et al.~\cite{lee2014improved,lee2019extsfr} proposed file recovery techniques based on 
+metadata present in an Ext2 or Ext3 filesystem. Furthermore, the research community has also 
+proposed techniques~\cite{nordvik2020generic,atwal2019shining} to carve metadata.
 
 
 \subsection{Future Work}
