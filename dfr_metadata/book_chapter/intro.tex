@@ -1,6 +1,6 @@
 \section{Introduction}\label{intro}
 
-Nowadays goverment organizations as well as private enterprises encounter cyber-attacks quite frequently.
+Nowadays government organizations as well as private enterprises encounter cyber-attacks quite frequently.
 After such an attack law enforcement typically conducts a digital forensics (DF) investigation~\cite{df:news} \morecite 
 with the goal of identifying what caused the attack, how it was executed, and who the potential perpetrators are. 
 In addition to cyber-attacks, we encounter many other digital crimes, such as theft of intellectual properties, 
@@ -18,7 +18,7 @@ at National Institute of Standards and Technology (NIST) published a list of exp
 In this article, we consider standardization of Deleted File Recovery (DFR)~\cite{meta:dfr:standards} \morecite tools which is a special type of DF tools. 
 Given a storage device, such as hard disk or a USB drive, a DF professional uses a DFR tool to search for and retrieve deleted files.
 DFR tools find wide use in real-life DF investigations. For instance, after capturing a hard disk from a suspect's computer a
-DF professional uses a DFR tool to retreive the files that the suspect might have deleted to destroy some important artifacts.
+DF professional uses a DFR tool to retrieve the files that the suspect might have deleted to destroy some important artifacts.
 A retrieved file might add critical evidence to the case in hand. In other words, success or failure of a DFR tool can sway the outcome of a case.
 
 Depending on the working principle of DFR tools, they fall into two subtypes: \emph{Metadata-based DFR} tools and \emph{file carving} tools.
@@ -43,7 +43,7 @@ In particular, we designed 14 test images for FAT and NTFS, and we claim that th
 Via extensive experiments we evaluated multiple frequently used DFR tools\footnote{We have chosen a few tools as the subject of our study, 
 but such choosing does not imply authors' recommendation or endorsement of any particular tool.}, and we find that many tools do not meet one or more NIST expectations.
 We find that a tool correctly retrieves the deleted file in some scenarios whereas it fails in other scenarios. Furthermore, we observe that 
-two tools can perform differently on the same test image. From our experience, whenever posssible, 
+two tools can perform differently on the same test image. From our experience, whenever possible, 
 we strive to provide logical explanation of these behaviors. We find that in many cases 
 success or failure of a tool depends on its design principle. 
 For instance, a file carving tool may employ a \emph{strong match policy} to identify a deleted file, which can help prevent \emph{false positives} (when a tool retrieves garbage data instead of a real file),
@@ -55,7 +55,7 @@ NIST CFTT publishes reports on DFR tools' performance, but only a subset of DFR 
 We need to expand the coverage as more and more tools come to the market.
 Furthermore, some reports on the CFTT portal are on outdated version of the DFR tools, which warrants updating. 
 For instance, at the time of writing, the reports on Autopsy~\cite{dhs:autopsy} and FTK~\cite{dhs:ftk}, two frequently used DF tools, came out in 2014. 
-Both tools have recieved numerous updates since then.   
+Both tools have received numerous updates since then.   
 
 As we have tried to compare DFR tools' behavior in many test scenarios with NIST CFTT expectations, we have also gotten a first-hand experience of applicability 
 of the NIST CFTT guidelines in a practical setting. For instance, we observe some situations where a tool may be held to an impossible standard.

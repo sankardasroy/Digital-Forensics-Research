@@ -5,19 +5,19 @@
 \subsubsection{RQ1}
 \emph{How well do our selected metadata-based DFR tools meet each of the NIST CFTT guidelines?}
 
-None of the tools consistently meet the NIST CFFT guidlines; however, every tool meets the guidelines in some cases.
+None of the tools consistently meet the NIST CFTT guidelines; however, every tool meets the guidelines in some cases.
 All tools meet DFR-CR-01 except for TestDisk in one case, where it fails to report a deleted file in metadata.
 In that case, the file data is completely overwritten, so the tool may be deliberately choosing to omit the file; however, our interpretation of the guidelines would have it instead return an empty file.
-All tools meet DFR-CR-02 without exception, as they attemt to return something for every deleted file.
+All tools meet DFR-CR-02 without exception, as they attempt to return something for every deleted file.
 In some FAT cases, Magnet AXIOM and Autopsy do not recover all data indicated by metadata, so they fail DFR-CR-03.
-In many cases, including both filesystems and both tools, the recovered file incorrectly contains data from other files, causing the tool to fail DFR-CR-04.
+In many cases, including both file systems and both tools, the recovered file incorrectly contains data from other files, causing the tool to fail DFR-CR-04.
 Almost all the times a tool fails to meet the guidelines, it is due to this core feature.
 
 
 \subsubsection{RQ2}
 \emph{What conditions influence the success and failure of metadata-based DFR tools?}
 
-The main factors that cause a metadata-based DFR tool to fail are fragmentated files, and overwritten files.
+The main factors that cause a metadata-based DFR tool to fail are fragmented files, and overwritten files.
 As evidenced by the \emph{basic} case, all tools meet the NIST guidelines when neither of those factors are present.
 
 Most FAT tools detect simple fragmentation in FAT, but Recuva and Magnet AXIOM do not, failing DFR-CR-04 for the \emph{fragments1} case.
@@ -41,7 +41,7 @@ Autopsy fails to meet DFR-CR-03 for the FAT \emph{overwrite2} and \emph{combo1} 
 Instead of recovering all the intact data it can, it simply returns a single cluster.
 
 It may be observed that while DFR-CR-03 and DFR-CR-04 account for almost all the failures, a tool only ever fails to meet one of these core features.
-This makes sense as DFR-CR-03 prescribes what a tool should recover at minumum, and DFR-CR-04 prescribes what a tool should not recover.
+This makes sense as DFR-CR-03 prescribes what a tool should recover at minimum, and DFR-CR-04 prescribes what a tool should not recover.
 Thus, meeting the guidelines requires striking a balance between a conservative recovery strategy and a more aggressive one.
 
 \subsubsection{RQ3}
@@ -185,7 +185,7 @@ publicly available on the NIST CFTT portal~\cite{cftt:nist}, which we have
 extensively referred to in the current article.
 
 Recently, Lee et al.~\cite{lee2014improved,lee2019extsfr} proposed file recovery techniques based on 
-metadata present in an Ext2 or Ext3 filesystem. Furthermore, the research community has also 
+metadata present in an Ext2 or Ext3 file system. Furthermore, the research community has also 
 proposed techniques~\cite{nordvik2020generic,atwal2019shining} to carve metadata.
 
 

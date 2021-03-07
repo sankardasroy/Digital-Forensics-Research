@@ -136,13 +136,13 @@ NIST CFTT program has published guidelines~\cite{meta:dfr:standards,carving_stan
 
 \subsubsection{For Metadata-Based DFR}
 NIST's guidelines~\cite{meta:dfr:standards} for evaluating metadata-based DFR tools consist of four \emph{core features} and several \emph{optional features}. We evaluate based only on the core features and leave the optional features for later work.
-In this section we list the core features as they appear in the NIST guidelines document, allong with our own interpretation and commentary.
+In this section we list the core features as they appear in the NIST guidelines document, along with our own interpretation and commentary.
 
  \paragraph{DFR-CR-01} ``The tool shall identify all deleted File System-Object entries accessible in residual metadata''~\cite{meta:dfr:standards}.
  We say a tool fulfills this core feature if it reports something for each file system metadata entry which has been marked as deleted.
  
  \paragraph{DFR-CR-02} ``The tool shall construct a Recovered Object for each deleted File System-Object entry accessible in residual metadata''~\cite{meta:dfr:standards}.
- We say a tool fulfills this core feature if it ouptuts a file for each of the deleted files identified per DFR-CR-01, even if the output file is empty.
+ We say a tool fulfills this core feature if it outputs a file for each of the deleted files identified per DFR-CR-01, even if the output file is empty.
 
  \paragraph{DFR-CR-03} ``Each Recovered Object shall include all non-allocated data blocks identified in a residual metadata entry''~\cite{meta:dfr:standards}.
  Our interpretation of this feature is file system-dependent as there are differences in what information is available in metadata.
@@ -152,12 +152,12 @@ In this section we list the core features as they appear in the NIST guidelines 
 
  \paragraph{DFR-CR-04} ``Each Recovered Object shall consist only of data blocks from the Deleted Block Pool''~\cite{meta:dfr:standards}.
  
- We say a tool fulfills this core feature as long as the recovered file contains only data from the original deleted file, or null data to represent parts of the file that have been overwritten or are otherwise inaccessable.
+ We say a tool fulfills this core feature as long as the recovered file contains only data from the original deleted file, or null data to represent parts of the file that have been overwritten or are otherwise inaccessible.
 
 \subsubsection{For File Carving} \label{sec:carving_features}
 
 NIST's guidelines~\cite{carving_standards} for evaluating file carving tools consist of five \emph{core features}.
-In this section we list the core features as they appear in the NIST guidelines document, allong with our own interpretation and commentary.
+In this section we list the core features as they appear in the NIST guidelines document, along with our own interpretation and commentary.
 
  \paragraph{FC-CR-01} ``The tool shall return one carved file for each supported file header signature from a source file that is present in the search arena''.~\cite{carving_standards}
  
