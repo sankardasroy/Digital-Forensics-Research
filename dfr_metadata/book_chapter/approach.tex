@@ -50,7 +50,7 @@ and {\bf (e)} fragmentation ``out of order.''
 
 Each test case is listed in Table~\ref{meta_cases} along with a brief description.
 We have given each a distinct name in line with the naming scheme for the CFTT file carving test cases.
-A selection of test cases are illustrated, with each column portraying the state of the file system at a point in time. 
+A selection of test cases are illustrated, with each column in an illustration portraying the state of the file system at a point in time. 
 Each file is given a unique letter and shading, and the start and end of a fragmented file are denoted when relevant.
 
 \begin{table}[ht!]
@@ -169,7 +169,6 @@ This allocation algorithm takes a more proactive approach to reducing fragmentat
 
 \subsubsection{Recovering Files}
 
-\TODO{is this changed enough?}
 We chose to test five popular DFR tools: Autopsy~\cite{autopsy}, FTK Imager~\cite{ftk}, Magnet AXIOM~\cite{axiom_meta}, Recuva~\cite{recuva}, and TestDisk~\cite{testdisk}.
 For Autopsy, we performed a standard recovery with ingest modules disabled.
 For FTK Imager, we used the free version and performed a standard recovery with default settings.
@@ -241,12 +240,12 @@ Note that a file does not need to be perfectly recovered for a tool to meet the 
 Sometimes, as with overwritten files, part of the file's data literally no longer exists on the disk, so recovering the entire file is impossible.
 The NIST guidelines are designed with this reality in mind.
 
-Most tools recover files perfectly for FAT fragments1, and all tools recover files perfectly for FAT basic, NTFS basic, and NTFS fragments1 and fragments2.
+Most tools recover files perfectly for FAT \emph{fragments1}, and all tools recover files perfectly for FAT \emph{basic}, NTFS \emph{basic}, and NTFS \emph{fragments1} and \emph{fragments2}.
 For the other cases, we need to examine the recovered files closely to see which core features are being met.
 We judge each tool as either meeting or failing each core feature individually for each test case.
 Results are shown in Figure~\ref{fig:results_fat} and Figure~\ref{fig:results_ntfs} for FAT and NTFS test cases, respectively.
 
-Note that in the one test case where DFR-CR-01 is not met, meaning no deleted file was detected, we cannot make a judgement for the other core features as they are all dependent on DFR-CR-01.
+Note that in the one test case where DFR-CR-01 is not met, meaning no deleted file was detected, we cannot make a judgement for the other core features.
 
 
 
@@ -257,9 +256,9 @@ Recuva and Magnet AXIOM seem to take this approach.
 The second strategy is to still recover the full length of the file, but only from unallocated space.
 So, any active files will be skipped over.
 Autopsy, FTK, and TestDisk seem to take this approach.
-This is most easily observed in FAT fragments1; Autopsy, FTK, and TestDisk will skip over file B to recover all of file A, while Recuva and Magnet AXIOM will recover the first fragment of file A along with the active file B.
+This is most easily observed in FAT \emph{fragments1}; Autopsy, FTK, and TestDisk will skip over file B to recover all of file A, while Recuva and Magnet AXIOM will recover the first fragment of file A along with the active file B.
 This is why Recuva and Magnet AXIOM fail DFR-CR-04 for that case.
-However, when a file is fragmented around another deleted file, like in FAT fragments2, all tools take the first approach and erroneously return file B as part of file A.
+However, when a file is fragmented around another deleted file, like in FAT \emph{fragments2}, all tools take the first approach and erroneously return file B as part of file A.
 All tools seem to struggle with out-of-order fragmentation.
 When the first fragment is at the very end of the file system, Recuva, FTK, and TestDisk only recover the first fragment, Autopsy returns a small amount of null data, and Magnet AXIOM returns an empty file and an error message.
 
@@ -270,10 +269,10 @@ All tools we tested are able to handle fragmentation in NTFS with no issues.
 \paragraph{Recovering Overwritten Files}
 We observe that when a deleted file is overwritten by an active file, most tools still attempt to recover the overwritten part as though it was part of the original file, failing DFR-CR-04.
 The only tool to consistently meet DFR-CR-04 in these cases is FTK Imager, which only recovers data from before the overwritten part.
-TestDisk also does this for FAT overwrite2 only, otherwise behaving like the other tools.
+TestDisk also does this for FAT \emph{overwrite2} only, otherwise behaving like the other tools.
 In FAT, Autopsy only recovers the first cluster of an overwritten file, regardless of what part was overwritten.
 In NTFS, it gives the same results as other tools.
-For FAT overwrite1 and overwrite2, Magnet AXIOM recovers up to the end overwritten sections, but no further.
+For FAT \emph{overwrite1} and \emph{overwrite2}, Magnet AXIOM recovers up to the end overwritten sections, but no further.
 This is a bit strange as it suggests Magnet AXIOM can detect overwriting, but still returns the overwritten part.
 For other cases it behaves like the other tools.
 
@@ -281,11 +280,11 @@ When a deleted file is overwritten by another deleted file, even FTK acts as tho
 This suggests that the tools which can detect overwriting do so based on the allocation status of each data block; other than that, they only consider the metadata of the file being recovered, not the files around it.
 
 \paragraph{Miscellaneous}
-Several FAT test cases (overwrite2, combo1, disorder1, disorder2, and disorder3) cause Autopsy to return a 1.5 KiB file containing null data.
+Several FAT test cases (\emph{overwrite2}, \emph{combo1}, \emph{disorder1}, \emph{disorder2}, and \emph{disorder3}) cause Autopsy to return a 1.5 KiB file containing null data.
 This is particularly odd because a FAT cluster is 2 KiB; making these the only recovered objects not divisible into clusters.
 Given the odd size and contents, we suspect this is some sort of error state rather than an attempted recovered file.
 
-TestDisk does not identify any deleted file in NTFS overwrite3.
+TestDisk does not identify any deleted file in NTFS \emph{overwrite3}.
 While the deleted file's data is entirely overwritten in this case, information about the file is still present in metadata.
 Since this only happens in NTFS and not FAT, meaning the precise location of the deleted file is still available, it is possible that TestDisk is able to detect the fact that the file has been overwritten, and simply ignores it.
 Even if this is the case, the file information is still available in metadata, so the for TestDisk to meet DFR-CR-01, it must identify the file regardless of whether it can be recovered.
@@ -383,7 +382,7 @@ For FC-CR-05, we make use of the \emph{identify} command from the ImageMagick~\c
 For FC-CR-01, Scalpel and Magnet AXIOM score between 60\% and 70\% for all test cases, Foremost scores between 37\% and 63\%, and PhotoRec ranges from a perfect score to as low as 17\% depending on the test case.
 A high score on this core feature means a tool detects most of the original deleted files in a given test case, in other words, it has a high ``hit rate.''
 
-All tools perfectly fulfil FC-CR-02, meaning they never try to carve data from outside the drive or partition given as input.
+All tools perfectly fulfill FC-CR-02, meaning they never try to carve data from outside the drive or partition given as input.
 
 For FC-CR-03, each tool achieves high scores on some test cases and low score on others.
 A high score on this core feature means most of the files a tool recovers contain data from only one other source.
