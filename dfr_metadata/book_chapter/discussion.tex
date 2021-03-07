@@ -103,7 +103,7 @@ One other observation is that Foremost and Magnet AXIOM do not recover any TIFF 
 % Metadata
 \subsubsection{FAT Fragmentation and Metadata-Based Tools}
 
-To fulfill DFR-CR-03, a tool must recover ``all non-allocated data blocks identified in a residual metadata entry''\cite{meta:dfr:standards}.
+To fulfill DFR-CR-03, a tool must recover ``all non-allocated data blocks identified in a residual metadata entry''~\cite{meta:dfr:standards}.
 However, in the FAT file system, it's debatable exactly how much is identified in metadata.
 Recall that FAT directory entries only store the starting address and the length of a file, and any other information is lost upon file deletion.
 So, for a fragmented deleted file, how much should a tool be expected to recover?
@@ -125,9 +125,9 @@ However, the context of this ``ideal file system'' should be explicitly stated i
 Under some circumstances, it is impossible for a tool to meet both DFR-CR-03 and DFR-CR-04 at the same time.
 For example, suppose a file ``A'' in NTFS is deleted and overwritten, and the file ``B'' that overwrote it is also deleted.
 In NTFS, the full run of file A is accessible from metadata after deletion, and since file B was also deleted, all the clusters in file A's run are unallocated.
-DFR-CR-03 requires a tool to recover `all non-allocated data blocks identified in a residual metadata entry,''\cite{meta:dfr:standards} so the entire run of file A should be recovered.
+DFR-CR-03 requires a tool to recover `all non-allocated data blocks identified in a residual metadata entry,''~\cite{meta:dfr:standards} so the entire run of file A should be recovered.
 However, this would include data from file B, which is forbidden by DFR-CR-04.
-DFR-CR-04 requires that a recovered file contain only data from the ``deleted block pool,'' which is the set of data blocks from the deleted file which ``have not been reallocated or reused.''\cite{meta:dfr:standards}
+DFR-CR-04 requires that a recovered file contain only data from the ``deleted block pool,'' which is the set of data blocks from the deleted file which ``have not been reallocated or reused.''~\cite{meta:dfr:standards}
 Meeting DFR-CR-03 requires recovering data that was reused for file B, so in this case DFR-CR-03 and DFR-CR-04 are incompatible.
 This situation occurs in the cases \emph{overwrite4}, \emph{overwrite5}, \emph{overwrite6}, and \emph{combo2} for both FAT and NTFS, and in these cases each tool meets DFR-CR-03 but not DFR-CR-04.
 As in the previous section, the user experience is the same regardless of whether or not a task is impossible, so this edge case probably does not justify an update to the guidelines.
