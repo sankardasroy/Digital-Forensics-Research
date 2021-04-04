@@ -1,7 +1,7 @@
 \section{Background}
 
-We present some of the background material in this section that prepares
-us for the latter part of the article. 
+We present some of the background material in this section that will prepare
+us for the latter part of the chapter. 
 In particular, we present an overview of metadata-based recovery and file carving. 
 Then, we present the NIST CFTT expectations for such recovery tools.  
 
@@ -42,7 +42,7 @@ a file bar.txt. The FAT table is also shown. We can infer from the FAT table tha
 
 \begin{figure}[h]
      \centering
-     \includegraphics[width=\linewidth]{fig/fat1.png}
+     \includegraphics[width=\linewidth]{fig/fat1.pdf}
      \caption{The actual data part and metadata of file bar.txt in a FAT file system. The \emph{directory entry} of this file and the actual file content clusters (shaded) are shown. The FAT table is also shown.}
      \label{fig:fat1}
  \end{figure}
@@ -58,8 +58,8 @@ remain intact until some other file (partially or fully) \emph{overwrites} them.
   
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\linewidth]{fig/fat2.png}
-    \caption{The actual data part and metadata of bar.txt after the file is deleted whereas its entries in the FAT table (i.e., entry $200$ to entry $204$) are zeroed.}
+    \includegraphics[width=\linewidth]{fig/fat2.pdf}
+    \caption{The actual data part and metadata of bar.txt after the file is deleted whereas its entries in the FAT table (i.e., $200$th entry to $204$th entry) are zeroed.}
     \label{fig:fat2}
 \end{figure}
 
@@ -69,8 +69,8 @@ called a \emph{fragmented} file. Figure~\ref{fig:fat3} illustrates an example wh
 
  \begin{figure}[h]
      \centering
-     \includegraphics[width=\linewidth]{fig/fat3.png}
-     \caption{The actual content and metadata of bar.txt is shown. Per the FAT table the file has two fragments (cluster 200-201 and cluster 204).}
+     \includegraphics[width=\linewidth]{fig/fat3.pdf}
+     \caption{The actual content and metadata of bar.txt is shown. Per the FAT table the file has two fragments (clusters 200-201 and cluster 204).}
      \label{fig:fat3}
  \end{figure}
 
@@ -82,7 +82,7 @@ NTFS file system does not maintain a global table (like the FAT table)
 that holds the status for each cluster. Instead NTFS maintains a global table called 
 MFT (Master File Table) that
 holds information for each file in the system. In particular, each file $f$ has an 
-entry in MFT, which holds information about file $f$, and the size of this entry is 1024 bytes.  
+entry in MFT, which holds information about file $f$, and the size of this entry is 1,024 bytes.  
 If file $f$ is small, then the whole file content as well as the metadata will be stored
 inside $f$'s MFT entry; 
 otherwise, $f$'s content is \emph{non-resident} and is stored in other clusters. 
@@ -96,9 +96,9 @@ FAT having specific area for data and specific area for the FAT table.
 
  \begin{figure}[h]
      \centering
-     \includegraphics[width=\linewidth]{fig/ntfs.png}
+     \includegraphics[width=\linewidth]{fig/ntfs.pdf}
      \caption{To illustrate NTFS file system, the MFT entry of bar.txt and the actual content carrying clusters are shown. 
- This file has two fragments (cluster 200-201 and cluster 204).}
+ This file has two fragments (clusters 200-201 and cluster 204).}
      \label{fig:ntfs}
  \end{figure}
  
@@ -122,11 +122,11 @@ in NTFS file recovery because the MFT entry (as shown in Figure~\ref{fig:ntfs}) 
 \subsection{File Carving}\label{subsec:file-carving}
 
 File carving does not rely on the file system metadata, and hence is independent of the type of the 
-file system (e.g. FAT vs. NTFS). In file carving, we assume that the target file has 
+file system (e.g., FAT vs. NTFS). In file carving, we assume that the target file has 
 a known header and footer signature (i.e., a sequence of special bytes). As an example, 
 a JPG file has such a header and a footer signature--in particular, certain two bytes 
 for the header and certain two bytes for the footer. The file carving process basically
-scans the whole storage space (i.e. the target storage device where we plan to recover deleted files from) 
+scans the whole storage space (i.e., the target storage device where we plan to recover deleted files from) 
 byte by byte and identifies each match of header and footer signature. 
 Then, the content between any header and any footer is potentially a recovered file. 
 Depending on the strong vs weak match policy, there could be \emph{false positives} 
