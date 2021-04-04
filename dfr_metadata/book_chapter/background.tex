@@ -1,6 +1,6 @@
 \section{Background}
 
-We present some of the background material in this section that will prepare
+We present some of the background material in this section that prepares
 us for the latter part of the article. 
 In particular, we present an overview of metadata-based recovery and file carving. 
 Then, we present the NIST CFTT expectations for such recovery tools.  
@@ -17,6 +17,7 @@ we present an overview of FAT and NTFS file systems, respectively, which is ofte
 simplified to aid readability. 
 Then, in Section \ref{subsubsec:meta-recovery}, we discuss how metadata can help in 
 recovery of a deleted file.
+
 
 \subsubsection{FAT File System} \label{subsubsec:fat-overview}
 
@@ -82,13 +83,13 @@ that holds the status for each cluster. Instead NTFS maintains a global table ca
 MFT (Master File Table) that
 holds information for each file in the system. In particular, each file $f$ has an 
 entry in MFT, which holds information about file $f$, and the size of this entry is 1024 bytes.  
-If file $f$ is a small file, then the whole file content as well as the metadata will be stored
+If file $f$ is small, then the whole file content as well as the metadata will be stored
 inside $f$'s MFT entry; 
 otherwise, $f$'s content is \emph{non-resident} and is stored in other clusters. 
 Figure~\ref{fig:ntfs} illustrates an example where the file bar.txt's content is non-resident, 
 and it has two fragments. When a file $f$ is deleted in NTFS, 
 the corresponding entry in MFT is flagged as deleted and the corresponding clusters 
-(if any) are flagged as deleted, but the metadata and file content remain intact otherwise.
+(if any) are flagged as deleted, but the metadata and file content generally remain intact.
 Note that NTFS file system does not have specific zones for data area in contrast of 
 FAT having specific area for data and specific area for the FAT table.
 
@@ -96,8 +97,8 @@ FAT having specific area for data and specific area for the FAT table.
  \begin{figure}[h]
      \centering
      \includegraphics[width=\linewidth]{fig/ntfs.png}
-     \caption{To illustrate NTFS file system, the MFT entry of foo.txt and the actual content carrying clusters are shown. 
- This file has two fragments (cluster 100-101 and cluster 200-298).}
+     \caption{To illustrate NTFS file system, the MFT entry of bar.txt and the actual content carrying clusters are shown. 
+ This file has two fragments (cluster 200-201 and cluster 204).}
      \label{fig:ntfs}
  \end{figure}
  
@@ -116,14 +117,15 @@ by using dd command in Linux.
 
 We encounter one critical challenge while recovering a fragmented file in FAT because the \emph{directory entry}
 of a file does not contain any information about the fragments. However, we do not face this challenge 
-in file recovering in NTFS because the MFT entry (as shown in Figure~\ref{fig:ntfs}) does contain the start and end cluster index for each run (i.e., fragment). 
+in NTFS file recovery because the MFT entry (as shown in Figure~\ref{fig:ntfs}) does contain the start and end cluster index for each run (i.e., fragment). 
 
 \subsection{File Carving}\label{subsec:file-carving}
 
 File carving does not rely on the file system metadata, and hence is independent of the type of the 
 file system (e.g. FAT vs. NTFS). In file carving, we assume that the target file has 
 a known header and footer signature (i.e., a sequence of special bytes). As an example, 
-jpg files have such header and footer signature. The file carving process basically
+a JPG file has such a header and a footer signature--in particular, certain two bytes 
+for the header and certain two bytes for the footer. The file carving process basically
 scans the whole storage space (i.e. the target storage device where we plan to recover deleted files from) 
 byte by byte and identifies each match of header and footer signature. 
 Then, the content between any header and any footer is potentially a recovered file. 

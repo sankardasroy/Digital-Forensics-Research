@@ -1,7 +1,7 @@
 \section{Introduction}\label{intro}
 
 Nowadays government organizations as well as private enterprises encounter cyber-attacks quite frequently.
-After such an attack law enforcement typically conducts a digital forensics (DF) investigation~\cite{df:news} \morecite 
+After such an attack law enforcement typically conducts a digital forensics (DF) investigation~\cite{df:news,cyber2011} 
 with the goal of identifying what caused the attack, how it was executed, and who the potential perpetrators are. 
 In addition to cyber-attacks, we encounter many other digital crimes, such as theft of intellectual properties, 
 compromise of private data, and more. To conduct post-mortem analysis of cyber-attacks and digital crimes, forensics professionals
@@ -15,7 +15,7 @@ DF tools that are available in the market come from many vendors, and the govern
 As a standardization initiative of DF tools,  Computer Forensics Tool Testing Program (CFTT)~\cite{cftt:nist} 
 at National Institute of Standards and Technology (NIST) published a list of expectations for these tools. 
 
-In this article, we consider standardization of Deleted File Recovery (DFR)~\cite{meta:dfr:standards} \morecite tools which is a special type of DF tools. 
+In this article, we consider standardization of Deleted File Recovery (DFR)~\cite{meta:dfr:standards,carving_standards} tools which is a special type of DF tools. 
 Given a storage device, such as hard disk or a USB drive, a DF professional uses a DFR tool to search for and retrieve deleted files.
 DFR tools find wide use in real-life DF investigations. For instance, after capturing a hard disk from a suspect's computer a
 DF professional uses a DFR tool to retrieve the files that the suspect might have deleted to destroy some important artifacts.
@@ -51,7 +51,7 @@ but this may cause the tool to miss some deleted files. Conversely, employing a 
  
 We compare performance of the DFR tools and report a comparative analysis. In our opinion, such comparative analysis is beneficial to both DF tool 
 users and vendors: it can help users choose the right DF tool, and it can help vendors identify room for improvement and their niche in the market. 
-NIST CFTT publishes reports on DFR tools' performance, but only a subset of DFR tools are covered \morecite. 
+NIST CFTT publishes reports on DFR tools' performance, but only a subset of DFR tools are covered~\cite{cftt_meta_reports,cftt_carving_reports}. 
 We need to expand the coverage as more and more tools come to the market.
 Furthermore, some reports on the CFTT portal are on outdated version of the DFR tools, which warrants updating. 
 For instance, at the time of writing, the reports on Autopsy~\cite{dhs:autopsy} and FTK~\cite{dhs:ftk}, two frequently used DF tools, came out in 2014. 
