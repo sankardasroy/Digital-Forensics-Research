@@ -1,12 +1,11 @@
 \section{Discussion}
 In this section we look at the results from multiple angles. 
 First, we return to the questions posed in Section~\ref{rqs}, to assess the performance of the DFR tools according to the NIST guidelines.
-Then, we shift our analysis to the guidelines themselves, by discussing a few situations where the guidelines are unclear or ambiguous.
+Then, we shift our analysis to the guidelines themselves, by discussing a few situations where the guidelines are unclear, ambiguous, or misleading.
 
-\subsection{Answering Research Questions}
+\subsection{Critique of DFR Tools}
 
-\subsubsection{RQ1}
-\emph{How well do our selected metadata-based DFR tools meet each of the NIST CFTT guidelines?}
+\subsubsection{How well do our selected metadata-based DFR tools meet each of the NIST CFTT guidelines?}
 
 None of the tools consistently meet the NIST CFTT guidelines; however, every tool meets the guidelines in some cases.
 All tools meet DFR-CR-01 except for TestDisk in one case, where it fails to report a deleted file in metadata.
@@ -17,8 +16,7 @@ In many cases, including both file systems and both tools, the recovered file in
 Almost all the times a tool fails to meet the guidelines, it is due to this core feature.
 
 
-\subsubsection{RQ2}
-\emph{What conditions influence the success and failure of metadata-based DFR tools?}
+\subsubsection{What conditions influence the success and failure of metadata-based DFR tools?}
 
 The main factors that cause a metadata-based DFR tool to fail are fragmented files, and overwritten files.
 As evidenced by the \emph{basic} case, all tools meet the NIST guidelines when neither of those factors are present.
@@ -47,9 +45,7 @@ It may be observed that while DFR-CR-03 and DFR-CR-04 account for almost all the
 This makes sense as DFR-CR-03 prescribes what a tool should recover at minimum, and DFR-CR-04 prescribes what a tool should not recover.
 Thus, meeting the guidelines requires striking a balance between a conservative recovery strategy and a more aggressive one.
 
-\subsubsection{RQ3}
-
-\emph{How well do our selected file carving tools meet each of the NIST CFTT guidelines?}
+\subsubsection{How well do our selected file carving tools meet each of the NIST CFTT guidelines?}
 
 In most cases, the tools do not fully meet the NIST CFTT expectation; however, they often come close.
 All tools meet FC-CR-02 and FC-CR-04 in all cases.
@@ -77,9 +73,7 @@ Thus, knowledge and understanding of these trade-offs is important when selectin
 
 
 
-\subsubsection{RQ4}
-
-\emph{What conditions influence the success and failure of file carving tools?}
+\subsubsection{What conditions influence the success and failure of file carving tools?}
 
 As with metadata-based recovery, the main factors which cause tools to fail are fragmentation and missing data (such as from overwriting).
 All tools perform reasonable well on the \emph{basic} and \emph{nofill} cases.
@@ -102,7 +96,7 @@ We believe this represents a flaw in the NIST guidelines, and discuss it in dept
 One other observation is that Foremost and Magnet AXIOM do not recover any TIFF files from any of the test cases, despite both supporting the format.
 
 
-\subsection{Ambiguity in NIST Guidelines}
+\subsection{Critique of NIST Guidelines}
 % Metadata
 \subsubsection{FAT Fragmentation and Metadata-Based Tools}
 
@@ -190,6 +184,11 @@ extensively referred to in the current article.
 Recently, Lee et al.~\cite{lee2014improved,lee2019extsfr} proposed file recovery techniques based on 
 metadata present in an Ext2 or Ext3 file system. Furthermore, the research community has also 
 proposed techniques~\cite{nordvik2020generic,atwal2019shining} to carve metadata.
+
+The results and analysis of metadata-based DFR tools in this chapter were originally published in \emph{EAI Endorsed Transactions on Security and Safety} in 2020~\cite{eai}.
+Some aspects, such as the naming and organization of test cases, have been reworked to make them more clear and consistent with the file carving cases.
+A few redundant test cases from the original have been omitted.
+The section on file carving tools is original to this chapter.
 
 
 \section{Future Work}
