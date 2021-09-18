@@ -1,6 +1,6 @@
 \section{Discussion}
-In this section we look at the results from multiple angles. 
-First, we return to the questions posed in Section~\ref{rqs}, to assess the performance of the DFR tools according to the NIST guidelines.
+In this section, we look at the results from multiple angles. 
+We first return to the questions posed in Section~\ref{rqs}, to assess the performance of the DFR tools according to the NIST guidelines.
 Then, we shift our analysis to the guidelines themselves, by discussing a few situations where the guidelines are unclear, ambiguous, or misleading.
 
 \subsection{Critique of DFR Tools}
@@ -53,7 +53,6 @@ All tools meet FC-CR-02 and FC-CR-04 in all cases.
 The only case in which a tool fully meets all five core features is PhotoRec on the \emph{nofill} test case.
 PhotoRec has by far the best scores for FC-CR-05 and comes close to fully meeting it.
 However, it is inconsistent on FC-CR-01 and FC-CR-03.
-
 Foremost gets inconsistent scores on FC-CR-03, but seems to outperform the other tools on this core feature.
 Its results on FC-CR-01 mostly mirror PhotoRec's, but are generally lower.
 On FC-CR-05, it is inconsistent.
@@ -81,6 +80,7 @@ Since these have only complete, contiguous files, they are expected to be easy.
 The \emph{simple-frag}, \emph{braid}, and \emph{disorder} cases introduce variations on fragmentation.
 Interestingly, almost all tools perform better on braid than on simple-frag.
 This makes sense as the files in braid are fragmented around other files, with no space in between, while the files in simple-frag have empty space between the fragments.
+
 A file carving tool can in most cases only detect the start and end of a file, so there is no good way to detect empty space. 
 In the braid case, the point of fragmentation is often immediately followed by the start of another file, which the tool can have an easier time detecting.
 Since disorder puts the ends of files before their starts, a file carving tool must abandon most reasonable assumptions about the layout of the file system or it will be misled.
@@ -144,6 +144,7 @@ Interpreting ``each carved file'' to include even the ones with no relation to t
 In other terms, this interpretation favors a \emph{strong match policy} over a \emph{weak match policy}.
 However, this obscures a relevant trade-off, that a more aggressive tool will have a high false-positive rate, but may recover files that a more conservative tool would miss.
 An investigator may have this trade-off in mind when selecting a DFR tool, so the NIST guidelines should not make a tool that sits on one side of that trade-off appear objectively worse than others.
+
 As the standards are currently written, a tool that carves only one file from an image, but recovers it correctly, would be considered perfect on four out of five core features.
 Meanwhile, a tool that perfectly carves all 40 files from an image, but also returns 150 false-positives, would likely score very poorly for CF-CR-03, CF-CR-04, and CF-CR-05.
 It would score especially poorly on CF-CR-05 as false-positives will almost never be a valid file.

@@ -76,7 +76,7 @@ Each file is given a unique letter and shading, and the start and end of a fragm
 \textbf{combo2} & Deleted file is fragmented around an active file, and the second fragment is overwritten by another deleted file \\
 \colrule
 \multicolumn{2}{c}{\textbf{Deleted File is Fragmented Out-of-Order}} \\ \colrule
-\textbf{disorder1} & Deleted file fragmented out-of-order (illustrated in Figure~\ref{fig:case14}) \\
+\textbf{disorder1} & Deleted file fragmented out-of-order with empty space in between the fragments (illustrated in Figure~\ref{fig:case14}) \\
 \textbf{disorder2} & Deleted file fragmented out-of-order with an active file in between the fragments \\
 \textbf{disorder3} & Deleted file fragmented out-of-order with a deleted file in between the fragments \\
 \botrule
@@ -88,7 +88,7 @@ Each file is given a unique letter and shading, and the start and end of a fragm
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{fig/case2.pdf}
-    \caption{fragments1: File A is fragmented, and has been deleted.}
+    \caption{fragments1: File A is fragmented and has been deleted.}
     \label{fig:case2}
 \end{figure}
 
@@ -159,6 +159,7 @@ Since most of the test images involve manipulating file data into certain arrang
 Allocation algorithm refers to the steps the operating system takes to decide where on the disk to write new data.
 Generally, the operating system wants to limit fragmentation, as contiguous files are more efficient to read and write to.
 Common allocation algorithms like ``first available,'' ``next available,'' and ``best fit'' will place files according to that general principle, but use differing strategies to do so.
+
 Understanding the allocation algorithm removes a lot of trial and error from the process of making test images.
 For example, we observed that Linux uses a ``next available'' algorithm when writing to FAT.
 After mounting the file system, the first file to be written will be placed at the first available space in the file system.
@@ -202,7 +203,7 @@ For TestDisk we used ``file undelete'' in ``Advanced Filesystem Utils'' to recov
         \subcaption{TestDisk}
     \end{subfigure}
         
-    \caption{Test results on metadata-based DFR tools using FAT-formatted test images. Each row corresponds to a test image and each column corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
+    \caption{Test results on metadata-based DFR tools using FAT-formatted test images. Each row corresponds to a test image and each column corresponds to a core feature. An ``O'' indicates success and an ``X'' indicates failure.}
     \label{fig:results_fat}
 \end{figure}
 
@@ -230,7 +231,7 @@ For TestDisk we used ``file undelete'' in ``Advanced Filesystem Utils'' to recov
         \subcaption{TestDisk}
     \end{subfigure}
         
-    \caption{Test results on metadata-based DFR tools using NTFS-formatted test images. Each row corresponds to a test image and each column corresponds to a core feature. An 'O' indicates success and an 'X' indicates failure.}
+    \caption{Test results on metadata-based DFR tools using NTFS-formatted test images. Each row corresponds to a test image and each column corresponds to a core feature. An ``O'' indicates success, an ``X'' indicates failure, and a ``n/a'' indicates no judgement could be made.}
     \label{fig:results_ntfs}
 \end{figure}
 
@@ -274,7 +275,7 @@ In FAT, Autopsy only recovers the first cluster of an overwritten file, regardle
 In NTFS, it gives the same results as other tools.
 For FAT \emph{overwrite1} and \emph{overwrite2}, Magnet AXIOM recovers up to the end overwritten sections, but no further.
 This is a bit strange as it suggests Magnet AXIOM can detect overwriting, but still returns the overwritten part.
-For other cases it behaves like the other tools.
+For other cases, it behaves like the other tools.
 
 When a deleted file is overwritten by another deleted file, even FTK acts as though the overwritten part belongs to the original file.
 This suggests that the tools which can detect overwriting do so based on the allocation status of each data block; other than that, they only consider the metadata of the file being recovered, not the files around it.
