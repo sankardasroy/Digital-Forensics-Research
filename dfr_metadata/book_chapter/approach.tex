@@ -402,15 +402,15 @@ Note that carving from multiple sources may still result in a valid file, such a
     \caption{
         \emph{iris-lavender.bmp} from the \emph{disorder} test case, as carved by PhotoRec.
         By cross-referencing NIST CFTT's map of the test image with PhotoRec's report file, we find  that the carved file is actually composed of data from 3 files: \emph{iris-lavender.bmp}, \emph{iris-yellow.bmp}, and \emph{smoked-chicken.bmp}.
-        In this case, PhotoRec fails to meet CF-CF-03, despite outputting a valid BMP image.
+        In this case, PhotoRec fails to meet FC-CR-03, despite outputting a valid BMP image.
         }
     \label{fig:CR3_fail}
 \end{figure}
 
-All tools perfectly fulfil CF-CR-04, meaning every carved file that represents a ``hit,'' is given the same file extension as its corresponding original file.
-We limit this only to ``hits,'' excluding false positives, to avoid overlapping with CF-CR-05.
+All tools perfectly fulfil FC-CR-04, meaning every carved file that represents a ``hit,'' is given the same file extension as its corresponding original file.
+We limit this only to ``hits,'' excluding false positives, to avoid overlapping with FC-CR-05.
 
-For CF-CR-05, PhotoRec generally scores very high, Foremost and Magnet AXIOM get high scores for some test cases and low scores for others, and Scalpel scores very low for all test cases.
+For FC-CR-05, PhotoRec generally scores very high, Foremost and Magnet AXIOM get high scores for some test cases and low scores for others, and Scalpel scores very low for all test cases.
 A high score on this core feature means most of the files a tool carves are valid files of some image format and can be properly parsed as that format (we test with the \emph{identify} tool from ImageMagick).
 This may imply the tool checks carved files for validity before outputting them.
 Note that identify throws a warning for six of the TIFF files used to create CFTT's test images, so we ignore the warning for carved versions of those six files.
