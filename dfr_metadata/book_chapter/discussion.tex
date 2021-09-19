@@ -1,11 +1,12 @@
 \section{Discussion}
 In this section, we look at the results from multiple angles. 
-We first return to the questions posed in Section~\ref{rqs}, to assess the performance of the DFR tools according to the NIST guidelines.
-Then, we shift our analysis to the guidelines themselves, by discussing a few situations where the guidelines are unclear, ambiguous, or misleading.
+We first return to the questions posed in Section~\ref{rqs} to guide our analysis of the chosen DFR tools.
+Then, we shift our analysis to the NIST guidelines themselves, by discussing a few situations in which the guidelines are unclear, ambiguous, or misleading.
 
 \subsection{Critique of DFR Tools}
+As stated in Section~\ref{rqs}, our objectives are to assess the performance of the DFR tools according to the NIST guidelines, and to determine the factors influencing a tool's success and failure. 
 
-\subsubsection{How well do our selected metadata-based DFR tools meet each of the NIST CFTT guidelines?}
+\subsubsection{Performance of Metadata-Based Tools}
 
 None of the tools consistently meet the NIST CFTT guidelines; however, every tool meets the guidelines in some cases.
 All tools meet DFR-CR-01 except for TestDisk in one case, where it fails to report a deleted file in metadata.
@@ -16,7 +17,7 @@ In many cases, including both file systems and both tools, the recovered file in
 Almost all the times a tool fails to meet the guidelines, it is due to this core feature.
 
 
-\subsubsection{What conditions influence the success and failure of metadata-based DFR tools?}
+\subsubsection{Conditions for Success of Metadata-Based Tools}
 
 The main factors that cause a metadata-based DFR tool to fail are fragmented files, and overwritten files.
 As evidenced by the \emph{basic} case, all tools meet the NIST guidelines when neither of those factors are present.
@@ -45,7 +46,7 @@ It may be observed that while DFR-CR-03 and DFR-CR-04 account for almost all the
 This makes sense as DFR-CR-03 prescribes what a tool should recover at minimum, and DFR-CR-04 prescribes what a tool should not recover.
 Thus, meeting the guidelines requires striking a balance between a conservative recovery strategy and a more aggressive one.
 
-\subsubsection{How well do our selected file carving tools meet each of the NIST CFTT guidelines?}
+\subsubsection{Performance for File Carving Tools}
 
 In most cases, the tools do not fully meet the NIST CFTT expectation; however, they often come close.
 All tools meet FC-CR-02 and FC-CR-04 in all cases.
@@ -72,7 +73,7 @@ Thus, knowledge and understanding of these trade-offs is important when selectin
 
 
 
-\subsubsection{What conditions influence the success and failure of file carving tools?}
+\subsubsection{Conditions for Success of File Carving Tools}
 
 As with metadata-based recovery, the main factors which cause tools to fail are fragmentation and missing data (such as from overwriting).
 All tools perform reasonable well on the \emph{basic} and \emph{nofill} cases.
