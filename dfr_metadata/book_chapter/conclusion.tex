@@ -4,3 +4,12 @@ We evaluated deleted file recovery (DFR) tools according to guidelines set by NI
 We used test cases provided by CFTT to evaluate file carving tools, and designed our own test cases to evaluate metadata-based DFR tools.
 We analyzed the results of these tests to determine how well each tool meets the guidelines and how they compare on various tasks.
 We also critiqued the CFTT guidelines based on our experiments and analysis.
+
+In addition to the four core features, there are several optional features listed in the NIST CFTT guidelines for metadata-based DFR tools~\cite{meta:dfr:standards}.
+Future work could extend our methodology to evaluate metadata-based tools on these optional features.
+Our evaluation of metadata-based tools was limited in scope to just the FAT and NTFS file systems, making it somewhat Windows-centric.
+As investigators need to be able to recover evidence from Linux or MacOS devices, future work could evaluate metadata-based tools on ext4, HFS, and other common file systems.
+It is common for files to be embedded within other files, for example thumbnails in some graphical formats.
+Future work could test the ability of file carving tools to recover these files, and interpret and critique the NIST guidelines in the context of embedded files.
+Future work could also extend our investigation of file carving tools beyond just graphical file formats, such as to video or document file formats, which may be equally valuable to an investigation.
+
