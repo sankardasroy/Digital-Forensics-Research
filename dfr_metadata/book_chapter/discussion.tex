@@ -149,9 +149,9 @@ An investigator may have this trade-off in mind when selecting a DFR tool, so th
 As the standards are currently written, a tool that carves only one file from an image, but recovers it correctly, would be considered perfect on four out of five core features.
 Meanwhile, a tool that perfectly carves all 40 files from an image, but also returns 150 false-positives, would likely score very poorly for CF-CR-03, CF-CR-04, and CF-CR-05.
 It would score especially poorly on CF-CR-05 as false-positives will almost never be a valid file.
-Since the NIST guidelines do not directly account for the false-positive rate, it indirectly and disproportionately affects several core features, diluting their usefulness.
+Since the NIST guidelines do not directly account for the false-positive rate, it indirectly and disproportionately affects several core features, diluting their~usefulness.
 
-To resolve this issue, we propose the following changes to the NIST guidelines:
+To resolve this issue, we propose the following changes to the NIST~guidelines:
 \begin{arabiclist}
  \item Add a new definition: \emph{Positive Carved File}, a carved file which corresponds to a supported file header signature from a source file that is present in the search arena.
  \item In CF-CR-03, CF-CR-04, and CF-CR-05, change ``carved file'' to ``positive carved file.''

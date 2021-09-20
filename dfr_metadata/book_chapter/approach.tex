@@ -22,7 +22,7 @@ A high-level illustration of our methodology can be seen in Figure~\ref{fig:over
 \end{figure}
 
 \subsection{Metadata-Based Tools}
-In this section, we explain our process for testing metadata-based DFR tools.
+In this section, we explain our process for testing metadata-based DFR~tools.
 
 \subsubsection{Designing Recovery Scenarios}
 
@@ -46,7 +46,7 @@ As such, our test cases fall into five general categories:
 {\bf (b)} only fragmentation,
 {\bf (c)} only overwriting,
 {\bf (d)} both fragmentation and overwriting,
-and {\bf (e)} fragmentation ``out of order.''
+and {\bf (e)} fragmentation ``out of~order.''
 
 
 Each test case is listed in Table~\ref{meta_cases} along with a brief description.
@@ -139,7 +139,7 @@ Note that text files cannot be recovered with file carving, so this choice force
 We write files to the test file system by copying them from another drive, and appending to files when we need to force fragmentation.
 Once the test file system matches one of the planned test cases, we use the \emph{dd} utility to create a disk image of that partition.
 Since the disk image can be made read-only, it is safer and more convenient to run tests on the disk image instead of the physical drive.
-Note that we create FAT test cases using Ubuntu 18.04 and NTFS test cases using Windows 10.
+Note that we create FAT test cases using Ubuntu 18.04 and NTFS test cases using Windows~10.
 
 \subsubsection{Challenges}
 
@@ -276,7 +276,7 @@ In FAT, Autopsy only recovers the first cluster of an overwritten file, regardle
 In NTFS, it gives the same results as other tools.
 For FAT \emph{overwrite1} and \emph{overwrite2}, Magnet AXIOM recovers up to the end overwritten sections, but no further.
 This is a bit strange as it suggests Magnet AXIOM can detect overwriting, but still returns the overwritten part.
-For other cases, it behaves like the other tools.
+For other cases, it behaves like the other~tools.
 
 When a deleted file is overwritten by another deleted file, even FTK acts as though the overwritten part belongs to the original file.
 This suggests that the tools which can detect overwriting do so based on the allocation status of each data block; other than that, they only consider the metadata of the file being recovered, not the files around it.
@@ -293,8 +293,7 @@ Even if this is the case, the file information is still available in metadata, s
 
 
 \subsection{Carving-Based Tools}
-In this section, we explain our process for testing file carving-based DFR
-tools.
+In this section, we explain our process for testing file carving-based DFR~tools.
 
 \subsubsection{CFTT Test Cases}
 To evaluate the file carving tools, we used six disk images prepared by CFTT~\cite{cftt_carving_images}.
