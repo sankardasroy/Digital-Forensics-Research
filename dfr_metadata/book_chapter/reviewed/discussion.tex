@@ -1,0 +1,196 @@
+\section{Discussion}
+In this section, we look at the results from multiple angles. 
+We first return to the questions posed in Section~\ref{rqs} to guide our analysis of the chosen DFR tools.
+Then, we shift our analysis to the NIST guidelines themselves, by discussing a few situations in which the guidelines are unclear, ambiguous, or misleading.
+
+\subsection{Critique of DFR Tools}
+As stated in Section~\ref{rqs}, our objectives are to assess the performance of the DFR tools according to the NIST guidelines, and to determine the factors influencing a tool's success and failure. 
+
+\subsubsection{Performance of Metadata-Based Tools}
+
+None of the tools consistently meet the NIST CFTT guidelines; however, every tool meets the guidelines in some cases.
+All tools meet DFR-CR-01 except for TestDisk in one case, where it fails to report a deleted file in metadata.
+In that case, the file data is completely overwritten, so the tool may be deliberately choosing to omit the file; however, our interpretation of the guidelines would have it instead return an empty file.
+All tools meet DFR-CR-02 without exception, as they attempt to return something for every deleted file.
+In some FAT cases, Magnet AXIOM and Autopsy do not recover all data indicated by metadata, so they fail DFR-CR-03.
+In many cases, including both file systems and both tools, the recovered file incorrectly contains data from other files, causing the tool to fail DFR-CR-04.
+Almost all the times a tool fails to meet the guidelines, it is due to this core feature.
+
+
+\subsubsection{Conditions for Success of Metadata-Based Tools}
+
+The main factors that cause a metadata-based DFR tool to fail are fragmented files, and overwritten files.
+As evidenced by the \emph{basic} case, all tools meet the NIST guidelines when neither of those factors are present.
+
+Most FAT tools detect simple fragmentation in FAT, but Recuva and Magnet AXIOM do not, failing DFR-CR-04 for the \emph{fragments1} case.
+When a file is fragmented around another deleted file, all tools fail to detect fragmentation, which means they all fail DFR-CR-04.
+
+Out-of-order fragmentation (the \emph{disorder} cases) in FAT causes all tools to fail to recover the full deleted file, since FAT metadata only provides the location of the first fragment, and it is difficult to detect where the other fragments will be if they are out-of-order.
+Three of the tools still meet DFR-CR-03 by just recovering the first fragment, but Autopsy and Magnet AXIOM only return null data or an empty file, failing DFR-CR-03.
+
+Most times a tool fails to meet the guidelines, it specifically fails to meet DFR-CR-04.
+This occurs most often in the \emph{overwrite} and \emph{combo} cases, which all feature overwritten deleted files.
+In these cases, we expect a tool to not recover anything from the parts of a file that were overwritten, since they now contain a different file's data.
+Thus, tools which are more conservative are more likely to meet this core feature (at the risk of failing to meet DFR-CR-04).
+The only tool to meet DFR-CR-04 for more than half of the test cases is FTK Imager.
+If a deleted file is overwritten by an active file in FAT, FTK Imager returns only up to the point the file was overwritten, then stops.
+If a deleted file is overwritten by an active file in NTFS, FTK Imager recovers all the remaining file data, replacing the overwritten part with null data.
+In either file system, if all accessible file data is overwritten, FTK Imager returns an empty file.
+The only cases where even FTK Imager returns data from the overwriting file are \emph{overwrite4}, \emph{overwrite5}, \emph{overwrite6}, and \emph{combo2}, the cases where the overwriting file has also been deleted.
+These cases are difficult for metadata-based DFR tools in general, as the tools tend to rely on file allocation status to detect overwriting (and fragmentation in FAT).
+
+Autopsy fails to meet DFR-CR-03 for the FAT \emph{overwrite2} and \emph{combo1} cases, in which the start of the deleted file is intact but a later part is overwritten.
+Instead of recovering all the intact data it can, it simply returns a single cluster.
+
+It may be observed that while DFR-CR-03 and DFR-CR-04 account for almost all the failures, a tool only ever fails to meet one of these core features.
+This makes sense as DFR-CR-03 prescribes what a tool should recover at minimum, and DFR-CR-04 prescribes what a tool should not recover.
+Thus, meeting the guidelines requires striking a balance between a conservative recovery strategy and a more aggressive one.
+
+\subsubsection{Performance for File Carving Tools}
+
+In most cases, the tools do not fully meet the NIST CFTT expectation; however, they often come close.
+All tools meet FC-CR-02 and FC-CR-04 in all cases.
+
+The only case in which a tool fully meets all five core features is PhotoRec on the \emph{nofill} test case.
+PhotoRec has by far the best scores for FC-CR-05 and comes close to fully meeting it.
+However, it is inconsistent on FC-CR-01 and FC-CR-03.
+Foremost gets inconsistent scores on FC-CR-03, but seems to outperform the other tools on this core feature.
+Its results on FC-CR-01 mostly mirror PhotoRec's, but are generally lower.
+On FC-CR-05, it is inconsistent.
+
+Scalpel consistently recovers at least two thirds of the deleted files, tying with Magnet AXIOM for best average performance on FC-CR-01.
+However, it generally performs very poorly on FC-CR-03 and FC-CR-05, though this may be an unfair consequence of our interpretation of the NIST guidelines.
+This is discussed in more detail in Section~\ref{sec:false_pos}.
+
+Magnet AXIOM performs about the same as Scalpel on FC-CR-01, consistently carving over two thirds of the deleted files.
+Its performance on FC-CR-03 is inconsistent in a similar way to Scalpel's, but with higher scores.
+Its performance on FC-CR-05 is inconsistent in a similar way to Foremost, but with mostly higher scores.
+
+Based on our evaluation, no one tool consistently outperforms the others.
+Each tool meets some core features very well, and struggles with the rest.
+Thus, knowledge and understanding of these trade-offs is important when selecting a file carving tool.
+
+
+
+
+\subsubsection{Conditions for Success of File Carving Tools}
+
+As with metadata-based recovery, the main factors which cause tools to fail are fragmentation and missing data (such as from overwriting).
+All tools perform reasonable well on the \emph{basic} and \emph{nofill} cases.
+Since these have only complete, contiguous files, they are expected to be easy.
+The \emph{simple-frag}, \emph{braid}, and \emph{disorder} cases introduce variations on fragmentation.
+Interestingly, almost all tools perform better on braid than on simple-frag.
+This makes sense as the files in braid are fragmented around other files, with no space in between, while the files in simple-frag have empty space between the fragments.
+
+A file carving tool can in most cases only detect the start and end of a file, so there is no good way to detect empty space. 
+In the braid case, the point of fragmentation is often immediately followed by the start of another file, which the tool can have an easier time detecting.
+Since disorder puts the ends of files before their starts, a file carving tool must abandon most reasonable assumptions about the layout of the file system or it will be misled.
+Unsurprisingly, this case is very difficult and most tools perform poorly on it relative to the other cases.
+The \emph{partials} case introduces missing file data; in this case the missing data is replaced by empty space, rather than overwritten by another file.
+This case also seems to be difficult, for the same reasons as simple-frag.
+
+How conservative a tool is about its output has a big impact on its score, particularly for FC-CR-03 and FC-CR-05.
+Some tools output a smaller number of files but generally only valid files, while other tools may get more ``hits'' but also output many false positives which do not constitute a valid file.
+This is the main reason Scalpel performs so poorly on FC-CR-03 and FC-CR-05 despite its fairly high scores on FC-CR-01.
+We believe this represents a flaw in the NIST guidelines, and discuss it in depth in Section~\ref{sec:false_pos}.
+
+One other observation is that Foremost and Magnet AXIOM do not recover any TIFF files from any of the test cases, despite both supporting the format.
+
+
+\subsection{Critique of NIST Guidelines}
+In this section, we highlight issues that arose while interpreting the NIST guidelines in the context of our results. We analyze the guidelines critically, and highlight a few scenarios in which the guidelines can be confusing or ambiguous in practice.
+
+
+% Metadata
+\subsubsection{FAT Fragmentation and Metadata-Based Tools}
+
+To fulfill DFR-CR-03, a tool must recover ``all non-allocated data blocks identified in a residual metadata entry''~\cite{meta:dfr:standards}.
+However, in the FAT file system, it's debatable exactly how much is identified in metadata.
+Recall that FAT directory entries only store the starting address and the length of a file, and any other information is lost upon file deletion.
+So, for a fragmented deleted file, how much should a tool be expected to recover?
+Reading DFR-CR-03 very close to the letter, one could argue that the only data definitively identified in metadata is the first cluster; after all, the file could be fragmented between the first and second clusters, and there would be no way to tell from its metadata.
+However, this is almost certainly not the intent of the guidelines, as it sets a very low standard for performance.
+Since it is possible to reason about the point of fragmentation based on cluster allocation status and other files' metadata, we interpret DFR-CR-03 to mean tools should at least recover the first fragment of a file.
+Recovering an entire fragmented file would involve guesswork, so we do not require it.
+
+NIST's James Lyle, who wrote about the challenges of evaluating DFR tools in 2011, 
+claims that trying to anticipate the details of every major file system would make the guidelines overly complex. 
+Instead, Lyle suggests they be written for `an ideal file system that leaves in 
+residual metadata  all  information  required  to  reconstruct  a  deleted  file''~\cite{lyle2011-ICDF2C}, even if this means sometimes holding a tool to an impossible standard.
+He further justifies this approach by pointing out that whether a feature is impossible or merely absent, the user experience is the same.
+Since the NIST CFTT guidelines seem to have been written with this philosophy in mind, it may not be reasonable to clarify specific edge cases like like the one in this section.
+However, the context of this ``ideal file system'' should be explicitly stated in the guidelines document.
+
+\subsubsection{Incompatible Core Features for Metadata-Based Tools}
+
+Under some circumstances, it is impossible for a tool to meet both DFR-CR-03 and DFR-CR-04 at the same time.
+For example, suppose a file ``A'' in NTFS is deleted and overwritten, and the file ``B'' that overwrote it is also deleted.
+In NTFS, the full run of file A is accessible from metadata after deletion, and since file B was also deleted, all the clusters in file A's run are unallocated.
+DFR-CR-03 requires a tool to recover `all non-allocated data blocks identified in a residual metadata entry,''~\cite{meta:dfr:standards} so the entire run of file A should be recovered.
+However, this would include data from file B, which is forbidden by DFR-CR-04.
+DFR-CR-04 requires that a recovered file contain only data from the ``deleted block pool,'' which is the set of data blocks from the deleted file which ``have not been reallocated or reused.''~\cite{meta:dfr:standards}
+Meeting DFR-CR-03 requires recovering data that was reused for file B, so in this case DFR-CR-03 and DFR-CR-04 are incompatible.
+This situation occurs in the cases \emph{overwrite4}, \emph{overwrite5}, \emph{overwrite6}, and \emph{combo2} for both FAT and NTFS, and in these cases each tool meets DFR-CR-03 but not DFR-CR-04.
+As in the previous section, the user experience is the same regardless of whether or not a task is impossible, so this edge case probably does not justify an update to the guidelines.
+
+
+
+% Carving
+\subsubsection{False-Positives from File Carving} \label{sec:false_pos}
+% What to do about additional files? It's clear for CR1, but not for the others.
+
+All core features for file carving tools besides the first set requirements specifically for all ``carved files.''
+The guidelines document defines a carved file as ``a file created by a carving tool purported to be one of the source files present in the search arena.''~\cite{carving_standards}
+This means even false positives which are not part of one of the original files affect a tools' evaluation on four out of five of the core features.
+We suggest that this results in misleading and less informative results, especially when those results are used to compare different tools.
+ 
+Interpreting ``each carved file'' to include even the ones with no relation to the original files results in dramatically low scores for tools like Scalpel (which carved at least 50 additional ``files'' in most of our tests), while favoring tools which are more conservative in their recovery.
+In other terms, this interpretation favors a \emph{strong match policy} over a \emph{weak match policy}.
+However, this obscures a relevant trade-off, that a more aggressive tool will have a high false-positive rate, but may recover files that a more conservative tool would miss.
+An investigator may have this trade-off in mind when selecting a DFR tool, so the NIST guidelines should not make a tool that sits on one side of that trade-off appear objectively worse than others.
+
+As the standards are currently written, a tool that carves only one file from an image, but recovers it correctly, would be considered perfect on four out of five core features.
+Meanwhile, a tool that perfectly carves all 40 files from an image, but also returns 150 false-positives, would likely score very poorly for CF-CR-03, CF-CR-04, and CF-CR-05.
+It would score especially poorly on CF-CR-05 as false-positives will almost never be a valid file.
+Since the NIST guidelines do not directly account for the false-positive rate, it indirectly and disproportionately affects several core features, diluting their~usefulness.
+
+To resolve this issue, we propose the following changes to the NIST~guidelines:
+\begin{arabiclist}
+ \item Add a new definition: \emph{Positive Carved File}, a carved file which corresponds to a supported file header signature from a source file that is present in the search arena.
+ \item In CF-CR-03, CF-CR-04, and CF-CR-05, change ``carved file'' to ``positive carved file.''
+ \item Add an additional core feature: \emph{The tool shall not return any carved files that do not correspond to a supported file header signature from a source file that is present in the search arena.} This could be scored as the ratio of positive carved files to total carved files.
+\end{arabiclist}
+
+The intent of these changes is to better atomize the guidelines, so each core feature evaluates a tool on a single capability.
+This should make the trade-offs of certain tools more apparent, enabling investigators to make more informed and nuanced tool choices based on the capabilities that are most important for their use case.
+
+\section{Related Work}
+
+Wu et al.~\cite{wu2020digital} presented a survey on recent advances in the field of DF tools. 
+This is a study of the currently available DF tools in general, including file carving tools.
+
+From the experience of designing Scalpel, Richard et al.~\cite{richard2005scalpel} presented 
+a set of requirements to fulfill to make a file carving tool perform well. 
+Laurenson~\cite{laurenson2013performance} reviewed six file carving tools to evaluate their performance quality.
+Interestingly, the research community proposed multiple approaches for file carving. 
+For instance, Sencur et al.~\cite{sencar2009identification} exploited bit sequence 
+matching to identify fragments of a JPEG file. Furthermore, Gladyshev 
+et al.~\cite{gladyshev2017decision} used decision theoretic analysis to carve JPEG files.
+Moreover, to recover files from an Ext4 system, Dewald et al.~\cite{dewald2017afeic} built a tool 
+that is not solely dependent on metadata information. Their tool uses 
+file carving as well as metadata analysis to reconstruct the file.
+
+Lyle~\cite{lyle2011-ICDF2C} proposed a strategy to evaluate metadata-based DFR tools, 
+which, in our understanding, NIST CFTT considered while setting the guidelines 
+for evaluation of such tools~\cite{meta:dfr:standards}. These guidelines are 
+publicly available on the NIST CFTT portal~\cite{cftt:nist}, which we have 
+extensively referred to in the current article.
+
+Recently, Lee et al.~\cite{lee2014improved,lee2019extsfr} proposed file recovery techniques based on 
+metadata present in an Ext2 or Ext3 file system. Furthermore, the research community has also 
+proposed techniques~\cite{nordvik2020generic,atwal2019shining} to carve metadata.
+
+The results and analysis of metadata-based DFR tools in this chapter were originally published in \emph{EAI Endorsed Transactions on Security and Safety} in 2020~\cite{eai}.
+Some aspects, such as the naming and organization of test cases, have been reworked to make them more clear and consistent with the file carving cases.
+A few redundant test cases from the original have been omitted.
+The section on file carving tools is original to this chapter.
